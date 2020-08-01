@@ -55,7 +55,7 @@
     var isMobileAppAndroid = $_GET["mobileAndroid"] > 0;
     var isMobileApp = isMobileAppIOS || isMobileAppAndroid;
     if (isMobileApp) {
-      console.log("Mobile App detected! (" + (isMobileAppIOS ? "IOS" : "Android") + ")");
+      //console.log("Mobile App detected! (" + (isMobileAppIOS ? "IOS" : "Android") + ")");
     }
 
     //set if using a mobile device or not
@@ -181,210 +181,23 @@
 </div>
 <div id="updates">
 <div id="updatesDiv">
-<h2>June 4: New official Youtube channel</h2>
+<h2>Aug 1st- bug and bot fixes!</h2>
 <ul>
-<img src="img/promo_yt.png" width=80% />
-<li>-We've made a new offical youtube channel (Sub with the youtube button below, or <a href="https://www.youtube.com/channel/UCDz0ArFK1i0h5lUjGqlgJaA/discussion?disable_polymer=1" target="_blank">NEW CHANNEL LINK</a>), where we will post
-offical
-updates/ announcements, and sneak
-peaks on upcoming stuff!
-<div id="ytButton" style="margin-top: 7px;">
-<script src="https://apis.google.com/js/platform.js"></script>
-<div class="g-ytsubscribe" data-channelid="UCDz0ArFK1i0h5lUjGqlgJaA" data-layout="default" data-count="default">
-</div>
-
-</div>
-The old channel will still be run by Mope.io dev KOA, and will have unique mope.io fan content!-- <a href="xhttps://www.youtube.com/channel/UCNfK9bZk3Br2KDjXXdKuM1g" target="_blank">MOPE KOA Channel Link</a></li>
-</li>
+<img src=img/promo_recap.png width=80% />
+<li>Fixed the long-running ghost/god mode bug, and several others</li>
+<li>New anti-bots measures implemented, including recaptcha (Shouldn't affect normal players at all.)</li>
+<li>fixed: anti mods measures implemented.</li>
 <li>
-We've got a fix for the ghost bug coming soon, and we're currently working on finally fixing random server disconnections.
+3 new <a target=_blank href="proxies.html">proxy sites</a> (for live AND beta mope)
 </li>
-</ul>
-<h2>April 17: Mope Proxy sites</h2>
-<ul>
-<li>-If mope.io is blocked for you, try the following mope proxy sites:</li>
+<li>We are working on a new content update thats still under testing. Here we will fix the random disconnections that some players have.</li>
 <li>
-<a href="https://m0pe.io" target="_blank">m0pe.io (the o becomes a 0)</a>
-</li>
-<li>
-<a href="https://learninganimals.club/" target="_blank">learninganimals.club/</a>
-</li>
-</ul>
-<h2>April 7: Bug fixes</h2>
-<ul>
-<li>-Fixed slow boosting (properly now)</li>
-<li>-rare animals rarity increase (eg Golden Eagle 5/1000, Black Rhino 4/1000, Aqua Yeti 5/600)</li>
-<li>-poison lake's damage decreased by 2x</li>
-</ul>
-<h2>March 12: Buffs, nerfs, bug fixes, and mud diving!</h2>
-<img src="img/update/promo10.png" width="80%"><br>
-<ul>
-<li>-Certain animals (hippo/komodo/pig/warthog/
-croc/rhino/boa/chicken) can dive in mud now!</li>
-<li>-Fixed all kinds of bugs, all details in the <a href="updates.txt" target="_blank">CHANGELOG</a></li>
-</ul>
-<h2>March 10: We're working on lag fixes</h2>
-<ul>
-<li>-Fixed most lag issues- (update March 10- still fixing lag issues)</li>
-<li>-In the settings (click the gear button), you can choose lower graphics to make your gameplay smoother (Though it may look blurrier)</li>
-</ul>
-<h2>March 3: New Trees, skins, Bigfoot!</h2>
-<ul>
-<b>
-<p>-NEW: Climbable trees (4+ types) + Forest biome!</p>
-</b>
-<img src="img/update/promoimg2.png" width="80%"><br>
-<li> <b>PRESS S TO CLIMB UP/DOWN trees</b>- only certain animals can climb them and 1/4 of the land has loads of them!</li>
-<li>-Trees turn transparent when a player gets close to them-great for hiding/hunting</li>
-<b>
-<li>-NEW: There's a rare Bigfoot Animal discovered in mope! (dragon tier)</li>
-</b>
-<img src="img/update/promoimg.png" width="80%"><br>
-<li> Bigfoots can throw spears to hunt their prey!</li>
-<li> When climbing NEW trees, Bigfoot's spears hit flying animals/animals in trees only</li>
-<li> Bigfoot can create fires by holding the ability button down</li>
-<li> Bigfoot is shop buyable, or 1/1000 rarity)</li>
-<li>-Rivers now shrink (dry up) over time (and re-fill), adding a challenge to ocean animals crossing</li>
-<li>-A new poison lake (surrounded by hills) appears in the land biome! Watch out</li>
-<img src="img/update/promo3.png" width="70%"><br>
-<li>-NEW: sounds when eating food, drinking water drops, eating animals, and dying (a mute button has been added to the settings)</li>
-<img src="img/sound_on.png" width="30px"><br>
-<li>-10+ NEW skins in the shop! Check them out!</li>
-<img src="skins/land/mouse/2/mouse.png" width="40%"><img src="skins/land/mouse/1/mouse.png" width="40%">
-<img src="skins/ocean/shark/1/tigershark.png" width="40%"><img src="skins/ocean/shark/2/hammerhead.png" width="40%">
-<img src="img/update/promo4.png" width="90%">
-<img src="img/update/promo5.png" width="90%">
-<li>-Loads of bugs fixed (see CHANGELOG for more details)</li>
-</ul>
-<h2>Feb 5: More bot/lag fixes</h2>
-<ul>
-<li>-bot spawning fixed (properly now)</li>
-<li>-game should run more smoothly (less stutter)- remember, close other games/ use one mope tab for best performance!</li>
-</ul>
-<h2>Feb 4: Bot/Bug Fixes</h2>
-<ul>
-<li>-fixed: some server crashes and mass-bot spawning fixed</li>
-<li>-lots more bug fixes coming up</li>
-</ul>
-<h2>DEC 29: Bug Fixes</h2>
-<ul>
-<li>-fixed: Golden KD upgrade if evolving from BD</li>
-<li>-fixed: KD not counted as Apex kill</li>
-<li>-fixed: Apex kills interface not showing for Goden/Azure BD</li>
-<li>-nerf: Phoenix is 10% slow in desert, has 15% more boost interval...</li>
-<li>-more bug fixes listed in the CHANGELOG</li>
-</ul>
-<h2>DEC 23: #GoldenAge (In time for Christmas)</h2>
-<ul>
-<img src="skins/land/dragon/1/dragon.png" width="70px"><img src="skins/desert/scorpion/1/giantscorpion.png" width="70px">
-<h2>NEW: Accounts + shop:</h2>
-<li>
-<b>There are 59 brand new skins you can buy in the new mope shop! (Log in to see it)</b>
-</li>
-<li>-Now you can now log-on using Facebook and Google, and get an account to earn coins/ buy skins with coins (It saves!).</li>
-<li>NEW: You earn coins while playing (only when you have your adblocker disabled)</li>
-<li>NEW: You can buy coins with real $ (to support the game)</li>
-<img src="img/update/upd_skins.png" width="80%"><br>
-<li>
-Buy special skins for your favorite animals, including golden versions and cool redesigns!
-</li>
-<li>
-Skins are only cosmetic, so they don't give paying players an advantage. (Except looking great!)
+If you see any issues/bug or want to give us (the devs) direct feedback, reply to this: <a target=_blank href="https://www.reddit.com/r/mopeio/comments/i12zi8/testing_recaptcha_and_bot_fixes/?">MOPE REDDIT THREAD</a> here. We will be
+checking on this for some time.
 </li>
 </ul>
 <ul>
-<h2> NEW HD art for most animals!</h2>
-<img src="skins/shrimp.png" width="40%">
-<img src="https://mope.io/skins/bear.png" width="40%">
 </ul>
-<ul>
-<h2>NEW Disasters</h2>
-<li> -NEW Tsunami, Volcano eruption, Tornados, Storms, Waves</li>
-<li> -Each disaster happens rarely, Tsunami and Volcanic erruptions are very rarely occuring disasters</li>
-<br>
-<img src="img/update/volcanic-eruption.png" width="80%"><br>
-<li> Volcanic Eruption:<br>Volcano now erupt, shake and throw fireballs. Also spit lava balls which turn into
-Lavalakes.
-Lavalakes stay for 5-10 minutes. </li><br>
-<li>Snowstorm:<br>Generates in Arctic, a giant clouds moves through arctic region creating snow. As it
-moves
-on
-snowfall intesifies. Snowfall cause Freeze to non-arctic animals</li><br>
-<li> Tsunami:<br>Generate in each ocean wash food/animals out of ocean. Only ocean animals can dive if they
-are
-caught
-in a Tsunami wave</li><br>
-<li>Coldstorm:<br>Generates in Arctic, creates cold waves that freeze animals and push food/animals away
-gently
-</li><br>
-<li>Rainstorm:<br>Generates on Land, a giant clouds moves through the region creating rainfall. As it moves on
-rainfall intesifies. Each raindrop gives water to every animal</li><br>
-<li>Duststorm:<br>Generates in Desert, creates sand waves that slowdown animals by 10% speed and push
-food/animals away gently</li><br>
-<li> Heatwave:<br>Generates in Desert, creates heat waves that give burns to animals and push food/animals
-away
-gently</li><br>
-<li> Tornados:<br>Each biome creates a tornado that sucks in food and pull animals. However animals can escape
-if
-they
-keep boosting or dive in water or hide in hole. Firetornado in volcano, Dustdevil in desert, Waterspout in
-oceans, Arctic Twister in Arctic, and Land Tornado on Land. There is a very rare Devil Twister that creates
-in
-any biome which has more suck power and has a devil face!</li>
-</ul>
-<ul>
-<h2>NEW: Snowman</h2>
-<img src="skins/arctic/snowman/snowman.png" width="70%"><br>
-<li>A new Apex animal Snowman come with 1/2000 rarity and can be bought from shop as well</li>
-<li>Snowman is similar to Yeti with one additional passive ability where it can Camouflage if not moving. When
-carrot
-turns Orange you can hide anywhere in Arctic. Camouflage ends when you move or hurt. </li>
-</ul>
-<ul>
-<h2>NEW: Arctic Volcano</h2>
-<li> -Erupts slower than land volcano</li>
-<li> -has some cool graphics to make eruption look good</li>
-<li> -shoots snowballs projections that hit animals and freeze them, upon fall they create movable snowballs
-</li>
-</ul>
-<ul>
-<h2> Balancing:</h2>
-<li>-loads of balancing, bug fixing, nerfs and buffs</li>
-</ul>
-<h2>Aug 16</h2>
-<ul>
-<li>Fixed bugs, removed video ads for now, so you can re-join the game quickly.</li>
-</ul>
-<h2>July 8: Bug Fixes</h2>
-<ul>
-<li>Fixed issues with food/water not spawning properly around the game.</li>
-<li>Fixed mouse and ducks walking on hills after getting hurt.</li>
-</ul>
-<h2>June 18: Bug Fixes</h2>
-<ul>
-<li>NERF: Trex shaking damage removed. Damage occurs on first grab and then on bleeding</li>
-<li>NERF: Trex can't grab diving ocean animals</li>
-<li>NERF: Trex can't grab diving animals if they are diving for more than 2s</li>
-<li>NERF: Golden Eagle rarity increased by 33%</li>
-<li>NERF: Komodo Dragon's sweat duration/seat amount reduced by 20%</li>
-<li>NERF: Flytrap's bite damage reduced by 20%</li>
-<li>BUFF: King Crab's speed outside ocean increased to 10%</li>
-<li>BUFF: Ice Monster's crystal growth/speed increased</li>
-<li>FIXED: Pelican water bomb not hiting victims</li>
-<li>FIXED: Pelican self hit from own water bomb </li>
-<li>FIXED: Black Widow web teleport catching animals when spider is too far or was stunned</li>
-<li>FIXED: Komodo Dragon teleport grab bug</li>
-<li>FIXED: Black Dragon not healing in 1v1 arena</li>
-<li>FIXED: Toucans not getting hurt in Desert biome (only lava toucan is allowed to not hurt)</li>
-<li>FIXED: Objects going underneath Trees</li>
-<li>FIXED: Melons not getting watered</li>
-<li>FIXED: Killable food pushing animals out of hiding holes</li>
-<li>FIXED: Bot spawning</li>
-<li>FIXED: anti-teaming 0xp-bite</li>
-<li>FIXED: Aniamls getting hit by bees while diving</li>
-<li>NEW: Inside Arena, opponents go semi transparent so they can see through each other when fighting</li>
-</ul>
-<br>
 </div>
 <div id="ytDiv">
 <h2>
@@ -465,8 +278,10 @@ Finding Server...
 <p>
 test accounts login:
 </p>
-<button id="loginTestAccBtn">Login with TEST ACCOUNT</button><button id="loginTestAccBtn2">Login with TEST ACCOUNT2</button>
-<button id="loginTestAccBtn3">Login with TEST ACCOUNT3</button><button id="loginTestAccBtn4">Login with TEST ACCOUNT4</button><button id="loginTestAccBtn5">Login with TEST ACCOUNT5</button><button id="loginTestAccBtn6">Login with TEST
+<button id="loginTestAccBtn">Login with TEST ACCOUNT</button><button id="loginTestAccBtn2">Login with TEST
+ACCOUNT2</button>
+<button id="loginTestAccBtn3">Login with TEST ACCOUNT3</button><button id="loginTestAccBtn4">Login with TEST
+ACCOUNT4</button><button id="loginTestAccBtn5">Login with TEST ACCOUNT5</button><button id="loginTestAccBtn6">Login with TEST
 ACCOUNT6</button>
 <p></p>
 </div>
@@ -497,9 +312,7 @@ ACCOUNT6</button>
 </div>
 <div id="rightSide">
 <div id="loginDiv">
-<style>
-
-        </style>
+<p id="login_SBLabel" style="color: white;margin-bottom: 2px;margin-top: 0px;text-align: center;display:none;">Sandbox Mode</p>
 <div id="notLoggedInDiv">
 <p id="notLoggedInTxt">Log in to earn coins and unlock new skins! <img src="shop/mopecoin.png" width=15px height=15px class="buycoin-img" style="" /></p>
 <button id="facebookLoginBtn" class="facebookLoginBtn">Login with Facebook</button>
@@ -510,7 +323,7 @@ ACCOUNT6</button>
           </script>
 </div>
 <div id="onloggedInDiv" style="display:none;">
-<img id="loggedInUserImg" src="index.html" />
+<img id="loggedInUserImg" src="" />
 <p id="loggedInNameTxt">account name...</p>
 <div id=login_coins title="add more coins">
 <img src="shop/mopecoin.png" class="buycoin-img">
@@ -519,7 +332,7 @@ ACCOUNT6</button>
 <button id="shopbutton" class="shopbutton">Shop</button>
 </div>
 </div>
-<div id="appsDiv"><a id="appAdIOS" href="https://goo.gl/ofAUPJ" target="_blank"><img src="img/appAd_ios.png" width="132" height="82" alt="GET THE IOS APP!" /></a><a id="appAdAndroid" href="https://goo.gl/i3xQWQ" target="_blank"><img src="img/appAd_and.png" width="132" height="52" alt="GET THE Android APP!" /></a></div>
+<div id="appsDiv"><a id="appAdIOS" href="https://goo.gl/ofAUPJ" target="_blank"><img src="./img/appAd_ios.png" width="132" height="82" alt="GET THE IOS APP!" /></a><a id="appAdAndroid" href="https://goo.gl/i3xQWQ" target="_blank"><img src="./img/appAd_and.png" width="132" height="52" alt="GET THE Android APP!" /></a></div>
 </div>
 <div id="moneyRectBottomWrap">
 <div id="moneyRectBottom">
@@ -534,6 +347,8 @@ ACCOUNT6</button>
 </div>
 </div>
 </div>
+<div class="rc-anchor-invisible-text"><span>protection par <strong>reCAPTCHA</strong></span><div class="rc-anchor-pt"><a href="https://www.google.com/intl/fr/policies/privacy/" target="_blank">Confidentialité</a><span aria-hidden="true" role="presentation"> - </span><a href="https://www.google.com/intl/fr/policies/terms/" target="_blank">Conditions</a></div></div>
+<script src="/dfp.js" type="text/javascript"></script>
 
 <script>
     var script = document.createElement('script');
@@ -554,7 +369,7 @@ ACCOUNT6</button>
       }
     }
 
-    //document.write("<script src='client.js?x=%2522%2520+%2520(+new%2520Date())%2520+%2520%2522'></" + "script>");
+    //document.write("<script src='client.js?x=" + (+new Date()) + "'></" + "script>");
   </script>
 
 <div id='cdm-zone-end'></div>
