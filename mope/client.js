@@ -20675,45 +20675,59 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
       break;
     case 36:
       {  
-   
-var mectest = msg.readUInt8();  
-  
-      button_w_mini.abil_Type = msg.readUInt8();  
-         if(button_w_mini.abil_Type != 0){
-       button_w_mini.abil_possible = true;
-  }else{
-      button_w_mini.abil_possible = false
-  }
-  
- 
-      button_w.abil_Type = msg.readUInt8();  
-               if(button_w.abil_Type != 0){
-       button_w.abil_possible = true;
-  }else{
-         button_w.abil_possible = false;
-  }
-       
+         abil_dive_isMain =  msg.readUInt8();
+        abil_dive_recharging=  msg.readUInt8();
+        abil_recharging=  msg.readUInt8();
+    if (abil_dive_isMain) {
+      
+      //dive is main ability!
+      button_w_mini.abil_usable = abil_usable;
+      button_w_mini.abil_recharging = abil_recharging;
+      button_w_mini.abil_possible = abil_possible;
+      button_w_mini.abil_active = abil_active;
+      button_w_mini.abil_Type = abil_type;
+
+      button_w.abil_usable = abil_dive_usable;
+      button_w.abil_recharging = abil_dive_recharging;
+      button_w.abil_possible = abil_dive_possible;
+      button_w.abil_active = abil_dive_active;
+      button_w.abil_Type = ability_dive;
+      //set correct recharging vars for both buttons
+      if (abil_dive_recharging) {
+        button_w.abil_rechargeTotalT = abil_dive_rechargeTotalT;
+        button_w.abil_rechargeEndT = abil_dive_rechargeEndT;
+      }
+      if (abil_recharging) {
+        button_w_mini.abil_rechargeTotalT = abil_rechargeTotalT;
+        button_w_mini.abil_rechargeEndT = abil_rechargeEndT;
+      }
+    } else {
+      //regular ability main
+      button_w.abil_usable = abil_usable;
+      button_w.abil_recharging = abil_recharging;
+      button_w.abil_possible = abil_possible;
+      button_w.abil_active = abil_active;
+      button_w.abil_Type = abil_type;
+
+      button_w_mini.abil_usable = abil_dive_usable;
+      button_w_mini.abil_recharging = abil_dive_recharging;
+      button_w_mini.abil_possible = abil_dive_possible;
+      button_w_mini.abil_active = abil_dive_active;
+      button_w_mini.abil_Type = ability_dive;
+
+      //set correct recharging vars for both buttons
+      if (abil_recharging) {
+        button_w.abil_rechargeTotalT = abil_rechargeTotalT;
+        button_w.abil_rechargeEndT = abil_rechargeEndT;
+      }
+      if (abil_dive_recharging) {
+        button_w_mini.abil_rechargeTotalT = abil_dive_rechargeTotalT;
+        button_w_mini.abil_rechargeEndT = abil_dive_rechargeEndT;
+      }
+    };
       }
   break;
-    case 25: //MsgPlayerAbility
-      {
-
-        // ability started recharging
-        var type = msg.readUInt8();
-        var usable = msg.readUInt8();
-
-        //save info to global vars
-        if (type == 1) {
-         
-          button_w_mini.abil_usable = usable;
-        } else if (type == 2) {
-          
-          button_w.abil_usable = usable;
-          
-        } 
-      }
-
-      break;
+  
     case 50: {
       log("disconnected from AFK!");
       dcedFromAfk = true;
@@ -20734,10 +20748,10 @@ var mectest = msg.readUInt8();
         let req = {}
         req.id = msg.readUInt32()
         req.requestee =  msg.readString();
-         req.aniType  =  msg.readUInt8()
-        req.wins =  msg.readUInt32()
-        req.rank  =  msg.readUInt16()
-         req.dur  =  msg.readUInt16()
+         req.aniType  =  msg.readUInt8();
+        req.wins =  msg.readUInt32();
+        req.rank  =  msg.readUInt16();
+         req.dur  =  msg.readUInt16();
      
         console.log(req.requestee)
             player1v1Requests.push({
