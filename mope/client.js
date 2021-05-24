@@ -20678,7 +20678,7 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
          abil_dive_isMain =  msg.readUInt8();
         abil_dive_recharging=  msg.readUInt8();
         abil_recharging=  msg.readUInt8();
-    if (abil_dive_isMain) {
+
      
       //dive is main ability!
       button_w_mini.abil_usable =  msg.readUInt8();
@@ -20687,44 +20687,23 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
       button_w_mini.abil_active =  msg.readUInt8();
       button_w_mini.abil_Type =  msg.readUInt8();
 
+        button_w_mini.abil_rechargeTotalT =  msg.readUInt8();
+        button_w_mini.abil_rechargeEndT =  msg.readUInt8();
+        
+        
       button_w.abil_usable =  msg.readUInt8();
       button_w.abil_recharging = abil_dive_recharging;
       button_w.abil_possible =  msg.readUInt8();
       button_w.abil_active =  msg.readUInt8();
       button_w.abil_Type =  msg.readUInt8();
       //set correct recharging vars for both buttons
-      if (abil_dive_recharging) {
+      
         button_w.abil_rechargeTotalT =  msg.readUInt8();
         button_w.abil_rechargeEndT =  msg.readUInt8();
-      }
-      if (abil_recharging) {
-        button_w_mini.abil_rechargeTotalT =  msg.readUInt8();
-        button_w_mini.abil_rechargeEndT =  msg.readUInt8();
-      }
-    } else {
-      //regular ability main
-      button_w.abil_usable =  msg.readUInt8();
-      button_w.abil_recharging = abil_recharging;
-      button_w.abil_possible =  msg.readUInt8();
-      button_w.abil_active =  msg.readUInt8();
-      button_w.abil_Type =  msg.readUInt8();
-
-      button_w_mini.abil_usable =  msg.readUInt8();
-      button_w_mini.abil_recharging =  abil_dive_recharging
-      button_w_mini.abil_possible =  msg.readUInt8();
-      button_w_mini.abil_active =  msg.readUInt8();
-      button_w_mini.abil_Type =  msg.readUInt8();
-
-      //set correct recharging vars for both buttons
-      if (abil_recharging) {
-        button_w.abil_rechargeTotalT =  msg.readUInt8();
-        button_w.abil_rechargeEndT =  msg.readUInt8();
-      }
-      if (abil_dive_recharging) {
-        button_w_mini.abil_rechargeTotalT =  msg.readUInt8();
-        button_w_mini.abil_rechargeEndT =  msg.readUInt8();
-      }
-    };
+      
+      
+      
+    
       }
   break;
   
