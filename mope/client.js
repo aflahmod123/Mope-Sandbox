@@ -2003,7 +2003,7 @@ function TouchButton(text) {
 }
 window.TouchButton=TouchButton;
 
-var AbilityButton = function() {
+var AbilityButton = function () {
   this.buttonTXT = new CachedText(10.0, "white");
   this.buttonTXT.renderScale = 1.5;
   //this.buttonTXT.setText("");
@@ -2014,105 +2014,82 @@ var AbilityButton = function() {
   this.abil_possible = this.abil_usable = this.abil_recharging = this.abil_active = false;
   this.abil_rechargeEndT = 0, this.abil_rechargeTotalT = 0;
   this.abil_rechargeBarA = 0, this.abil_avilableA = 0;
-this.abil_typeclick = 0
-  this.draw = function() {
+
+  this.draw = function () {
     if (!this.visible)
       return;
 
     this.abil_rechargeBarA += ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
     this.abil_avilableA += (((this.abil_usable || this.abil_active) ? 1.0 : 0.2) - this.abil_avilableA) * 0.1;
+    if (this.isMiniRechargeBut) {
+      this.h = this.w * 0.6;
+    }
 
     if (this.abil_possible) {
       var oAlpha = 1.0;
-      ctx.save();      
+      ctx.save();
+
+      if (this.isMiniRechargeBut) {
+        this.h = this.w * 0.8;
+        ctx.translate(this.x, this.y + this.h * 0.36);
+        ctx.scale(0.65, 0.65);
+      } else
         ctx.translate(this.x, this.y);
+
       //draw button square
       var fillOp = 0.2 * this.abil_avilableA;
-      var fillCol = (this.pressed || controls_rightClicked) ? "#CECECE" : "#000000"; 
-      if(this.abil_typeclick == 1){
-      fillCol = (this.pressed || cNum_keyEused) ? "#CECECE" : "#000000";
-      }
-          if(this.abil_typeclick == 2){
-      fillCol = (this.pressed || cNum_keyDused) ? "#CECECE" : "#000000";
-      }
+      var fillCol = (this.pressed || controls_rightClicked) ? "#CECECE" : "#000000";
       if (this.abil_active) {
         fillCol = col_edibleOutline;
         fillOp = 0.7;
       }
       ctx.fillStyle = fillCol;
       ctx.globalAlpha = oAlpha * fillOp;
-      ctx.fillRect(0 -this.w / 2, 0 - this.h / 2, this.w, this.h);
+      ctx.fillRect(0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
 
       //ability img
       var abilityInfo = infoForAbilityT(this.abil_Type);
 
-	     if(this.abil_Type == ability_fireShoot || this.abil_Type == ability_fireShoot2) {
+      if (this.abil_Type == ability_fireShoot || this.abil_Type == ability_fireShoot2) {
 
-		     var imNum= Math.trunc(timestamp / 120) % 5;
-          //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-		  var theImg = getLoadedImg("img/fireball/0/" + imNum + ".png");
-		  if (theImg) {
-			  var rad = this.w * 0.4;
-	var frame = 0;
-			if(gameObjsByID[myPlayerID]) {
-				var tSpawn = gameObjsByID[myPlayerID].spawnTime;
+        var imNum = Math.trunc(timestamp / 120) % 5;
+        //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
+        var theImg = getLoadedImg("img/fireball/" + imNum + ".png");
+        if (theImg) {
+          var rad = this.w * 0.4;
+          var frame = 0;
+          if (gameObjsByID[myPlayerID]) {
+            var tSpawn = gameObjsByID[myPlayerID].spawnTime;
 
-                var tSinceSpawn = (timestamp - tSpawn) / 1000.0
-				frame = (getAnimFrame(tSinceSpawn, 1, 10, 2));
-			}
-			ctx.globalAlpha = oAlpha * this.abil_avilableA;
-			ctx.drawImage(theImg, -rad, -rad * 0.85 - frame, 2 * rad,( 2 * rad + frame ));
-		  }
+            var tSinceSpawn = (timestamp - tSpawn) / 1000.0
+            frame = (getAnimFrame(tSinceSpawn, 1, 10, 2));
+          }
+          ctx.globalAlpha = oAlpha * this.abil_avilableA;
+          ctx.drawImage(theImg, -rad, -rad * 0.85 - frame, 2 * rad, 2 * rad + frame);
+        }
 
-	  } else {
-	       var abilImg = abilityInfo.abilImg;
-       //  console.log("abilImg: " + abilImg)
+      } else {
+        var abilImg = abilityInfo.abilImg;
+        //  console.log("abilImg: " + abilImg)
 
-	       var myPlayer = gameObjsByID[myPlayerID];
-	       if (myPlayer &&( myPlayer.animalType == a_phoenix||myPlayer.animalType == a_landMonster) && this.abil_Type == ability_dive)
-	           abilImg = "img/ability_dive_lava.png";
+        var myPlayer = gameObjsByID[myPlayerID];
+        if (myPlayer && myPlayer.animalType == a_phoenix && this.abil_Type == ability_dive)
+          abilImg = "img/ability_dive_lava.png";
 
-	       var theImg = getLoadedImg(abilImg);
-		  //console.log("image info "+theImg);
-		  if (theImg) {
-			var rad = this.w * 0.4;
-			ctx.globalAlpha = oAlpha * this.abil_avilableA;
-			ctx.drawImage(theImg, -rad, -rad * 0.85 , 2 * rad, 2 * rad );
-		  }
-	  }
-      
-      
-      
-      
+        var theImg = getLoadedImg(abilImg);
+        //console.log("image info "+theImg);
+        if (theImg) {
+          var rad = this.w * 0.4;
+          ctx.globalAlpha = oAlpha * this.abil_avilableA;
+          ctx.drawImage(theImg, -rad, -rad * 0.85, 2 * rad, 2 * rad);
+        }
+      }
       this.buttonTXT.setText(abilityInfo.abilName);
       this.buttonTXT.setFontSize(25 * interfS);
       this.buttonTXT.x = 0;
-      this.buttonTXT.y = this.w / 2.5;
+      this.buttonTXT.y = -this.w * 0.35;
       this.buttonTXT.draw();
-      
-     
-      
-       if(this.abil_typeclick == 1){
-        this.buttonTXT.setText("E");
-      this.buttonTXT.setFontSize(25 * interfS);
-      this.buttonTXT.x = 0;
-      this.buttonTXT.y = -this.h * 0.5 * 0.75;
-      this.buttonTXT.draw();
-      }else if(this.abil_typeclick == 2){
-         this.buttonTXT.setText("D");
-      this.buttonTXT.setFontSize(25 * interfS);
-      this.buttonTXT.x = 0;
-     this.buttonTXT.y = -this.h * 0.5 * 0.75;
-      this.buttonTXT.draw();
-      }else{
-       this.buttonTXT.setText("W");
-      this.buttonTXT.setFontSize(25 * interfS);
-      this.buttonTXT.x = 0;
-      this.buttonTXT.y = -this.h * 0.5 * 0.75;
-      this.buttonTXT.draw();
-      
-      }
-      
+
       //rercharging bar (fade based on updated recharing var, as more accurte)
       var tTillRecharged = Math.max(0, this.abil_rechargeEndT - timestamp);
       //console.log("recharged in "+tTillRecharged);
@@ -2135,7 +2112,7 @@ this.abil_typeclick = 0
         ctx.globalAlpha = (oAlpha * this.abil_rechargeBarA) * 1.0;
         ctx.fillStyle = "#F3C553";
         ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (tTillRecharged / this.abil_rechargeTotalT), barH); //fill
-      console.log(this.abil_rechargeTotalT)
+
       }
 
 
@@ -2707,10 +2684,10 @@ var respawnMsgText = "";
 //create touch buttons
 var allTouchButtons = []; //all drawn/active buttons
 var button_w = new AbilityButton();
-button_w.onButtonTouchStart = function() {
+button_w.onButtonTouchStart = function () {
   controlsPressEvent(cNum_rightClick, true);
 };
-button_w.onButtonTouchEnd = function() {
+button_w.onButtonTouchEnd = function () {
   controlsPressEvent(cNum_rightClick, false);
 
   //unselect run (if pressed through sliding down finger)
@@ -2722,37 +2699,21 @@ button_w.onButtonTouchEnd = function() {
 };
 allTouchButtons.push(button_w);
 
-var button_w_mini = new AbilityButton(); 
-button_w_mini.abil_typeclick = 1
+var button_w_mini = new AbilityButton(); //not pressable
 button_w_mini.isMiniRechargeBut = true;
-button_w_mini.touchEnabled = true;
-button_w_mini.onButtonTouchStart = function() {
-  controlsPressEvent(cNum_keyE, true);
-};
-button_w_mini.onButtonTouchEnd = function() {
-  controlsPressEvent(cNum_keyE, false);
-}
+button_w_mini.touchEnabled = false;
+//no touch handlers (doesn't get touched)
 allTouchButtons.push(button_w_mini);
 
-var button_w_mini_2 = new AbilityButton(); //not pressable
-button_w_mini_2.abil_typeclick = 2
-button_w_mini_2.isMiniRechargeBut = true;
-button_w_mini_2.touchEnabled = true;
-button_w_mini_2.onButtonTouchStart = function() {
-  controlsPressEvent(cNum_keyD, true);
-};
-button_w_mini_2.onButtonTouchEnd = function() {
-  controlsPressEvent(cNum_keyD,false);
-}
-allTouchButtons.push(button_w_mini_2);
 var button_run = new TouchButton("HOLD TO RUN");
-button_run.onButtonTouchStart = function() {
+button_run.onButtonTouchStart = function () {
   controlsPressEvent(cNum_leftClick, true);
 };
-button_run.onButtonTouchEnd = function() {
+button_run.onButtonTouchEnd = function () {
   controlsPressEvent(cNum_leftClick, false);
 };
 allTouchButtons.push(button_run);
+
 
 var button_chat = new TouchButton("CHAT");
 button_chat.onButtonTouchStart = function() {
@@ -3312,143 +3273,107 @@ var animalcol = {
 var GameInterface = {};
 function drawGameInterface() {
   if (!serverCon_aliveInAGame) return;
- 
-    ctx.save();
 
-    //ease animated vars
-    waterBarPerc += (waterBarPerc_n - waterBarPerc) * 0.1;
-
-    xpPer += (xpPer_n - xpPer) * 0.03;
-    //flashing LOW water animation
-
-    var myPlayer = gameObjsByID[myPlayerID];
-  
-    if (myPlayer) {
-
-        if(myPlayer.flag_can1v1){
-       
-    can1v1 = true
-   }else{
-    can1v1 = false    
-   
-   }
-      myPlayerLastAniT = myPlayer.animalType;
-    }else{
-         can1v1 = false   
-    }
-
-    var waterBarA = 1.0;
-    var lowBarPerc = waterBarPerc <= 25;
-    if (lowBarPerc) {
-      var period = 1.2; //periodic func with time
-      var p_min = 0.4,
-        p_max = 1.0;
-      var amp = 0.5 * (p_max - p_min);
-      waterBarA =
-        p_min +
-        amp +
-        amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
-    }
-
-    //water bar
-     var barW = Math.min(450, canvasW * 0.9) * interfS,
-      barH = 40 * interfS;
-   var bx = canvasW / 2, //from bottom
-      by = canvasH - 100 * interfS;
-
-    ctx.globalAlpha = 0.35 * waterBarA; //bar bg
-    ctx.fillStyle = "#000000";
-     ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
-    ctx.globalAlpha = waterBarA;
-    if (animalBarType == 2)
-      // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
-      ctx.fillStyle = col_lava;
-    else ctx.fillStyle = isAirBar || animalBarType == 1 ? "#8CCEF4" : col_wat1; //bar fill
-
-     ctx.fillRect(
-      bx - barW / 2,
-      by - barH / 2,
-      barW * (waterBarPerc / 100.0),
-      barH
-    );
-    ctx.fillStyle = controls_leftClicked
-      ? lowBarPerc
-        ? col_food1
-        : "orange"
-      : lowBarPerc
-        ? col_food1
-        : "white";
-    ctx.globalAlpha = 1.0 * waterBarA;
-
-
-    //text settings
-    var barTxt;
-    if (animalBarType == 1) barTxt = lowBarPerc ? "LOW AIR" : "AIR";
-    else if (animalBarType == 2) barTxt = lowBarPerc ? "LOW LAVA" : "LAVA";
-    else if (animalBarType == 3) barTxt = lowBarPerc ? "LOW ICE" : "ICE";
-    else {
-      barTxt = lowBarPerc ? "LOW WATER" : "WATER";
-    }
-
-  
-//   waterBarTXT.rotate(90)
-    waterBarTXT.setText(barTxt);
-
-    waterBarTXT.setFontSize(22.0 * interfS);
-    if (animalBarType == 4) waterBarTXT.setColor("black");
-    else waterBarTXT.setColor(lowBarPerc ? col_food1 : "white");
-    waterBarTXT.x = bx;
-    waterBarTXT.y = by;
-
-    ctx.globalAlpha *= lowBarPerc ? 1.0 : 0.5;
-    waterBarTXT.draw();
-
-    ctx.globalAlpha = 0.35;
-    ctx.fillStyle = "#000000"; //bar bg
-   // by = canvasH - barH / 2 - 5;
-       bx = canvasW / 2;//from bottom
-       by = canvasH - barH  - 5;
-    // by = by + 5 + barH;
-    barW = canvasW * 0.5;
-    barH = 60 * interfS;
-    ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH); //bg
-    ctx.globalAlpha = 1.0;
-    ctx.fillStyle = "#F3C553"; //col_food2; //bar
-    ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (xpPer / 100.0), barH); //fill
-    ctx.globalAlpha = 1.0;
-  
-    xpBarTXT.setText(
-      "" +
-        formatNumK(xp) +
-        " xp (" +
-        formatNumK(xpNextAni) +
-        " xp Next Evolution)"
-    );
-    xpBarTXT.setFontSize(22.0 * interfS);
-    
-    xpBarTXT.x = bx;
-    xpBarTXT.y = by;
-  
-    xpBarTXT.draw();
-   
-   
-    ctx.globalAlpha = 0.35;
-    ctx.fillStyle = "#000000"; //bar bg
-       ctx.font = 25.0 * interfS + "px Arial";
-    ctx.lineWidth = 1;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle"; //vertical center
-    by = canvasH - barH / 2 - 70;
-    // by = by + 5 + barH;
-    
-   var y = 900;
-  ctx.globalAlpha = 1.0;
   ctx.save();
- 
 
-  
-  ctx.restore();
+  //ease animated vars
+  waterBarPerc += (waterBarPerc_n - waterBarPerc) * 0.1;
 
+  xpPer += (xpPer_n - xpPer) * 0.03;
+  //flashing LOW water animation
+
+  var myPlayer = gameObjsByID[myPlayerID];
+  if (myPlayer) {
+    myPlayerLastAniT = myPlayer.animalType;
+  }
+
+  var waterBarA = 1.0;
+  var lowBarPerc = waterBarPerc <= 25;
+  if (lowBarPerc) {
+    var period = 1.2; //periodic func with time
+    var p_min = 0.4,
+      p_max = 1.0;
+    var amp = 0.5 * (p_max - p_min);
+    waterBarA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+  }
+
+  //water bar
+  var barW = Math.min(450, canvasW * 0.9) * interfS,
+    barH = 30 * interfS;
+  var bx = canvasW / 2, //from bottom
+    by = canvasH - 60 * interfS;
+  ctx.globalAlpha = 0.35 * waterBarA; //bar bg
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
+
+  ctx.globalAlpha = waterBarA;
+  if (animalBarType == 2)
+    // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
+    ctx.fillStyle = col_lava;
+  else ctx.fillStyle = isAirBar || animalBarType == 1 ? "#8CCEF4" : col_wat1; //bar fill
+
+  ctx.fillRect(
+    bx - barW / 2,
+    by - barH / 2,
+    barW * (waterBarPerc / 100.0),
+    barH
+  );
+
+  ctx.fillStyle = controls_leftClicked
+    ? lowBarPerc
+      ? col_food1
+      : "orange"
+    : lowBarPerc
+      ? col_food1
+      : "white";
+  ctx.globalAlpha = 1.0 * waterBarA;
+
+  //text settings
+  var barTxt;
+  if (animalBarType == 1) barTxt = lowBarPerc ? "LOW AIR" : "AIR";
+  else if (animalBarType == 2) barTxt = lowBarPerc ? "LOW LAVA" : "LAVA";
+  else if (animalBarType == 3) barTxt = lowBarPerc ? "LOW ICE" : "ICE";
+  else {
+    barTxt = lowBarPerc ? "LOW WATER" : "WATER";
+  }
+
+  waterBarTXT.setText(barTxt);
+  waterBarTXT.setFontSize(22.0 * interfS);
+  if (animalBarType == 4) waterBarTXT.setColor("black");
+  else waterBarTXT.setColor(lowBarPerc ? col_food1 : "white");
+  waterBarTXT.x = bx;
+  waterBarTXT.y = by;
+  ctx.globalAlpha *= lowBarPerc ? 1.0 : 0.5;
+  waterBarTXT.draw();
+
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = "#000000"; //bar bg
+  by = canvasH - barH / 2 - 5;
+  // by = by + 5 + barH;
+  barW = canvasW * 0.9;
+
+  ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH); //bg
+  ctx.globalAlpha = 1.0;
+  ctx.fillStyle = "#F3C553"; //col_food2; //bar
+  ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (xpPer / 100.0), barH); //fill
+  ctx.globalAlpha = 1.0;
+
+  xpBarTXT.setText(
+    "" +
+    formatNumK(xp) +
+    " xp  (" +
+    formatNumK(xpNextAni) +
+    " xp Next Animal)"
+  );
+  xpBarTXT.setFontSize(22.0 * interfS);
+  xpBarTXT.x = bx;
+  xpBarTXT.y = by;
+  xpBarTXT.draw();
+
+  ctx.globalAlpha = 1.0;
   //}
 
   //draw touch/ability buttons
@@ -3527,7 +3452,7 @@ function drawGameInterface() {
 
     if (anItem.timedOut) plusXpPopups.splice(k, 1); //remove timed out item
   }
- 
+
   ctx.restore();
 
   if (endScreenCanvas != null) {
@@ -3543,7 +3468,6 @@ function drawGameInterface() {
     ctx.restore();
   }
 }
-
 //draw big midscreen text
 var screenText = "Survive!";
 var screenTextFontSize = 25.0;
@@ -20752,12 +20676,7 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
     case 36:
       {  
    
-      button_w_mini_2.abil_Type = msg.readUInt8();  
-  if(button_w_mini_2.abil_Type != 0){
-       button_w_mini_2.abil_possible = true;
-  }else{
-button_w_mini_2.abil_possible = false;
-  }
+var mectest = msg.readUInt8();  
   
       button_w_mini.abil_Type = msg.readUInt8();  
          if(button_w_mini.abil_Type != 0){
@@ -20791,11 +20710,7 @@ button_w_mini_2.abil_possible = false;
           
           button_w.abil_usable = usable;
           
-        } else if(type == 3){
-       
-          button_w_mini_2.abil_usable = usable;
-     
-        }
+        } 
       }
 
       break;
@@ -22009,39 +21924,35 @@ function onResize() {
   //move chat area to middle of screen
   var chatInp = document.getElementById("chatinput");
   chatInp.style.marginTop = windowH / 2 - 50 + "px";
-
-  //reposition buttons (in ORDER!)
+ //reposition buttons (in ORDER!)
   var buttonF = isTouchEnabled && windowH < 500 ? 1.4 : 1.0; //bigger buttons on small mobile screens
-  button_run.w = button_run.h = 100 * interfS * buttonF;
-  button_w.w = button_w.h = 100 * interfS * buttonF;
-  button_w_mini.w = button_w_mini.h = 100 * interfS * buttonF;
- button_w_mini_2.w = button_w_mini_2.h = 100 * interfS * buttonF;
+  button_run.w = button_run.h = 200 * interfS * buttonF;
+  button_w.w = button_w.h = 200 * interfS * buttonF;
+  button_w_mini.w = button_w_mini.h = 200 * interfS * buttonF;
 
   button_chat.w = 60 * pixelRat * buttonF;
   button_chat.h = 30 * pixelRat * buttonF;
 
-
   //resize buttons (in ORDER!)
   button_run.x = 25 * pixelRat * buttonF + button_run.w / 2; //set left border
   button_run.y = canvasH - (40 * pixelRat + button_run.w / 2); //from bottom of button
+  if (options_leftHanded) {
+    button_run.x = canvasW - button_run.x;
+  }
   //console.log("left handed? "+options_leftHanded);
- 
-  button_w.x = canvasW/2 + canvasW/20;
-  
-    button_w.y =
-      button_run.y -
-      (15 * pixelRat * buttonF + button_w.w / 2 + button_run.w / 2); //above button 'runbutton'
-  button_w_mini.x = canvasW/2 ;
-   button_w_mini.y =
-    button_run.y -
-    (15 * pixelRat * buttonF + button_w_mini.w / 2 + button_w.w / 2);
 
-    button_w_mini_2.x = canvasW/2 - canvasW/20;
-   button_w_mini_2.y =
-    button_run.y -
-    (15 * pixelRat * buttonF + button_w_mini_2.w / 2 + button_w.w / 2);
-  
-  
+  button_w.x = button_run.x; //set left border
+  if (!isTouchEnabled) {
+    button_w.y = button_run.y; //lower W when touch is disabled (as run button isnt available without touch)
+  } else
+   button_w.y =
+      button_run.y -
+      (10 * pixelRat * buttonF + button_w.w / 2 + button_run.w / 2); //above button 'runbutton'
+  button_w_mini.x = button_run.x;
+  button_w_mini.y =
+    button_w.y -
+    (10 * pixelRat * buttonF + button_w_mini.w / 2 + button_w.w / 2);
+
   button_chat.x = Math.min(
     canvasW / 2.0 + 100 * pixelRat * buttonF,
     canvasW * 0.8
@@ -22056,8 +21967,14 @@ function onResize() {
     1.0,
     0.5
   );
- 
-
+  button_SBdowngrade.setPosAndSize(
+    button_sKey.x,
+    button_sKey.y + button_sKey.h / 2 + 10 * pixelRat * buttonF,
+    60 * pixelRat * buttonF,
+    30 * pixelRat * buttonF,
+    0.5,
+    0.0
+  );
   //update visibility of buttons
   for (var k = 0; k < allTouchButtons.length; k++) {
     var aTouchBut = allTouchButtons[k];
@@ -22066,7 +21983,7 @@ function onResize() {
   }
   button_w.visible = true;
   button_w_mini.visible = true; //always drawn
-    button_w_mini_2.visible = true; //always drawn
+   
   button_sKey.visible = button_sKey.touchEnabled = isTouchEnabled;
   button_SBdowngrade.visible = button_SBdowngrade.touchEnabled =
     isTouchEnabled && KTestingModeON;
