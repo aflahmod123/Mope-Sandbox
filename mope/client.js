@@ -20673,6 +20673,19 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
         }
       }
       break;
+    case 35:
+       which =  msg.readUInt8();
+      if(which == 1){
+      button_w.abil_rechargeTotalT =  msg.readUInt32();
+        button_w.abil_rechargeEndT =  msg.readUInt32();
+      }else{
+      button_w_mini.abil_rechargeTotalT =  msg.readUInt32();
+      button_w_mini.abil_rechargeEndT =  Date.now()+msg.readUInt32();
+      }
+      
+      
+      
+      break;
     case 36:
       {  
         abil_dive_isMain =  msg.readUInt8();
@@ -20686,8 +20699,7 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
       button_w_mini.abil_possible =  msg.readUInt8();
       button_w_mini.abil_active =  msg.readUInt8();
       button_w_mini.abil_Type =  msg.readUInt8();
-      button_w_mini.abil_rechargeTotalT =  msg.readUInt8();
-      button_w_mini.abil_rechargeEndT =  msg.readUInt8();
+
       
       
       button_w.abil_usable =  msg.readUInt8();
@@ -20697,9 +20709,7 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
       button_w.abil_Type =  msg.readUInt8();
       //set correct recharging vars for both buttons
     
-        button_w.abil_rechargeTotalT =  msg.readUInt8();
-        button_w.abil_rechargeEndT =  msg.readUInt8();
-      
+       
   
       
 
