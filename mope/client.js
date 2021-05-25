@@ -20676,14 +20676,16 @@ _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
     case 35:
       var which =  msg.readUInt8();
       var time = msg.readUInt32();
-      
+        console.log(which,time)
       if(which == 1){
       button_w.abil_rechargeTotalT =  time;
-        button_w.abil_rechargeEndT =  Date.now() - time;
+        button_w.abil_rechargeEndT =  Date.now()+  time;
+       
       }else{
         
       button_w_mini.abil_rechargeTotalT =  time;
-      button_w_mini.abil_rechargeEndT =  Date.now() + time;
+      button_w_mini.abil_rechargeEndT =  Date.now()  + time;
+        console.log(time)
       }
       
       
