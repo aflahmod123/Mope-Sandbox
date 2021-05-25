@@ -2054,7 +2054,7 @@ var AbilityButton = function () {
 
         var imNum = Math.trunc(timestamp / 120) % 5;
         //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-        var theImg = getLoadedImg("img/fireball/" + imNum + ".png");
+        var theImg = getLoadedImg("img/fireball/0/" + imNum + ".png");
         if (theImg) {
           var rad = this.w * 0.4;
           var frame = 0;
