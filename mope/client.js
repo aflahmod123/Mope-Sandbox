@@ -15955,7 +15955,7 @@ Phoenix.prototype.getSkinName = function() {
 
 //draw image for the animal skin (along with extra images on it, eg wings)
 Phoenix.prototype.drawSkinImg = function() {
-   
+   /*
   if (!options_lowGraphics) {
     var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
     var rad = this.rad - this.outlineW;
@@ -16080,12 +16080,17 @@ Phoenix.prototype.drawSkinImg = function() {
   } else {
     Phoenix.superClass.prototype.drawSkinImg.call(this);
   }
-  /*
+  
     this.basicDrawSkinImg(); //just draw the image
 
     // custom animations or skin overlays
     this.drawSkinCustomization();
     */
+  Phoenix.superClass.prototype.drawSkinImg.call(this);
+      this.basicDrawSkinImg(); //just draw the image
+
+    // custom animations or skin overlays
+    this.drawSkinCustomization();
 };
 
 Phoenix.prototype.drawWhenUnderwater = function() {
