@@ -3704,7 +3704,7 @@ function generateMinimap(msg) {
   var minimapScaleF_x = minimapW / 200.0; // / size scaled to for msg send
   var minimapScaleF_y = minimapH / 200.0;
   
-
+console.log(minimapScaleF_x,minimapScaleF_y)
   //oceans: just send width (oceans are always at left/right sides)
   oceanWid = msg.readUInt16();
   arcticW = msg.readUInt16();
