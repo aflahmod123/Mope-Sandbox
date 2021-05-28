@@ -3773,7 +3773,7 @@ console.log(minimapScaleF_x,minimapScaleF_y)
   }
 
   // danger area
-  /*var numWater = msg.readUInt16();
+  var numWater = msg.readUInt16();
     for (var i = 0; i < numWater; i++) {
         var mainRad = msg.readUInt8() * 5.0;
         var shrinkRad = msg.readUInt8() * 5.0;
@@ -3791,7 +3791,7 @@ console.log(minimapScaleF_x,minimapScaleF_y)
         ctx_.globalAlpha = 0.7;
         ctx_.arc(areaX, areaY, Math.max(1, shrinkRad * (minimapW / gameW)), 0, 2 * Math.PI);
         ctx_.fill()
-    }*/
+    }
 
   //lakes
   var numWater = msg.readUInt16();
