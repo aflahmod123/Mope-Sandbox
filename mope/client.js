@@ -11625,7 +11625,7 @@ Animal.prototype.stunA = 0.0; //for fading animal under water
 Animal.prototype.frozenEffA = Animal.prototype.onFireEffA = Animal.prototype.effA_healing = Animal.prototype.effA_hot = 0.0;
 Animal.prototype.effA_poison = Animal.prototype.effA_bleeding = Animal.prototype.effA_stunk = 0.0;
 Animal.prototype.effA_constricted = Animal.prototype.effA_slimed = Animal.prototype.effA_webStuck = 0.0; //for fading animal under water
-
+ Animal.prototype.objs = [];
 
 Animal.prototype.nameA = 0.0;
 Animal.prototype.loadedSkinImg = null;
@@ -14209,11 +14209,11 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
 
  var _0x32e153 = this.rad - this.outlineW;
+ 
     for (i = 0; i < this.crystals.length; i++) {
-        if ('BhVtr' === 'TdohY') {
-            this.objs[0].updateZ();
-            this['z'] = this.objs[0]['z'];
-        } else {
+       
+          
+      
             var _0x28cda7 = this.crystals[i];
             if (_0x28cda7.nRad == 0) continue;
             _0x28cda7.rad += (_0x28cda7.nRad - _0x28cda7.rad) * 0.01;
@@ -14224,13 +14224,13 @@ IceMonster.prototype.drawOnTopOfSkinImg = function() {
             ctx.save();
             ctx.translate(_0x537db5, _0x3c54ff);
             ctx.globalAlpha = 1;
-            ctx.rotate(_0xecfd6c(_0x43b339));
-            var _0xb06102 = _0x35ff28('skins/monsters/icemonster/crystal.png');
+            ctx.rotate(toRadians(_0x43b339));
+            var _0xb06102 = getLoadedImg('skins/monsters/icemonster/crystal.png');
             if (_0xb06102) {
                 ctx.drawImage(_0xb06102, -_0x5a7f6a, -_0x5a7f6a * 2, _0x5a7f6a * 2, _0x5a7f6a * 2);
             }
             ctx.restore();
-        }
+        console.log(this.crystals[i])
     }
 };
 function IceMonster() {
