@@ -14184,8 +14184,8 @@ IceMonster.prototype.constructor = IceMonster;
 IceMonster.superClass = superClass; //'class' var
 
  
-IceMonster.prototype.readCustomData_onUpdate = function(){
-   var _0xa9f163 = msg.readUInt8();
+IceMonster.prototype.readCustomData_onUpdate = function(msg){
+           var _0xa9f163 = msg.readUInt8();
                 this.crystals = [];
                 for (i = 0; i < _0xa9f163; i++) {
                     var _0x125caf = msg.readInt16() / 100;
@@ -14200,7 +14200,8 @@ IceMonster.prototype.readCustomData_onUpdate = function(){
                         'rad': _0x150bb5,
                         'angle': _0x2adfbc
                     });
-} 
+          } 
+}
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
 
  var _0x32e153 = this.rad - this.outlineW;
@@ -14229,11 +14230,12 @@ IceMonster.prototype.drawOnTopOfSkinImg = function() {
     }
 };
 function IceMonster() {
+     this.crystals = [];
   IceMonster.superClass.call(this, o_animal);
 }
 window.IceMonster = IceMonster;
 //add this file as a class! (make sure to call require!)
-GameObjType.setCustomClassForGameObjType(IceMonster, o_animal, a_icemonster);
+GameObjType.setCustomClassForGameObjType(IceMonster, o_animal, a_iceMonster);
 
 
 ///////
@@ -16993,7 +16995,7 @@ Tiger.prototype.animalInfo = function () {
 }
 
 //set custom skin name
-Tiger.prototype.getSkinName = function () {
+Tiger.prototype.getSkinName = function () {ateZ
     return "tiger/" + this.animalSpecies + "/tiger" + (this.specType == 0 ? "" : this.specType);
 }
 
