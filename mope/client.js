@@ -14179,6 +14179,68 @@ GameObjType.setCustomClassForGameObjType(FinalDragon, o_animal, a_finaldragon);
 ///////
 
 var superClass = Animal;
+IceMonster.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+IceMonster.prototype.constructor = IceMonster;
+IceMonster.superClass = superClass; //'class' var
+
+ 
+IceMonster.prototype.readCustomData_onUpdate = function(){
+   var _0xa9f163 = msg.readUInt8();
+                this.crystals = [];
+                for (i = 0; i < _0xa9f163; i++) {
+                    var _0x125caf = msg.readInt16() / 100;
+                    var _0x18dd56 = msg.readInt16() / 100;
+                    var _0x150bb5 = msg.readUInt16() / 100;
+                    var _0x2adfbc = msg.readUInt16() / 100;
+                    this.crystals.push({
+                        'x': _0x125caf,
+                        'y': _0x18dd56,
+                        'nRad': _0x150bb5,
+                        'oRad': _0x150bb5,
+                        'rad': _0x150bb5,
+                        'angle': _0x2adfbc
+                    });
+} 
+IceMonster.prototype.drawOnTopOfSkinImg = function() {
+
+ var _0x32e153 = this.rad - this.outlineW;
+    for (i = 0; i < this.crystals.length; i++) {
+        if ('BhVtr' === 'TdohY') {
+            this.objs[0].updateZ();
+            this['z'] = this.objs[0]['z'];
+        } else {
+            var _0x28cda7 = this.crystals[i];
+            if (_0x28cda7.nRad == 0) continue;
+            _0x28cda7.rad += (_0x28cda7.nRad - _0x28cda7.rad) * 0.01;
+            var _0x537db5 = _0x28cda7['x'] * _0x32e153;
+            var _0x3c54ff = _0x28cda7['y'] * _0x32e153;
+            var _0x43b339 = _0x28cda7.angle;
+            var _0x5a7f6a = _0x28cda7.rad;
+            _0x24fdeb.save();
+            _0x24fdeb.translate(_0x537db5, _0x3c54ff);
+            _0x24fdeb.globalAlpha = 1;
+            _0x24fdeb.rotate(_0xecfd6c(_0x43b339));
+            var _0xb06102 = _0x35ff28('skins/monsters/icemonster/crystal.png');
+            if (_0xb06102) {
+                _0x24fdeb.drawImage(_0xb06102, -_0x5a7f6a, -_0x5a7f6a * 2, _0x5a7f6a * 2, _0x5a7f6a * 2);
+            }
+            _0x24fdeb.restore();
+        }
+    }
+};
+function IceMonster() {
+  IceMonster.superClass.call(this, o_animal);
+}
+window.IceMonster = IceMonster;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(IceMonster, o_animal, a_icemonster);
+
+
+///////
+// file: js_src/gameobj/animal/Santa.js
+///////
+
+var superClass = Animal;
 Santa.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Santa.prototype.constructor = Santa;
 Santa.superClass = superClass; //'class' var
