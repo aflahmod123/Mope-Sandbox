@@ -14207,11 +14207,11 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
           } 
 }
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
-
+this.objs = [];
  var _0x32e153 = this.rad - this.outlineW;
  
     for (i = 0; i < this.crystals.length; i++) {
-       
+             this.objs.push(this.crystals)
           
       
             var _0x28cda7 = this.crystals[i];
