@@ -14187,9 +14187,10 @@ IceMonster.superClass = superClass; //'class' var
 IceMonster.prototype.readCustomData_onUpdate = function(msg){
     IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
            var _0xa9f163 = msg.readUInt8();
-           
+          
                 this.crystals = [];
-                for (i = 0; i < _0xa9f163; i++) {
+                for (i = 0; i < _0xa9f163 ; i++) {
+                 
                     var _0x125caf = msg.readInt16() / 100;
                     var _0x18dd56 = msg.readInt16() / 100;
                     var _0x150bb5 = msg.readUInt16() / 100;
