@@ -14183,7 +14183,29 @@ IceMonster.prototype = Object.create(superClass.prototype); //properly inherit p
 IceMonster.prototype.constructor = IceMonster;
 IceMonster.superClass = superClass; //'class' var
 
- 
+  
+IceMonster.prototype.readCustomData_onNewlyVisible = function(msg){
+    IceMonster.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call superclass version of this method
+           var _0xa9f163 = msg.readUInt8();
+          
+                this.crystals = [];
+                for (i = 0; i < _0xa9f163 ; i++) {
+                 
+                    var _0x125caf = msg.readInt16() / 100;
+                    var _0x18dd56 = msg.readInt16() / 100;
+                    var _0x150bb5 = msg.readUInt16() / 100;
+                    var _0x2adfbc = msg.readUInt16() / 100;
+                    this.crystals.push({
+                        'x': _0x125caf,
+                        'y': _0x18dd56,
+                        'nRad': _0x150bb5,
+                        'oRad': _0x150bb5,
+                        'rad': _0x150bb5,
+                        'angle': _0x2adfbc
+                    });
+                       
+          } 
+}
 IceMonster.prototype.readCustomData_onUpdate = function(msg){
     IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
            var _0xa9f163 = msg.readUInt8();
