@@ -14187,8 +14187,7 @@ IceMonster.superClass = superClass; //'class' var
 
 IceMonster.prototype.readCustomData_onUpdate = function(msg){
     IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
-           var _0xa9f163 = msg.readUInt8();
-          
+                var _0xa9f163 = msg.readUInt8();
                 this.crystals = [];
                 for (i = 0; i < _0xa9f163  ; i++) {
                  
@@ -14209,12 +14208,11 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
           };
 };
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
-this.objs = [];
- var _0x32e153 = this.rad - this.outlineW;
+
+ var _0x32e153 = this.nRad - this.outlineW;
  
     for (i = 0; i < this.crystals.length; i++) {
-             this.objs.push(this.crystals)
-          
+            
       
             var _0x28cda7 = this.crystals[i];
             if (_0x28cda7.nRad == 0) continue;
