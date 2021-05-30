@@ -991,7 +991,8 @@ var ability_dive = 100,
   ability_tsunamiWave = 73,
   ability_finalhit = 74,
   ability_flyhigh = 75,
-  ability_freezeprey = 76;
+  ability_freezeprey = 76,
+    ability_kickinair = 77;
 var infoForAbilityT = function(abilT) {
   var infoO = {};
   var zombieFolder = "";
@@ -1091,7 +1092,15 @@ var infoForAbilityT = function(abilT) {
         infoForAnimalType(myPlayerLastAniT).skinName +
         ".png";
       break;
-
+    case ability_kickinair:
+      
+       infoO.abilName = "Kick in air";
+      infoO.abilImg =
+        "skins/" +
+        zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName +
+        ".png";
+      break;
     case ability_charge:
       infoO.abilName = "Charge";
       infoO.abilImg =
