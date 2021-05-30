@@ -14210,7 +14210,7 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
 };
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
 
- var _0x32e153 = this.nRad - this.outlineW;
+ var _0x32e153 = this.rad - this.outlineW;
  
     for (i = 0; i < this.crystals.length; i++) {
             
