@@ -14187,7 +14187,7 @@ IceMonster.superClass = superClass; //'class' var
 
 IceMonster.prototype.readCustomData_onUpdate = function(msg){
     IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
-  console.log("hi")
+
                 var _0xa9f163 = msg.readUInt8();
                 this.crystals = [];
                 for (i = 0; i < _0xa9f163  ; i++) {
@@ -14196,7 +14196,7 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
                     var _0x18dd56 = msg.readInt16() / 100;
                     var _0x150bb5 = msg.readUInt16() / 100;
                     var _0x2adfbc = msg.readUInt16() / 100;
-             
+               
                     this.crystals.push({
                         'x': _0x125caf,
                         'y': _0x18dd56,
@@ -14205,7 +14205,7 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
                         'rad': _0x150bb5,
                         'angle': _0x2adfbc
                     });
-                       console.log(_0xa9f163,_0x125caf,_0x18dd56,_0x150bb5,_0x2adfbc)
+                   
           };
 };
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
