@@ -16364,7 +16364,7 @@ LandMonster.superClass = superClass; //'class' var
 //set custom skin name
 LandMonster.prototype.getSkinName = function () {
 
-         skin ="monsters/landmonster/" + this.animalSpecies + "/flying_landmonster"
+         skin ="monsters/landmonster/" + this.animalSpecies + "/landmonster"
 
     
     return skin
@@ -16471,66 +16471,7 @@ if (this.flag_flying && !this.flag_isGrabbed&& this.flag_usingAbility) {
 
       ctx.restore();
 
-  }else{
-     ctx.save();
-      var iScale = 500 / 340.0;
-   var max = 20
-var max2 =-3
-      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
- var frame =  getAnimFrame(tSinceSpawn,2.1, .4, 1.5);
-      var theImg = getLoadedImg(
-        "skins/monsters/landmonster/" + this.animalSpecies + "/wing_r.png"
-      );
-      if (theImg) {
-        ctx.save();
-        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-        //console.log("getAnimFrame:" + frame);
-        var extraRotate = -(frame) * toRadians(max); //spin animation
-
-        //clip to sliwly show the claw
-        var rad = this.rad - this.outlineW;
-        
-        ctx.rotate(toRadians(max2) + extraRotate);
- 
-        ctx.drawImage(
-        theImg,
-      -rad * iScale,
-      -rad * iScale,
-      2 * rad * iScale,
-      2 * rad * iScale
-        );
-
-        ctx.restore();
-      }
-
-      var theImg = getLoadedImg(
-         "skins/monsters/landmonster/" + this.animalSpecies + "/wing_l.png"
-      );
-      if (theImg) {
-        ctx.save();
-        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-        //console.log("getAnimFrame:" + frame);
-        var extraRotate = -(frame) * toRadians(-max); //spin animation
-
-        //clip to sliwly show the claw
-        var rad = this.rad - this.outlineW;
-        ctx.rotate(toRadians(-max2) + extraRotate);
-    
-        ctx.drawImage(
-         theImg,
-      -rad * iScale,
-      -rad * iScale,
-      2 * rad * iScale,
-      2 * rad * iScale
-        );
-
-        ctx.restore();
-      }
-
-      ctx.restore();   
-  };
+  }
       
    
   };
