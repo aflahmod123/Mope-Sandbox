@@ -301,8 +301,9 @@ var a_mouse = 1,
   a_iceMonster = 72,
   a_dinoMonster = 73,
   a_pigeon = 74,
-  a_toucan = 75;
-a_lochness = 83;
+  a_toucan = 75,
+a_thunderbird = 76,
+a_lochness = 83,
 a_griffin = 84,
 a_santa = 85;
 a_finaldragon = 86;
@@ -830,7 +831,15 @@ var infoForAnimalType = function (aniT) {
             infoO.skinName = "falcon/falcon";
 
             break;
+       case a_thunderbird:
 
+            infoO.aniName = "The\nThunderbird!";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful shocking dive attack! Aim it well.";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "falcon/falcon";
+
+            break;
         case a_snowyOwl:
 
             infoO.aniName = "Snowy Owl";
@@ -1629,7 +1638,7 @@ CachedText.prototype = {
   strokeW: 1.0, //0 to turn off stroke
   strokeColor: "#000000",
   multiLine: false,
-playername: false,
+  playername: false,
 
   _text: "",
   _color: "#000000",
@@ -1707,7 +1716,7 @@ playername: false,
       if (this.multiLine) {
         //basic multi-line fill!
         var lineHeight = _ctx.measureText("M").width * 1.2;
-        var lines = text.split("\n");
+        var lines = text.split("\amer");
        if(this.playername){
     lines = text.split("\m");
        }
@@ -1817,6 +1826,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
   //this.text = infoForAnimalType(aniT).aniName;//isOcean ? "Ocean Animal" : "Land Animal";
   this.buttonTXT = new CachedText(12.0, "white");
   this.buttonTXT.renderScale = 1.5;
+  this.buttonTXT.multiLine = true
   this.buttonTXT.setText(infoForAnimalType(aniT).aniName);
   this.setHotKey = function (_0xb26fc2) {
         _0xb26fc2 && (this.btnHotkey = _0xb26fc2, this.hotkey = new CachedText(10, 'white'), this.hotkey.renderScale = 1.5, this.hotkey.multiLine = false, this.hotkey.setText(this.btnHotkey.toUpperCase()));
@@ -12302,7 +12312,15 @@ Animal.prototype.animalInfo = function() {
       infoO.skinName = "falcon/falcon";
 
       break;
+  case a_thunderbird:
 
+            infoO.aniName = "The\nThunderbird!";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful shocking dive attack! Aim it well.";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "falcon/falcon";
+
+            break;
     case a_snowyOwl:
       infoO.aniName = "Snowy Owl";
       infoO.aniDesc = "";
@@ -14842,6 +14860,264 @@ window.Falcon = Falcon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Falcon, o_animal, a_falcon);
 
+///////
+// file: js_src/gameobj/animal/Thunderbird.js
+///////
+
+var Thunderbird = Thunderbird;
+var superClass = Animal;
+Thunderbird.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Thunderbird.prototype.constructor = Thunderbird;
+Thunderbird.superClass = superClass; //'class' var
+
+//example of custom Z
+/*Thunderbird.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Thunderbird.prototype.getSkinName = function() {
+  return (
+    "falcon/falcon" +
+    (this.specType == 0 || this.specType == undefined ? "" : this.specType)
+  );
+};
+
+Thunderbird.prototype.drawSkinCustomization = function() {
+  if (!this.flag_usingAbility) return;
+
+  
+  var skins = "skins";
+  
+  var iScale = 500 / 340.0;
+  if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
+      : this.birdNoAnimationFlyWingAngle;
+    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 2) {
+    // dive animation
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + 0) * toRadians(25.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + 0) * toRadians(-25.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 3) {
+    // attack animation
+    ctx.save();
+
+    //Thunderbird_attack
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/falcon/falconwing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 1,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 1,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  if (this.specType != 0 && this.specType != undefined) {
+    var theHead = getLoadedImg(skins + "/falcon/falcon_head.png");
+    if (theHead) {
+      ctx.save();
+      var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
+      var yDist = rad * 0.2;
+      if (this.specType == 3) yDist = rad * -0.15;
+      ctx.drawImage(
+        theHead,
+        -rad * iScale,
+        (-rad + yDist) * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
+    }
+  }
+};
+
+function Thunderbird() {
+  Thunderbird.superClass.call(this, o_animal);
+}
+window.Thunderbird = Thunderbird;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Thunderbird, o_animal, a_thunderbird);
 
 ///////
 // file: js_src/gameobj/animal/SnowyOwl.js
