@@ -640,7 +640,7 @@ var infoForAnimalType = function (aniT) {
             infoO.skinName = "arctic/arctichare";
             break;
         case a_yeti:
-            infoO.aniName = "The\nYeti!";
+            infoO.aniName = "The Yeti!";
             infoO.aniDesc = "";
             infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
             infoO.aniCol = "#839eb5";
@@ -780,7 +780,7 @@ var infoForAnimalType = function (aniT) {
 
 
         case a_kingCrab:
-            infoO.aniName = "King\nCrab";
+            infoO.aniName = "King Crab";
             infoO.aniDesc = "";
             infoO.upgradeText = "UPGRADED to a KING CRAB!";
             infoO.aniCol = "#971f0e";
@@ -1716,7 +1716,7 @@ CachedText.prototype = {
       if (this.multiLine) {
         //basic multi-line fill!
         var lineHeight = _ctx.measureText("M").width * 1.2;
-        var lines = text.split("\amer");
+        var lines = text.split("\n");
        if(this.playername){
     lines = text.split("\m");
        }
@@ -12081,7 +12081,7 @@ Animal.prototype.animalInfo = function() {
       infoO.skinName = "arctic/arctichare";
       break;
     case a_yeti:
-      infoO.aniName = "The\nYeti!";
+      infoO.aniName = "The Yeti!";
       infoO.aniDesc = "";
       infoO.upgradeText =
         "UPGRADED to " +
@@ -12262,7 +12262,7 @@ Animal.prototype.animalInfo = function() {
       break;
 
     case a_kingCrab:
-      infoO.aniName = "King\nCrab";
+      infoO.aniName = "King Crab";
       infoO.aniDesc = "";
       infoO.upgradeText = "UPGRADED to a KING CRAB!";
       infoO.aniCol = "#971f0e";
