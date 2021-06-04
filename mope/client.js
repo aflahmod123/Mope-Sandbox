@@ -14626,8 +14626,6 @@ Falcon.prototype.getSkinName = function() {
 
 Falcon.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
-
-  
   var skins = "skins";
   
   var iScale = 500 / 340.0;
