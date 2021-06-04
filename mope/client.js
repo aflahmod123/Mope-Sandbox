@@ -15030,7 +15030,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
       : 0;
-    var theImg = getLoadedImg(skins + "/falcon/falconwing1.png");
+    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
