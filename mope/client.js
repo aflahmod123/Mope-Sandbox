@@ -14279,7 +14279,6 @@ GiantScorpion.prototype.stingerTailNormal = null;
 GiantScorpion.prototype.stingerTail = null;
 GiantScorpion.prototype.stingerAttack = null;
 GiantScorpion.prototype.stingerAttackFull = null;
-GiantScorpion.prototype.playerattack = null;
 GiantScorpion.prototype.stingerNormal = null;
 GiantScorpion.prototype.stingerNormalFull = null;
 GiantScorpion.prototype.isUsingAbility = true;
@@ -14382,7 +14381,6 @@ function GiantScorpion() {
     GiantScorpion.superClass.call(this, o_animal);
 }
 GiantScorpion.prototype.preLoad = function () {
-    this.playerattack = getLoadedImg('skins/scorpion/scorpion1.png');
     this.stingerTailNormal = getLoadedImg('skins/scorpion/stinger_normal.png');
     this.stingerTail = getLoadedImg('skins/scorpion/stinger_tail.png');
     this.stingerTailAttack = getLoadedImg('skins/scorpion/attack_tail.png');
