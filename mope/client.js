@@ -12544,7 +12544,7 @@ Animal.prototype.animalInfo = function() {
 
   return infoO;
 };
-Animal.prototype.preLoad = function () {};
+
 // load animal skin into a var that can be used later
 Animal.prototype.loadAnimalSkinImg = function() {
   //get skin name
@@ -12557,6 +12557,7 @@ Animal.prototype.loadAnimalSkinImg = function() {
   }
 };
 //override GameObj method (in prototype!)
+Animal.prototype.preLoad = function () {};
 Animal.prototype.customDraw = function(batchDrawOutline) {
   this.preLoad();
   var infoO = this.animalInfo(); //infoForAnimalType(this.animalType);
@@ -14261,36 +14262,28 @@ GiantScorpion.prototype.getAbilityInfo = function (_0x27a7dd) {
         'abilName': `Sting!\
 (Shivers Prey)`
     };
-    _0x27a7dd.abilImg = 'skins/desert/scorpion/scorpion_ability.png';
+    _0x27a7dd.abilImg = 'skins/scorpion/scorpion_ability.png';
     return _0x27a7dd;
 };
 GiantScorpion.prototype.getSkinName = function () {
-    var _0x42207b = 'desert/scorpion/scorpion';
+    var _0x42207b = 'scorpion/scorpion';
     return _0x42207b += 0 == this.specType ? '' : this.specType;
 };
 GiantScorpion.prototype.stingerScaleF = 0.7;
 GiantScorpion.prototype.stingerOffsetY = -0.6;
 GiantScorpion.prototype.poison = 50;
-GiantScorpion.prototype.clawAnimation = new _0x1abe2b(this, 0.9, _0x1abe2b.bow, {
-        'v1': _0x21470a
-    });
-GiantScorpion.prototype.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
-        'v1': 0x5
-      
-      
-    });
-
-       GiantScorpion.prototype.stingerTailNormal = getLoadedImg('skins/desert/scorpion/stinger_normal.png');
-        GiantScorpion.prototype.stingerTail = getLoadedImg('skins/desert/scorpion/stinger_tail.png');
-    GiantScorpion.prototype.stingerTailAttack = getLoadedImg('skins/desert/scorpion/attack_tail.png');
-    GiantScorpion.prototype.stingerAttack = getLoadedImg('skins/desert/scorpion/attack_stinger_dull.png');
-    GiantScorpion.prototype.stingerAttackFull = getLoadedImg('skins/desert/scorpion/attack_stinger_full.png');
-    GiantScorpion.prototype.stingerNormal = getLoadedImg('skins/desert/scorpion/normal_stinger_dull.png');
-    GiantScorpion.prototype.stingerNormalFull = getLoadedImg('skins/desert/scorpion/normal_stinger_full.png');
-GiantScorpion.prototype.isUsingAbility = true;
+GiantScorpion.prototype.clawAnimation = null;
+GiantScorpion.prototype.stingAnimation = null;
+GiantScorpion.prototype.stingerTailNormal = null;
+GiantScorpion.prototype.stingerTail = null;
+GiantScorpion.prototype.stingerAttack = null;
+GiantScorpion.prototype.stingerAttackFull = null;
+GiantScorpion.prototype.stingerNormal = null;
+GiantScorpion.prototype.stingerNormalFull = null;
+GiantScorpion.prototype.isUsingAbility = false;
 GiantScorpion.prototype.drawSkinCustomization = function () {
     this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
-    !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
+    !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = false, this.stingAnimation = null);
     this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
         'v1': 0x5
       
@@ -14298,17 +14291,17 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
     }), this.stingAnimation.onFrameEntered = function (_0x52e24a) {
    
         ctx.save();
-
-        var _0x457a68 = this.skinScale * this.stingerScaleF,
-            _0x1a4ffd = this.rad;
+   
+        var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
+            _0x1a4ffd = this.forObj.rad;
+    
       
-alert(this.stingerTailAttack)
-        ctx.drawImage(this.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
-        ctx.drawImage(this.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
-        ctx.drawImage(this.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
+        ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         var _0x43d51a = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
-        ctx.drawImage(this.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.restore();
     }), this.stingAnimation && this.stingAnimation.run());
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
@@ -14332,7 +14325,7 @@ GiantScorpion.prototype.tailScaleF = 1.2;
 var _0x21470a = 4,
     _0x62f027 = 0.1;
 GiantScorpion.prototype.drawUnderSkinImg = function () {
-    var _0x272065 = getLoadedImg('skins/desert/scorpion/tail_back.png');
+    var _0x272065 = getLoadedImg('skins/scorpion/tail_back.png');
     if (_0x272065) {
         var _0x5b7c23 = 0;
         this.stingAnimation && 0.5 > this.stingAnimation.frame && (_0x5b7c23 = 0.3 * -this.stingAnimation.frame);
@@ -14345,8 +14338,8 @@ GiantScorpion.prototype.drawUnderSkinImg = function () {
     }), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x565900) {
         var _0x5b7c23 = 0;
         0.5 > _0x565900 && (_0x5b7c23 = -_0x565900);
-        _0x565900 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms.png';
-        this.forObj.flag_eff_aniInClaws && (_0x565900 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms-grabbed.png');
+        _0x565900 = 'skins/scorpion/' + this.forObj.animalSpecies + '/arms.png';
+        this.forObj.flag_eff_aniInClaws && (_0x565900 = 'skins/scorpion/' + this.forObj.animalSpecies + '/arms-grabbed.png');
         if (_0x565900 = getLoadedImg(_0x565900)) {
             var _0x2c9097 = this.forObj.skinScale * this.forObj.tailScaleF,
                 _0x205727 = this.forObj.skinRad;
@@ -14370,14 +14363,14 @@ function GiantScorpion() {
     GiantScorpion.superClass.call(this, o_animal);
 }
 GiantScorpion.prototype.preLoad = function () {
-    getLoadedImg('skins/desert/scorpion/scorpion1.png');
-    this.stingerTailNormal = getLoadedImg('skins/desert/scorpion/stinger_normal.png');
-    this.stingerTail = getLoadedImg('skins/desert/scorpion/stinger_tail.png');
-    this.stingerTailAttack = getLoadedImg('skins/desert/scorpion/attack_tail.png');
-    this.stingerAttack = getLoadedImg('skins/desert/scorpion/attack_stinger_dull.png');
-    this.stingerAttackFull = getLoadedImg('skins/desert/scorpion/attack_stinger_full.png');
-    this.stingerNormal = getLoadedImg('skins/desert/scorpion/normal_stinger_dull.png');
-    this.stingerNormalFull = getLoadedImg('skins/desert/scorpion/normal_stinger_full.png');
+    getLoadedImg('skins/scorpion/scorpion1.png');
+    this.stingerTailNormal = getLoadedImg('skins/scorpion/stinger_normal.png');
+    this.stingerTail = getLoadedImg('skins/scorpion/stinger_tail.png');
+    this.stingerTailAttack = getLoadedImg('skins/scorpion/attack_tail.png');
+    this.stingerAttack = getLoadedImg('skins/scorpion/attack_stinger_dull.png');
+    this.stingerAttackFull = getLoadedImg('skins/scorpion/attack_stinger_full.png');
+    this.stingerNormal = getLoadedImg('skins/scorpion/normal_stinger_dull.png');
+    this.stingerNormalFull = getLoadedImg('skins/scorpion/normal_stinger_full.png');
 };
 window.GiantScorpion = GiantScorpion;
 GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
