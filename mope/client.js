@@ -14285,7 +14285,7 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.drawSkinCustomization = function () {
         this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
         !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
-        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1 , _0x1abe2b.bow, {
+        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1000 , _0x1abe2b.bow, {
             'v1': 0x5
         }), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
             ctx.save();
@@ -14300,7 +14300,7 @@ Sting and Shiver your prey to death.\
             ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
  
            if(!this.stingAnimation){
-             this.stingAnimation = new _0x1abe2b(this, 1 , _0x1abe2b.bow, {
+             this.stingAnimation = new _0x1abe2b(this, 1000 , _0x1abe2b.bow, {
             'v1': 0x5
            }),this.stingAnimation.run()
                                   };
@@ -14360,7 +14360,8 @@ Sting and Shiver your prey to death.\
         this.readInfo(_0x3417c5);
     };
     GiantScorpion.prototype.readInfo = function (_0x1edc87) {
-        this.poison = _0x1edc87.readUInt8();
+      this.poison = _0x1edc87.readUInt8();
+ 
     };
 
     function GiantScorpion() {
