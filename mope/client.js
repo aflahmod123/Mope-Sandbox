@@ -14245,7 +14245,7 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
             _0x503254 = _0x503254 * this.rf,
             _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
         ctx.save();
-        this.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, ps(_0x551de1 * _0x28cd2b) + _0x503254);
+        ctx.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF,_0x5026b3, ps(_0x551de1 * _0x28cd2b) + _0x503254);
         ctx.restore();
     }
 };
