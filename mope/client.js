@@ -12544,7 +12544,7 @@ Animal.prototype.animalInfo = function() {
 
   return infoO;
 };
-
+Animal.prototype.preLoad = function () {};
 // load animal skin into a var that can be used later
 Animal.prototype.loadAnimalSkinImg = function() {
   //get skin name
@@ -12558,6 +12558,7 @@ Animal.prototype.loadAnimalSkinImg = function() {
 };
 //override GameObj method (in prototype!)
 Animal.prototype.customDraw = function(batchDrawOutline) {
+  this.preLoad();
   var infoO = this.animalInfo(); //infoForAnimalType(this.animalType);
   var aniCol = infoO.aniCol;
   this.skinImgName = infoO.skinName;
@@ -14270,14 +14271,22 @@ GiantScorpion.prototype.getSkinName = function () {
 GiantScorpion.prototype.stingerScaleF = 0.7;
 GiantScorpion.prototype.stingerOffsetY = -0.6;
 GiantScorpion.prototype.poison = 50;
-GiantScorpion.prototype.clawAnimation = null;
-GiantScorpion.prototype.stingAnimation = null;
-GiantScorpion.prototype.stingerTailNormal = null;
-GiantScorpion.prototype.stingerTail = null;
-GiantScorpion.prototype.stingerAttack = null;
-GiantScorpion.prototype.stingerAttackFull = null;
-GiantScorpion.prototype.stingerNormal = null;
-GiantScorpion.prototype.stingerNormalFull = null;
+GiantScorpion.prototype.clawAnimation = new _0x1abe2b(this, 0.9, _0x1abe2b.bow, {
+        'v1': _0x21470a
+    });
+GiantScorpion.prototype.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+        'v1': 0x5
+      
+      
+    });
+
+       GiantScorpion.prototype.stingerTailNormal = getLoadedImg('skins/desert/scorpion/stinger_normal.png');
+        GiantScorpion.prototype.stingerTail = getLoadedImg('skins/desert/scorpion/stinger_tail.png');
+    GiantScorpion.prototype.stingerTailAttack = getLoadedImg('skins/desert/scorpion/attack_tail.png');
+    GiantScorpion.prototype.stingerAttack = getLoadedImg('skins/desert/scorpion/attack_stinger_dull.png');
+    GiantScorpion.prototype.stingerAttackFull = getLoadedImg('skins/desert/scorpion/attack_stinger_full.png');
+    GiantScorpion.prototype.stingerNormal = getLoadedImg('skins/desert/scorpion/normal_stinger_dull.png');
+    GiantScorpion.prototype.stingerNormalFull = getLoadedImg('skins/desert/scorpion/normal_stinger_full.png');
 GiantScorpion.prototype.isUsingAbility = true;
 GiantScorpion.prototype.drawSkinCustomization = function () {
     this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
@@ -14289,16 +14298,17 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
     }), this.stingAnimation.onFrameEntered = function (_0x52e24a) {
    
         ctx.save();
-   
-        var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
-            _0x1a4ffd = this.forObj.rad;
 
-        ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
-        ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
-        ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        var _0x457a68 = this.skinScale * this.stingerScaleF,
+            _0x1a4ffd = this.rad;
+      
+alert(this.stingerTailAttack)
+        ctx.drawImage(this.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
+        ctx.drawImage(this.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        ctx.drawImage(this.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         var _0x43d51a = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
-        ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        ctx.drawImage(this.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.restore();
     }), this.stingAnimation && this.stingAnimation.run());
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
