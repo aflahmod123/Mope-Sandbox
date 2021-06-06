@@ -304,6 +304,7 @@ var a_mouse = 1,
   a_toucan = 75,
 a_thunderbird = 76,
 a_pterodactyl = 77,
+a_scorpion = 78,
 a_lochness = 83,
 a_griffin = 84,
 a_santa = 85;
@@ -14095,7 +14096,146 @@ function Octopus() {
 window.Octopus = Octopus;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Octopus, o_animal, a_octopus);
+///////
+// file: js_src/gameobj/animal/scorpion.js
+///////
+var superClass = Animal;
+_0x3664ae.prototype = Object.create(_0x6aed2f.prototype);
+_0x3664ae.prototype.constructor = _0x3664ae;
+_0x3664ae.superClass = _0x6aed2f;
+_0x3664ae.prototype.updateZ = function () {
+    this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 : this.flag_eff_tossedInAir ? 1200 + this.rad : this.z + (1000 + this.rad);
+};
+_0x3664ae.prototype.animalInfo = function () {
+    var _0x25aac9 = {};
+    switch (this.animalSpecies) {
+    case 0x0:
+        _0x25aac9.aniName = 'Giant Scorpion';
+        break;
+    case 0x1:
+        _0x25aac9.aniName = 'Golden Scorpion';
+        break;
+    case 0x2:
+        _0x25aac9.aniName = 'Carnelian Scorpion';
+    }
+    _0x25aac9.aniCol = '#FF9000';
+    _0x25aac9.skinName = 'scorpion';
+    _0x25aac9.upgradeText = 'UPGRADED to ' + _0x25aac9.aniName + `!\
+Sting and Shiver your prey to death.\
+(Press W to Sting)`;
+    return _0x25aac9;
+};
+_0x3664ae.prototype.getAbilityInfo = function (_0x27a7dd) {
+    _0x27a7dd = {
+        'abilName': `Sting!\
+(Shivers Prey)`
+    };
+    _0x27a7dd.abilImg = 'skins/desert/scorpion/' + this.animalSpecies + '/scorpion_ability.png';
+    return _0x27a7dd;
+};
+_0x3664ae.prototype.getSkinName = function () {
+    var _0x42207b = 'desert/scorpion/' + this.animalSpecies + '/scorpion';
+    return _0x42207b += 0 == this.specType ? '' : this.specType;
+};
+_0x3664ae.prototype.stingerScaleF = 0.7;
+_0x3664ae.prototype.stingerOffsetY = -0.6;
+_0x3664ae.prototype.poison = 50;
+_0x3664ae.prototype.clawAnimation = null;
+_0x3664ae.prototype.stingAnimation = null;
+_0x3664ae.prototype.stingerTailNormal = null;
+_0x3664ae.prototype.stingerTail = null;
+_0x3664ae.prototype.stingerAttack = null;
+_0x3664ae.prototype.stingerAttackFull = null;
+_0x3664ae.prototype.stingerNormal = null;
+_0x3664ae.prototype.stingerNormalFull = null;
+_0x3664ae.prototype.isUsingAbility = true;
+_0x3664ae.prototype.drawSkinCustomization = function () {
+    this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
+    !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
+    this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+        'v1': 0x5
+    }), this.stingAnimation.onFrameEntered = function (_0x52e24a) {
+        _0x14864f.save();
+        var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
+            _0x1a4ffd = this.forObj.rad;
+        _0x14864f.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
+        _0x14864f.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        _0x14864f.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        var _0x43d51a = _0x245c50((_0x77d54b - this.spawnTime) / 1000, 5, 1, 1);
+        _0x14864f.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
+        _0x14864f.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        _0x14864f.restore();
+    }), this.stingAnimation && this.stingAnimation.run());
+    if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+        var _0x4ecbf4 = this.skinScale * this.stingerScaleF,
+            _0x48a198 = this.skinRad,
+            _0x95630 = (_0x77d54b - this.spawnTime) / 1000,
+            _0x1254bf = _0x245c50(_0x95630, 1.5, 3, 2),
+            _0x3698b3 = _0x245c50(_0x95630, 1.5, 1, 2);
+        _0x14864f.save();
+        _0x48a198 = this.rad - 0.5 * _0x1254bf;
+        _0x14864f.drawImage(this.stingerTailNormal, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
+        _0x95630 = (_0x77d54b - this.spawnTime) / 1000;
+        _0x95630 = _0x245c50(_0x95630, 5, 1, 1);
+        _0x14864f.globalAlpha = Math.max(0, _0x95630) * Math.max(0, this.poison / 100);
+        _0x14864f.drawImage(this.stingerNormalFull, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
+        _0x14864f.restore();
+    }
+};
+_0x3664ae.prototype.tailOffsetY = -0.25;
+_0x3664ae.prototype.tailScaleF = 1.2;
+var _0x21470a = 4,
+    _0x62f027 = 0.1;
+_0x3664ae.prototype.drawUnderSkinImg = function () {
+    var _0x272065 = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/tail_back.png');
+    if (_0x272065) {
+        var _0x5b7c23 = 0;
+        this.stingAnimation && 0.5 > this.stingAnimation.frame && (_0x5b7c23 = 0.3 * -this.stingAnimation.frame);
+        var _0x2c9097 = this.skinScale * this.tailScaleF,
+            _0x205727 = this.skinRad;
+        _0x14864f.drawImage(_0x272065, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * this.tailOffsetY) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * (_0x205727 + _0x205727 * _0x5b7c23) * _0x2c9097);
+    }
+    this.flag_usingAbility && !this.flag_underWater && (null == this.clawAnimation && (this.clawAnimation = new _0x1abe2b(this, 0.9, _0x1abe2b.bow, {
+        'v1': _0x21470a
+    }), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x565900) {
+        var _0x5b7c23 = 0;
+        0.5 > _0x565900 && (_0x5b7c23 = -_0x565900);
+        _0x565900 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms.png';
+        this.forObj.flag_eff_aniInClaws && (_0x565900 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms-grabbed.png');
+        if (_0x565900 = _0x510f5a(_0x565900)) {
+            var _0x2c9097 = this.forObj.skinScale * this.forObj.tailScaleF,
+                _0x205727 = this.forObj.skinRad;
+            !this.hasStopped && 0.75 > this.timePassed ? (_0x62f027 = _0x5b7c23, _0x14864f.drawImage(_0x565900, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * _0x5b7c23) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * _0x205727 * _0x2c9097)) : _0x14864f.drawImage(_0x565900, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * _0x62f027) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * _0x205727 * _0x2c9097);
+        }
+    }), null != this.clawAnimation && this.clawAnimation.run());
+};
+_0x3664ae.prototype.readCustomData_onNewlyVisible = function (_0x2f810f) {
+    _0x3664ae.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x2f810f);
+    this.readInfo(_0x2f810f);
+};
+_0x3664ae.prototype.readCustomData_onUpdate = function (_0x1b2e55) {
+    _0x3664ae.superClass.prototype.readCustomData_onUpdate.call(this, _0x1b2e55);
+    this.readInfo(_0x1b2e55);
+};
+_0x3664ae.prototype.readInfo = function (_0x5efcb3) {
+    this.poison = _0x5efcb3.readUInt8();
+};
 
+function _0x3664ae() {
+    _0x3664ae.superClass.call(this, _0x40db01);
+}
+_0x3664ae.prototype.preLoad = function () {
+    _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/scorpion1.png');
+    this.stingerTailNormal = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/stinger_normal.png');
+    this.stingerTail = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/stinger_tail.png');
+    this.stingerTailAttack = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/attack_tail.png');
+    this.stingerAttack = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/attack_stinger_dull.png');
+    this.stingerAttackFull = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/attack_stinger_full.png');
+    this.stingerNormal = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/normal_stinger_dull.png');
+    this.stingerNormalFull = _0x510f5a('skins/desert/scorpion/' + this.animalSpecies + '/normal_stinger_full.png');
+};
+window.GiantScorpion = _0x3664ae;
+_0x510179.setCustomClassForGameObjType(_0x3664ae, _0x40db01, _0x4e21fd);
 ///////
 // file: js_src/gameobj/animal/pterodactyl.js
 ///////
