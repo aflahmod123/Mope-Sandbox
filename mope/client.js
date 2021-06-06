@@ -14287,15 +14287,11 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
    this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
     !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
     this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
-        'v1': 500
+        'v1': 5
       
       
-    }),
-                                 
-  this.stingAnimation.onFrameEntered = function (_0x52e24a) {
-   
-
-  
+    }),          
+  this.stingAnimation.onFrameEntered = function (_0x52e24a) {  
       ctx.save();
         var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF ,
             _0x1a4ffd = this.forObj.rad ;
@@ -14307,8 +14303,6 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
        if(this.forObj.stingerAttackFull){ ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
         ctx.restore();
-  
-
 }), this.stingAnimation && this.stingAnimation.run());
    
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
