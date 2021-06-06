@@ -2811,7 +2811,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     this.duration = _0x148a85;
     this.animation = _0x2b7224;
     this.startTime = null;
-    this.frame = 100;
+    this.frame = 0;
     this.frameRate = 1000;
     this.timePassed = 0;
     this.stopWhenDurationPassed = this.generate = true;
@@ -14273,6 +14273,7 @@ GiantScorpion.prototype.getSkinName = function () {
 GiantScorpion.prototype.stingerScaleF = 0.7;
 GiantScorpion.prototype.stingerOffsetY = -0.6;
 GiantScorpion.prototype.poison = 50;
+GiantScorpion.prototype.frame = 0
 GiantScorpion.prototype.clawAnimation = null;
 GiantScorpion.prototype.stingAnimation = null;
 GiantScorpion.prototype.stingerTailNormal = null;
@@ -14281,18 +14282,18 @@ GiantScorpion.prototype.stingerAttack = null;
 GiantScorpion.prototype.stingerAttackFull = null;
 GiantScorpion.prototype.stingerNormal = null;
 GiantScorpion.prototype.stingerNormalFull = null;
-GiantScorpion.prototype.isUsingAbility = true;
+GiantScorpion.prototype.isUsingAbility = false;
 GiantScorpion.prototype.drawSkinCustomization = function () {
    this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
     !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
     this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
-        'v1': 5
+        'v1': 500
       
       
     }),
-                                                        
-                                                            this.stingAnimation.onFrameEntered = function (_0x52e24a) {
-    try {
+                                 
+  this.stingAnimation.onFrameEntered = function (_0x52e24a) {
+   
 
   
       ctx.save();
@@ -14307,12 +14308,12 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
        if(this.forObj.stingerAttackFull){ ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
         ctx.restore();
   
-}catch(err){alert(err)}    
+
 }), this.stingAnimation && this.stingAnimation.run());
    
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
       
-  if(!this.flag_usingAbility){
+
         try {
         var _0x4ecbf4 = this.skinScale * this.stingerScaleF,
             _0x48a198 = this.skinRad,
@@ -14329,7 +14330,7 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
         ctx.restore();
           
     }catch{}   
-  }
+  
     }
 };
 
