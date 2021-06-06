@@ -15370,7 +15370,7 @@ Thunderbird.superClass = superClass; //'class' var
 //set custom skin name
 Thunderbird.prototype.getSkinName = function() {
   return (
-    "falcon/falcon" +
+    "thunderbird/thunderbird" +
     (this.specType == 0 || this.specType == undefined ? "" : this.specType)
   );
 };
@@ -15389,7 +15389,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
       : this.birdNoAnimationFlyWingAngle;
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15418,7 +15418,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15456,7 +15456,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
       : 0;
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15485,7 +15485,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15524,7 +15524,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
       : 0;
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15553,7 +15553,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15586,7 +15586,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(skins + "/falcon/falcon_head.png");
+    var theHead = getLoadedImg(skins + "/thunderbird/thunderbird_head.png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
