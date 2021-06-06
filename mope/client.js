@@ -14104,41 +14104,32 @@ Pterodactyl.prototype.constructor = Pterodactyl;
 Pterodactyl.superClass = superClass;
 Pterodactyl.prototype.animalInfo = function () {
     var infoO = {};
-    switch (this.animalSpecies) {
-    case 0x0:
-        infoO.aniName = 'Pterodactyl';
-        break;
-    case 0x1:
-        infoO.aniName = 'Golden Pterodactyl';
-        break;
-    case 0x2:
-        infoO.aniName = 'Emerald Pterodactyl';
-    }
+infoO.aniName = 'Pterodactyl';
     infoO.aniCol = '#FF9000';
-    infoO.skinName =  '/skins/pterodactyl';
+    infoO.skinName =  '/pterodactyl';
     infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + `!\
 Fly and dive onto prey to pick it up.`;
     return infoO;
 };
 Pterodactyl.prototype.getHead = function (_0x29679c, _0x4adc58) {
-    return 'skins/pterodactyl'+ '/' + _0x29679c + '/' + _0x29679c + '_head.png';
+    return 'skins'+ '/' + _0x29679c + '/' + _0x29679c + '_head.png';
 };
 Pterodactyl.prototype.getSkinName = function () {
-    var _0x528bd8 =  '/pterodactyl';
-    return _0x528bd8 = 4 == this.specType ? _0x528bd8 + '4' : _0x528bd8 + (0 == this.specType ? '' : 1);
+    var _0x528bd8 =  'pterodactyl/pterodactyl';
+    return _0x528bd8;
 };
 Pterodactyl.prototype.getWing = function (_0x4ac10e, _0x26897e) {
     this.flag_flying || (_0x26897e = _0x26897e + '' + _0x26897e);
-    return 'skins/pterodactyl'+ '/' + _0x4ac10e + '/' + _0x4ac10e + '_wing' + _0x26897e + '_nohand.png';
+    return 'skins'+ '/' + _0x4ac10e + '/' + _0x4ac10e + '_wing' + _0x26897e + '_nohand.png';
 };
 Pterodactyl.prototype.getWingBone = function (_0x204a7c, _0x47cdee) {
     this.flag_flying || (_0x47cdee = _0x47cdee + '' + _0x47cdee);
-    return 'skins/pterodactyl'+ '/' + _0x204a7c + '/' + _0x204a7c + '_wing' + _0x47cdee + '_bones.png';
+    return 'skins'+ '/' + _0x204a7c + '/' + _0x204a7c + '_wing' + _0x47cdee + '_bones.png';
 };
 Pterodactyl.prototype.getHand = function (_0x10826f, _0x5416bc) {
     this.flag_flying || (_0x5416bc = _0x5416bc + '' + _0x5416bc);
     this.isGliding && (_0x5416bc += '3');
-    return 'skins/pterodactyl + '/' + _0x10826f + '/' + _0x10826f' + '_hand' + _0x5416bc + '.png';
+    return 'skins' + '/' + _0x10826f + '/' + _0x10826f + '_hand' + _0x5416bc + '.png';
 };
 Pterodactyl.prototype.biteStart = 0;
 Pterodactyl.prototype.flaps = 0;
@@ -14207,7 +14198,7 @@ Pterodactyl.prototype.drawWing = function (_0x4f5a63, _0x5c300b) {
     var _0x2a359f = 1 == _0x5c300b ? 1 : -1,
         _0x2bd995 = getLoadedImg(this.getWing('pterodactyl', _0x5c300b));
     if (_0x2bd995) {
-        var _0x22b0c1 = -(-0.2 + _0x4f5a63) * _0x4e67a8(_0x2a359f * this.r),
+        var _0x22b0c1 = -(-0.2 + _0x4f5a63) * ps(_0x2a359f * this.r),
             _0x15f848 = 0.8 * this.rad,
             _0x1f5264 = this.rad,
             _0x67c3e0 = _0x15f848 * this.ww,
@@ -14216,7 +14207,7 @@ Pterodactyl.prototype.drawWing = function (_0x4f5a63, _0x5c300b) {
             _0x24e8b9 = this.ay + this.yf * _0x4f5a63;
         ctx.save();
         _0x22b0c1 *= this.rf;
-        ctx.rotate(_0x4e67a8(_0x2a359f * (this.isGliding ? this.erf_gliding : this.erf)) + _0x22b0c1);
+        ctx.rotate(ps(_0x2a359f * (this.isGliding ? this.erf_gliding : this.erf)) + _0x22b0c1);
         ctx.drawImage(_0x2bd995, 0 + _0x67c3e0 * -_0x13ccc2 + _0x4f5a63 * _0x67c3e0 * _0x2a359f * this.wOffset, _0x1f5264 + _0x15f848 * -_0x24e8b9, _0x67c3e0, _0x15f848);
         ctx.restore();
     }
@@ -14225,7 +14216,7 @@ Pterodactyl.prototype.drawBone = function (_0xf1fb52, _0x48a7e2) {
     var _0x50e10e = getLoadedImg(this.getWingBone('pterodactyl', _0x48a7e2)),
         _0x152838 = 1 == _0x48a7e2 ? 1 : -1;
     if (_0x50e10e) {
-        var _0x24b193 = -(-0.2 + _0xf1fb52) * _0x4e67a8(_0x152838 * this.r),
+        var _0x24b193 = -(-0.2 + _0xf1fb52) * ps(_0x152838 * this.r),
             _0x22a484 = 0.8 * this.rad,
             _0x3f0bc9 = this.rad,
             _0x5a7c64 = _0x22a484 * this.ww,
@@ -14234,7 +14225,7 @@ Pterodactyl.prototype.drawBone = function (_0xf1fb52, _0x48a7e2) {
             _0x32ba27 = this.ay + this.yf * _0xf1fb52;
         ctx.save();
         _0x24b193 *= this.rf;
-        ctx.rotate(_0x4e67a8(_0x152838 * (this.isGliding ? this.erf_gliding : this.erf)) + _0x24b193);
+        ctx.rotate(ps(_0x152838 * (this.isGliding ? this.erf_gliding : this.erf)) + _0x24b193);
         ctx.drawImage(_0x50e10e, 0 + _0x5a7c64 * -_0x815a56 + _0xf1fb52 * _0x5a7c64 * _0x152838 * this.wOffset, _0x3f0bc9 + _0x22a484 * -_0x32ba27, _0x5a7c64, _0x22a484);
         ctx.restore();
     }
@@ -14244,7 +14235,7 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
     var _0x551de1 = 1 == _0x50fe2f ? 1 : -1,
         _0x48325e = getLoadedImg(this.getHand('pterodactyl', _0x50fe2f));
     if (_0x48325e) {
-        var _0x503254 = -(-0.2 + _0x8ffe97) * _0x4e67a8(_0x551de1 * this.r),
+        var _0x503254 = -(-0.2 + _0x8ffe97) * ps(_0x551de1 * this.r),
             _0x5026b3 = 0.8 * this.rad,
             _0x1b2913 = this.rad,
             _0x149abd = _0x5026b3 * this.ww,
@@ -14254,7 +14245,7 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
             _0x503254 = _0x503254 * this.rf,
             _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
         ctx.save();
-        this.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, _0x4e67a8(_0x551de1 * _0x28cd2b) + _0x503254);
+        this.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, ps(_0x551de1 * _0x28cd2b) + _0x503254);
         ctx.restore();
     }
 };
