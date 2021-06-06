@@ -303,6 +303,7 @@ var a_mouse = 1,
   a_pigeon = 74,
   a_toucan = 75,
 a_thunderbird = 76,
+a_pterodactyl = 77,
 a_lochness = 83,
 a_griffin = 84,
 a_santa = 85;
@@ -317,6 +318,14 @@ var infoForAnimalType = function (aniT) {
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "snail";
+            break;
+         case a_pterodactyl:
+            infoO.aniName = "Pterodactyl";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "Nice.";
+
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "pterodactyl/pterodactyl";
             break;
               case a_lochness:
             infoO.aniName = "Loch Ness";
@@ -11712,6 +11721,14 @@ Animal.prototype.animalInfo = function() {
       infoO.aniCol = "#fcc02b";
       infoO.skinName = "snail";
       break;
+       case a_pterodactyl:
+            infoO.aniName = "Pterodactyl";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "Nice.";
+
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "pterodactyl/pterodactyl";
+            break;
          case a_lochness:
             infoO.aniName = "Loch Ness";
             infoO.aniDesc = "";
@@ -14127,7 +14144,7 @@ Pterodactyl.prototype.biteStart = 0;
 Pterodactyl.prototype.flaps = 0;
 Pterodactyl.prototype.flapsMod = 5;
 Pterodactyl.prototype.countFlap = true;
-Pterodactyl.prototype.canFlap = !_0x5cbc28;
+Pterodactyl.prototype.canFlap = !options_lowGraphics;
 Pterodactyl.prototype.resumeFlapT = 0;
 Pterodactyl.prototype.lastFlapFrame = 0;
 Pterodactyl.prototype.flapSpeed = 1;
@@ -14157,7 +14174,7 @@ Pterodactyl.prototype.headX = 0.225;
 Pterodactyl.prototype.drawLegs = function () {
     var _0x2eed07 = 1.4705882352941,
         _0x4afd81 = this.flag_eff_aniInClaws ? 'legs2' : 'legs';
-    if (_0x4afd81 = _0x510f5a('skins/pterodactyl/ + _0x4afd81 + '.png')) {
+    if (_0x4afd81 = getLoadedImg('skins/pterodactyl/' + _0x4afd81 + '.png')) {
         ctx.save();
         var _0x219321 = this.rad,
             _0x2eed07 = _0x2eed07 * this.legScale;
@@ -14177,18 +14194,18 @@ Pterodactyl.prototype.drawSkinCustomization = function () {
         this.drawHand(this.frame, 2);
         var _0x2e5ee9 = 1.4705882352941,
             _0x1dbcf1 = this.getHead('pterodactyl', true);
-        if (_0x1dbcf1 = _0x510f5a(_0x1dbcf1)) {
+        if (_0x1dbcf1 = getLoadedImg(_0x1dbcf1)) {
             ctx.save();
             var _0x2e5ee9 = _0x2e5ee9 + -(0.1 * this.headF) * this.frame,
                 _0x5b7869 = this.rad;
             ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * (0.3 + this.frame / 10 * this.headFDisp) + this.headF * this.frame) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9);
             ctx.restore();
         }
-    } else if (_0x1dbcf1 = this.getHead('pterodactyl', true), _0x1dbcf1 = _0x510f5a(_0x1dbcf1)) _0x2e5ee9 = 1.4705882352941 * this.headScale, ctx.save(), _0x5b7869 = this.rad, ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * this.headX) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9), ctx.restore();
+    } else if (_0x1dbcf1 = this.getHead('pterodactyl', true), _0x1dbcf1 = getLoadedImg(_0x1dbcf1)) _0x2e5ee9 = 1.4705882352941 * this.headScale, ctx.save(), _0x5b7869 = this.rad, ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * this.headX) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9), ctx.restore();
 };
 Pterodactyl.prototype.drawWing = function (_0x4f5a63, _0x5c300b) {
     var _0x2a359f = 1 == _0x5c300b ? 1 : -1,
-        _0x2bd995 = _0x510f5a(this.getWing('pterodactyl', _0x5c300b));
+        _0x2bd995 = getLoadedImg(this.getWing('pterodactyl', _0x5c300b));
     if (_0x2bd995) {
         var _0x22b0c1 = -(-0.2 + _0x4f5a63) * _0x4e67a8(_0x2a359f * this.r),
             _0x15f848 = 0.8 * this.rad,
@@ -14205,7 +14222,7 @@ Pterodactyl.prototype.drawWing = function (_0x4f5a63, _0x5c300b) {
     }
 };
 Pterodactyl.prototype.drawBone = function (_0xf1fb52, _0x48a7e2) {
-    var _0x50e10e = _0x510f5a(this.getWingBone('pterodactyl', _0x48a7e2)),
+    var _0x50e10e = getLoadedImg(this.getWingBone('pterodactyl', _0x48a7e2)),
         _0x152838 = 1 == _0x48a7e2 ? 1 : -1;
     if (_0x50e10e) {
         var _0x24b193 = -(-0.2 + _0xf1fb52) * _0x4e67a8(_0x152838 * this.r),
@@ -14225,7 +14242,7 @@ Pterodactyl.prototype.drawBone = function (_0xf1fb52, _0x48a7e2) {
 var _0x152b10 = 0;
 Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
     var _0x551de1 = 1 == _0x50fe2f ? 1 : -1,
-        _0x48325e = _0x510f5a(this.getHand('pterodactyl', _0x50fe2f));
+        _0x48325e = getLoadedImg(this.getHand('pterodactyl', _0x50fe2f));
     if (_0x48325e) {
         var _0x503254 = -(-0.2 + _0x8ffe97) * _0x4e67a8(_0x551de1 * this.r),
             _0x5026b3 = 0.8 * this.rad,
@@ -14246,8 +14263,8 @@ Pterodactyl.prototype.lastFlapFrame = 0;
 Pterodactyl.prototype.getFrame = function () {
     !this.canFlap && this.flag_flying && _0x77d54b > this.resumeFlapT && (this.canFlap = true);
     var _0x2b4955 = (_0x77d54b - this.spawnTime) / 1000,
-        _0x2b4955 = !_0x5cbc28 && this.canFlap ? _0x245c50(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
-    this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (this.countFlap = true, this.flaps++, 0 == this.flaps % this.flapsMod && (this.lastFlapFrame = _0x2b4955, this.canFlap = true, this.resumeFlapT = +new Date() 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
+        _0x2b4955 = !options_lowGraphics && this.canFlap ? _0x245c50(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
+    this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (this.countFlap = true, this.flaps++, 0 == this.flaps % this.flapsMod && (this.lastFlapFrame = _0x2b4955, this.canFlap = true, this.resumeFlapT = +new Date() + 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
     this.canFlap ? this.lastFlapFrame = _0x2b4955 : _0x2b4955 = this.lastFlapFrame;
     return _0x2b4955;
 };
@@ -14282,7 +14299,7 @@ function Pterodactyl() {
     Pterodactyl.superClass.call(this, o_animal);
 }
 window.Pterodactyl = Pterodactyl;
-_0x510179.setCustomClassForGameObjType(Pterodactyl, o_animal, a_iceMonster);
+GameObjType.setCustomClassForGameObjType(Pterodactyl, o_animal, a_pterodactyl);
 ///////
 // file: js_src/gameobj/animal/santa.js
 ///////
