@@ -14293,6 +14293,7 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
                                                         
                                                             this.stingAnimation.onFrameEntered = function (_0x52e24a) {
     try {
+ 
   if(this.flag_usingAbility){
       ctx.save();
 
