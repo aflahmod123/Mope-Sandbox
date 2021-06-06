@@ -14272,7 +14272,7 @@ GiantScorpion.prototype.getSkinName = function () {
 GiantScorpion.prototype.stingerScaleF = 0.7;
 GiantScorpion.prototype.stingerOffsetY = -0.6;
 GiantScorpion.prototype.poison = 50;
-GiantScorpion.prototype.times = 3;
+GiantScorpion.prototype.times = 2;
 GiantScorpion.prototype.clawAnimation = null;
 GiantScorpion.prototype.stingAnimation = null;
 GiantScorpion.prototype.stingerTailNormal = null;
@@ -14300,12 +14300,12 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
 
         var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
             _0x1a4ffd = this.forObj.rad;
-        if(this.forObj.stingerTailAttack){ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68 , 2 * _0x1a4ffd * _0x457a68, this.forObj.times * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68)};
-         if(this.forObj.stingerTail) {ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68 , 2 * _0x1a4ffd * _0x457a68)};
-         if(this.forObj.stingerTailAttack){ ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68  , 2* _0x1a4ffd * _0x457a68, this.forObj.times * _0x1a4ffd * _0x457a68)};
+        if(this.forObj.stingerTailAttack){ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd ) * this.forObj.times , 2 * _0x1a4ffd * _0x457a68, this.forObj.times * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68)};
+         if(this.forObj.stingerTail) {ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68,  (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * this.forObj.times, 2 * _0x1a4ffd * _0x457a68 , 2 * _0x1a4ffd * _0x457a68)};
+         if(this.forObj.stingerTailAttack){ ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * this.forObj.times  , 2* _0x1a4ffd * _0x457a68, this.forObj.times * _0x1a4ffd * _0x457a68)};
         var _0x43d51a = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
-       if(this.forObj.stingerAttackFull){ ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68,this.forObj.times * _0x1a4ffd * _0x457a68)};
+       if(this.forObj.stingerAttackFull){ ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * this.forObj.times, 2 * _0x1a4ffd * _0x457a68,this.forObj.times * _0x1a4ffd * _0x457a68)};
         ctx.restore();
   }
 }catch(err){alert('hi')}    
