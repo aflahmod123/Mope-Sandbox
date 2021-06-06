@@ -14281,15 +14281,15 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.stingerAttackFull = null;
     GiantScorpion.prototype.stingerNormal = null;
     GiantScorpion.prototype.stingerNormalFull = null;
-    GiantScorpion.prototype.isUsingAbility = true;
+    GiantScorpion.prototype.isUsingAbility = false;
     GiantScorpion.prototype.drawSkinCustomization = function () {
         this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
         !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
-        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1 , _0x1abe2b.bow, {
             'v1': 0x5
         }), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
             ctx.save();
-            var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF,
+            var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
                 _0x38dd8a = this.forObj.rad;
           if(this.forObj.flag_usingAbility){
             ctx.drawImage(this.forObj.stingerTailAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1);
@@ -14298,7 +14298,13 @@ Sting and Shiver your prey to death.\
             var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
             ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
             ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
-      
+ 
+           if(!this.stingAnimation){
+             this.stingAnimation = new _0x1abe2b(this, 1 , _0x1abe2b.bow, {
+            'v1': 0x5
+           }),this.stingAnimation.run()
+                                  };
+        
           }
             ctx.restore();
         }), this.stingAnimation && this.stingAnimation.run());
