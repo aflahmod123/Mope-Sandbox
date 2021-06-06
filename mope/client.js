@@ -14263,11 +14263,11 @@ Sting and Shiver your prey to death.\
             'abilName': `Sting!\
 (Shivers Prey)`
         };
-        _0x127744.abilImg = 'skins/desert/scorpion/scorpion_ability.png';
+        _0x127744.abilImg = 'skins/scorpion/scorpion_ability.png';
         return _0x127744;
     };
     GiantScorpion.prototype.getSkinName = function () {
-        var _0x403b22 = 'desert/scorpion/scorpion';
+        var _0x403b22 = '/scorpion/scorpion';
         return _0x403b22 += 0 == this.specType ? '' : this.specType;
     };
     GiantScorpion.prototype.stingerScaleF = 0.7;
@@ -14289,28 +14289,30 @@ Sting and Shiver your prey to death.\
             'v1': 0x5
         }), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
             ctx.save();
-          console.log(this.forObj)
             var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF,
                 _0x38dd8a = this.forObj.rad;
+          if(this.forObj.flag_usingAbility){
             ctx.drawImage(this.forObj.stingerTailAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1);
             ctx.drawImage(this.forObj.stingerTail, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
             ctx.drawImage(this.forObj.stingerAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
-            var _0x41a28e = _0x5f3627((timestamp - this.spawnTime) / 1000, 5, 1, 1);
+            var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
             ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
             ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+      
+          }
             ctx.restore();
         }), this.stingAnimation && this.stingAnimation.run());
-        if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+        if ((null == this.stingAnimation || this.stingAnimation.hasStopped)&& !this.flag_usingAbility && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
             var _0x58c1e0 = this.skinScale * this.stingerScaleF,
                 _0x24402d = this.skinRad,
                 _0x2a5db0 = (timestamp - this.spawnTime) / 1000,
-                _0x1946d3 = _0x5f3627(_0x2a5db0, 1.5, 3, 2),
-                _0x2f7996 = _0x5f3627(_0x2a5db0, 1.5, 1, 2);
+                _0x1946d3 = getAnimFrame(_0x2a5db0, 1.5, 3, 2),
+                _0x2f7996 = getAnimFrame(_0x2a5db0, 1.5, 1, 2);
             ctx.save();
             _0x24402d = this.rad - 0.5 * _0x1946d3;
             ctx.drawImage(this.stingerTailNormal, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
             _0x2a5db0 = (timestamp - this.spawnTime) / 1000;
-            _0x2a5db0 = _0x5f3627(_0x2a5db0, 5, 1, 1);
+            _0x2a5db0 = getAnimFrame(_0x2a5db0, 5, 1, 1);
             ctx.globalAlpha = Math.max(0, _0x2a5db0) * Math.max(0, this.poison / 100);
             ctx.drawImage(this.stingerNormalFull, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
             ctx.restore();
@@ -14321,7 +14323,7 @@ Sting and Shiver your prey to death.\
     var _0x3043fd = 4,
         _0x12842c = 0.1;
     GiantScorpion.prototype.drawUnderSkinImg = function () {
-        var _0x42919b = getLoadedImg('skins/desert/scorpion/tail_back.png');
+        var _0x42919b = getLoadedImg('skins/scorpion/tail_back.png');
         if (_0x42919b) {
             var _0x3f3c13 = 0;
             this.stingAnimation && 0.5 > this.stingAnimation.frame && (_0x3f3c13 = 0.3 * -this.stingAnimation.frame);
@@ -14334,12 +14336,12 @@ Sting and Shiver your prey to death.\
         }), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x1dd836) {
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
-            _0x1dd836 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms.png';
-            this.forObj.flag_eff_aniInClaws && (_0x1dd836 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms-grabbed.png');
+            _0x1dd836 = 'skins/scorpion/arms.png';
+            this.forObj.flag_eff_aniInClaws && (_0x1dd836 = 'skins/scorpion/arms-grabbed.png');
             if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
                 var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
                     _0x3ba07b = this.forObj.skinRad;
-                !this.hasStopped && 0.75 > this.timePassed ? (_0x12842c = _0x3f3c13, ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1)) : _0x2c58a9.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1);
+                !this.hasStopped && 0.75 > this.timePassed ? (_0x12842c = _0x3f3c13, ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1)) : ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1);
             }
         }), null != this.clawAnimation && this.clawAnimation.run());
     };
@@ -14359,14 +14361,14 @@ Sting and Shiver your prey to death.\
         GiantScorpion.superClass.call(this, o_animal);
     }
     GiantScorpion.prototype.preLoad = function () {
-        getLoadedImg('skins/desert/scorpion/scorpion1.png');
-        this.stingerTailNormal = getLoadedImg('skins/desert/scorpion/stinger_normal.png');
-        this.stingerTail = getLoadedImg('skins/desert/scorpion/stinger_tail.png');
-        this.stingerTailAttack = getLoadedImg('skins/desert/scorpion/attack_tail.png');
-        this.stingerAttack = getLoadedImg('skins/desert/scorpion/attack_stinger_dull.png');
-        this.stingerAttackFull = getLoadedImg('skins/desert/scorpion/attack_stinger_full.png');
-        this.stingerNormal = getLoadedImg('skins/desert/scorpion/normal_stinger_dull.png');
-        this.stingerNormalFull = getLoadedImg('skins/desert/scorpion/normal_stinger_full.png');
+        getLoadedImg('skins/scorpion/scorpion1.png');
+        this.stingerTailNormal = getLoadedImg('skins/scorpion/stinger_normal.png');
+        this.stingerTail = getLoadedImg('skins/scorpion/stinger_tail.png');
+        this.stingerTailAttack = getLoadedImg('skins/scorpion/attack_tail.png');
+        this.stingerAttack = getLoadedImg('skins/scorpion/attack_stinger_dull.png');
+        this.stingerAttackFull = getLoadedImg('skins/scorpion/attack_stinger_full.png');
+        this.stingerNormal = getLoadedImg('skins/scorpion/normal_stinger_dull.png');
+        this.stingerNormalFull = getLoadedImg('skins/scorpion/normal_stinger_full.png');
     };
     window.GiantScorpion = GiantScorpion;
     GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
