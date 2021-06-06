@@ -1444,6 +1444,120 @@ var p_confetti = 1;
 
 //UTILITIES
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+_0x1abe2b.wave = 1;
+_0x1abe2b.halfWave = 2;
+_0x1abe2b.arc = 3;
+_0x1abe2b.quad = 4;
+_0x1abe2b.bow = 5;
+_0x1abe2b.bounce = 6;
+_0x1abe2b.elastic = 7;
+_0x1abe2b.bounceEaseOut = 8;
+_0x1abe2b.bounceEaseInOut = 9;
+
+function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
+    this.forObj = _0x4b9ad5;
+    this.duration = _0x148a85;
+    this.animation = _0x2b7224;
+    this.startTime = null;
+    this.frame = 0;
+    this.frameRate = 1000;
+    this.timePassed = 0;
+    this.stopWhenDurationPassed = this.generate = true;
+    this.accelerateEnd = this.state = 0;
+    this.hasStopped = true;
+    this.img = null;
+    this.vars = _0x59b622;
+    this.loop = this.keepLastFrame = true;
+    this.setImage = function (_0x1f9afa) {
+        this.img = _0x510f5a(_0x1f9afa);
+    };
+    this.run = function () {
+        null == this.startTime && (this.startTime = timestamp);
+        if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()), this.hasStopped || (this.calcTimePassed(), this.generateFrame(), this.onFrameEntered(this.frame), this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)), this.hasStopped)) {
+            if (this.keepLastFrame) this.onFrameEntered(this.frame);
+            this.loop && this.reset();
+        }
+    };
+    this.reset = function () {
+        this.timestamp = null;
+        this.hasStopped = true;
+        this.state = 0;
+    };
+    this.generateFrame = function () {
+        if (this.generate) switch (this.state = 1, this.animation) {
+        case _0x1abe2b.wave:
+            this.frame = this.wave(this.timePassed);
+            break;
+        case _0x1abe2b.halfWave:
+            this.frame = this.halfWave(this.timePassed);
+            break;
+        case _0x1abe2b.arc:
+            this.frame = this.arc(this.timePassed);
+            break;
+        case _0x1abe2b.quad:
+            this.frame = this.quad(this.timePassed);
+            break;
+        case _0x1abe2b.bow:
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
+            });
+            this.frame = this.bow(this.timePassed);
+            break;
+        case _0x1abe2b.bounce:
+            this.frame = this.bounce(this.timePassed);
+            break;
+        case _0x1abe2b.elastic:
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
+            });
+            this.frame = this.elastic(this.timePassed);
+            break;
+        case _0x1abe2b.bounceEaseOut:
+            this.frame = this.bounceEaseOut(this.timePassed);
+            break;
+        case _0x1abe2b.bounceEaseInOut:
+            this.frame = this.bounceEaseInOut(this.timePassed);
+        }
+    };
+    this.timing = function (_0x1868f0) {
+        return _0x1868f0;
+    };
+    this.halfWave = function (_0x5b1e15) {
+        return 0x1 * Math.sin(0.5 * Math.PI / this.duration * _0x5b1e15);
+    };
+    this.wave = function (_0x5052b4) {
+        return 0x1 * Math.sin(1 * Math.PI / this.duration * _0x5052b4);
+    };
+    this.arc = function (_0x109adf) {
+        return 0x1 - Math.sin(Math.acos(_0x109adf));
+    };
+    this.quad = function (_0x5c29f0) {
+        return Math.pow(_0x5c29f0, 2);
+    };
+    this.bow = function (_0x5ac2d4) {
+        var _0x148a85 = this.vars.v1;
+        return Math.pow(_0x5ac2d4, 2) * ((_0x148a85 + 1) * _0x5ac2d4 - _0x148a85);
+    };
+    this.bounce = function (_0x2000e8) {
+        for (var _0x148a85 = 0, _0x2b7224 = 1;; _0x148a85 += _0x2b7224, _0x2b7224 /= 2)
+            if (_0x2000e8 >= (3 * _0x148a85) / 11) return -Math.pow((5 * _0x148a85 - 11 * _0x2000e8) / 4, 2) + Math.pow(_0x2b7224, 2);
+    };
+    this.elastic = function (_0x1acff4) {
+        return Math.pow(2, 10 * (_0x1acff4 - 1)) * Math.cos(20 * Math.PI * this.vars.v1 / 3 * _0x1acff4);
+    };
+    this.bounceEaseOut = function (_0x5c10ac) {
+        return 0x1 - this.bounce(1 - _0x5c10ac);
+    };
+    this.bounceEaseInOut = function (_0x5c1fb1) {
+        return 0.5 > _0x5c1fb1 ? this.bounce(2 * _0x5c1fb1) / 2 : (2 - this.bounce(2 * (1 - _0x5c1fb1))) / 2;
+    };
+    this.calcTimePassed = function () {
+        this.timePassed = (timestamp  - this.startTime) / this.frameRate;
+    };
+    this.onFrameEntered = function (_0x3b867c) {};
+    this.onStop = function () {};
+}
+
 var getRandomDouble = function(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -14116,9 +14230,9 @@ GameObjType.setCustomClassForGameObjType(Octopus, o_animal, a_octopus);
 // file: js_src/gameobj/animal/scorpion.js
 ///////
 var superClass = Animal;
-GiantScorpion.prototype = Object.create(_0x6aed2f.prototype);
+GiantScorpion.prototype = Object.create(superClass.prototype);
 GiantScorpion.prototype.constructor = GiantScorpion;
-GiantScorpion.superClass = _0x6aed2f;
+GiantScorpion.superClass = superClass;
 GiantScorpion.prototype.updateZ = function () {
     this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 : this.flag_eff_tossedInAir ? 1200 + this.rad : this.z + (1000 + this.rad);
 };
@@ -14177,7 +14291,7 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
         ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
         ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
-        var _0x43d51a = _0x245c50((_0x77d54b - this.spawnTime) / 1000, 5, 1, 1);
+        var _0x43d51a = _0x245c50((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
         ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.restore();
@@ -14185,13 +14299,13 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
         var _0x4ecbf4 = this.skinScale * this.stingerScaleF,
             _0x48a198 = this.skinRad,
-            _0x95630 = (_0x77d54b - this.spawnTime) / 1000,
+            _0x95630 = (timestamp - this.spawnTime) / 1000,
             _0x1254bf = _0x245c50(_0x95630, 1.5, 3, 2),
             _0x3698b3 = _0x245c50(_0x95630, 1.5, 1, 2);
         ctx.save();
         _0x48a198 = this.rad - 0.5 * _0x1254bf;
         ctx.drawImage(this.stingerTailNormal, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
-        _0x95630 = (_0x77d54b - this.spawnTime) / 1000;
+        _0x95630 = (timestamp - this.spawnTime) / 1000;
         _0x95630 = _0x245c50(_0x95630, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x95630) * Math.max(0, this.poison / 100);
         ctx.drawImage(this.stingerNormalFull, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
@@ -14203,7 +14317,7 @@ GiantScorpion.prototype.tailScaleF = 1.2;
 var _0x21470a = 4,
     _0x62f027 = 0.1;
 GiantScorpion.prototype.drawUnderSkinImg = function () {
-    var _0x272065 = GetLoadedImg('skins/desert/scorpion/tail_back.png');
+    var _0x272065 = getLoadedImg('skins/desert/scorpion/tail_back.png');
     if (_0x272065) {
         var _0x5b7c23 = 0;
         this.stingAnimation && 0.5 > this.stingAnimation.frame && (_0x5b7c23 = 0.3 * -this.stingAnimation.frame);
@@ -14218,7 +14332,7 @@ GiantScorpion.prototype.drawUnderSkinImg = function () {
         0.5 > _0x565900 && (_0x5b7c23 = -_0x565900);
         _0x565900 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms.png';
         this.forObj.flag_eff_aniInClaws && (_0x565900 = 'skins/desert/scorpion/' + this.forObj.animalSpecies + '/arms-grabbed.png');
-        if (_0x565900 = GetLoadedImg(_0x565900)) {
+        if (_0x565900 = getLoadedImg(_0x565900)) {
             var _0x2c9097 = this.forObj.skinScale * this.forObj.tailScaleF,
                 _0x205727 = this.forObj.skinRad;
             !this.hasStopped && 0.75 > this.timePassed ? (_0x62f027 = _0x5b7c23, ctx.drawImage(_0x565900, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * _0x5b7c23) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * _0x205727 * _0x2c9097)) : ctx.drawImage(_0x565900, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * _0x62f027) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * _0x205727 * _0x2c9097);
@@ -14241,14 +14355,14 @@ function GiantScorpion() {
     GiantScorpion.superClass.call(this, o_animal);
 }
 GiantScorpion.prototype.preLoad = function () {
-    GetLoadedImg('skins/desert/scorpion/scorpion1.png');
-    this.stingerTailNormal = GetLoadedImg('skins/desert/scorpion/stinger_normal.png');
-    this.stingerTail = GetLoadedImg('skins/desert/scorpion/stinger_tail.png');
-    this.stingerTailAttack = GetLoadedImg('skins/desert/scorpion/attack_tail.png');
-    this.stingerAttack = GetLoadedImg('skins/desert/scorpion/attack_stinger_dull.png');
-    this.stingerAttackFull = GetLoadedImg('skins/desert/scorpion/attack_stinger_full.png');
-    this.stingerNormal = GetLoadedImg('skins/desert/scorpion/normal_stinger_dull.png');
-    this.stingerNormalFull = GetLoadedImg('skins/desert/scorpion/normal_stinger_full.png');
+    getLoadedImg('skins/desert/scorpion/scorpion1.png');
+    this.stingerTailNormal = getLoadedImg('skins/desert/scorpion/stinger_normal.png');
+    this.stingerTail = getLoadedImg('skins/desert/scorpion/stinger_tail.png');
+    this.stingerTailAttack = getLoadedImg('skins/desert/scorpion/attack_tail.png');
+    this.stingerAttack = getLoadedImg('skins/desert/scorpion/attack_stinger_dull.png');
+    this.stingerAttackFull = getLoadedImg('skins/desert/scorpion/attack_stinger_full.png');
+    this.stingerNormal = getLoadedImg('skins/desert/scorpion/normal_stinger_dull.png');
+    this.stingerNormalFull = getLoadedImg('skins/desert/scorpion/normal_stinger_full.png');
 };
 window.GiantScorpion = GiantScorpion;
 GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
@@ -14408,8 +14522,8 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
 Pterodactyl.prototype.frame = 0;
 Pterodactyl.prototype.lastFlapFrame = 0;
 Pterodactyl.prototype.getFrame = function () {
-    !this.canFlap && this.flag_flying && _0x77d54b > this.resumeFlapT && (this.canFlap = true);
-    var _0x2b4955 = (_0x77d54b - this.spawnTime) / 1000,
+    !this.canFlap && this.flag_flying && timestamp > this.resumeFlapT && (this.canFlap = true);
+    var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
         _0x2b4955 = !options_lowGraphics && this.canFlap ? _0x245c50(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
     this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (this.countFlap = true, this.flaps++, 0 == this.flaps % this.flapsMod && (this.lastFlapFrame = _0x2b4955, this.canFlap = true, this.resumeFlapT = +new Date() + 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
     this.canFlap ? this.lastFlapFrame = _0x2b4955 : _0x2b4955 = this.lastFlapFrame;
