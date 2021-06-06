@@ -14287,17 +14287,12 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
       
       
     }), this.stingAnimation.onFrameEntered = function (_0x52e24a) {
-      this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
-        'v1': 0x5
-      
-      
-    })
-    this.forObj = this.stingAnimation
-      console.log(this.forObj)
+   
         ctx.save();
+   
         var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
             _0x1a4ffd = this.forObj.rad;
-    
+
         ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
         ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
