@@ -14288,23 +14288,30 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
         'v1': 0x5
       
       
-    }), this.stingAnimation.onFrameEntered = function (_0x52e24a) {
-   
-        ctx.save();
-   
+    }),
+                                                        
+                                                            this.stingAnimation.onFrameEntered = function (_0x52e24a) {
+    try {
+  if(this.flag_usingAbility){
+      ctx.save();
+
         var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
             _0x1a4ffd = this.forObj.rad;
     
       
-        ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
-        ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
-        ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+        if(this.forObj.stingerTailAttack){ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68)};
+         if(this.forObj.stingerTail) {ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
+         if(this.forObj.stingerTailAttack){ ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
         var _0x43d51a = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
-        ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
+       if(this.forObj.stingerAttackFull) ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.restore();
-    }), this.stingAnimation && this.stingAnimation.run());
+  }
+}catch{}    
+}), this.stingAnimation && this.stingAnimation.run());
+   
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+        try {
         var _0x4ecbf4 = this.skinScale * this.stingerScaleF,
             _0x48a198 = this.skinRad,
             _0x95630 = (timestamp - this.spawnTime) / 1000,
@@ -14312,19 +14319,23 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
             _0x3698b3 = getAnimFrame(_0x95630, 1.5, 1, 2);
         ctx.save();
         _0x48a198 = this.rad - 0.5 * _0x1254bf;
-        ctx.drawImage(this.stingerTailNormal, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
+        if(this.stingerTailNormal) ctx.drawImage(this.stingerTailNormal, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
         _0x95630 = (timestamp - this.spawnTime) / 1000;
         _0x95630 = getAnimFrame(_0x95630, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x95630) * Math.max(0, this.poison / 100);
-        ctx.drawImage(this.stingerNormalFull, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
+       if(this.stingerNormalFull) ctx.drawImage(this.stingerNormalFull, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
         ctx.restore();
+    }catch{}   
     }
 };
+
 GiantScorpion.prototype.tailOffsetY = -0.25;
 GiantScorpion.prototype.tailScaleF = 1.2;
 var _0x21470a = 4,
     _0x62f027 = 0.1;
 GiantScorpion.prototype.drawUnderSkinImg = function () {
+   try {
+     
     var _0x272065 = getLoadedImg('skins/scorpion/tail_back.png');
     if (_0x272065) {
         var _0x5b7c23 = 0;
@@ -14338,15 +14349,17 @@ GiantScorpion.prototype.drawUnderSkinImg = function () {
     }), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x565900) {
         var _0x5b7c23 = 0;
         0.5 > _0x565900 && (_0x5b7c23 = -_0x565900);
-        _0x565900 = 'skins/scorpion/' + this.forObj.animalSpecies + '/arms.png';
-        this.forObj.flag_eff_aniInClaws && (_0x565900 = 'skins/scorpion/' + this.forObj.animalSpecies + '/arms-grabbed.png');
+        _0x565900 = 'skins/scorpion/arms.png';
+        this.forObj.flag_eff_aniInClaws && (_0x565900 = 'skins/scorpion/arms-grabbed.png');
         if (_0x565900 = getLoadedImg(_0x565900)) {
             var _0x2c9097 = this.forObj.skinScale * this.forObj.tailScaleF,
                 _0x205727 = this.forObj.skinRad;
             !this.hasStopped && 0.75 > this.timePassed ? (_0x62f027 = _0x5b7c23, ctx.drawImage(_0x565900, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * _0x5b7c23) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * _0x205727 * _0x2c9097)) : ctx.drawImage(_0x565900, -_0x205727 * _0x2c9097, (-_0x205727 + _0x205727 * _0x62f027) * _0x2c9097, 2 * _0x205727 * _0x2c9097, 2 * _0x205727 * _0x2c9097);
         }
+      
     }), null != this.clawAnimation && this.clawAnimation.run());
-};
+ }catch{}   
+   };
 GiantScorpion.prototype.readCustomData_onNewlyVisible = function (_0x2f810f) {
     GiantScorpion.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x2f810f);
     this.readInfo(_0x2f810f);
