@@ -1444,119 +1444,7 @@ var p_confetti = 1;
 
 //UTILITIES
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-_0x1abe2b.wave = 1;
-_0x1abe2b.halfWave = 2;
-_0x1abe2b.arc = 3;
-_0x1abe2b.quad = 4;
-_0x1abe2b.bow = 5;
-_0x1abe2b.bounce = 6;
-_0x1abe2b.elastic = 7;
-_0x1abe2b.bounceEaseOut = 8;
-_0x1abe2b.bounceEaseInOut = 9;
 
-function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
-    this.forObj = _0x4b9ad5;
-    this.duration = _0x148a85;
-    this.animation = _0x2b7224;
-    this.startTime = null;
-    this.frame = 0;
-    this.frameRate = 1000;
-    this.timePassed = 0;
-    this.stopWhenDurationPassed = this.generate = true;
-    this.accelerateEnd = this.state = 0;
-    this.hasStopped = true;
-    this.img = null;
-    this.vars = _0x59b622;
-    this.loop = this.keepLastFrame = true;
-    this.setImage = function (_0x1f9afa) {
-        this.img = _0x510f5a(_0x1f9afa);
-    };
-    this.run = function () {
-        null == this.startTime && (this.startTime = timestamp);
-        if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()), this.hasStopped || (this.calcTimePassed(), this.generateFrame(), this.onFrameEntered(this.frame), this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)), this.hasStopped)) {
-            if (this.keepLastFrame) this.onFrameEntered(this.frame);
-            this.loop && this.reset();
-        }
-    };
-    this.reset = function () {
-        this.timestamp = null;
-        this.hasStopped = true;
-        this.state = 0;
-    };
-    this.generateFrame = function () {
-        if (this.generate) switch (this.state = 1, this.animation) {
-        case _0x1abe2b.wave:
-            this.frame = this.wave(this.timePassed);
-            break;
-        case _0x1abe2b.halfWave:
-            this.frame = this.halfWave(this.timePassed);
-            break;
-        case _0x1abe2b.arc:
-            this.frame = this.arc(this.timePassed);
-            break;
-        case _0x1abe2b.quad:
-            this.frame = this.quad(this.timePassed);
-            break;
-        case _0x1abe2b.bow:
-            void 0x0 == this.vars && (this.vars = {
-                'v1': 0x1
-            });
-            this.frame = this.bow(this.timePassed);
-            break;
-        case _0x1abe2b.bounce:
-            this.frame = this.bounce(this.timePassed);
-            break;
-        case _0x1abe2b.elastic:
-            void 0x0 == this.vars && (this.vars = {
-                'v1': 0x1
-            });
-            this.frame = this.elastic(this.timePassed);
-            break;
-        case _0x1abe2b.bounceEaseOut:
-            this.frame = this.bounceEaseOut(this.timePassed);
-            break;
-        case _0x1abe2b.bounceEaseInOut:
-            this.frame = this.bounceEaseInOut(this.timePassed);
-        }
-    };
-    this.timing = function (_0x1868f0) {
-        return _0x1868f0;
-    };
-    this.halfWave = function (_0x5b1e15) {
-        return 0x1 * Math.sin(0.5 * Math.PI / this.duration * _0x5b1e15);
-    };
-    this.wave = function (_0x5052b4) {
-        return 0x1 * Math.sin(1 * Math.PI / this.duration * _0x5052b4);
-    };
-    this.arc = function (_0x109adf) {
-        return 0x1 - Math.sin(Math.acos(_0x109adf));
-    };
-    this.quad = function (_0x5c29f0) {
-        return Math.pow(_0x5c29f0, 2);
-    };
-    this.bow = function (_0x5ac2d4) {
-        var _0x148a85 = this.vars.v1;
-        return Math.pow(_0x5ac2d4, 2) * ((_0x148a85 + 1) * _0x5ac2d4 - _0x148a85);
-    };
-    this.bounce = function (_0x2000e8) {
-        for (var _0x148a85 = 0, _0x2b7224 = 1;; _0x148a85 += _0x2b7224, _0x2b7224 /= 2)
-            if (_0x2000e8 >= (3 * _0x148a85) / 11) return -Math.pow((5 * _0x148a85 - 11 * _0x2000e8) / 4, 2) + Math.pow(_0x2b7224, 2);
-    };
-    this.elastic = function (_0x1acff4) {
-        return Math.pow(2, 10 * (_0x1acff4 - 1)) * Math.cos(20 * Math.PI * this.vars.v1 / 3 * _0x1acff4);
-    };
-    this.bounceEaseOut = function (_0x5c10ac) {
-        return 0x1 - this.bounce(1 - _0x5c10ac);
-    };
-    this.bounceEaseInOut = function (_0x5c1fb1) {
-        return 0.5 > _0x5c1fb1 ? this.bounce(2 * _0x5c1fb1) / 2 : (2 - this.bounce(2 * (1 - _0x5c1fb1))) / 2;
-    };
-    this.calcTimePassed = function () {
-        this.timePassed = (timestamp  - this.startTime) / this.frameRate;
-    };
-    this.onFrameEntered = function (_0x3b867c) {};
-    this.onStop = function () {};
-}
 
 var getRandomDouble = function(min, max) {
   return Math.random() * (max - min) + min;
@@ -2908,7 +2796,119 @@ var lastUpdT = +Date.now();
 
 var ws = null;
 
+_0x1abe2b.wave = 1;
+_0x1abe2b.halfWave = 2;
+_0x1abe2b.arc = 3;
+_0x1abe2b.quad = 4;
+_0x1abe2b.bow = 5;
+_0x1abe2b.bounce = 6;
+_0x1abe2b.elastic = 7;
+_0x1abe2b.bounceEaseOut = 8;
+_0x1abe2b.bounceEaseInOut = 9;
 
+function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
+    this.forObj = _0x4b9ad5;
+    this.duration = _0x148a85;
+    this.animation = _0x2b7224;
+    this.startTime = null;
+    this.frame = 0;
+    this.frameRate = 1000;
+    this.timePassed = 0;
+    this.stopWhenDurationPassed = this.generate = true;
+    this.accelerateEnd = this.state = 0;
+    this.hasStopped = true;
+    this.img = null;
+    this.vars = _0x59b622;
+    this.loop = this.keepLastFrame = true;
+    this.setImage = function (_0x1f9afa) {
+        this.img = _0x510f5a(_0x1f9afa);
+    };
+    this.run = function () {
+        null == this.startTime && (this.startTime = timestamp);
+        if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()), this.hasStopped || (this.calcTimePassed(), this.generateFrame(), this.onFrameEntered(this.frame), this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)), this.hasStopped)) {
+            if (this.keepLastFrame) this.onFrameEntered(this.frame);
+            this.loop && this.reset();
+        }
+    };
+    this.reset = function () {
+        this.timestamp = null;
+        this.hasStopped = true;
+        this.state = 0;
+    };
+    this.generateFrame = function () {
+        if (this.generate) switch (this.state = 1, this.animation) {
+        case _0x1abe2b.wave:
+            this.frame = this.wave(this.timePassed);
+            break;
+        case _0x1abe2b.halfWave:
+            this.frame = this.halfWave(this.timePassed);
+            break;
+        case _0x1abe2b.arc:
+            this.frame = this.arc(this.timePassed);
+            break;
+        case _0x1abe2b.quad:
+            this.frame = this.quad(this.timePassed);
+            break;
+        case _0x1abe2b.bow:
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
+            });
+            this.frame = this.bow(this.timePassed);
+            break;
+        case _0x1abe2b.bounce:
+            this.frame = this.bounce(this.timePassed);
+            break;
+        case _0x1abe2b.elastic:
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
+            });
+            this.frame = this.elastic(this.timePassed);
+            break;
+        case _0x1abe2b.bounceEaseOut:
+            this.frame = this.bounceEaseOut(this.timePassed);
+            break;
+        case _0x1abe2b.bounceEaseInOut:
+            this.frame = this.bounceEaseInOut(this.timePassed);
+        }
+    };
+    this.timing = function (_0x1868f0) {
+        return _0x1868f0;
+    };
+    this.halfWave = function (_0x5b1e15) {
+        return 0x1 * Math.sin(0.5 * Math.PI / this.duration * _0x5b1e15);
+    };
+    this.wave = function (_0x5052b4) {
+        return 0x1 * Math.sin(1 * Math.PI / this.duration * _0x5052b4);
+    };
+    this.arc = function (_0x109adf) {
+        return 0x1 - Math.sin(Math.acos(_0x109adf));
+    };
+    this.quad = function (_0x5c29f0) {
+        return Math.pow(_0x5c29f0, 2);
+    };
+    this.bow = function (_0x5ac2d4) {
+        var _0x148a85 = this.vars.v1;
+        return Math.pow(_0x5ac2d4, 2) * ((_0x148a85 + 1) * _0x5ac2d4 - _0x148a85);
+    };
+    this.bounce = function (_0x2000e8) {
+        for (var _0x148a85 = 0, _0x2b7224 = 1;; _0x148a85 += _0x2b7224, _0x2b7224 /= 2)
+            if (_0x2000e8 >= (3 * _0x148a85) / 11) return -Math.pow((5 * _0x148a85 - 11 * _0x2000e8) / 4, 2) + Math.pow(_0x2b7224, 2);
+    };
+    this.elastic = function (_0x1acff4) {
+        return Math.pow(2, 10 * (_0x1acff4 - 1)) * Math.cos(20 * Math.PI * this.vars.v1 / 3 * _0x1acff4);
+    };
+    this.bounceEaseOut = function (_0x5c10ac) {
+        return 0x1 - this.bounce(1 - _0x5c10ac);
+    };
+    this.bounceEaseInOut = function (_0x5c1fb1) {
+        return 0.5 > _0x5c1fb1 ? this.bounce(2 * _0x5c1fb1) / 2 : (2 - this.bounce(2 * (1 - _0x5c1fb1))) / 2;
+    };
+    this.calcTimePassed = function () {
+        this.timePassed = (timestamp  - this.startTime) / this.frameRate;
+    };
+    this.onFrameEntered = function (_0x3b867c) {};
+    this.onStop = function () {};
+}
 
 ///////
 // file: js_src/client/login.js
@@ -14284,14 +14284,24 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
     !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
     this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
         'v1': 0x5
+      
+      
     }), this.stingAnimation.onFrameEntered = function (_0x52e24a) {
+      this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+        'v1': 0x5
+      
+      
+    })
+    this.forObj = this.stingAnimation
+      console.log(this.forObj)
         ctx.save();
         var _0x457a68 = this.forObj.skinScale * this.forObj.stingerScaleF,
             _0x1a4ffd = this.forObj.rad;
+    
         ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68);
         ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
-        var _0x43d51a = _0x245c50((timestamp - this.spawnTime) / 1000, 5, 1, 1);
+        var _0x43d51a = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
         ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68);
         ctx.restore();
@@ -14300,13 +14310,13 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
         var _0x4ecbf4 = this.skinScale * this.stingerScaleF,
             _0x48a198 = this.skinRad,
             _0x95630 = (timestamp - this.spawnTime) / 1000,
-            _0x1254bf = _0x245c50(_0x95630, 1.5, 3, 2),
-            _0x3698b3 = _0x245c50(_0x95630, 1.5, 1, 2);
+            _0x1254bf = getAnimFrame(_0x95630, 1.5, 3, 2),
+            _0x3698b3 = getAnimFrame(_0x95630, 1.5, 1, 2);
         ctx.save();
         _0x48a198 = this.rad - 0.5 * _0x1254bf;
         ctx.drawImage(this.stingerTailNormal, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
         _0x95630 = (timestamp - this.spawnTime) / 1000;
-        _0x95630 = _0x245c50(_0x95630, 5, 1, 1);
+        _0x95630 = getAnimFrame(_0x95630, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x95630) * Math.max(0, this.poison / 100);
         ctx.drawImage(this.stingerNormalFull, -_0x48a198 * _0x4ecbf4, (-_0x48a198 + _0x48a198 * this.stingerOffsetY) * _0x4ecbf4 + _0x1254bf * -_0x3698b3, 2 * _0x48a198 * _0x4ecbf4, 2 * _0x48a198 * _0x4ecbf4);
         ctx.restore();
