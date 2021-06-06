@@ -15327,7 +15327,7 @@ Falcon.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(skins + "/falcon/falcon_head.png");
+    var theHead = getLoadedImg(skins + "/falcon/falcon_head"+ this.specType == 3? "1":""+ ".png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
