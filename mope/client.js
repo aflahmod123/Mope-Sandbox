@@ -2811,7 +2811,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     this.duration = _0x148a85;
     this.animation = _0x2b7224;
     this.startTime = null;
-    this.frame = 0;
+    this.frame = 100;
     this.frameRate = 1000;
     this.timePassed = 0;
     this.stopWhenDurationPassed = this.generate = true;
@@ -2825,6 +2825,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     };
     this.run = function () {
         null == this.startTime && (this.startTime = timestamp);
+
         if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()), this.hasStopped || (this.calcTimePassed(), this.generateFrame(), this.onFrameEntered(this.frame), this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)), this.hasStopped)) {
             if (this.keepLastFrame) this.onFrameEntered(this.frame);
             this.loop && this.reset();
@@ -14307,7 +14308,7 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
        if(this.forObj.stingerAttackFull){ ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
         ctx.restore();
   
-}catch(err){alert('hi')}    
+}catch(err){alert(err)}    
 }), this.stingAnimation && this.stingAnimation.run());
    
     if ((null == this.stingAnimation || this.stingAnimation.hasStopped) && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
