@@ -14303,7 +14303,7 @@ GiantScorpion.prototype.drawSkinCustomization = function () {
         if(this.forObj.stingerTailAttack){ctx.drawImage(this.forObj.stingerTailAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * this.forObj.stingerOffsetY) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * (_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68)};
          if(this.forObj.stingerTail) {ctx.drawImage(this.forObj.stingerTail, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
          if(this.forObj.stingerTailAttack){ ctx.drawImage(this.forObj.stingerAttack, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
-        var _0x43d51a = getAnimFrame(( Date.now() - this.spawnTime) / 1000, 5, 1, 1);
+        var _0x43d51a = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
         ctx.globalAlpha = Math.max(0, _0x43d51a) * Math.max(0, this.poison / 100);
        if(this.forObj.stingerAttackFull){ ctx.drawImage(this.forObj.stingerAttackFull, -_0x1a4ffd * _0x457a68, (-_0x1a4ffd + _0x1a4ffd * _0x52e24a) * _0x457a68, 2 * _0x1a4ffd * _0x457a68, 2 * _0x1a4ffd * _0x457a68)};
         ctx.restore();
