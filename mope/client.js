@@ -12642,7 +12642,7 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
         this.transparancy = 10
       }
     }  
-   if(this.flag_flying&&idealOp <)
+   if(this.flag_flying&&idealOp > this.transparancy / 100)
 idealOp = this.transparancy / 100;
 }   
   this.underwaterA += (idealOp - this.underwaterA) * 0.1;
