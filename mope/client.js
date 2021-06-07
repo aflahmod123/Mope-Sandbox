@@ -12631,20 +12631,20 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     else idealOp = 0.2;
   }
 
+   
+  if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
+    idealOp = 0.6;
+  }
+
  if(this.animalType == a_thunderbird){
     if(this.id == myPlayerID){
       if(this.transparancy <= 10){
         this.transparancy = 10
       }
     }  
+   if(this.flag_flying&&idealOp <)
 idealOp = this.transparancy / 100;
-
-}
-   if(this.animalType == a_thunderbird&&(this.transparancy / 100) > 0.6){
-  if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
-    idealOp = 0.6;
-  }
-   }
+}   
   this.underwaterA += (idealOp - this.underwaterA) * 0.1;
   ctx.globalAlpha *= this.underwaterA;
 
