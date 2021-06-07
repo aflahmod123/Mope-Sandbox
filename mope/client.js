@@ -853,7 +853,7 @@ var infoForAnimalType = function (aniT) {
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-                 infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!\nWhen flying Stay still to become fully invisible!";
+            infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to become fully invisible!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
@@ -12484,7 +12484,7 @@ Animal.prototype.animalInfo = function() {
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-           infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!\nWhen flying Stay still to become fully invisible!";
+       infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to become fully invisible!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
