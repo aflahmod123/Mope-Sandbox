@@ -12613,8 +12613,13 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
   }
 
  if(this.animalType == a_thunderbird){
+    if(this.id == myPlayerID){
+      if(this.transparancy <= 10){
+        this.transparancy = 10
+      }
+    }  
 idealOp = this.transparancy / 100;
-    console.log(this.transparancy )
+
 }
    if(this.animalType == a_thunderbird&&(this.transparancy / 100) > 0.6){
   if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
