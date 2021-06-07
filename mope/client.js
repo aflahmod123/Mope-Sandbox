@@ -11778,7 +11778,7 @@ Animal.prototype.frozenEffA = Animal.prototype.onFireEffA = Animal.prototype.eff
 Animal.prototype.effA_poison = Animal.prototype.effA_bleeding = Animal.prototype.effA_stunk = 0.0;
 Animal.prototype.effA_constricted = Animal.prototype.effA_slimed = Animal.prototype.effA_webStuck = 0.0; //for fading animal under water
 Animal.prototype.objs = [];
-Animal.prototype.transparancy = 100;
+
 Animal.prototype.nameA = 0.0;
 Animal.prototype.loadedSkinImg = null;
 Animal.prototype.outlineW = null;
@@ -12594,6 +12594,7 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     this.rad += wobble;
   }
 
+ 
   //apply opacity from underwater effect
   var idealOp =
     this.flag_underWater ||
@@ -12611,7 +12612,11 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     else idealOp = 0.2;
   }
 
+ if(this.animalType == a_thunderbird){
+idealOp = this.transparancy / 100;
+    console.log(this.transparancy )
 
+}
   if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
     idealOp = 0.6;
   }
@@ -15361,7 +15366,7 @@ var superClass = Animal;
 Thunderbird.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Thunderbird.prototype.constructor = Thunderbird;
 Thunderbird.superClass = superClass; //'class' var
-
+Thunderbird.prototype.transparancy = 10;
 //example of custom Z
 /*Thunderbird.prototype.updateZ = function() {
     this.z = 1002;
@@ -15375,7 +15380,7 @@ Thunderbird.prototype.getSkinName = function() {
     (this.specType == 0 || this.specType == undefined ? "" : this.specType)
   );
 };
-Thunderbird.prototype.customDraw = function() {}
+
 Thunderbird.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
@@ -15604,7 +15609,18 @@ Thunderbird.prototype.drawSkinCustomization = function() {
     }
   }
 };
-
+ Thunderbird.prototype.readCustomData_onNewlyVisible = function (msg) {
+        Thunderbird.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+        this.readInfo(msg);
+    };
+    Thunderbird.prototype.readCustomData_onUpdate = function (msg) {
+        Thunderbird.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+        this.readInfo(msg);
+    };
+    Thunderbird.prototype.readInfo = function (msg) {
+      this.transparancy = msg.readUInt8();
+ 
+    };
 function Thunderbird() {
   Thunderbird.superClass.call(this, o_animal);
 }
