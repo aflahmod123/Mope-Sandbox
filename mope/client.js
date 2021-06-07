@@ -853,7 +853,7 @@ var infoForAnimalType = function (aniT) {
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!";
+                 infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!\nStay still to become fully invisible!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
@@ -1019,7 +1019,8 @@ var ability_dive = 100,
   ability_finalhit = 74,
   ability_flyhigh = 75,
   ability_freezeprey = 76,
-  ability_kickinair = 77;
+  ability_kickinair = 77,
+ability_thunderbirdAttack = 78;
 var infoForAbilityT = function(abilT) {
   var infoO = {};
   var zombieFolder = "";
@@ -1320,7 +1321,14 @@ var infoForAbilityT = function(abilT) {
         infoForAnimalType(myPlayerLastAniT).skinName +
         ".png";
       break;
-
+   case ability_thunderbirdAttack:
+      infoO.abilName = "Thunderous\nDive";
+      infoO.abilImg =
+        "skins/" +
+        zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName +
+        ".png";
+      break;
     case ability_tiger:
       infoO.abilName = "Ambush Attack";
       var myPlayer = gameObjsByID[myPlayerID];
@@ -2123,6 +2131,8 @@ var AbilityButton = function () {
           ctx.drawImage(theImg, -rad, -rad * 0.85, 2 * rad, 2 * rad);
         }
       }
+      this.buttonTXT.multiLine = true
+      
       this.buttonTXT.setText(abilityInfo.abilName);
       this.buttonTXT.setFontSize(25 * interfS);
       this.buttonTXT.x = 0;
@@ -9474,6 +9484,7 @@ GameObj.prototype.updateZ = function() {
       if (
         this.type == ability_eagleAttack ||
         this.type == ability_falconAttack ||
+          this.type == ability_thunderbirdAttack ||
         this.type == ability_owlAttack ||
         this.type == ability_targetCircle ||
         this.type == ability_bearSlash
@@ -9896,6 +9907,7 @@ AbilityObj.prototype.updateZ = function() {
   if (
     this.abilityType == ability_eagleAttack ||
     this.abilityType == ability_falconAttack ||
+    this.abilityType == ability_thunderbirdAttack ||
     this.abilityType == ability_owlAttack ||
     this.abilityType == ability_targetCircle ||
     this.abilityType == ability_bearSlash
@@ -10298,6 +10310,13 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
       {
         //ctx.globalAlpha = 0.5;
         //drawCircle(0, 0, this.rad, "red");
+      }
+      break;
+case ability_thunderbirdAttack:
+      {
+        // do nothing.
+        //ctx.globalAlpha = 0.2;
+        //drawCircle(0, 0, this.rad, "limegreen");
       }
       break;
 
@@ -12465,7 +12484,7 @@ Animal.prototype.animalInfo = function() {
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-         infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!";
+         infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!\nStay still to become fully invisible!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
