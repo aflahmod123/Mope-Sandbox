@@ -11777,8 +11777,8 @@ Animal.prototype.stunA = 0.0; //for fading animal under water
 Animal.prototype.frozenEffA = Animal.prototype.onFireEffA = Animal.prototype.effA_healing = Animal.prototype.effA_hot = 0.0;
 Animal.prototype.effA_poison = Animal.prototype.effA_bleeding = Animal.prototype.effA_stunk = 0.0;
 Animal.prototype.effA_constricted = Animal.prototype.effA_slimed = Animal.prototype.effA_webStuck = 0.0; //for fading animal under water
- Animal.prototype.objs = [];
-
+Animal.prototype.objs = [];
+Animal.prototype.transparancy = 100;
 Animal.prototype.nameA = 0.0;
 Animal.prototype.loadedSkinImg = null;
 Animal.prototype.outlineW = null;
@@ -15368,13 +15368,14 @@ Thunderbird.superClass = superClass; //'class' var
 }*/
 
 //set custom skin name
+
 Thunderbird.prototype.getSkinName = function() {
   return (
     "thunderbird/thunderbird" +
     (this.specType == 0 || this.specType == undefined ? "" : this.specType)
   );
 };
-
+Thunderbird.prototype.customDraw = function() {}
 Thunderbird.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
