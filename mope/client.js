@@ -12465,7 +12465,7 @@ Animal.prototype.animalInfo = function() {
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful shocking dive attack! Aim it well.";
+         infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
