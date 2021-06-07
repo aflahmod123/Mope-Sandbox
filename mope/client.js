@@ -12615,12 +12615,12 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
  if(this.animalType == a_thunderbird){
 idealOp = this.transparancy / 100;
     console.log(this.transparancy )
-
 }
+   if(this.animalType == a_thunderbird&&(this.transparancy / 100) > 0.6){
   if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
     idealOp = 0.6;
   }
-
+   }
   this.underwaterA += (idealOp - this.underwaterA) * 0.1;
   ctx.globalAlpha *= this.underwaterA;
 
@@ -15366,7 +15366,7 @@ var superClass = Animal;
 Thunderbird.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Thunderbird.prototype.constructor = Thunderbird;
 Thunderbird.superClass = superClass; //'class' var
-Thunderbird.prototype.transparancy = 10;
+Thunderbird.prototype.transparancy = 100;
 //example of custom Z
 /*Thunderbird.prototype.updateZ = function() {
     this.z = 1002;
