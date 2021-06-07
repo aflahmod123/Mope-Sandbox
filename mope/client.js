@@ -849,13 +849,13 @@ var infoForAnimalType = function (aniT) {
             infoO.skinName = "falcon/falcon";
 
             break;
-       case a_thunderbird:
+        case a_thunderbird:
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful shocking dive attack! Aim it well.";
+            infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful Thunderous dive attack!";
             infoO.aniCol = "#FF9000";
-            infoO.skinName = "falcon/falcon";
+            infoO.skinName = "thunderbird/thunderbird";
 
             break;
         case a_snowyOwl:
@@ -12467,7 +12467,7 @@ Animal.prototype.animalInfo = function() {
             infoO.aniDesc = "";
             infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful shocking dive attack! Aim it well.";
             infoO.aniCol = "#FF9000";
-            infoO.skinName = "falcon/falcon";
+            infoO.skinName = "thunderbird/thunderbird";
 
             break;
     case a_snowyOwl:
@@ -15327,7 +15327,7 @@ Falcon.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(skins + "/falcon/falcon_head"+ this.specType == 3? "1":""+ ".png");
+    var theHead = getLoadedImg(skins + "/falcon/falcon_head.png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
@@ -15586,7 +15586,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(skins + "/thunderbird/thunderbird_head.png");
+    var theHead = getLoadedImg(skins + "/thunderbird/thunderbird_head"+( (this.specType == 3||this.specType == 2)? "1":"")+ ".png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
