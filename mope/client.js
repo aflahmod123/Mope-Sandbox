@@ -14468,28 +14468,7 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.stingerNormalFull = null;
     GiantScorpion.prototype.isUsingAbility = true;
     GiantScorpion.prototype.drawSkinCustomization = function () {
-        this.flag_usingAbility&& !this.flag_eff_aniInClaws || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
-        !this.isUsingAbility && this.flag_eff_aniInClaws  && (this.isUsingAbility = true, this.stingAnimation = null);
-               this.isUsingAbility && (null == this.stingAnimation &&(this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
-            'v1': 0x5
-        },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
-                 if(this.specType2 == 2){
-            ctx.save();
-            var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
-                _0x38dd8a = this.forObj.rad;
-          if(this.forObj.flag_usingAbility){
-            ctx.drawImage(this.forObj.stingerTailAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1);
-            ctx.drawImage(this.forObj.stingerTail, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
-            ctx.drawImage(this.forObj.stingerAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
-            var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
-            ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
-            ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
-          }
-            ctx.restore();
-                 }
-        }), this.stingAnimation && this.stingAnimation.run());
-       
-        if (!this.flag_usingAbility && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+         if ((this.specType2 != 1)&& !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
          
             var _0x58c1e0 = this.skinScale * this.stingerScaleF,
                 _0x24402d = this.skinRad,
@@ -14505,6 +14484,28 @@ Sting and Shiver your prey to death.\
             ctx.drawImage(this.stingerNormalFull, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
             ctx.restore();
         }
+        this.flag_usingAbility&& !this.flag_eff_aniInClaws || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
+        !this.isUsingAbility && this.flag_eff_aniInClaws  && (this.isUsingAbility = true, this.stingAnimation = null);
+               this.isUsingAbility && this.specType2 == 1&& (null == this.stingAnimation &&(this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+            'v1': 0x5
+        },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
+                 if(this.forObj.flag_usingAbility){
+            ctx.save();
+            var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
+                _0x38dd8a = this.forObj.rad;
+          if(this.forObj.flag_usingAbility){
+            ctx.drawImage(this.forObj.stingerTailAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1);
+            ctx.drawImage(this.forObj.stingerTail, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+            ctx.drawImage(this.forObj.stingerAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+            var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
+            ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
+            ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+          }
+            ctx.restore();
+                 }
+        }), this.stingAnimation && this.stingAnimation.run());
+       
+     
     };
     GiantScorpion.prototype.tailOffsetY = -0.25;
     GiantScorpion.prototype.tailScaleF = 1.2;
