@@ -14214,14 +14214,17 @@ KingDragon.prototype.drawLowWaterDrop = function () {
     }
 };
 KingDragon.prototype.animalInfo = function () {
-    var _0xf0bc74 = {};
-    _0xf0bc74.aniCol = '#FF9000';
-    _0xf0bc74.aniName = "King Dragon"
-    _0xf0bc74.upgradeText = 'UPGRADED to ' + _0xf0bc74.aniName;
-    _0xf0bc74.upgradeText += "!\You got firestream that burns your victim alive! Watch your tail and slap them hard.";
-    _0xf0bc74.skinName = "kingdragon/kingdragon"
-    _0xf0bc74.aniCol = 'black';
-    return _0xf0bc74;
+     infoO = {};
+  
+            infoO.aniName = "King Dragon";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "!\
+You got firestream that burns your victim alive! Watch your tail and slap them hard.";
+
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "kingdragon/kingdragon";
+          
+    return infoO;
 };
 
 function KingDragon() {
