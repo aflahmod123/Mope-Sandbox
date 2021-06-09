@@ -14151,35 +14151,35 @@ KingDragon.prototype.drawWings = function () {
         _0x303fb8 = getLoadedImg('skins/kingdragon/left_wing.png'),
         _0x13450c = getLoadedImg('skins/kingdragon/right_wing.png');
     _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
-              ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd,1.5 * _0x2103bb),
+              ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 *_0x2103bb),
                                ctx.restore(),
                                ctx.save(),
                                ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
-                               ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), 
+                               ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), 
                                ctx.restore(), 
-                               4 == this.animalSpecies && (_0x303fb8 = getAnimFrame((_0x77d54b - this.spawnTime) / 1000, 5, 1, 1), 
+                               4 == this.animalSpecies && (_0x303fb8 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1), 
                                                            ctx.save(), 
                                                            ctx.globalAlpha = Math.max(0, _0x303fb8),
                                                            _0x303fb8 = getLoadedImg('skins/kingdragon/left_wing_tips.png'),
                                                            _0x13450c = getLoadedImg('skins/kingdragon/right_wing_tips.png'),
                                                            _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
-                                                            ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd ,1.5 * _0x2103bb),
-                                                                                      ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
+                                                            ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd +1.5 * _0x2103bb),
+                                                                                      ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
     _0x303fb8 = this.lava;
     if (50 > _0x303fb8) {
         var _0x303fb8 = _0x303fb8 / 50,
             _0x13450c = getLoadedImg('skins/kingdragon/left_wing1.png'),
             _0x67aef9 = getLoadedImg('skins/kingdragon/right_wing2.png');
         _0x13450c && _0x67aef9 && (ctx.save(), ctx.globalAlpha = 1 - _0x303fb8, ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54)
-                                   , ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb)
+                                   , ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb)
                                    , ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), 
-                                   ctx.drawImage(_0x67aef9, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), 
+                                   ctx.drawImage(_0x67aef9, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), 
                                    ctx.restore(), ctx.restore());
     }
 };
 KingDragon.prototype.drawSkinCustomization = function () {
     var _0x3659ec = 1.4705882352941,
-        _0x10a292 = getAnimFrame((_0x77d54b - this.spawnTime) / 1000, 5, 1, 1),
+        _0x10a292 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1),
         _0x3fb426 = getLoadedImg('skins/kingdragon/nostrils.png');
     if (_0x3fb426) {
         ctx.save();
@@ -14204,7 +14204,7 @@ KingDragon.prototype.drawSkinCustomization = function () {
 KingDragon.prototype.drawLowWaterDrop = function () {
     if (this.flag_lowWat) {
         var _0x27f437 = 0.5 * (0.6),
-            _0x27f437 = 0.2 + _0x27f437 + _0x27f437 * Math.sin(2 * Math.PI / 1.2 * (_0x77d54b / 1000));
+            _0x27f437 = 0.2 + _0x27f437 + _0x27f437 * Math.sin(2 * Math.PI / 1.2 * (timestamp / 1000));
         ctx.save();
         ctx.globalAlpha = _0x27f437;
         ctx.fillStyle = _0x5a9265;
