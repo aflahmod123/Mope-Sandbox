@@ -2846,6 +2846,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622,workafter) {
     if(!workafter && this.timePassed >= this.duration && this.stopWhenDurationPassed){
       this.hasStopped = true
     }
+    
         null == this.startTime && (this.startTime = timestamp);
         if (null != this.startTime && (2 != this.state || this.hasStopped || 
                                        (this.hasStopped = true, this.onStop()),
@@ -14465,7 +14466,7 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.stingerAttackFull = null;
     GiantScorpion.prototype.stingerNormal = null;
     GiantScorpion.prototype.stingerNormalFull = null;
-    GiantScorpion.prototype.isUsingAbility = false;
+    GiantScorpion.prototype.isUsingAbility = true;
     GiantScorpion.prototype.drawSkinCustomization = function () {
         this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
         !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
@@ -14485,8 +14486,8 @@ Sting and Shiver your prey to death.\
           }
             ctx.restore();
         }), this.stingAnimation && this.stingAnimation.run());
-       console.log(this.stingAnimation.hasStopped)
-        if ((null == this.stingAnimation || this.stingAnimation.hasStopped)&& !this.flag_usingAbility && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+       
+        if (!this.flag_usingAbility && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
          
             var _0x58c1e0 = this.skinScale * this.stingerScaleF,
                 _0x24402d = this.skinRad,
@@ -14522,8 +14523,9 @@ Sting and Shiver your prey to death.\
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
             _0x1dd836 = 'skins/scorpion/arms.png';
-            this.forObj.flag_eff_aniInClaws && (_0x1dd836 = 'skins/scorpion/arms-grabbed.png');
+            if(this.forObj.flag_eff_aniInClaws) (_0x1dd836 = 'skins/scorpion/arms-grabbed.png');
             if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
+              console.log("hi")
                 var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
                     _0x3ba07b = this.forObj.skinRad;
                 !this.hasStopped && 0.75 > this.timePassed ? (_0x12842c = _0x3f3c13, ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1)) : ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1);
