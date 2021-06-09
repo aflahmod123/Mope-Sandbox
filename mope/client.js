@@ -14108,6 +14108,7 @@ GameObjType.setCustomClassForGameObjType(SpiderWeb, o_spiderWeb);
 ///////
 // file: js_src/gameobj/animal/Kingdragon.js
 ///////
+var superClass = Animal;
 KingDragon.prototype = Object.create(superClass.prototype);
 KingDragon.prototype.constructor = KingDragon;
 KingDragon.superClass = superClass;
@@ -14145,15 +14146,15 @@ KingDragon.prototype.drawWings = function () {
     null != this.leftWingAnim && this.leftWingAnim.run();
     var _0x1b9acd = this.rad - this.outlineW,
         _0x2103bb = this.frame1 * this.sF * _0x1b9acd,
-        _0x57c54 = -(-this.flapF + this.frame1) * _0x4e67a8(this.flapAngle),
+        _0x57c54 = -(-this.flapF + this.frame1) * toRadians(this.flapAngle),
         _0x5051cd = 1.4705882352941,
         _0x303fb8 = getLoadedImg('skins/kingdragon/left_wing.png'),
         _0x13450c = getLoadedImg('skins/kingdragon/right_wing.png');
-    _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(_0x4e67a8(this.flapAngleDiff) + _0x57c54),
+    _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
               ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd,1.5 * _0x2103bb),
                                ctx.restore(),
                                ctx.save(),
-                               ctx.rotate(-(_0x4e67a8(this.flapAngleDiff) + _0x57c54)),
+                               ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
                                ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), 
                                ctx.restore(), 
                                4 == this.animalSpecies && (_0x303fb8 = getAnimFrame((_0x77d54b - this.spawnTime) / 1000, 5, 1, 1), 
@@ -14161,17 +14162,17 @@ KingDragon.prototype.drawWings = function () {
                                                            ctx.globalAlpha = Math.max(0, _0x303fb8),
                                                            _0x303fb8 = getLoadedImg('skins/kingdragon/left_wing_tips.png'),
                                                            _0x13450c = getLoadedImg('skins/kingdragon/right_wing_tips.png'),
-                                                           _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(_0x4e67a8(this.flapAngleDiff) + _0x57c54),
+                                                           _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
                                                             ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd ,1.5 * _0x2103bb),
-                                                                                      ctx.restore(), ctx.save(), ctx.rotate(-(_0x4e67a8(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
+                                                                                      ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
     _0x303fb8 = this.lava;
     if (50 > _0x303fb8) {
         var _0x303fb8 = _0x303fb8 / 50,
             _0x13450c = getLoadedImg('skins/kingdragon/left_wing1.png'),
             _0x67aef9 = getLoadedImg('skins/kingdragon/right_wing2.png');
-        _0x13450c && _0x67aef9 && (ctx.save(), ctx.globalAlpha = 1 - _0x303fb8, ctx.save(), ctx.rotate(_0x4e67a8(this.flapAngleDiff) + _0x57c54)
+        _0x13450c && _0x67aef9 && (ctx.save(), ctx.globalAlpha = 1 - _0x303fb8, ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54)
                                    , ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb)
-                                   , ctx.restore(), ctx.save(), ctx.rotate(-(_0x4e67a8(this.flapAngleDiff) + _0x57c54)), 
+                                   , ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), 
                                    ctx.drawImage(_0x67aef9, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd, 1.5 * _0x2103bb), 
                                    ctx.restore(), ctx.restore());
     }
@@ -14218,9 +14219,7 @@ KingDragon.prototype.animalInfo = function () {
   
             infoO.aniName = "King Dragon";
             infoO.aniDesc = "";
-            infoO.upgradeText = "!\
-You got firestream that burns your victim alive! Watch your tail and slap them hard.";
-
+            infoO.upgradeText = "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "kingdragon/kingdragon";
           
@@ -14535,10 +14534,6 @@ Sting and Shiver your prey to death.\
       this.poison = _0x1edc87.readUInt8();
  
     };
-
-    function GiantScorpion() {
-        GiantScorpion.superClass.call(this, o_animal);
-    }
     GiantScorpion.prototype.preLoad = function () {
         getLoadedImg('skins/scorpion/scorpion1.png');
         this.stingerTailNormal = getLoadedImg('skins/scorpion/stinger_normal.png');
@@ -14549,6 +14544,10 @@ Sting and Shiver your prey to death.\
         this.stingerNormal = getLoadedImg('skins/scorpion/normal_stinger_dull.png');
         this.stingerNormalFull = getLoadedImg('skins/scorpion/normal_stinger_full.png');
     };
+    function GiantScorpion() {
+        GiantScorpion.superClass.call(this, o_animal);
+    }
+
     window.GiantScorpion = GiantScorpion;
     GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
 ///////
