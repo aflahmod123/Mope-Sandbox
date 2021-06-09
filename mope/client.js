@@ -14470,7 +14470,7 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.drawSkinCustomization = function () {
         this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
         !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
-        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 0.95, _0x1abe2b.bow, {
+        this.isUsingAbility && (null == this.stingAnimation&& (this.stingAnimation = new _0x1abe2b(this, 0.1, _0x1abe2b.bow, {
             'v1': 0x5
         },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
             ctx.save();
@@ -14523,9 +14523,9 @@ Sting and Shiver your prey to death.\
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
             _0x1dd836 = 'skins/scorpion/arms.png';
-            if(this.forObj.flag_eff_aniInClaws) (_0x1dd836 = 'skins/scorpion/arms-grabbed.png');
+     
             if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
-              console.log("hi")
+             
                 var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
                     _0x3ba07b = this.forObj.skinRad;
                 !this.hasStopped && 0.75 > this.timePassed ? (_0x12842c = _0x3f3c13, ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1)) : ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1);
