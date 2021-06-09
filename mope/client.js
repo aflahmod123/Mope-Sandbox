@@ -14468,11 +14468,12 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.stingerNormalFull = null;
     GiantScorpion.prototype.isUsingAbility = true;
     GiantScorpion.prototype.drawSkinCustomization = function () {
-        this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
-        !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
-        this.isUsingAbility && (null == this.stingAnimation&& (this.stingAnimation = new _0x1abe2b(this, 0.1, _0x1abe2b.bow, {
+        this.flag_usingAbility&& !this.flag_eff_aniInClaws || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
+        !this.isUsingAbility && this.flag_eff_aniInClaws  && (this.isUsingAbility = true, this.stingAnimation = null);
+               this.isUsingAbility && (null == this.stingAnimation &&(this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
             'v1': 0x5
         },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
+                 if(this.specType2 == 2){
             ctx.save();
             var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
                 _0x38dd8a = this.forObj.rad;
@@ -14485,6 +14486,7 @@ Sting and Shiver your prey to death.\
             ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
           }
             ctx.restore();
+                 }
         }), this.stingAnimation && this.stingAnimation.run());
        
         if (!this.flag_usingAbility && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
@@ -14523,7 +14525,7 @@ Sting and Shiver your prey to death.\
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
             _0x1dd836 = 'skins/scorpion/arms.png';
-     
+           if(this.forObj.specType2 == 1) _0x1dd836 = 'skins/scorpion/arms-grabbed.png';
             if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
              
                 var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
