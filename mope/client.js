@@ -1042,6 +1042,15 @@ var infoForAbilityT = function(abilT) {
   
 
   switch (abilT) {
+    case ability_stingscorp:
+        infoO.abilName = "Sting!\n(Shivers Prey)";
+      infoO.abilImg =
+        "skins/" +
+        zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName +
+        "_ability.png";
+      break;
+      break;
     case ability_whaleTailHit:
       infoO.abilName = "Tail Slap";
       infoO.abilImg =
