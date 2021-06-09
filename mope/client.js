@@ -2825,7 +2825,7 @@ _0x1abe2b.elastic = 7;
 _0x1abe2b.bounceEaseOut = 8;
 _0x1abe2b.bounceEaseInOut = 9;
 
-function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
+function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622,workafter) {
     this.forObj = _0x4b9ad5;
     this.duration = _0x148a85;
     this.animation = _0x2b7224;
@@ -2833,7 +2833,6 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     this.frame = 0;
     this.frameRate = 1000;
     this.timePassed = 0;
-
     this.stopWhenDurationPassed = this.generate = true;
     this.accelerateEnd = this.state = 0;
     this.hasStopped = false;
@@ -2844,7 +2843,9 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
         this.img = _0x510f5a(_0x1f9afa);
     };
     this.run = function () {
-    
+    if(workafter && this.timePassed >= this.duration && this.stopWhenDurationPassed){
+      this.hasStopped = true
+    }
         null == this.startTime && (this.startTime = timestamp);
         if (null != this.startTime && (2 != this.state || this.hasStopped || 
                                        (this.hasStopped = true, this.onStop()),
@@ -2852,7 +2853,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
                                                            this.generateFrame(), 
                                                            this.onFrameEntered(this.frame),
                                                            
-                                                          !this.loop &&this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
+                                                         this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
                                        this.hasStopped)) {
             if (this.keepLastFrame) this.onFrameEntered(this.frame);
             this.loop && this.reset();
@@ -14150,7 +14151,9 @@ KingDragon.prototype.flapF = 0.1;
 KingDragon.prototype.flapDur = 2;
 KingDragon.prototype.sF = 0.02;
 KingDragon.prototype.drawWings = function () {
-    null == this.leftWingAnim && (this.leftWingAnim = new _0x1abe2b(this, this.flapDur, _0x1abe2b.wave), this.leftWingAnim.keepLastFrame = true, this.leftWingAnim.loop = true, this.leftWingAnim.onFrameEntered = function (_0x1596df) {
+    null == this.leftWingAnim && (this.leftWingAnim = new _0x1abe2b(this, this.flapDur, _0x1abe2b.wave,{
+            'v1': 0x5
+        },true), this.leftWingAnim.keepLastFrame = true, this.leftWingAnim.loop = true, this.leftWingAnim.onFrameEntered = function (_0x1596df) {
         this.forObj.frame1 = _0x1596df;
     });
     null != this.leftWingAnim && this.leftWingAnim.run();
@@ -14466,9 +14469,9 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.drawSkinCustomization = function () {
         this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
         !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
-        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 1000 , _0x1abe2b.bow, {
+        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 2, _0x1abe2b.bow, {
             'v1': 0x5
-        }), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
+        },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
             ctx.save();
             var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
                 _0x38dd8a = this.forObj.rad;
@@ -14479,13 +14482,12 @@ Sting and Shiver your prey to death.\
             var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
             ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
             ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
- 
-         
-        
           }
             ctx.restore();
         }), this.stingAnimation && this.stingAnimation.run());
+       console.log(this.stingAnimation.hasStopped)
         if ((null == this.stingAnimation || this.stingAnimation.hasStopped)&& !this.flag_usingAbility && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+         
             var _0x58c1e0 = this.skinScale * this.stingerScaleF,
                 _0x24402d = this.skinRad,
                 _0x2a5db0 = (timestamp - this.spawnTime) / 1000,
@@ -14516,7 +14518,7 @@ Sting and Shiver your prey to death.\
         }
         this.flag_usingAbility && !this.flag_underWater && (null == this.clawAnimation && (this.clawAnimation = new _0x1abe2b(this, 0.9, _0x1abe2b.bow, {
             'v1': _0x3043fd
-        }), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x1dd836) {
+        },false), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x1dd836) {
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
             _0x1dd836 = 'skins/scorpion/arms.png';
