@@ -1030,7 +1030,9 @@ var ability_dive = 100,
   ability_flyhigh = 75,
   ability_freezeprey = 76,
   ability_kickinair = 77,
-  ability_thunderbirdAttack = 78;
+  ability_thunderbirdAttack = 78,
+   ability_stingscorp= 79;
+
 var infoForAbilityT = function(abilT) {
   var infoO = {};
   var zombieFolder = "";
