@@ -2843,7 +2843,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622,workafter) {
         this.img = _0x510f5a(_0x1f9afa);
     };
     this.run = function () {
-    if(workafter && this.timePassed >= this.duration && this.stopWhenDurationPassed){
+    if(!workafter && this.timePassed >= this.duration && this.stopWhenDurationPassed){
       this.hasStopped = true
     }
         null == this.startTime && (this.startTime = timestamp);
@@ -2853,7 +2853,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622,workafter) {
                                                            this.generateFrame(), 
                                                            this.onFrameEntered(this.frame),
                                                            
-                                                         this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
+                                                         !workafter&&this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
                                        this.hasStopped)) {
             if (this.keepLastFrame) this.onFrameEntered(this.frame);
             this.loop && this.reset();
@@ -14469,7 +14469,7 @@ Sting and Shiver your prey to death.\
     GiantScorpion.prototype.drawSkinCustomization = function () {
         this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
         !this.isUsingAbility && this.flag_eff_aniInClaws && (this.isUsingAbility = true, this.stingAnimation = null);
-        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 2, _0x1abe2b.bow, {
+        this.isUsingAbility && (null == this.stingAnimation && (this.stingAnimation = new _0x1abe2b(this, 0.95, _0x1abe2b.bow, {
             'v1': 0x5
         },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
             ctx.save();
