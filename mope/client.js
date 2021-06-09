@@ -14112,7 +14112,7 @@ KingDragon.prototype = Object.create(superClass.prototype);
 KingDragon.prototype.constructor = KingDragon;
 KingDragon.superClass = superClass;
 KingDragon.prototype.updateZ = function () {
-    this.z = 100000;
+    this.z = 10000;
 };
 KingDragon.prototype.canUseTailslap = true;
 KingDragon.prototype.tailState = 0;
@@ -14215,27 +14215,13 @@ KingDragon.prototype.drawLowWaterDrop = function () {
 };
 KingDragon.prototype.animalInfo = function () {
     var _0xf0bc74 = {};
-
     _0xf0bc74.aniCol = '#FF9000';
-    _0xf0bc74.skinName = this.getSkinName();
+    _0xf0bc74.aniName = "King Dragon"
     _0xf0bc74.upgradeText = 'UPGRADED to ' + _0xf0bc74.aniName;
-    _0xf0bc74.upgradeText += `!\
-You got firestream that burns your victim alive! Watch your tail and slap them hard.`;
+    _0xf0bc74.upgradeText += "!\You got firestream that burns your victim alive! Watch your tail and slap them hard.";
+    _0xf0bc74.skinName = "kingdragon/kingdragon"
     _0xf0bc74.aniCol = 'black';
     return _0xf0bc74;
-
-};
-KingDragon.prototype.getAbilityInfo = function (infoI) {
-    infoI = {
-        'abilName': `Firestream\
-& Tail slap`
-    };
-    var _0x5e0337 = 0;
-  
-    infoI.speciesType = _0x5e0337;
-    infoI.abilImg = 'img/fire/0.png';
-    return infoI;
-    
 };
 
 function KingDragon() {
