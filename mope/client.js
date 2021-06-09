@@ -14480,11 +14480,7 @@ Sting and Shiver your prey to death.\
             ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
             ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
  
-           if(!this.stingAnimation){
-             this.stingAnimation = new _0x1abe2b(this, 1000 , _0x1abe2b.bow, {
-            'v1': 0x5
-           }),this.stingAnimation.run()
-                                  };
+         
         
           }
             ctx.restore();
