@@ -1030,7 +1030,7 @@ var ability_dive = 100,
   ability_flyhigh = 75,
   ability_freezeprey = 76,
   ability_kickinair = 77,
-ability_thunderbirdAttack = 78;
+  ability_thunderbirdAttack = 78;
 var infoForAbilityT = function(abilT) {
   var infoO = {};
   var zombieFolder = "";
@@ -14236,8 +14236,7 @@ KingDragon.prototype.animalInfo = function () {
   
             infoO.aniName = "King Dragon";
             infoO.aniDesc = "";
-            infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  `!\
-            You got firestream that burns your victim alive! Watch your tail and slap them hard.`;
+            infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "kingdragon/kingdragon";
           
@@ -14430,20 +14429,14 @@ GiantScorpion.prototype.updateZ = function () {
 };
 GiantScorpion.prototype.animalInfo = function () {
         var _0x5c08a0 = {};
-        switch (this.animalSpecies) {
-        case 0x0:
-            _0x5c08a0.aniName = 'Giant Scorpion';
-            break;
-        case 0x1:
-            _0x5c08a0.aniName = 'Golden Scorpion';
-            break;
-        case 0x2:
-            _0x5c08a0.aniName = 'Carnelian Scorpion';
-        }
+     
+          _0x5c08a0.aniName = 'Giant Scorpion';
+        
+    
         _0x5c08a0.aniCol = '#FF9000';
         _0x5c08a0.skinName = 'scorpion';
-        _0x5c08a0.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + `!\
-Sting and Shiver your prey to death.\
+        _0x5c08a0.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + `\n
+Sting and Shiver your prey to death.\n
 (Press W to Sting)`;
         return _0x5c08a0;
     };
