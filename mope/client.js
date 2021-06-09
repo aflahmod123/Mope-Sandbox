@@ -2833,6 +2833,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     this.frame = 0;
     this.frameRate = 1000;
     this.timePassed = 0;
+
     this.stopWhenDurationPassed = this.generate = true;
     this.accelerateEnd = this.state = 0;
     this.hasStopped = true;
@@ -2844,7 +2845,12 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     };
     this.run = function () {
         null == this.startTime && (this.startTime = timestamp);
-        if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()), this.hasStopped || (this.calcTimePassed(), this.generateFrame(), this.onFrameEntered(this.frame), this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)), this.hasStopped)) {
+        if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()),
+                                       this.hasStopped || (this.calcTimePassed(),
+                                                           this.generateFrame(), 
+                                                           this.onFrameEntered(this.frame),
+                                                           this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
+                                       this.hasStopped)) {
             if (this.keepLastFrame) this.onFrameEntered(this.frame);
             this.loop && this.reset();
         }
@@ -2854,50 +2860,14 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
         this.hasStopped = true;
         this.state = 0;
     };
-    this.generateFrame = function () {
-        if (this.generate) switch (this.state = 1, this.animation) {
-        case _0x1abe2b.wave:
-            this.frame = this.wave(this.timePassed);
-            break;
-        case _0x1abe2b.halfWave:
-            this.frame = this.halfWave(this.timePassed);
-            break;
-        case _0x1abe2b.arc:
-            this.frame = this.arc(this.timePassed);
-            break;
-        case _0x1abe2b.quad:
-            this.frame = this.quad(this.timePassed);
-            break;
-        case _0x1abe2b.bow:
-            void 0x0 == this.vars && (this.vars = {
-                'v1': 0x1
-            });
-            this.frame = this.bow(this.timePassed);
-            break;
-        case _0x1abe2b.bounce:
-            this.frame = this.bounce(this.timePassed);
-            break;
-        case _0x1abe2b.elastic:
-            void 0x0 == this.vars && (this.vars = {
-                'v1': 0x1
-            });
-            this.frame = this.elastic(this.timePassed);
-            break;
-        case _0x1abe2b.bounceEaseOut:
-            this.frame = this.bounceEaseOut(this.timePassed);
-            break;
-        case _0x1abe2b.bounceEaseInOut:
-            this.frame = this.bounceEaseInOut(this.timePassed);
-        }
-    };
-    this.timing = function (_0x1868f0) {
+      this.timing = function (_0x1868f0) {
         return _0x1868f0;
     };
     this.halfWave = function (_0x5b1e15) {
-        return 0x1 * Math.sin(0.5 * Math.PI / this.duration * _0x5b1e15);
+        return 1 * Math.sin(0.5 * Math.PI / this.duration * _0x5b1e15);
     };
     this.wave = function (_0x5052b4) {
-        return 0x1 * Math.sin(1 * Math.PI / this.duration * _0x5052b4);
+        return 1 * Math.sin(1 * Math.PI / this.duration * _0x5052b4);
     };
     this.arc = function (_0x109adf) {
         return 0x1 - Math.sin(Math.acos(_0x109adf));
@@ -2927,6 +2897,47 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     };
     this.onFrameEntered = function (_0x3b867c) {};
     this.onStop = function () {};
+    this.generateFrame = function () {
+      console.log(this.generate,this.state,this.animation)
+        if (this.generate) switch (this.state = 1, this.animation) {
+        case _0x1abe2b.wave:
+            this.frame = this.wave(this.timePassed);
+              console.log(this.wave(this.timePassed))
+            break;
+        case _0x1abe2b.halfWave:
+            this.frame = this.halfWave(this.timePassed);
+            break;
+        case _0x1abe2b.arc:
+            this.frame = this.arc(this.timePassed);
+            
+            break;
+        case _0x1abe2b.quad:
+            this.frame = this.quad(this.timePassed);
+            break;
+        case _0x1abe2b.bow:
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
+            });
+            this.frame = this.bow(this.timePassed);
+            break;
+        case _0x1abe2b.bounce:
+            this.frame = this.bounce(this.timePassed);
+            break;
+        case _0x1abe2b.elastic:
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
+            });
+            this.frame = this.elastic(this.timePassed);
+            break;
+        case _0x1abe2b.bounceEaseOut:
+            this.frame = this.bounceEaseOut(this.timePassed);
+            break;
+        case _0x1abe2b.bounceEaseInOut:
+            this.frame = this.bounceEaseInOut(this.timePassed);
+         
+        }
+    };
+
 }
 ///////
 // file: js_src/client/login.js
