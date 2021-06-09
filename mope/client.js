@@ -2815,7 +2815,6 @@ var abil_active=false;*/
 var lastUpdT = +Date.now();
 
 var ws = null;
-
 _0x1abe2b.wave = 1;
 _0x1abe2b.halfWave = 2;
 _0x1abe2b.arc = 3;
@@ -2845,7 +2844,6 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     };
     this.run = function () {
         null == this.startTime && (this.startTime = timestamp);
-
         if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()), this.hasStopped || (this.calcTimePassed(), this.generateFrame(), this.onFrameEntered(this.frame), this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)), this.hasStopped)) {
             if (this.keepLastFrame) this.onFrameEntered(this.frame);
             this.loop && this.reset();
@@ -2925,12 +2923,11 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
         return 0.5 > _0x5c1fb1 ? this.bounce(2 * _0x5c1fb1) / 2 : (2 - this.bounce(2 * (1 - _0x5c1fb1))) / 2;
     };
     this.calcTimePassed = function () {
-        this.timePassed = (timestamp  - this.startTime) / this.frameRate;
+        this.timePassed = (timestamp - this.startTime) / this.frameRate;
     };
     this.onFrameEntered = function (_0x3b867c) {};
     this.onStop = function () {};
 }
-
 ///////
 // file: js_src/client/login.js
 ///////
@@ -11818,7 +11815,6 @@ Animal.prototype.birdNoAnimationFlyWingAngle = -0.2;
 Animal.prototype.getNameSize = function() {
   return 10.0; //Math.max(~~(.3 * this.size), 24)
 };
-Animal.prototype.drawWings = function() {}
 
 Animal.prototype.setNick = function(a) {
   //if (this.nickName = a) {
@@ -12600,7 +12596,7 @@ Animal.prototype.loadAnimalSkinImg = function() {
 Animal.prototype.preLoad = function () {};
 Animal.prototype.customDraw = function(batchDrawOutline) {
   this.preLoad();
-  this.drawWings();
+
   var infoO = this.animalInfo(); //infoForAnimalType(this.animalType);
   var aniCol = infoO.aniCol;
   this.skinImgName = infoO.skinName;
