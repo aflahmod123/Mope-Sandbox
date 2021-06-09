@@ -2836,7 +2836,7 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
 
     this.stopWhenDurationPassed = this.generate = true;
     this.accelerateEnd = this.state = 0;
-    this.hasStopped = true;
+    this.hasStopped = false;
     this.img = null;
     this.vars = _0x59b622;
     this.loop = this.keepLastFrame = true;
@@ -2844,12 +2844,15 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
         this.img = _0x510f5a(_0x1f9afa);
     };
     this.run = function () {
+    
         null == this.startTime && (this.startTime = timestamp);
-        if (null != this.startTime && (0x2 != this.state || this.hasStopped || (this.hasStopped = true, this.onStop()),
+        if (null != this.startTime && (2 != this.state || this.hasStopped || 
+                                       (this.hasStopped = true, this.onStop()),
                                        this.hasStopped || (this.calcTimePassed(),
                                                            this.generateFrame(), 
                                                            this.onFrameEntered(this.frame),
-                                                           this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
+                                                           
+                                                          !this.loop &&this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
                                        this.hasStopped)) {
             if (this.keepLastFrame) this.onFrameEntered(this.frame);
             this.loop && this.reset();
@@ -2898,11 +2901,11 @@ function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622) {
     this.onFrameEntered = function (_0x3b867c) {};
     this.onStop = function () {};
     this.generateFrame = function () {
-      console.log(this.generate,this.state,this.animation)
+   
         if (this.generate) switch (this.state = 1, this.animation) {
         case _0x1abe2b.wave:
             this.frame = this.wave(this.timePassed);
-              console.log(this.wave(this.timePassed))
+          
             break;
         case _0x1abe2b.halfWave:
             this.frame = this.halfWave(this.timePassed);
