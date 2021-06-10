@@ -12848,7 +12848,7 @@ idealOp = this.transparancy / 100;
     ctx.save();
     ctx.globalAlpha = flashA;
     ctx.fillStyle =
-      this.animalType == a_blackDragon || this.animalType == a_phoenix
+      this.animalType == a_blackDragon || this.animalType == a_phoenix|| this.animalType == a_landMonster|| this.animalType == a_kingdragon
         ? col_lava
         : col_wat1;
 
