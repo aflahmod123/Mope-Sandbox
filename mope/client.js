@@ -11905,7 +11905,7 @@ Animal.prototype.animalInfo = function() {
             infoO.upgradeText = "!\
 You got firestream that burns your victim alive! Watch your tail and slap them hard.";
 
-            infoO.aniCol = "#fcc02b";
+            infoO.aniCol = "black";
             infoO.skinName = "kingdragon/kingdragon";
             break;
           case a_scorpion:
@@ -14264,7 +14264,7 @@ KingDragon.prototype.animalInfo = function () {
             infoO.aniName = "King Dragon";
             infoO.aniDesc = "";
             infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
-            infoO.aniCol = "#fcc02b";
+            infoO.aniCol = "black";
             infoO.skinName = "kingdragon/kingdragon";
           
     return infoO;
