@@ -12621,6 +12621,9 @@ Animal.prototype.loadAnimalSkinImg = function() {
 };
 //override GameObj method (in prototype!)
 Animal.prototype.preLoad = function () {};
+     Animal.prototype.shakeOffsetX = 0;
+    Animal.prototype.shakeOffsetY = 0;
+Animal.prototype.shiverF = 0.02;
 Animal.prototype.customDraw = function(batchDrawOutline) {
   this.preLoad();
 
@@ -12758,6 +12761,16 @@ idealOp = this.transparancy / 100;
     var pF = Math.PI / 180.0;
 
     //tail background (stroke)
+
+
+        if (this.flag_eff_shivering) {
+            var _0x333d1a = (timestamp - this.spawnTime) / 1000,
+                _0x2b42c6 = this.rad * this.shiverF;
+            this.shakeOffsetX = _0x2b42c6 * Math.sin(2 * Math.PI / 0.1 * _0x333d1a);
+            _0x2b42c6 = this.rad * this.shiverF;
+            this.shakeOffsetY = _0x2b42c6 * Math.sin(2 * Math.PI / 0.05 * _0x333d1a);
+            ctx.translate(-this.shakeOffsetX, -this.shakeOffsetY);
+        }
     if (this.flag_tailBitten) {
       ctx.fillStyle = col_dangerOutline;
     } else {
@@ -14040,6 +14053,7 @@ for (var J = 0; J < cnt; J++) {
  
     this.flag_isInArena = aniFlags.includes(33)
      this.isAbility1v1Active = aniFlags.includes(34)
+  this.flag_eff_shivering = aniFlags.includes(35)
     this.wins1v1 = msg.readUInt8();
 
 
