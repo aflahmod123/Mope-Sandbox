@@ -14446,9 +14446,7 @@ GiantScorpion.prototype.animalInfo = function () {
     
         _0x5c08a0.aniCol = '#FF9000';
         _0x5c08a0.skinName = 'scorpion';
-        _0x5c08a0.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + `\n
-Sting and Shiver your prey to death.\n
-(Press W to Sting)`;
+        _0x5c08a0.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
         return _0x5c08a0;
     };
     GiantScorpion.prototype.getAbilityInfo = function (_0x127744) {
@@ -14476,7 +14474,7 @@ Sting and Shiver your prey to death.\n
     GiantScorpion.prototype.stingerNormalFull = null;
     GiantScorpion.prototype.isUsingAbility = true;
     GiantScorpion.prototype.drawSkinCustomization = function () {
-         if ((this.specType2 != 1)&& !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+         if (!this.flag_eff_aniInClaws && !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
          
             var _0x58c1e0 = this.skinScale * this.stingerScaleF,
                 _0x24402d = this.skinRad,
@@ -14534,7 +14532,7 @@ Sting and Shiver your prey to death.\n
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
             _0x1dd836 = 'skins/scorpion/arms.png';
-           if(this.forObj.specType2 == 1) _0x1dd836 = 'skins/scorpion/arms-grabbed.png';
+           if(this.forObj.flag_eff_aniInClaws) _0x1dd836 = 'skins/scorpion/arms-grabbed.png';
             if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
              
                 var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
