@@ -12732,6 +12732,7 @@ idealOp = this.transparancy / 100;
   var outlineCol = this.getOutlineColor();
   if (
     !(
+    this.flag_flying || this.flag_isGrabbed||
  
    
       (options_lowGraphics &&
