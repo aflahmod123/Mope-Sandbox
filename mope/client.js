@@ -11815,6 +11815,7 @@ Animal.prototype.flag_tailBitten = false;
 Animal.prototype.flag_underWater = false;
 Animal.prototype.flag_eff_stunned = false;
 Animal.prototype.flag_eff_frozen = false;
+Animal.prototype.flag_eff_shivering = false;
 
 Animal.prototype.flag_usingAbility = false;
 Animal.prototype.flag_eff_invincible = false;
