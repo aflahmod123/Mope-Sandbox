@@ -9242,9 +9242,9 @@ GameObj.prototype.readCustomData_onNewlyVisible = function(msg) {
     case o_meatSmall:
     case o_raspberrynew:
      case o_gift:
-     case o_sinkHole:
      case o_bigHidingHole:
      case o_fireBall:
+    case o_sinkHole:
      this.specType = msg.readUInt8();
   }
   
@@ -17489,7 +17489,7 @@ SinkHole.prototype.updateZ = function () {
 //override draw (things like other effects are drawn seperately)
 SinkHole.prototype.customDraw = function (batchDrawOutline) {
     ctx.save();
- 
+     this.specType = this.curBiome
     if (this.curBiome == 0||this.curBiome == 2) {
         this.drawOutlinedCircle("", "#9F8641");
         //drawCircle(0, 0, this.rad, "#9F8641");
