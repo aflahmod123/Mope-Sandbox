@@ -17490,31 +17490,19 @@ SinkHole.prototype.updateZ = function () {
 SinkHole.prototype.customDraw = function (batchDrawOutline) {
     ctx.save();
      this.curBiome = this.specType
-  
+  console.log(this.curBiome )
     if (this.curBiome == 0||this.curBiome == 2) {
-        var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-        var period = 1.2;
-        var xShift = 2.5 * Math.cos((2.0 * Math.PI) / period * (tSinceSpawn));
-        var yShift = 2.5 * Math.sin((2.0 * Math.PI) / period * (tSinceSpawn));
-
-
-        this.drawOutlinedCircle("", "#2CAAC4");
-
-        drawCircle(0 + xShift / 4.5 + this.rPer, 1 + yShift / 1.5, Math.max(0, this.rad - 14), "#5C4E28");
-        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 18.5 + yShift / 5), "40371D");
-        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 24.5 + yShift / 11), "40371D");
         this.drawOutlinedCircle("", "#9F8641");
         //drawCircle(0, 0, this.rad, "#9F8641");
-        ctx.globalAlpha = 0.3;
-   
-      
-        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.7), "#5C4E28");
+
+        //drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "black");
+        //ctx.globalAlpha = 0.6;
+        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
         ctx.globalAlpha = 0.7;
         drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.6), "#40371D");
-        ctx.globalAlpha = 0.6;
+        ctx.globalAlpha = 0.9;
         drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.5), "#40371D");
         ctx.globalAlpha = 0.5;
-           
        
     }
 
