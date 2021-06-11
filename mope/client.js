@@ -17499,9 +17499,9 @@ SinkHole.prototype.customDraw = function (batchDrawOutline) {
         //ctx.globalAlpha = 0.6;
         drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
         ctx.globalAlpha = 0.7;
-        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.6), "#40371D");
+        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.75), "#40371D");
         ctx.globalAlpha = 0.9;
-        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.5), "#40371D");
+        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.6), "#40371D");
         ctx.globalAlpha = 0.5;
        
     }
