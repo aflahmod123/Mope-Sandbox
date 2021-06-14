@@ -863,7 +863,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to become fully invisible!";
+            infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
@@ -12528,7 +12528,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
 
             infoO.aniName = "The\nThunderbird!";
             infoO.aniDesc = "";
-       infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to become fully invisible!";
+       infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
