@@ -1639,9 +1639,7 @@ var drawStroke = function (x, y, rad, lineWidth, col) {
         return Math.PI / 180 * e
     }
 
-var aniframetest= function(e, t, a, i) {
-        return a * Math.sin(i * Math.PI / t * e)
-    }
+
 
 var getAnimFrame= function(tSinceSpawn, period, shiftAm, sinF) {
 
@@ -14188,7 +14186,7 @@ KingDragon.prototype.sF = 0.02;
 KingDragon.prototype.drawWings = function () {
     null == this.leftWingAnim && (this.leftWingAnim = new _0x1abe2b(this, this.flapDur, _0x1abe2b.wave,{
             'v1': 0x5
-        },true), this.leftWingAnim.keepLastFrame = true, this.leftWingAnim.loop = true, this.leftWingAnim.onFrameEntered = function (_0x1596df) {
+        },false), this.leftWingAnim.keepLastFrame = true, this.leftWingAnim.loop = true, this.leftWingAnim.onFrameEntered = function (_0x1596df) {
         this.forObj.frame1 = _0x1596df;
     });
     null != this.leftWingAnim && this.leftWingAnim.run();
@@ -14608,8 +14606,8 @@ Pterodactyl.prototype.getHead = function (_0x29679c, _0x4adc58) {
     return 'skins'+ '/' + _0x29679c + '/' + _0x29679c + '_head.png';
 };
 Pterodactyl.prototype.getSkinName = function () {
-    var _0x528bd8 =  'pterodactyl/pterodactyl';
-    return _0x528bd8;
+          var _0x528bd8 = this.skinFolder() + '/pterodactyl/' + this.animalSpecies + '/pterodactyl';
+        return _0x528bd8 = 4 == this.specType ? _0x528bd8 + '4' : _0x528bd8 + (0 == this.specType ? '' : 1);
 };
 Pterodactyl.prototype.getWing = function (_0x4ac10e, _0x26897e) {
     this.flag_flying || (_0x26897e = _0x26897e + '' + _0x26897e);
@@ -14738,7 +14736,7 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
             _0x503254 = _0x503254 * this.rf,
             _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
         ctx.save();
-        ctx.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, toRadians(_0x551de1 * _0x28cd2b) + _0x503254);
+        this.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, toRadians(_0x551de1 * _0x28cd2b) + _0x503254);
         ctx.restore();
     }
 };
@@ -14747,7 +14745,7 @@ Pterodactyl.prototype.lastFlapFrame = 0;
 Pterodactyl.prototype.getFrame = function () {
     !this.canFlap && this.flag_flying && timestamp > this.resumeFlapT && (this.canFlap = true);
     var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
-        _0x2b4955 = !options_lowGraphics && this.canFlap ? _0x245c50(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
+        _0x2b4955 = !options_lowGraphics && this.canFlap ? getAnimFrame(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
     this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (this.countFlap = true, this.flaps++, 0 == this.flaps % this.flapsMod && (this.lastFlapFrame = _0x2b4955, this.canFlap = true, this.resumeFlapT = +new Date() + 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
     this.canFlap ? this.lastFlapFrame = _0x2b4955 : _0x2b4955 = this.lastFlapFrame;
     return _0x2b4955;
@@ -14756,7 +14754,7 @@ Pterodactyl.prototype.beforeCustomDraw = function () {
     this.flag_usingAbility && (this.flag_flying || this.set ? this.flag_flying && this.set && (this.set = true, this.r = 22.5, this.erf = 11.5, this.ww = 4.5) : (this.set = true, this.r = 11.25, this.erf = 5.75, this.ww = 3.5), this.flapAmount = this.isGliding ? 0 : this.famt, this.frame = this.getFrame());
 };
 Pterodactyl.prototype.updateZ = function () {
-    this.flag_eff_grabbedByFlytrap ? this.z = 1100 + this.rad : this.flag_flying || !this.flag_usingAbility || this.flag_underWater ? this.flag_flying || this.flag_eff_tossedInAir ? (this.z = 110000, this.z = this.flag_isGrabbed ? this.z - this.rad : this.z + this.rad, this.flag_eff_aniInClaws && (this.z += 100)) : this.z = 1000 + this.rad : this.z = 1200 + this.rad;
+    !this.flag_usingAbility || this.flag_underWater ? this.flag_flying || this.flag_eff_tossedInAir ? (this.z = 110000, this.z = this.flag_isGrabbed ? this.z - this.rad : this.z + this.rad, this.flag_eff_aniInClaws && (this.z += 100)) : this.z = 1000 + this.rad : this.z = 1200 + this.rad;
 };
 Pterodactyl.prototype.getAbilityInfo = function (_0x104b73) {
     _0x104b73 = {
