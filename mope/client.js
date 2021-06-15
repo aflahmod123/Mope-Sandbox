@@ -8941,7 +8941,7 @@ case o_gift:
 };
 
 //main draw method (NOT subclassable)
-
+GameObj.prototype.beforeCustomDraw = function () {};
 GameObj.prototype.draw = function(batchDrawOutline) {
   //console.log("drawing obj "+this.id);
 
@@ -8983,7 +8983,7 @@ GameObj.prototype.draw = function(batchDrawOutline) {
   }
 
   //draw method without applying extra scaling
-
+  this.beforeCustomDraw()
   this.customDraw(batchDrawOutline);
 
   //hurt red glow
@@ -12621,11 +12621,13 @@ Animal.prototype.loadAnimalSkinImg = function() {
   }
 };
 //override GameObj method (in prototype!)
+
 Animal.prototype.preLoad = function () {};
      Animal.prototype.shakeOffsetX = 0;
     Animal.prototype.shakeOffsetY = 0;
 Animal.prototype.shiverF = 0.02;
 Animal.prototype.customDraw = function(batchDrawOutline) {
+  
   this.preLoad();
 
   var infoO = this.animalInfo(); //infoForAnimalType(this.animalType);
@@ -14664,10 +14666,10 @@ Pterodactyl.prototype.drawLegs = function () {
 };
 Pterodactyl.prototype.drawUnderSkinImg = function () {
     this.flag_usingAbility && (this.drawWing(this.frame, 1), this.drawWing(this.frame, 2));
-    0x2 == this.specType && this.drawLegs();
+    2 == this.specType && this.drawLegs();
 };
 Pterodactyl.prototype.drawSkinCustomization = function () {
-  this.beforeCustomDraw()
+
     if (this.flag_usingAbility) {
         this.drawBone(this.frame, 1);
         this.drawBone(this.frame, 2);
@@ -14774,7 +14776,7 @@ Pterodactyl.prototype.readCustomData_onUpdate = function (msg) {
     this.readInfo(msg);
 };
 Pterodactyl.prototype.readInfo = function (msg) {
-   // this.isGliding = 1 == msg.readUInt8();
+   this.isGliding = 1 == msg.readUInt8();
 };
 
 function Pterodactyl() {
