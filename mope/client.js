@@ -10483,8 +10483,8 @@ case ability_thunderbirdAttack:
 
         if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
-        var theImg = getLoadedImg(
-        "/img/ability_elephantTrunkSmack.png"
+         var theImg = getLoadedImg(
+          skinFolder + "/ability_elephantTrunkSmack.png"
         );
         if (theImg) {
           //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -11722,7 +11722,8 @@ AbilityObjElephant.prototype.customDraw = function(batchDrawOutline) {
   var skinFolder = "img";
   if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
-  var theImg = getLoadedImg("/img/ability_elephantTrunkSmack.png");
+
+  var theImg = getLoadedImg(skinFolder + "/ability_elephantTrunkSmack.png");
   if (theImg) {
     //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
 
