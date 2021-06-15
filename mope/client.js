@@ -5844,7 +5844,10 @@ GameObj.prototype.customInterfaceDraw = false;
 // obj spawn with radius animation
 // some objects dont need this animation so set this to false in their subclasses
 GameObj.prototype.animateRadOnSpawn = true;
-
+GameObj.prototype.drawImage = function (_0x5c79c3, _0x16e8d0, _0x45e376, _0x2482d0, _0x4b23e3, _0x43c8a8) {
+    if (_0x43c8a8 !== undefined) ctx.rotate(_0x43c8a8);
+    ctx.drawImage(_0x5c79c3, _0x16e8d0, _0x45e376, _0x2482d0, _0x4b23e3);
+}
 //subclassable
 GameObj.prototype.customDraw = function(batchDrawOutline) {
   // switch(this.oType ) {
@@ -14735,7 +14738,7 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
             _0x503254 = _0x503254 * this.rf,
             _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
         ctx.save();
-        ctx.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF,_0x5026b3, ps(_0x551de1 * _0x28cd2b) + _0x503254);
+        ctx.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, toRadians(_0x551de1 * _0x28cd2b) + _0x503254);
         ctx.restore();
     }
 };
@@ -14773,7 +14776,7 @@ Pterodactyl.prototype.readCustomData_onUpdate = function (msg) {
     this.readInfo(msg);
 };
 Pterodactyl.prototype.readInfo = function (msg) {
-    this.isGliding = 1 == msg.readUInt8();
+   // this.isGliding = 1 == msg.readUInt8();
 };
 
 function Pterodactyl() {
