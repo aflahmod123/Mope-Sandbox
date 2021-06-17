@@ -8948,7 +8948,7 @@ GameObj.prototype.draw = function(batchDrawOutline) {
   //");
   //apply interpolation (before translate)
   this.moveUpdF = this.moveUpdate();
-
+this.beforeCustomDraw();
   ctx.save();
   ctx.translate(this.x, this.y);
 
@@ -8983,7 +8983,7 @@ GameObj.prototype.draw = function(batchDrawOutline) {
   }
 
   //draw method without applying extra scaling
-  this.beforeCustomDraw()
+
   this.customDraw(batchDrawOutline);
 
   //hurt red glow
@@ -9651,7 +9651,7 @@ this.z = 1005; //fireball just under dragon
 
     case o_animal:
       if (this.flag_flying) {
-        this.z = 100000;
+        this.z = 10000;
 
         if (!this.flag_isGrabbed) this.z += this.rad;
         if (this.specType2 == 100) {
@@ -12682,7 +12682,7 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
   }
 
    
-  if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
+  if (this.flag_flying && this.id != myPlayerID ) {
     idealOp = 0.6;
   }
 
