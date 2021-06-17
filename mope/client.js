@@ -14756,7 +14756,11 @@ Pterodactyl.prototype.beforeCustomDraw = function () {
     this.flag_usingAbility && (this.flag_flying || this.set ? this.flag_flying && this.set && (this.set = true, this.r = 22.5, this.erf = 11.5, this.ww = 4.5) : (this.set = true, this.r = 11.25, this.erf = 5.75, this.ww = 3.5), this.flapAmount = this.isGliding ? 0 : this.famt, this.frame = this.getFrame());
 };
 Pterodactyl.prototype.updateZ = function () {
-    !this.flag_usingAbility || this.flag_underWater ? this.flag_flying || this.flag_eff_tossedInAir ? (this.z = 110000, this.z = this.flag_isGrabbed ? this.z - this.rad : this.z + this.rad, this.flag_eff_aniInClaws && (this.z += 100)) : this.z = 1000 + this.rad : this.z = 1200 + this.rad;
+ if(!this.flag_flying){
+  this.z = 1500 + this.rad;
+ }else{
+   this.z = 10005 + this.rad;
+ }
 };
 Pterodactyl.prototype.getAbilityInfo = function (_0x104b73) {
     _0x104b73 = {
