@@ -2232,6 +2232,7 @@ var col_invisborder = "#2A2A2A60",
     col_bg3 = "#09992F", //"#3D7447";
     col_wat1 = "#4E66E4",
     col_lava = "#ff6000",
+    col_lava2 = "#bf4f0b",
     col_wat2 = "#4651a6", //#4651a6 - non snow color
     col_ocean = col_wat2, // "#1898bd";// (old oc)
     col_ocean_sand = "#c8b745",
@@ -2256,6 +2257,8 @@ var outlineColForBiome = function(biomeN) {
       return col_outline_arctic;
       case biome_desert:
       return col_outline_desert;
+      case biome_volcano:
+      return col_lava2;
     default:
     case biome_land:
       return col_outline_land;
