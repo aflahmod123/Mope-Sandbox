@@ -14624,7 +14624,7 @@ Pterodactyl.prototype.getHand = function (_0x10826f, _0x5416bc) {
 };
 Pterodactyl.prototype.biteStart = 0;
 Pterodactyl.prototype.flaps = 0;
-Pterodactyl.prototype.flapsMod = 5;
+Pterodactyl.prototype.flapsMod = 2;
 Pterodactyl.prototype.countFlap = true;
 Pterodactyl.prototype.canFlap = !options_lowGraphics;
 Pterodactyl.prototype.resumeFlapT = 0;
@@ -14745,10 +14745,17 @@ Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
 Pterodactyl.prototype.frame = 0;
 Pterodactyl.prototype.lastFlapFrame = 0;
 Pterodactyl.prototype.getFrame = function () {
-    !this.canFlap && this.flag_flying && timestamp > this.resumeFlapT && (this.canFlap = true);
+
+    this.flag_flying && timestamp > this.resumeFlapT && (this.canFlap = !this.canFlap);
     var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
         _0x2b4955 = !options_lowGraphics && this.canFlap ? getAnimFrame(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
-    this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (this.countFlap = true, this.flaps++, 0 == this.flaps % this.flapsMod && (this.lastFlapFrame = _0x2b4955, this.canFlap = true, this.resumeFlapT = +new Date() + 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
+    this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (
+      this.countFlap = true, 
+      this.flaps++, 
+      0 == this.flaps % this.flapsMod && 
+      (this.lastFlapFrame = _0x2b4955, 
+    
+      this.resumeFlapT = +new Date() + 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
     this.canFlap ? this.lastFlapFrame = _0x2b4955 : _0x2b4955 = this.lastFlapFrame;
     return _0x2b4955;
 };
