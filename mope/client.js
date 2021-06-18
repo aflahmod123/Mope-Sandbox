@@ -3505,7 +3505,9 @@ function drawGameInterface() {
   ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
 
   ctx.globalAlpha = waterBarA;
-  if (animalBarType == 2)
+  if (animalBarType == 3)
+    ctx.fillStyle = 'orange';
+    else if (animalBarType == 2)
     // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
     ctx.fillStyle = col_lava;
   else ctx.fillStyle = isAirBar || animalBarType == 1 ? "#8CCEF4" : col_wat1; //bar fill
@@ -3530,7 +3532,7 @@ function drawGameInterface() {
   var barTxt;
   if (animalBarType == 1) barTxt = lowBarPerc ? "LOW AIR" : "AIR";
   else if (animalBarType == 2) barTxt = lowBarPerc ? "LOW LAVA" : "LAVA";
-  else if (animalBarType == 3) barTxt = lowBarPerc ? "LOW ICE" : "ICE";
+  else if (animalBarType == 3) barTxt = lowBarPerc ? "LOW ENERGY" : "ENERGY";
   else {
     barTxt = lowBarPerc ? "LOW WATER" : "WATER";
   }
