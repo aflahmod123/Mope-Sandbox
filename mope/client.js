@@ -3506,7 +3506,7 @@ function drawGameInterface() {
 
   ctx.globalAlpha = waterBarA;
   if (animalBarType == 3)
-    ctx.fillStyle = 'orange';
+    ctx.fillStyle = '#ff894b';
     else if (animalBarType == 2)
     // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
     ctx.fillStyle = col_lava;
@@ -12873,7 +12873,9 @@ idealOp = this.transparancy / 100;
       this.animalType == a_blackDragon || this.animalType == a_phoenix|| this.animalType == a_landMonster|| this.animalType == a_kingdragon
         ? col_lava
         : col_wat1;
-
+ if(this.animalType == a_pterodactyl){
+   ctx.fillStyle = "#ff894b"
+ }
     ctx.beginPath();
     //sweat bottom
     ctx.arc(0, this.rad + 5, 5, 0, Math.PI * 2);
