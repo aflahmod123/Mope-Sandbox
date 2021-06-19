@@ -337,7 +337,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
-            infoO.skinName = "scorpion/scorpion";
+            infoO.skinName = "giantscorpion/0/scorpion";
             break;
          case a_pterodactyl:
             infoO.aniName = "Pterodactyl";
@@ -345,7 +345,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
             infoO.aniCol = "#fcc02b";
-            infoO.skinName = "pterodactyl/pterodactyl";
+            infoO.skinName = "pterodactyl/0/pterodactyl";
             break;
               case a_lochness:
             infoO.aniName = "Loch Ness";
@@ -1048,8 +1048,10 @@ var infoForAbilityT = function(abilT) {
       infoO.abilImg =
         "skins/" +
         zombieFolder +
-        infoForAnimalType(myPlayerLastAniT).skinName +
-        "_ability.png";
+        infoForAnimalType(myPlayerLastAniT).skinName +"/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "pterodactyl_ability.png";
       break;
     case ability_stingscorp:
         infoO.abilName = "Sting!\n(Shivers Prey)";
