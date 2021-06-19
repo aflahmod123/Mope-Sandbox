@@ -334,7 +334,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
          case a_scorpion:
             infoO.aniName = "Giant Scorpion";
             infoO.aniDesc = "";
-            infoO.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "scorpion/scorpion";
@@ -1054,10 +1054,12 @@ var infoForAbilityT = function(abilT) {
     case ability_stingscorp:
         infoO.abilName = "Sting!\n(Shivers Prey)";
       infoO.abilImg =
-        "skins/" +
+        "skins/desert" +
         zombieFolder +
-        infoForAnimalType(myPlayerLastAniT).skinName +
-        "_ability.png";
+        infoForAnimalType(myPlayerLastAniT).skinName + "/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "scorpion_ability.png";
       break;
 
     case ability_whaleTailHit:
@@ -11925,7 +11927,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
           case a_scorpion:
             infoO.aniName = "Giant Scorpion";
             infoO.aniDesc = "";
-            infoO.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "scorpion/scorpion";
@@ -14475,7 +14477,7 @@ GiantScorpion.prototype.updateZ = function () {
 GiantScorpion.prototype.animalInfo = function () {
         var _0x5c08a0 = {};
      
-          _0x5c08a0.aniName = 'Giant Scorpion';
+        _0x5c08a0.aniName = 'Giant Scorpion';
         
     
         _0x5c08a0.aniCol = '#FF9000';
@@ -14558,8 +14560,8 @@ GiantScorpion.prototype.animalInfo = function () {
         },false), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x1dd836) {
             var _0x3f3c13 = 0;
             0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
-            _0x1dd836 = 'skins/desert/giantscorpion/' + this.animalSpecies +'/arms.png';
-           if(this.forObj.flag_eff_aniInClaws) _0x1dd836 = 'skins/desert/giantscorpion/' + this.animalSpecies +'/arms-grabbed.png';
+            _0x1dd836 = 'skins/desert/giantscorpion/' + this.forObj.animalSpecies +'/arms.png';
+           if(this.forObj.flag_eff_aniInClaws) _0x1dd836 = 'skins/desert/giantscorpion/' + this.forObj.animalSpecies +'/arms-grabbed.png';
             if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
              
                 var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
