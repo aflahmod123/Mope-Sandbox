@@ -330,10 +330,11 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "kingdragon/kingdragon";
             break;
+     
          case a_scorpion:
-            infoO.aniName = "Snail";
+            infoO.aniName = "Giant Scorpion";
             infoO.aniDesc = "";
-            infoO.upgradeText = "Your sting is very strong!";
+            infoO.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "scorpion/scorpion";
@@ -341,7 +342,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
          case a_pterodactyl:
             infoO.aniName = "Pterodactyl";
             infoO.aniDesc = "";
-            infoO.upgradeText = "Nice.";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "pterodactyl/pterodactyl";
@@ -11916,7 +11917,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
           case a_scorpion:
             infoO.aniName = "Giant Scorpion";
             infoO.aniDesc = "";
-            infoO.upgradeText = "Your sting is very strong!";
+            infoO.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "scorpion/scorpion";
@@ -11924,7 +11925,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
        case a_pterodactyl:
             infoO.aniName = "Pterodactyl";
             infoO.aniDesc = "";
-            infoO.upgradeText = "Nice.";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "pterodactyl/pterodactyl";
@@ -14605,8 +14606,7 @@ Pterodactyl.prototype.animalInfo = function () {
 infoO.aniName = 'Pterodactyl';
     infoO.aniCol = '#FF9000';
     infoO.skinName =  '/pterodactyl';
-    infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + `!\
-Fly and dive onto prey to pick it up.`;
+    infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
     return infoO;
 };
 Pterodactyl.prototype.getHead = function (_0x29679c, _0x4adc58) {
