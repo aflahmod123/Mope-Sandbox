@@ -337,7 +337,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
-            infoO.skinName = "giantscorpion/0/scorpion";
+            infoO.skinName = "giantscorpion";
             break;
          case a_pterodactyl:
             infoO.aniName = "Pterodactyl";
@@ -345,7 +345,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
             infoO.aniCol = "#fcc02b";
-            infoO.skinName = "pterodactyl/0/pterodactyl";
+            infoO.skinName = "pterodactyl";
             break;
               case a_lochness:
             infoO.aniName = "Loch Ness";
@@ -1046,7 +1046,7 @@ var infoForAbilityT = function(abilT) {
          case ability_pterodactyl:
         infoO.abilName = "Dive Attack\n(Fly with Prey)";
       infoO.abilImg =
-        "skins/" +
+        "skins/desert/" +
         zombieFolder +
         infoForAnimalType(myPlayerLastAniT).skinName +"/" +
         myPlayer.animalSpecies + "/"
@@ -1056,7 +1056,7 @@ var infoForAbilityT = function(abilT) {
     case ability_stingscorp:
         infoO.abilName = "Sting!\n(Shivers Prey)";
       infoO.abilImg =
-        "skins/desert" +
+        "skins/desert/" +
         zombieFolder +
         infoForAnimalType(myPlayerLastAniT).skinName + "/" +
         myPlayer.animalSpecies + "/"
@@ -11932,7 +11932,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
             infoO.aniCol = "#fcc02b";
-            infoO.skinName = "scorpion/scorpion";
+            infoO.skinName = "giantscorpion";
             break;
        case a_pterodactyl:
             infoO.aniName = "Pterodactyl";
@@ -11940,7 +11940,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
             infoO.aniCol = "#fcc02b";
-            infoO.skinName = "pterodactyl/pterodactyl";
+            infoO.skinName = "pterodactyl";
             break;
          case a_lochness:
             infoO.aniName = "Loch Ness";
@@ -14610,29 +14610,29 @@ Pterodactyl.prototype.animalInfo = function () {
     var infoO = {};
 infoO.aniName = 'Pterodactyl';
     infoO.aniCol = '#FF9000';
-    infoO.skinName =  '/pterodactyl';
+    infoO.skinName =  'desert/pterodactyl';
     infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
     return infoO;
 };
 Pterodactyl.prototype.getHead = function (_0x29679c, _0x4adc58) {
-    return 'skins'+ '/' + _0x29679c + '/' + _0x29679c + '_head.png';
+    return 'skins/desert'+ '/' + _0x29679c + '/'+ this.animalSpecies + '/' + _0x29679c + '_head.png';
 };
 Pterodactyl.prototype.getSkinName = function () {
-          var _0x528bd8 ='/pterodactyl/pterodactyl';
+          var _0x528bd8 ='desert/pterodactyl/' + this.animalSpecies + '/pterodactyl';
         return _0x528bd8 = 4 == this.specType ? _0x528bd8 + '4' : _0x528bd8 + (0 == this.specType ? '' : 1);
 };
 Pterodactyl.prototype.getWing = function (_0x4ac10e, _0x26897e) {
     this.flag_flying || (_0x26897e = _0x26897e + '' + _0x26897e);
-    return 'skins'+ '/' + _0x4ac10e + '/' + _0x4ac10e + '_wing' + _0x26897e + '_nohand.png';
+    return 'skins/desert'+ '/' + _0x4ac10e + '/' + this.animalSpecies + '/' + _0x4ac10e + '_wing' + _0x26897e + '_nohand.png';
 };
 Pterodactyl.prototype.getWingBone = function (_0x204a7c, _0x47cdee) {
     this.flag_flying || (_0x47cdee = _0x47cdee + '' + _0x47cdee);
-    return 'skins'+ '/' + _0x204a7c + '/' + _0x204a7c + '_wing' + _0x47cdee + '_bones.png';
+    return 'skins/desert'+ '/' + _0x204a7c + '/' + this.animalSpecies + '/' + _0x204a7c + '_wing' + _0x47cdee + '_bones.png';
 };
 Pterodactyl.prototype.getHand = function (_0x10826f, _0x5416bc) {
     this.flag_flying || (_0x5416bc = _0x5416bc + '' + _0x5416bc);
     this.isGliding && (_0x5416bc += '3');
-    return 'skins' + '/' + _0x10826f + '/' + _0x10826f + '_hand' + _0x5416bc + '.png';
+    return 'skins/desert' + '/' + _0x10826f + '/'+ this.animalSpecies + '/' + _0x10826f + '_hand' + _0x5416bc + '.png';
 };
 Pterodactyl.prototype.biteStart = 0;
 Pterodactyl.prototype.flaps = 0;
@@ -14668,7 +14668,7 @@ Pterodactyl.prototype.headX = 0.225;
 Pterodactyl.prototype.drawLegs = function () {
     var _0x2eed07 = 1.4705882352941,
         _0x4afd81 = this.flag_eff_aniInClaws ? 'legs2' : 'legs';
-    if (_0x4afd81 = getLoadedImg('skins/pterodactyl/' + _0x4afd81 + '.png')) {
+    if (_0x4afd81 = getLoadedImg('skins/desert/pterodactyl/'+ this.animalSpecies + '/'+ _0x4afd81 + '.png')) {
         ctx.save();
         var _0x219321 = this.rad,
             _0x2eed07 = _0x2eed07 * this.legScale;
@@ -14780,14 +14780,6 @@ Pterodactyl.prototype.updateZ = function () {
  }else{
    this.z = 15005 + this.rad;
  }
-};
-Pterodactyl.prototype.getAbilityInfo = function (_0x104b73) {
-    _0x104b73 = {
-        'abilName': `Dive Attack\
-(Fly with Prey)`
-    };
-    _0x104b73.abilImg = 'skins/pterodactyl/pterodactyl_ability.png';
-    return _0x104b73;
 };
 Pterodactyl.prototype.isGliding = true;
 Pterodactyl.prototype.readCustomData_onNewlyVisible = function (msg) {
