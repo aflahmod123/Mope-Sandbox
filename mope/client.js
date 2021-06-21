@@ -1697,7 +1697,7 @@ CachedText.prototype = {
   strokeColor: "#000000",
   multiLine: false,
   playername: false,
-
+  choicetxt:false,
   _text: "",
   _color: "#000000",
   x: 0,
@@ -1770,14 +1770,48 @@ CachedText.prototype = {
 
       //_ctx.scale(scale, scale);
 
+      if (this.choicetxt) {
+        //basic multi-line fill!
+        var lineHeight = _ctx.measureText("M").width * 1.2;
+        var lines = text.split(" ");
+      
+        //re-size the canvas for mutiple lines...
+        var maxW = 0;
+        for (var i = 0; i < lines.length; ++i) {
+          maxW = Math.max(maxW, _ctx.measureText(lines[i]).width);
+        }
+        this.width = (maxW + 6) * scale;
+        this.height = (lineHeight * lines.length + h) * scale;
+        _canvas.width = this.width;
+        _canvas.height = this.height;
+        //fix size for renderScale
+        this.width /= this.renderScale;
+        this.height /= this.renderScale;
+   
+        _ctx.globalAlpha = 1;
+        _ctx.font = font;
+        //_ctx.lineWidth = 6;
+        if (this.strokeW > 0.0) {
+          _ctx.shadowOffsetX = this.strokeW; //0.3333 *this.renderScale;
+          _ctx.shadowOffsetY = this.strokeW; //0.3333 * this.renderScale;
+          _ctx.shadowColor = this.strokeColor; //"black";
+        }
+        _ctx.fillStyle = this._color;
+        _ctx.textAlign = "center";
+        //  _ctx.textBaseline = "middle"; //vertical center
 
+        var x = 3 + _canvas.width / 2,
+          y = fontsize - h / 2;
+        for (var i = 0; i < lines.length; ++i) {
+          _ctx.fillText(lines[i], x, y);
+          y += lineHeight;
+        }
+      }
       if (this.multiLine) {
         //basic multi-line fill!
         var lineHeight = _ctx.measureText("M").width * 1.2;
         var lines = text.split("\n");
-       if(this.playername){
-    lines = text.split("\m");
-       }
+      
         //re-size the canvas for mutiple lines...
         var maxW = 0;
         for (var i = 0; i < lines.length; ++i) {
@@ -1882,9 +1916,9 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
   this.btnHotkey = '0';
 
   //this.text = infoForAnimalType(aniT).aniName;//isOcean ? "Ocean Animal" : "Land Animal";
-  this.buttonTXT = new CachedText(12.0, "white");
+  this.buttonTXT = new CachedText(10.0, "white");
   this.buttonTXT.renderScale = 1.5;
-  this.buttonTXT.multiLine = true
+  this.buttonTXT.choicetxt = true
   this.buttonTXT.setText(infoForAnimalType(aniT).aniName);
   this.setHotKey = function (_0xb26fc2) {
         _0xb26fc2 && (this.btnHotkey = _0xb26fc2, this.hotkey = new CachedText(10, 'white'), this.hotkey.renderScale = 1.5, this.hotkey.multiLine = false, this.hotkey.setText(this.btnHotkey.toUpperCase()));
@@ -14268,7 +14302,7 @@ KingDragon.prototype.drawSkinCustomization = function () {
     }
     this.drawWings();
 };
-_0x30dcb0.prototype.getSkinName = function () {
+KingDragon.prototype.getSkinName = function () {
         return './kingdragon/' + this.animalSpecies + '/kingdragon_body';
     };
 KingDragon.prototype.drawLowWaterDrop = function () {
