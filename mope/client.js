@@ -14325,6 +14325,27 @@ KingDragon.prototype.drawLowWaterDrop = function () {
         ctx.restore();
     }
 };
+BlackDragon.prototype.animalInfo = function () {
+     infoO = {};
+  
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'Black Dragon';
+            break;
+         case 1:
+            infoO.aniName = 'Golden Black Dragon';
+            break;
+        case 2:
+            infoO.aniName = 'Blue Dragon';
+        }
+  infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+      infoO.aniCol = "black";
+      infoO.skinName = "blackdragon/" + this.animalSpecies + "/blackdragon";
+    return infoO;
+}
 KingDragon.prototype.animalInfo = function () {
      infoO = {};
   
@@ -16644,107 +16665,114 @@ var skin ="flying_blackdragon"
 
 
 
- var theImg = getLoadedImg("skins/blackdragon" + 
-                           this.animalSpecies + 
-                           "nostrils.png"+
-                           (this.specType == 0 ? "" : this.specType)); 
-
-
-
-if (theImg) {
-    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-    var frame = getAnimFrame(tSinceSpawn, 5, 1, 1);
-    ctx.save();
-    ctx.globalAlpha = Math.max(0, frame);
-    var rad = this.rad - this.outlineW;
-    ctx.drawImage(
-      theImg,
-      -rad * iScale,
-      -rad * iScale,
-      1 * rad * iScale,
-      1 * rad * iScale
-    );
- 
-    ctx.restore();
-  }
   
   
   BlackDragon.prototype.drawSkinCustomization = function() {
-if (this.flag_flying && !this.flag_isGrabbed&& this.flag_usingAbility) {
+
+  var lava = this.lava; //waterBarPerc_n;
+  var minLowLava = 50;
+  //console.log("lava: " + lava)
+  if (lava < minLowLava) {
+    var lp = lava / minLowLava;
+    var theImg = getLoadedImg("skins/blackdragon/" +  
+                           this.animalSpecies + "/wings.png");
+    if (theImg) {
       ctx.save();
-   var iScale = 500 / 340.0;
-      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-      var frame =  getAnimFrame(tSinceSpawn,2.1, .4, 1.5);
-      var frame2 = getAnimFrame(tSinceSpawn, 2.1, -8, 1.5);
-      var trueG = getAnimFrame(tSinceSpawn, 2.1, .4, 1.5);
-          var trueF = getAnimFrame(tSinceSpawn, 2.1, .3, 1.5);
-              var trueS = this.rad * 0.6
-      var theImg = getLoadedImg(
-      "img/blackdragon_wing1.png"
+      ctx.globalAlpha = 1 - lp;
+      var rad = this.rad - this.outlineW;
+      ctx.drawImage(
+        theImg,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
       );
-      if (theImg) {
-        ctx.save();
-        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+      ctx.restore();
+    }
+  }
 
-        //console.log("getAnimFrame:" + frame);
-        var extraRotate = -(-0.3 + frame) * toRadians(90.0); //spin animation
+  if (!this.flag_usingAbility) return;
 
-        //clip to sliwly show the claw
-        var rad = this.rad 
-        ctx.rotate(extraRotate);
-        var imX = 0,
-          imY = this.rad;
-        var imW = 1.6 * trueS
-         imH = 2 * trueS + 5 * frame2;
-        var imAnchorX = 1.6 * trueS,
-          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+  if (this.flag_flying && !this.flag_isGrabbed) {
+    ctx.save();
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
+    var frameW = getAnimFrame(tSinceSpawn, 2.1, -8, 1.5);
+    var frameY = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
+    var frameY2 = getAnimFrame(tSinceSpawn, 2.1, 0.3, 1.5);
+    var theImg = getLoadedImg("img/blackdragon_wing1.png");
+    var rad = this.rad * 0.6;
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
 
-        ctx.drawImage(
-          theImg,
-          0 + 0.65 * imAnchorX,
-          imY + imH * -(1.75 - (trueG + trueG / 4 - trueF)),
-          imW,
-          imH
-        );
+      var extraRotate = -(-0.3 + frame) * toRadians(90.0); //spin animation
 
-        ctx.restore();
-      }
+      //clip to sliwly show the claw
 
-      var theImg = getLoadedImg(
-       "img/blackdragon_wing2.png"
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.8,
+        imH = rad * 2.0 + 5 * frameW; // * fac0to1;
+      var imAnchorX = -0.65; //+   frameY/3
+      imAnchorY = 1.75 - (frameY + frameY / 4 - frameY2); //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
       );
-      if (theImg) {
-        ctx.save();
-        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-        //console.log("getAnimFrame:" + frame);
-        var extraRotate = -(-0.3 + frame) * toRadians(-90.0); //spin animation
-
-        //clip to sliwly show the claw
-        var rad = this.rad
-        ctx.rotate(extraRotate);
-        var imX = 0,
-          imY = this.rad;
-       var imW = 1.6 * trueS
-          imH = 2 * trueS + 5 * frame2
-        var imAnchorX = 1.6 * trueS,
-          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
-
-        ctx.drawImage(
-          theImg,
-          0 + -1.65 * imAnchorX,
-          imY + imH * -(1.75 - (trueG + trueG / 4) + trueF),
-          imW,
-          imH
-        );
-
-        ctx.restore();
-      }
 
       ctx.restore();
-};
-  };
+    }
 
+    var theImg = getLoadedImg("img/blackdragon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.3 + frame) * toRadians(-90.0); //spin animation
+
+      //clip to sliwly show the claw
+
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.8,
+        imH = rad * 2.0 + 5 * frameW;
+      var imAnchorX = 1.65; //-   frameY/2
+      imAnchorY = 1.75 - (frameY + frameY / 4) + frameY2; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+  };
+BlackDragon.prototype.readCustomData_onNewlyVisible = function (msg) {
+  BlackDragon.superClass.prototype.readCustomData_onNewlyVisible.call(
+    this,
+    msg
+  ); //call superclass version of this method
+  this.lava = msg.readUInt8();
+};
+
+BlackDragon.prototype.readCustomData_onUpdate = function (msg) {
+  BlackDragon.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
+  this.lava = msg.readUInt8();
+};
 function BlackDragon() {
   this.lava = 0;
   BlackDragon.superClass.call(this, o_animal);
