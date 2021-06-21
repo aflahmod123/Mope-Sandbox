@@ -14182,7 +14182,8 @@ KingDragon.prototype.updateZ = function () {
 KingDragon.prototype.canUseTailslap = true;
 KingDragon.prototype.tailState = 0;
 KingDragon.prototype.getSkinName = function () {
-    return 'kingdragon/kingdragon_body';
+  
+    return 'kingdragon/'+this.animalSpecies +'/kingdragon_body';
 };
 KingDragon.prototype.readCustomData_onNewlyVisible = function (_0x103094) {
     KingDragon.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x103094);
@@ -14214,8 +14215,8 @@ KingDragon.prototype.drawWings = function () {
         _0x2103bb = this.frame1 * this.sF * _0x1b9acd,
         _0x57c54 = -(-this.flapF + this.frame1) * toRadians(this.flapAngle),
         _0x5051cd = 1.4705882352941,
-        _0x303fb8 = getLoadedImg('skins/kingdragon/left_wing.png'),
-        _0x13450c = getLoadedImg('skins/kingdragon/right_wing.png');
+        _0x303fb8 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing.png'),
+        _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing.png');
     _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
               ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 *_0x2103bb),
                                ctx.restore(),
@@ -14226,16 +14227,16 @@ KingDragon.prototype.drawWings = function () {
                                4 == this.animalSpecies && (_0x303fb8 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1), 
                                                            ctx.save(), 
                                                            ctx.globalAlpha = Math.max(0, _0x303fb8),
-                                                           _0x303fb8 = getLoadedImg('skins/kingdragon/left_wing_tips.png'),
-                                                           _0x13450c = getLoadedImg('skins/kingdragon/right_wing_tips.png'),
+                                                           _0x303fb8 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing_tips.png'),
+                                                           _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing_tips.png'),
                                                            _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
                                                             ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd +1.5 * _0x2103bb),
                                                                                       ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
     _0x303fb8 = this.lava;
     if (50 > _0x303fb8) {
         var _0x303fb8 = _0x303fb8 / 50,
-            _0x13450c = getLoadedImg('skins/kingdragon/left_wing1.png'),
-            _0x67aef9 = getLoadedImg('skins/kingdragon/right_wing2.png');
+            _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing1.png'),
+            _0x67aef9 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing2.png');
         _0x13450c && _0x67aef9 && (ctx.save(), ctx.globalAlpha = 1 - _0x303fb8, ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54)
                                    , ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb)
                                    , ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), 
@@ -14246,7 +14247,7 @@ KingDragon.prototype.drawWings = function () {
 KingDragon.prototype.drawSkinCustomization = function () {
     var _0x3659ec = 1.4705882352941,
         _0x10a292 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1),
-        _0x3fb426 = getLoadedImg('skins/kingdragon/nostrils.png');
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/nostrils.png');
     if (_0x3fb426) {
         ctx.save();
         ctx.globalAlpha = this.lava / 100 * Math.max(0, _0x10a292);
@@ -14255,18 +14256,21 @@ KingDragon.prototype.drawSkinCustomization = function () {
         ctx.restore();
     }
     if (this.canUseTailslap) {
-        if (_0x3fb426 = getLoadedImg('skins/kingdragon/bone2.png')) ctx.save(), ctx.globalAlpha = Math.max(0.3, _0x10a292), _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
+        if (_0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone2.png')) ctx.save(), ctx.globalAlpha = Math.max(0.3, _0x10a292), _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
     } else {
-        if (_0x10a292 = getLoadedImg('skins/kingdragon/bone1.png')) ctx.save(), ctx.globalAlpha = 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x10a292, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
+        if (_0x10a292 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone1.png')) ctx.save(), ctx.globalAlpha = 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x10a292, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
         _0x10a292 = 0;
         0xb > this.tailState && 5 < this.tailState ? _0x10a292 = (this.tailState - 5) / 6 : 3 >= this.tailState && (_0x10a292 = this.tailState / 3);
-        _0x3fb426 = getLoadedImg('skins/kingdragon/bone3.png');
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone3.png');
         0xb > this.tailState && _0x3fb426 && (ctx.save(), ctx.globalAlpha = 5 < this.tailState ? 1 - _0x10a292 : 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore());
-        _0x3fb426 = getLoadedImg('skins/kingdragon/bone2.png');
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone2.png');
         0x3 > this.tailState && _0x3fb426 && (ctx.save(), ctx.globalAlpha = 1 - _0x10a292, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore());
     }
     this.drawWings();
 };
+_0x30dcb0.prototype.getSkinName = function () {
+        return './kingdragon/' + this.animalSpecies + '/kingdragon_body';
+    };
 KingDragon.prototype.drawLowWaterDrop = function () {
     if (this.flag_lowWat) {
         var _0x27f437 = 0.5 * (0.6),
@@ -14283,11 +14287,26 @@ KingDragon.prototype.drawLowWaterDrop = function () {
 KingDragon.prototype.animalInfo = function () {
      infoO = {};
   
-            infoO.aniName = "King Dragon";
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'King Dragon';
+            break;
+        case 0x1:
+            infoO.aniName = 'Golden King Dragon';
+            break;
+        case 0x2:
+            infoO.aniName = 'King Ripper';
+            break;
+        case 0x3:
+            infoO.aniName = 'King Stan';
+            break;
+        case 0x4:
+            infoO.aniName = 'King Shah';
+        }
             infoO.aniDesc = "";
             infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
             infoO.aniCol = "black";
-            infoO.skinName = "kingdragon/kingdragon";
+            infoO.skinName = this.getSkinName();
           
     return infoO;
 };
