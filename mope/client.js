@@ -1942,7 +1942,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
   anO.x = anO.ox = anO.nx = 0;
   anO.y = anO.oy = anO.ny = 0;
-  anO.rad=anO.oRad=anO.nRad= 20;
+  anO.rad=anO.oRad=anO.nRad= 30;
   
   this.drawnAniObj = anO;
   
@@ -2024,10 +2024,10 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
       //draw animal
       ctx.globalAlpha = origA;
-
-      this.drawnAniObj.nRad = this.drawnAniObj.rad = 0.55 * w / 2.0 * interfS;
+var _0x224eeb = this.w * (0.22500000000036);
+        this.drawnAniObj.nRad = this.drawnAniObj.rad = _0x224eeb;
       ctx.save();
-      ctx.scale(2.0, 2.0);
+      ctx.scale(2,2);
       this.drawnAniObj.teamID = teamID;
       this.drawnAniObj.draw();
       ctx.restore();
