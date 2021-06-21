@@ -14326,17 +14326,30 @@ KingDragon.prototype.animalInfo = function () {
         case 0:
             infoO.aniName = 'King Dragon';
             break;
-        case 0x1:
+        case 1:
             infoO.aniName = 'Golden King Dragon';
             break;
-        case 0x2:
+        case 2:
             infoO.aniName = 'King Ripper';
             break;
-        case 0x3:
+        case 3:
             infoO.aniName = 'King Stan';
             break;
-        case 0x4:
+        case 4:
             infoO.aniName = 'King Shah';
+            break;
+                  case 5:
+            infoO.aniName = 'Queen Scarlet';
+            break;
+                         case 6:
+            infoO.aniName = 'Queen Celeste';
+            break;
+                             case 69:
+            infoO.aniName = 'King Crimson';
+            break;
+                               case 200:
+            infoO.aniName = 'Queen Flame';
+            break;
         }
             infoO.aniDesc = "";
             infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
@@ -14685,7 +14698,7 @@ Pterodactyl.prototype.animalInfo = function () {
             infoO.aniName = 'Blue Pterodactyl';
        break;
         }
-infoO.aniName = 'Pterodactyl';
+
     infoO.aniCol = '#FF9000';
     infoO.skinName =  'desert/pterodactyl';
     infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
