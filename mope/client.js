@@ -1073,11 +1073,15 @@ var infoForAbilityT = function(abilT) {
         ".png";
       break;
         case ability_finalhit:
+
       infoO.abilName = "Tail Slap";
       infoO.abilImg =
-        "img/tailslap/" + infoForAnimalType(myPlayerLastAniT).skinName +
-        "tail" +
-        ".png";
+         "skins/" +
+          zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName + "/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "tail.png";
 
       break;
     case ability_elephantTrunkSmack:
@@ -2166,7 +2170,9 @@ var AbilityButton = function () {
 
         var imNum = Math.trunc(timestamp / 120) % 5;
         //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-        var theImg = getLoadedImg("img/fireball/0/" + imNum + ".png");
+         if (gameObjsByID[myPlayerID]) {
+        var theImg = getLoadedImg("img/fireball/0/" +gameObjsByID[myPlayerID].specType2 +"/" +imNum + ".png");
+         }
         if (theImg) {
           var rad = this.w * 0.4;
           var frame = 0;
@@ -10169,8 +10175,8 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.globalAlpha = 1.0 * oldA;
     
  
-        var theImg = getLoadedImg("img/tailslap/" + this.specType +
-        ".png");
+        var theImg = getLoadedImg("skins/kingdragon/" + this.specType +
+        "/tail.png");
         if (theImg) {
           var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 200.0);
 
@@ -13590,7 +13596,7 @@ Animal.prototype.drawTopEffects = function() {
         amp +
         amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
 
-      var theImg = getLoadedImg("img/fire/0.png");
+      var theImg = getLoadedImg("img/fire/0/0.png");
       if (theImg) {
         var imX = 0 - this.rad * 0.3,
           imY = this.rad * 0.2 - this.rad * 0.3;
