@@ -1770,43 +1770,6 @@ CachedText.prototype = {
 
       //_ctx.scale(scale, scale);
 
-      if (this.choicetxt) {
-        //basic multi-line fill!
-        var lineHeight = _ctx.measureText("M").width * 1.2;
-        var lines = text.split(" ");
-      
-        //re-size the canvas for mutiple lines...
-        var maxW = 0;
-        for (var i = 0; i < lines.length; ++i) {
-          maxW = Math.max(maxW, _ctx.measureText(lines[i]).width);
-        }
-        this.width = (maxW + 6) * scale;
-        this.height = (lineHeight * lines.length + h) * scale;
-        _canvas.width = this.width;
-        _canvas.height = this.height;
-        //fix size for renderScale
-        this.width /= this.renderScale;
-        this.height /= this.renderScale;
-   
-        _ctx.globalAlpha = 1;
-        _ctx.font = font;
-        //_ctx.lineWidth = 6;
-        if (this.strokeW > 0.0) {
-          _ctx.shadowOffsetX = this.strokeW; //0.3333 *this.renderScale;
-          _ctx.shadowOffsetY = this.strokeW; //0.3333 * this.renderScale;
-          _ctx.shadowColor = this.strokeColor; //"black";
-        }
-        _ctx.fillStyle = this._color;
-        _ctx.textAlign = "center";
-        //  _ctx.textBaseline = "middle"; //vertical center
-
-        var x = 3 + _canvas.width / 2,
-          y = fontsize - h / 2;
-        for (var i = 0; i < lines.length; ++i) {
-          _ctx.fillText(lines[i], x, y);
-          y += lineHeight;
-        }
-      }
       if (this.multiLine) {
         //basic multi-line fill!
         var lineHeight = _ctx.measureText("M").width * 1.2;
@@ -1866,6 +1829,44 @@ CachedText.prototype = {
 
 
         _ctx.fillText(text, 3, fontsize - h / 2);
+      }
+      
+      if (this.choicetxt) {
+        //basic multi-line fill!
+        var lineHeight = _ctx.measureText("M").width * 1.2;
+        var lines = text.split(" ");
+      
+        //re-size the canvas for mutiple lines...
+        var maxW = 0;
+        for (var i = 0; i < lines.length; ++i) {
+          maxW = Math.max(maxW, _ctx.measureText(lines[i]).width);
+        }
+        this.width = (maxW + 6) * scale;
+        this.height = (lineHeight * lines.length + h) * scale;
+        _canvas.width = this.width;
+        _canvas.height = this.height;
+        //fix size for renderScale
+        this.width /= this.renderScale;
+        this.height /= this.renderScale;
+   
+        _ctx.globalAlpha = 1;
+        _ctx.font = font;
+        //_ctx.lineWidth = 6;
+        if (this.strokeW > 0.0) {
+          _ctx.shadowOffsetX = this.strokeW; //0.3333 *this.renderScale;
+          _ctx.shadowOffsetY = this.strokeW; //0.3333 * this.renderScale;
+          _ctx.shadowColor = this.strokeColor; //"black";
+        }
+        _ctx.fillStyle = this._color;
+        _ctx.textAlign = "center";
+        //  _ctx.textBaseline = "middle"; //vertical center
+
+        var x = 3 + _canvas.width / 2,
+          y = fontsize - h / 2;
+        for (var i = 0; i < lines.length; ++i) {
+          _ctx.fillText(lines[i], x, y);
+          y += lineHeight;
+        }
       }
       //console.log("cached name : "+text);
     }
@@ -13541,8 +13542,8 @@ Animal.prototype.drawTopEffects = function() {
       var imNum = Math.trunc(timestamp / 100) % 5;
       var imNum2 = Math.trunc(timestamp / 150) % 5;
       //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-      var theImg = getLoadedImg("img/fire/" + imNum + ".png");
-      var theImg2 = getLoadedImg("img/fire/" + imNum2 + ".png");
+      var theImg = getLoadedImg("img/fire/0/" + imNum + ".png");
+      var theImg2 = getLoadedImg("img/fire/0/" + imNum2 + ".png");
 
       //var imNum = Math.trunc(timestamp / 300) % 2;
 
@@ -14530,15 +14531,24 @@ GiantScorpion.prototype.updateZ = function () {
     this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 : this.flag_eff_tossedInAir ? 1200 + this.rad : this.z + (1000 + this.rad);
 };
 GiantScorpion.prototype.animalInfo = function () {
-        var _0x5c08a0 = {};
-     
-        _0x5c08a0.aniName = 'Giant Scorpion';
+        var InfoO = {};
+        switch (this.animalSpecies) {
+        case 0:
+            InfoO.aniName = 'Giant Scorpion';
+            break;
+        case 1:
+            InfoO.aniName = 'Golden Scorpion';
+            break;
+        case 2:
+            InfoO.aniName = 'Carnelian Scorpion';
+        }
+        InfoO.aniName = 'Giant Scorpion';
         
     
-        _0x5c08a0.aniCol = '#FF9000';
-        _0x5c08a0.skinName = 'desert/' + this.animalSpecies+ '/scorpion';
-        _0x5c08a0.upgradeText = 'UPGRADED to ' + _0x5c08a0.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
-        return _0x5c08a0;
+        InfoO.aniCol = '#FF9000';
+        InfoO.skinName = 'desert/' + this.animalSpecies+ '/scorpion';
+        InfoO.upgradeText = 'UPGRADED to ' + InfoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+        return InfoO;
     };
 
     GiantScorpion.prototype.getSkinName = function () {
@@ -14661,6 +14671,20 @@ Pterodactyl.prototype.constructor = Pterodactyl;
 Pterodactyl.superClass = superClass;
 Pterodactyl.prototype.animalInfo = function () {
     var infoO = {};
+   switch (this.animalSpecies) {
+     case 0:
+            infoO.aniName = 'Pterodactyl';
+            break;
+        case 1:
+            infoO.aniName = 'Golden Pterodactyl';
+            break;
+        case 2:
+            infoO.aniName = 'Emerald Pterodactyl';
+       break;
+           case 12:
+            infoO.aniName = 'Blue Pterodactyl';
+       break;
+        }
 infoO.aniName = 'Pterodactyl';
     infoO.aniCol = '#FF9000';
     infoO.skinName =  'desert/pterodactyl';
