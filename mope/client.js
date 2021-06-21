@@ -862,7 +862,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             break;
         case a_thunderbird:
 
-            infoO.aniName = "The\nThunderbird!";
+            infoO.aniName = "The Thunderbird!";
             infoO.aniDesc = "";
             infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
@@ -12585,7 +12585,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
   case a_thunderbird:
 
-            infoO.aniName = "The\nThunderbird!";
+            infoO.aniName = "The Thunderbird!";
             infoO.aniDesc = "";
        infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
