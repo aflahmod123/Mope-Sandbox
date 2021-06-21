@@ -542,7 +542,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.skinName = "stingray";
             break;
         case a_kraken:
-            infoO.aniName = "The\nKraken";
+            infoO.aniName = "The Kraken";
             infoO.aniDesc = "";
             infoO.upgradeText = "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
             infoO.aniCol = "#64a034";
@@ -898,25 +898,25 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             break;
 
         case a_seaMonster:
-            infoO.aniName = "Sea\nMonster";
+            infoO.aniName = "Sea Monster";
             infoO.upgradeText = "UPGRADED to Sea Monster!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "seamonster";
             break;
         case a_landMonster:
-            infoO.aniName = "Land\nMonster";
+            infoO.aniName = "Land Monster";
             infoO.upgradeText = "UPGRADED to Land Monster!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "landmonster";
             break;
         case a_iceMonster:
-            infoO.aniName = "Ice\nMonster";
+            infoO.aniName = "Ice Monster";
             infoO.upgradeText = "UPGRADED to Ice Monster!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "monsters/icemonster/icemonster";
             break;
         case a_dinoMonster:
-            infoO.aniName = "Dino\nMonster";
+            infoO.aniName = "Dino Monster";
             infoO.upgradeText = "UPGRADED to Dino Monster!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "dinomonster";
@@ -1942,7 +1942,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
   anO.x = anO.ox = anO.nx = 0;
   anO.y = anO.oy = anO.ny = 0;
-  anO.rad=anO.oRad=anO.nRad= 30;
+  anO.rad=anO.oRad=anO.nRad= 20;
   
   this.drawnAniObj = anO;
   
@@ -2025,7 +2025,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       //draw animal
       ctx.globalAlpha = origA;
 
-      this.drawnAniObj.nRad = this.drawnAniObj.rad = 0.6 * w / 2.0 * interfS;
+      this.drawnAniObj.nRad = this.drawnAniObj.rad = 0.55 * w / 2.0 * interfS;
       ctx.save();
       ctx.scale(2.0, 2.0);
       this.drawnAniObj.teamID = teamID;
@@ -12197,7 +12197,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.skinName = "stingray";
       break;
     case a_kraken:
-      infoO.aniName = "The\nKraken";
+      infoO.aniName = "The Kraken";
       infoO.aniDesc = "";
       infoO.upgradeText =
         "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
@@ -12619,25 +12619,25 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
 
     case a_seaMonster:
-      infoO.aniName = "Sea\nMonster";
+      infoO.aniName = "Sea Monster";
       infoO.upgradeText = "UPGRADED to Sea Monster!";
       infoO.aniCol = "#FF9000";
       infoO.skinName = "monsters/seamonster";
       break;
     case a_landMonster:
-      infoO.aniName = "Land\nMonster";
+      infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
       infoO.skinName = "landmonster";
       break;
     case a_iceMonster:
-      infoO.aniName = "Ice\nMonster";
+      infoO.aniName = "Ice Monster";
       infoO.upgradeText = "UPGRADED to Ice Monster!";
       infoO.aniCol = "#FF9000";
       infoO.skinName = "monsters/icemonster/icemonster";
       break;
     case a_dinoMonster:
-      infoO.aniName = "Dino\nMonster";
+      infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
       infoO.skinName = "dinomonster";
