@@ -1973,7 +1973,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       //draw button bg square
       ctx.save();
       ctx.translate(this.x, this.y);
-      ctx.scale(0.8, 0.8);
+      ctx.scale(this.buttonScaleF, this.buttonScaleF);
       var origA = ctx.globalAlpha;
 
       //console.log("drawing button at "+this.x,this.y);
@@ -2034,7 +2034,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
       this.buttonTXT.setFontSize(23 * interfS);
       this.buttonTXT.x = 0;
-      this.buttonTXT.y = -this.h * 0.5 * 0.75;
+      this.buttonTXT.y = -this.h * 0.4 * 0.75;
       this.buttonTXT.draw();
 
       //ctx.font = 23 * interfS + "px Arial";
@@ -3847,7 +3847,7 @@ hotkeys.push('zxcvbnm'.split(''));
             window.matchMedia('(orientation: portrait)').matches && (ispopup = !1);
             window.matchMedia('(orientation: landscape)').matches && (ispopup = !0);
             ispopup ? 15 <= aniChoice_choiceButtons.length ? idealA = 120 : 10 <= aniChoice_choiceButtons.length ? idealA = 130 : 5 <= aniChoice_choiceButtons.length && (idealA = 140) : idealA = Math.max(80, window.innerWidth / 2 / 4);
-            var idealA = idealA * interfS,
+            var idealA = (idealA * interfS) / 1.2,
                 totalW = Math.max(0, aniChoice_choiceButtons.length);
             7 < aniChoice_choiceButtons.length && (totalW = Math.min(6, totalW));
             var _0x469399, ispopup = 0.25 * canvasH,
