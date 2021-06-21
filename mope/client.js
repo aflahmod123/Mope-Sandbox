@@ -2171,7 +2171,7 @@ var AbilityButton = function () {
         var imNum = Math.trunc(timestamp / 120) % 5;
         //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
          if (gameObjsByID[myPlayerID]) {
-        var theImg = getLoadedImg("img/fireball/0/" +gameObjsByID[myPlayerID].specType2 +"/" +imNum + ".png");
+        var theImg = getLoadedImg("img/fireball/" + gameObjsByID[myPlayerID].specType2 + "/" +imNum + ".png");
          }
         if (theImg) {
           var rad = this.w * 0.4;
@@ -14561,8 +14561,7 @@ GiantScorpion.prototype.animalInfo = function () {
         case 2:
             InfoO.aniName = 'Carnelian Scorpion';
         }
-        InfoO.aniName = 'Giant Scorpion';
-        
+      
     
         InfoO.aniCol = '#FF9000';
         InfoO.skinName = 'desert/' + this.animalSpecies+ '/scorpion';
