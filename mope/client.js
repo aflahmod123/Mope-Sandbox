@@ -1946,7 +1946,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
   
   this.drawnAniObj = anO;
   
-  this.buttonScaleF = 1.0; //scale primary button
+  this.buttonScaleF = 0; //scale primary button
   //this.touchMarginEx=20.0;
  
   //used to check clicks
@@ -1973,7 +1973,7 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       //draw button bg square
       ctx.save();
       ctx.translate(this.x, this.y);
-      ctx.scale(this.buttonScaleF, this.buttonScaleF);
+      ctx.scale(0.8, 0.8);
       var origA = ctx.globalAlpha;
 
       //console.log("drawing button at "+this.x,this.y);
@@ -14325,27 +14325,7 @@ KingDragon.prototype.drawLowWaterDrop = function () {
         ctx.restore();
     }
 };
-BlackDragon.prototype.animalInfo = function () {
-     infoO = {};
-  
-             switch (this.animalSpecies) {
-        case 0:
-            infoO.aniName = 'Black Dragon';
-            break;
-         case 1:
-            infoO.aniName = 'Golden Black Dragon';
-            break;
-        case 2:
-            infoO.aniName = 'Blue Dragon';
-        }
-  infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
-      infoO.aniCol = "black";
-      infoO.skinName = "blackdragon/" + this.animalSpecies + "/blackdragon";
-    return infoO;
-}
+
 KingDragon.prototype.animalInfo = function () {
      infoO = {};
   
@@ -16664,7 +16644,27 @@ var skin ="flying_blackdragon"
 
 
 
-
+BlackDragon.prototype.animalInfo = function () {
+     infoO = {};
+  
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'Black Dragon';
+            break;
+         case 1:
+            infoO.aniName = 'Golden Black Dragon';
+            break;
+        case 2:
+            infoO.aniName = 'Azure Bringer';
+        }
+  infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+      infoO.aniCol = "black";
+      infoO.skinName = this.getSkinName();
+    return infoO;
+}
   
   
   BlackDragon.prototype.drawSkinCustomization = function() {
