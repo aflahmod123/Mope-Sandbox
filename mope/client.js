@@ -14865,14 +14865,22 @@ Pterodactyl.prototype.getFrame = function () {
       this.canFlap = true,
       this.resumeFlapT = +new Date() + 1500)
   }
-  this.flag_flying && 0 > _0x2b4955 && this.countFlap ? (
+    if (this.flag_flying && 0 > _0x2b4955 && this.countFlap)  {
       this.countFlap = true, 
-      this.flaps++, 
-      0 == this.flaps % this.flapsMod && 
-      (this.lastFlapFrame = _0x2b4955, 
+      this.flaps++;
+     if(this.flaps % this.flapsMod == 0){
+     
+      this.lastFlapFrame = _0x2b4955, 
       this.canFlap = true,
-      this.resumeFlapT = +new Date() + 1500)) : 0 < _0x2b4955 && !this.countFlap && (this.countFlap = true);
-    this.canFlap ? this.lastFlapFrame = _0x2b4955 : _0x2b4955 = this.lastFlapFrame;
+      this.resumeFlapT = +new Date() + 1500;
+     }
+    }else{
+  if(0 < _0x2b4955 && !this.countFlap)    (this.countFlap = true);
+    }
+  
+  
+    if(!this.canFlap)  _0x2b4955 = this.lastFlapFrame;
+  else this.lastFlapFrame = _0x2b4955 ;
     return _0x2b4955;
 };
 Pterodactyl.prototype.beforeCustomDraw = function () {
