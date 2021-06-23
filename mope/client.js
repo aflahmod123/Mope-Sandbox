@@ -14059,6 +14059,10 @@ Animal.prototype.readCustomData_onUpdate = function(msg) {
   var lookAng = msg.readUInt8() * 2.0;
  // console.log("angle2: " + lookAng);
   var goalAngle = toRadians(lookAng + 90); //90 offset due to client drawing setup  heree
+
+  var myangle = toDegrees(this.angle ) - 90
+  
+  
   this.angleDelta = distBetweenAngles(this.angle, goalAngle);
   this.oAngle = this.angle;
   if (this.firstPosUpd) {
