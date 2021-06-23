@@ -14861,7 +14861,7 @@ Pterodactyl.prototype.getFrame = function () {
     if (this.flag_flying && 0 > _0x2b4955 && this.countFlap)  {
       this.countFlap = true, 
       this.flaps++;
-     if(this.flaps % this.flapsMod == 0){
+     if(this.flaps % this.flapsMod == 0&&timestamp > this.resumeFlapT){
       this.lastFlapFrame = _0x2b4955, 
       this.canFlap = false,
       this.resumeFlapT = +new Date() + 1500;
