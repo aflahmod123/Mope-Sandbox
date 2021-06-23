@@ -14859,6 +14859,9 @@ Pterodactyl.prototype.getFrame = function () {
         _0x2b4955 = !options_lowGraphics && this.canFlap ? getAnimFrame(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
 
     if (this.flag_flying && 0 > _0x2b4955 && this.countFlap && timestamp > this.resumeFlapT )  {
+      if(this.isGliding){
+  this.flaps = 0
+}
       this.countFlap = false, 
       this.flaps++;
  
