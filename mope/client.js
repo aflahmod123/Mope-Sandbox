@@ -14732,7 +14732,7 @@ Pterodactyl.prototype.getHand = function (_0x10826f, _0x5416bc) {
 };
 Pterodactyl.prototype.biteStart = 0;
 Pterodactyl.prototype.flaps = 0;
-Pterodactyl.prototype.flapsMod = 2;
+Pterodactyl.prototype.flapsMod = 5;
 Pterodactyl.prototype.countFlap = true;
 Pterodactyl.prototype.canFlap = !options_lowGraphics;
 Pterodactyl.prototype.resumeFlapT = 0;
@@ -14858,10 +14858,11 @@ Pterodactyl.prototype.getFrame = function () {
     var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
         _0x2b4955 = !options_lowGraphics && this.canFlap ? getAnimFrame(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
 
-    if (this.flag_flying && 0 > _0x2b4955 && this.countFlap)  {
-      this.countFlap = true, 
+    if (this.flag_flying && 0 > _0x2b4955 && this.countFlap && timestamp > this.resumeFlapT )  {
+      this.countFlap = false, 
       this.flaps++;
-     if(this.flaps % this.flapsMod == 0 && timestamp > this.resumeFlapT + 3000){
+ 
+     if(this.flaps % this.flapsMod == 0){
       this.lastFlapFrame = _0x2b4955, 
       this.canFlap = false,
       this.resumeFlapT = timestamp + 1500;
