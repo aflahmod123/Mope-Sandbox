@@ -14548,7 +14548,7 @@ GiantScorpion.prototype = Object.create(superClass.prototype);
 GiantScorpion.prototype.constructor = GiantScorpion;
 GiantScorpion.superClass = superClass;
 GiantScorpion.prototype.updateZ = function () {
-    this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 : this.flag_eff_tossedInAir ? 1200 + this.rad : this.z + (1000 + this.rad);
+    this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 :  this.z =(1500 + this.rad);
 };
 GiantScorpion.prototype.animalInfo = function () {
         var InfoO = {};
