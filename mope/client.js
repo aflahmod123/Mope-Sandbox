@@ -1308,7 +1308,16 @@ var infoForAbilityT = function(abilT) {
       infoO.abilName = "Fire";
       infoO.abilImg = "img/fire.png";
       break;
-    case 
+    case ability_yetiTransform:
+       infoO.abilName = "Yeti Roar!";
+      infoO.abilImg =
+        "skins/arctic/" +
+        zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName + "/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "ability.png";
+      break;
     case ability_fireShoot2:
       infoO.abilName = "Firestream\n& Tail Slap";
       infoO.abilImg = "img/fire.png";
@@ -16956,7 +16965,29 @@ Yeti.prototype.getSkinName = function() {
 
   return skin;
 };
-
+Yeti.prototype.animalInfo = function () {
+    var _0x1958a5 = {};
+    switch (this.animalSpecies) {
+    case 0:
+        _0x1958a5.aniName = 'The Yeti!';
+        break;
+    case 1:
+        _0x1958a5.aniName = 'Golden Yeti!';
+        break;
+    case 2:
+        _0x1958a5.aniName = 'Emerald Yeti!';
+        break;
+    case 3:
+        _0x1958a5.aniName = 'Aqua Yeti';
+    }
+    _0x1958a5.skinName = 'arctic/yeti/' + this.animalSpecies + '/yeti';
+    _0x1958a5.aniDesc = '';
+    _0x1958a5.upgradeText = 'UPGRADED to ' + _0x1958a5.aniName + `!\n
+ So it really exists... \n
+ Hold W to turn into snow, release W to freeeeeze!`;
+    _0x1958a5.aniCol = '#839eb5';
+    return _0x1958a5;
+};
 function Yeti() {
   Yeti.superClass.call(this, o_animal);
 }
