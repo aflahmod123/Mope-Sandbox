@@ -11908,6 +11908,10 @@ Animal.prototype.teamID = 0;
 Animal.prototype.wins1v1 = 0;
 Animal.prototype.birdNoAnimationFlyWingAngle = -0.2;
 //name font size
+Animal.prototype.setSkinScale = function () {
+    this.skinRad = this.rad - this.outlineW;
+    this.skinScale = 1.4705882352941;
+};
 Animal.prototype.getNameSize = function() {
   return 10.0; //Math.max(~~(.3 * this.size), 24)
 };
@@ -16952,6 +16956,7 @@ var Yeti = Yeti;
 var superClass = Animal;
 Yeti.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Yeti.prototype.constructor = Yeti;
+Yeti.prototype.isTransforming = true
 Yeti.superClass = superClass; //'class' var
 
 
@@ -16965,6 +16970,7 @@ Yeti.prototype.getSkinName = function() {
 
   return skin;
 };
+
 Yeti.prototype.animalInfo = function () {
     var _0x1958a5 = {};
     switch (this.animalSpecies) {
@@ -16987,6 +16993,50 @@ Yeti.prototype.animalInfo = function () {
  Hold W to turn into snow, release W to freeeeeze!`;
     _0x1958a5.aniCol = '#839eb5';
     return _0x1958a5;
+};
+Yeti.prototype.biteStart = 0;
+Yeti.prototype.flapAmount = 3;
+Yeti.prototype.flapDur = 1.5;
+Yeti.prototype.roarStartT = -500;
+Yeti.prototype.drawSkinCustomization = function () {
+    if (this.flag_usingAbility && this.isTransforming) {
+        if (this.isTransforming) {
+            ctx.save();
+            ctx.globalAlpha = 1;
+            var _0x2760d8 = getLoadedImg('img/snowball.png');
+            if (_0x2760d8) {
+                var _0x52f2a5 = this.rad;
+                ctx.rotate(this.rPer * Math.PI * 2);
+                ctx.drawImage(_0x2760d8, -_0x52f2a5, -_0x52f2a5, 2 * _0x52f2a5, 2 * _0x52f2a5);
+            } else this.drawOutlinedCircle('', 'white');
+            ctx.restore();
+        }
+    } else if (4 != this.animalSpecies)
+        if (this.setSkinScale(), this.flag_usingAbility) {
+            if (0 == this.biteStart && (this.biteStart = timestamp + this.roarStartT), 0 != this.specType && void 0 != this.specType) {
+                var _0x2760d8 = getLoadedImg('skins/arctic/yeti/' + this.animalSpecies + '/yeti_head1.png'),
+                    _0x52f2a5 = (timestamp - this.biteStart) / 1000,
+                    _0x4c3138 = 1.07 * this.skinScale;
+                if (_0x2760d8) {
+                    var _0x585de4;
+                    _0x585de4 = this.flapAmount - (1 == this.animalSpecies ? 0.5 : 0);
+                    _0x585de4 = _0x5cbc28 ? this.flapAmount : getAnimFrame(_0x52f2a5, this.flapDur, _0x585de4, 2);
+                    ctx.save();
+                    _0x52f2a5 = this.rad;
+                    ctx.drawImage(_0x2760d8, -_0x52f2a5 * _0x4c3138, (-_0x52f2a5 + 0.1 * _0x52f2a5) * _0x4c3138 - _0x585de4, 2 * _0x52f2a5 * _0x4c3138, 2 * _0x52f2a5 * _0x4c3138);
+                    ctx.restore();
+                }
+            }
+        } else this.biteStart = 0;
+};
+
+Yeti.prototype.readCustomData_onUpdate = function (_0x441063) {
+    Yeti.superClass.prototype.readCustomData_onUpdate.call(this, _0x441063);
+    this.isTransforming = 1 == _0x441063.readUInt8();
+};
+Yeti.prototype.readCustomData_onNewlyVisible = function (_0x36c899) {
+    Yeti.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x36c899);
+    this.isTransforming = 1 == _0x36c899.readUInt8();
 };
 function Yeti() {
   Yeti.superClass.call(this, o_animal);
