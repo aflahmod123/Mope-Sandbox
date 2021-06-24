@@ -1310,7 +1310,7 @@ var infoForAbilityT = function(abilT) {
       break;
 
     case ability_fireShoot2:
-      infoO.abilName = "Fire";
+      infoO.abilName = "Firestream\n& Tail Slap";
       infoO.abilImg = "img/fire.png";
       break;
 
