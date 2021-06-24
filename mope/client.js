@@ -1311,7 +1311,7 @@ var infoForAbilityT = function(abilT) {
     case ability_yetiTransform:
        infoO.abilName = "Yeti Roar!";
       infoO.abilImg =
-        "skins/arctic/" +
+        "skins/" +
         zombieFolder +
         infoForAnimalType(myPlayerLastAniT).skinName + "/" +
         myPlayer.animalSpecies + "/"
@@ -13450,21 +13450,6 @@ Animal.prototype.drawOnTopOfSkinImg = function() {
     ctx.fill();
   }
 
-  //yeti transform
-  if (this.flag_usingAbility && this.animalType == a_yeti) {
-    ctx.save();
-    ctx.globalAlpha = 1.0 - this.underwaterA;
-
-    var theImg = getLoadedImg("img/snowball.png");
-    if (theImg) {
-      var rad = this.rad;
-      ctx.rotate(this.rPer * Math.PI * 2.0);
-      ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
-      //console.log("drawing banana");
-    } else this.drawOutlinedCircle("", "white"); //disguise as snowball
-
-    ctx.restore();
-  }
 };
 
 //top layer, NOT ROTATED
@@ -16962,7 +16947,7 @@ Yeti.superClass = superClass; //'class' var
 
 Yeti.prototype.getSkinName = function() {
   var skin =
-    "yeti/" +
+    "arctic/yeti/" +
     this.animalSpecies +
     "/yeti" +
     (this.specType == 0 ? "" : this.specType);
@@ -17012,7 +16997,7 @@ Yeti.prototype.drawSkinCustomization = function () {
             ctx.restore();
         }
     } else if (4 != this.animalSpecies)
-        if (this.setSkinScale(), this.flag_usingAbility) {
+        if (this.flag_usingAbility) {
             if (0 == this.biteStart && (this.biteStart = timestamp + this.roarStartT), 0 != this.specType && void 0 != this.specType) {
                 var _0x2760d8 = getLoadedImg('skins/arctic/yeti/' + this.animalSpecies + '/yeti_head1.png'),
                     _0x52f2a5 = (timestamp - this.biteStart) / 1000,
@@ -17020,7 +17005,7 @@ Yeti.prototype.drawSkinCustomization = function () {
                 if (_0x2760d8) {
                     var _0x585de4;
                     _0x585de4 = this.flapAmount - (1 == this.animalSpecies ? 0.5 : 0);
-                    _0x585de4 = _0x5cbc28 ? this.flapAmount : getAnimFrame(_0x52f2a5, this.flapDur, _0x585de4, 2);
+                    _0x585de4 = options_lowGraphics ? this.flapAmount : getAnimFrame(_0x52f2a5, this.flapDur, _0x585de4, 2);
                     ctx.save();
                     _0x52f2a5 = this.rad;
                     ctx.drawImage(_0x2760d8, -_0x52f2a5 * _0x4c3138, (-_0x52f2a5 + 0.1 * _0x52f2a5) * _0x4c3138 - _0x585de4, 2 * _0x52f2a5 * _0x4c3138, 2 * _0x52f2a5 * _0x4c3138);
