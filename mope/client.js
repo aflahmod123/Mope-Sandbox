@@ -12742,7 +12742,7 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     (this.flag_usingAbility &&
       (this.animalType == a_mole ||
         this.animalType == a_octopus ||
-        this.animalType == a_yeti))
+        this.isTransforming&& this.animalType == a_yeti))
       ? 0.0
       : 1.0;
 
