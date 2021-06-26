@@ -14055,6 +14055,7 @@ Animal.prototype.readCustomData_onUpdate = function(msg) {
   this.specType2 = msg.readUInt8();
 
   var lookAng = msg.readUInt8() * 2.0;
+  this.currentangle = lookAng;
  // console.log("angle2: " + lookAng);
   var goalAngle = toRadians(lookAng + 90); //90 offset due to client drawing setup  heree
 
@@ -14137,6 +14138,7 @@ for (var J = 0; J < cnt; J++) {
   //}
 };
 Animal.prototype.winsAddedInNick = true;
+Animal.prototype.currentangle = 0;
 function Animal(oType, secondaryType) {
   Animal.superClass.call(this, o_animal); //call superclass init method (if needed, or write a new one below)
 
