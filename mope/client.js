@@ -7377,30 +7377,8 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         
       }
       break;
-    case o_bigHidingHole:
+     case o_bigHidingHole:
       {
-  
-          if(this.specType == 0){
-             this.drawOutlinedCircle("", "#E7E7E7");
-        //drawCircle(0, 0, this.rad, "#9F8641");
-
-        if (!options_lowGraphics) {
-          drawCircle(
-            0 - this.rPer,
-            0 - this.rPer,
-            Math.max(0, this.rad - 7),
-            "#DBDBDB"
-          );
-        }
-
-        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 14), "#CDCDCD");
-        drawCircle(
-          0 - this.rPer * 2 - 3,
-          1,
-          Math.max(0, this.rad - 18.5),
-          "#C2C2C2"
-        );   
-          }else{
         this.drawOutlinedCircle("", "#9F8641");
         //drawCircle(0, 0, this.rad, "#9F8641");
 
@@ -7421,7 +7399,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           "#40371D"
         );
 
-          }
+
       }
       break;
     case o_hidingBush:
