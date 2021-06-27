@@ -9613,11 +9613,9 @@ GameObj.prototype.updateZ = function() {
       break;
 
     case o_bigHidingHole:
-        if(this.specType ==0){
-             this.z = 1001;  
-        }else{
+    
       this.z = -101;
-        }
+        
       break;
     case o_hidingHole:
       this.z = -100;
