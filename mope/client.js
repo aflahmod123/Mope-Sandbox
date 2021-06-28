@@ -9481,8 +9481,13 @@ GameObj.prototype.worldUpd_readMsgRemovedObj = function(msg) {
     this.ox = this.x;
     this.oy = this.y;
     //this.oRad = this.rad;
+    
     this.nx = this.x;
     this.ny = this.y;
+    if(this.abilityType == ability_freezeprey){
+    this.nx = killerObj.nx; //move to future pos
+    this.ny = killerObj.ny;
+    }
   } else if (killerObj) {
     //kill with animation
     this.ox = this.x;
