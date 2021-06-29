@@ -12574,7 +12574,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.upgradeText =
         "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "falcon/falcon";
+      infoO.skinName = "falcon/0/falcon";
 
       break;
   case a_thunderbird:
@@ -15431,7 +15431,10 @@ Falcon.superClass = superClass; //'class' var
 //set custom skin name
 Falcon.prototype.getSkinName = function() {
   return (
-    "falcon/falcon" +
+    "falcon/"
+    +
+    this.animalSpecies
+    +"falcon" +
     (this.specType == 0 || this.specType == undefined ? "" : this.specType)
   );
 };
