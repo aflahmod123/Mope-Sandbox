@@ -15434,7 +15434,7 @@ Falcon.prototype.getSkinName = function() {
     "falcon/"
     +
     this.animalSpecies
-    +"falcon" +
+    +"/falcon" +
     (this.specType == 0 || this.specType == undefined ? "" : this.specType)
   );
 };
