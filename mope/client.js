@@ -15451,7 +15451,7 @@ Falcon.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
       : this.birdNoAnimationFlyWingAngle;
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15480,7 +15480,7 @@ Falcon.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15518,7 +15518,7 @@ Falcon.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
       : 0;
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15547,7 +15547,7 @@ Falcon.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15586,7 +15586,7 @@ Falcon.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
       : 0;
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing1.png");
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15615,7 +15615,7 @@ Falcon.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(skins + "/falcon/falcon_wing2.png");
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -15648,7 +15648,7 @@ Falcon.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(skins + "/falcon/falcon_head.png");
+    var theHead = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_head.png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
