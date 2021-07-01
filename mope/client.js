@@ -13654,6 +13654,7 @@ Animal.prototype.drawTopEffects = function() {
   //draw skin
   if (this.animalType == a_giantSpider && this.flag_usingAbility) {
     ctx.save();
+    console.log(this.flag_usingability)
 
     var fac0to1 = (timestamp - this.spawnTime) % 1000.0/1000.0;
     var period = 0.75;
