@@ -13652,7 +13652,36 @@ Animal.prototype.drawTopEffects = function() {
   }
 
   //draw skin
+  if (this.animalType == a_giantSpider && this.flag_usingAbility) {
+    ctx.save();
 
+    var fac0to1 = (timestamp - this.spawnTime) % 1000.0/1000.0;
+    var period = 0.75;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+    var x = 100
+    var waveMoveTms=1.0*1000; //ms to one full movement
+        var fac0to1 = (timestamp - this.spawnTime) % waveMoveTms /waveMoveTms;
+        var waveX= x + this.rad * 2  * (fac0to1);
+
+    var theA = 1;
+    ctx.globalAlpha *= 0.8 - 0.2 * moveA;
+    drawCircle(
+      this.rad * 0.15,
+      -this.rad * 1.27,
+      this.rad * (0.1 + 0.05 * moveA),
+      "#efefef"
+    );
+    drawCircle(
+      -this.rad * 0.15,
+      -this.rad * 1.27,
+      this.rad * (0.1 - 0.05 * moveA),
+      "#efefef"
+    );
+    drawCircle(0, -this.rad * 0.3, this.rad * (1.05 + 0.1 * moveA), "#7BB7BB");
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
   //frozen white glow
   if (this.frozenEffA > 0.01) {
     ctx.save();
@@ -13799,36 +13828,7 @@ Animal.prototype.drawTopEffects = function() {
   }
 
   //ice sliding effect
-  if (this.animalType == a_giantSpider && this.flag_usingAbility) {
-     ctx.save();
 
-    var fac0to1 = (timestamp - this.spawnTime) % 1000.0/1000.0;
-    var period = 0.75;
-    var shiftAm = 1.0;
-    var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
-    var x = 100
-    var waveMoveTms=1.0*1000; //ms to one full movement
-        var fac0to1 = (timestamp - this.spawnTime) % waveMoveTms /waveMoveTms;
-        var waveX= x + this.rad * 2  * (fac0to1);
-console.log('hi')
-    var theA = ctx.globalAlpha;
-    ctx.globalAlpha *= 0.8 - 0.2 * moveA;
-    drawCircle(
-      this.rad * 0.15,
-      -this.rad * 1.27,
-      this.rad * (0.1 + 0.05 * moveA),
-      "#efefef"
-    );
-    drawCircle(
-      -this.rad * 0.15,
-      -this.rad * 1.27,
-      this.rad * (0.1 - 0.05 * moveA),
-      "#efefef"
-    );
-    drawCircle(0, -this.rad * 0.3, this.rad * (1.05 + 0.1 * moveA), "#7BB7BB");
-    ctx.globalAlpha = theA;
-        ctx.restore();
-  }
 
   //web stuck
   var idealOp = this.flag_webStuck ? 1.0 : 0.0;
