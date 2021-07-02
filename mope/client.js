@@ -15022,12 +15022,16 @@ var superClass = Animal;
 IceMonster.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 IceMonster.prototype.constructor = IceMonster;
 IceMonster.superClass = superClass; //'class' var
-
-  
-
-IceMonster.prototype.readCustomData_onUpdate = function(msg){
-    IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
-
+IceMonster.prototype.readCustomData_onNewlyVisible = function (msg) {
+        IceMonster.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+        this.readInfo(msg);
+    };
+    IceMonster.prototype.readCustomData_onUpdate = function (msg) {
+        IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+        this.readInfo(msg);
+    };
+    IceMonster.prototype.readInfo = function (msg) {
+      
                 var _0xa9f163 = msg.readUInt8();
                 this.crystals = [];
                 for (i = 0; i < _0xa9f163  ; i++) {
@@ -15047,7 +15051,8 @@ IceMonster.prototype.readCustomData_onUpdate = function(msg){
                     });
                    
           };
-};
+    };
+ 
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
 
  var _0x32e153 = this.rad - this.outlineW;
