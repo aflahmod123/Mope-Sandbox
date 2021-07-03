@@ -1043,8 +1043,10 @@ var infoForAbilityT = function(abilT) {
   
 
   switch (abilT) {
+      
          case ability_pterodactyl:
         infoO.abilName = "Dive Attack\n(Fly with Prey)";
+      if(myPlayer){
       infoO.abilImg =
         "skins/desert/" +
         zombieFolder +
@@ -1052,9 +1054,12 @@ var infoForAbilityT = function(abilT) {
         myPlayer.animalSpecies + "/"
         +
         "pterodactyl_ability.png";
+      }
       break;
     case ability_stingscorp:
+      
         infoO.abilName = "Sting!\n(Shivers Prey)";
+       if(myPlayer){
       infoO.abilImg =
         "skins/desert/" +
         zombieFolder +
@@ -1062,6 +1067,7 @@ var infoForAbilityT = function(abilT) {
         myPlayer.animalSpecies + "/"
         +
         "scorpion_ability.png";
+              }
       break;
 
     case ability_whaleTailHit:
@@ -1073,7 +1079,7 @@ var infoForAbilityT = function(abilT) {
         ".png";
       break;
         case ability_finalhit:
-
+   if(myPlayer){
       infoO.abilName = "Tail Slap";
       infoO.abilImg =
          "skins/" +
@@ -1082,7 +1088,7 @@ var infoForAbilityT = function(abilT) {
         myPlayer.animalSpecies + "/"
         +
         "tail.png";
-
+     }
       break;
     case ability_elephantTrunkSmack:
       infoO.abilName = "Trunk Hit";
