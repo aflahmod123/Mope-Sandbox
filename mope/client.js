@@ -24021,7 +24021,7 @@ function drawArrow(src, dest, color) {
       y: dest.y
     }
   );
-  if ((dest.rad < 100 && distance < dest.rad * 0.5) || distance < 200) return;
+  
   //angle += Math.PI
   angle += toRadians(45);
 
