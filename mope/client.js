@@ -8568,7 +8568,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           }
         }
 
-        // fillGrid(-this.rectW / 2 + minusForEdge, -this.rectH / 2 + minusForEdge, this.rectW / 2 - minusForEdge, this.rectH / 2 - minusForEdge);
+         fillGrid(-this.rectW / 2 + minusForEdge, -this.rectH / 2 + minusForEdge, this.rectW / 2 - minusForEdge, this.rectH / 2 - minusForEdge);
       }
       break;
     case o_biome_land:
