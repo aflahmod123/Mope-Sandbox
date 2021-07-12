@@ -306,9 +306,10 @@ a_thunderbird = 76,
 a_pterodactyl = 77,
 a_scorpion = 78,
     a_kingdragon = 79,
+    a_bigfoot = 80,
 a_lochness = 83,
 a_griffin = 84,
-a_santa = 85;
+a_santa = 85,
 a_finaldragon = 86;
 var infoForAnimalType = function (aniT) {
     var infoO = {};
@@ -321,6 +322,15 @@ var infoForAnimalType = function (aniT) {
             infoO.aniCol = "#fcc02b";
             infoO.skinName = "snail";
             break;
+      case a_bigfoot:
+            infoO.aniName = "The BigFoot";
+            infoO.aniDesc = "";
+            infoO.upgradeText= 'UPGRADED to ' + infoO.aniName + `! So it really exists... \n
+ Right click/W to throw Spears. \n
+Hold to make a fire (every 30s)`;
+            infoO.aniCol = "#839eb5";
+            infoO.skinName = "land/bigfoot/bigfoot";
+        break;
         case a_kingdragon:
             infoO.aniName = "King Dragon";
             infoO.aniDesc = "";
@@ -11958,6 +11968,15 @@ Animal.prototype.animalInfo = function() {
       infoO.aniCol = "#fcc02b";
       infoO.skinName = "snail";
       break;
+          case a_bigfoot:
+            infoO.aniName = "The BigFoot";
+            infoO.aniDesc = "";
+            infoO.upgradeText= 'UPGRADED to ' + infoO.aniName + `! So it really exists... \n
+ Right click/W to throw Spears. \n
+Hold to make a fire (every 30s)`;
+            infoO.aniCol = "#839eb5";
+            infoO.skinName = "land/bigfoot/bigfoot";
+        break;
         case a_kingdragon:
             infoO.aniName = "King Dragon";
             infoO.aniDesc = "";
@@ -14902,7 +14921,163 @@ GameObjType.setCustomClassForGameObjType(Pterodactyl, o_animal, a_pterodactyl);
 ///////
 // file: js_src/gameobj/animal/bigfoot.js
 ///////
+Bigfoot.prototype = Object.create(superClass.prototype);
+Bigfoot.prototype.constructor = Bigfoot;
+Bigfoot.superClass = superClass;
+Bigfoot.prototype.animalInfo = function () {
+    var _0x1e5890 = {
+        'aniName': 'The BigFoot',
+        'skinName': 'land/bigfoot/bigfoot',
+        'aniDesc': ''
+    };
+    _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... \n
+ Right click/W to throw Spears. \n
+Hold to make a fire (every 30s)`;
+    _0x1e5890.aniCol = '#839eb5';
+    return _0x1e5890;
+};
+Bigfoot.prototype.getAbilityInfo = function (_0x4f532b) {
+    return {
+        'abilName': `Throw Spear\
+ (Hold for fire!)`,
+        'abilImg': 'skins/land/bigfoot/ability.png'
+    };
+};
+Bigfoot.prototype.getSkinName = function () {
+    var _0x21b754;
+    _0x21b754 = 'land/bigfoot/';
+    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'thebigfoot' : _0x21b754 + 'bigfoot';
+};
+Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
+    this.isCamouflage || Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
+};
+Bigfoot.prototype.drawHealthBar = function () {
+    this.isCamouflage || Bigfoot.superClass.prototype.drawHealthBar.call(this);
+};
+Bigfoot.prototype.isTransforming = true;
+Bigfoot.prototype.isCamouflage = true;
+Bigfoot.prototype.carrotAlpha = 0;
+Bigfoot.prototype.getIdealOpacity = function () {
+    return this.flag_underWater || this.flag_usingAbility && this.isTransforming || this.isCamouflage ? 0 : 1;
+};
+Bigfoot.prototype.biteStart = 0;
+Bigfoot.prototype.flapAmount = 3;
+Bigfoot.prototype.flapDur = 1.5;
+Bigfoot.prototype.roarStartT = -500;
+Bigfoot.prototype.spearThrow = function () {
+    ctx.save();
+    var _0x579217 = getLoadedImg('skins/land/bigfoot/arm21.png');
+    if (_0x579217) {
+        var _0xb1f6b5 = Math.min(1, (timestamp - this.biteStart) / 200),
+            _0x32a744 = -getAnimFrame((timestamp - this.biteStart) / 300, 0, 1) * toRadians(90);
+        ctx.rotate(this.angle + _0x32a744);
+        var _0x32a744 = 1.75 * -this.rad,
+            _0x5a871d = 2 * _0x32a744,
+            _0xb1f6b5 = 2 * _0x32a744 * _0xb1f6b5;
+        ctx.drawImage(_0x579217, this.rad / 1.7 * _0x5a871d, this.rad + -0.8 * _0xb1f6b5 + _0x32a744, _0x5a871d, _0xb1f6b5);
+    }
+    ctx.restore();
+};
+Bigfoot.prototype.drawSkinCustomization = function () {
+    this.flag_underWater || (this.setSkinScale(), this.flag_usingAbility || (this.biteStart = 0), 0x0 != this.id && this.spearInHand ? this.spearHandAnimation(0) : this.leftHandAnimation(0), this.rightHandAnimation(0), this.bigfootHead(0), this.flag_usingAbility || this.flag_inHidingHole || this.oogaBoogaAnimation(0));
+};
+Bigfoot.prototype.oogaBoogaNextT = +new Date() 15000;
+Bigfoot.prototype.oogaBoogaFrame = 0;
+Bigfoot.prototype.oogaBoogaFrameT = 0;
+Bigfoot.prototype.oogaBoogaAnimation = function (_0x416072) {
+    timestamp > this.oogaBoogaNextT && (timestamp > this.oogaBoogaFrameT && (this.oogaBoogaFrameT = timestamp + 300, this.oogaBoogaFrame += 1, 1 == this.oogaBoogaFrame ? this.gotChat('OOGA!') : 3 == this.oogaBoogaFrame && this.gotChat('BOOGA!')), 4 < this.oogaBoogaFrame && (this.oogaBoogaFrame = 0, this.oogaBoogaNextT = +new Date() + 15000));
+    if (0 < this.oogaBoogaFrame) {
+        _0x416072 = 1.4705882352941;
+        var _0x5e66b4 = getLoadedImg('skins/land/bigfoot/mouth' + this.oogaBoogaFrame + '.png');
+        if (_0x5e66b4) {
+            ctx.save();
+            var _0x2321b1 = this.rad;
+            ctx.drawImage(_0x5e66b4, -_0x2321b1 * _0x416072, (-_0x2321b1 + 0 * _0x2321b1) * _0x416072, 2 * _0x2321b1 * _0x416072, 2 * _0x2321b1 * _0x416072);
+            ctx.restore();
+        }
+    }
+};
+Bigfoot.prototype.spearInHand = true;
+Bigfoot.prototype.canCreateFire = true;
+Bigfoot.prototype.readCustomData_onUpdate = function (_0x508108) {
+    Bigfoot.superClass.prototype.readCustomData_onUpdate.call(this, _0x508108);
+    this.spearInHand = 1 == _0x508108.readUInt8();
+    this.canCreateFire = 1 == _0x508108.readUInt8();
+};
+Bigfoot.prototype.readCustomData_onNewlyVisible = function (_0x3e7886) {
+    Bigfoot.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x3e7886);
+};
+var _0x21286e = 0.84,
+    _0x429324 = 0.47,
+    _0x35932c = 45,
+    _0x4c4312 = -30,
+    _0x8a441a = 1.3,
+    _0x57bed6 = 1.5,
+    _0x4bd1bd = 0.3;
+Bigfoot.prototype.bigfootHead = function (_0x6b80a5) {
+    _0x6b80a5 = 0;
+    var _0x5095f8 = 1.4705882352941,
+        _0x450bb2 = this.flag_usingAbility ? 'head2' : 'head';
+    this.flag_usingAbility || (_0x6b80a5 = 0);
+    if (_0x450bb2 = getLoadedImg('skins/land/bigfoot/' + _0x450bb2 + '.png')) {
+        ctx.save();
+        var _0x1fbab2 = this.rad;
+        ctx.drawImage(_0x450bb2, -_0x1fbab2 * _0x5095f8, (-_0x1fbab2 + _0x1fbab2 * _0x6b80a5) * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8);
+        ctx.restore();
+    }
+};
+Bigfoot.prototype.spearHandAnimation = function (_0x11c623) {
+    var _0x58599c = (timestamp - this.spawnTime) / 1000,
+        _0x58599c = _0x93972d(_0x58599c, _0x57bed6, _0x4bd1bd, 2),
+        _0x2ed9c5 = getLoadedImg('skins/land/bigfoot/arm2.png');
+    if (_0x2ed9c5) {
+        ctx.save();
+        _0x11c623 = -(-0.2 + _0x58599c) * toRadians(_0x35932c);
+        var _0x1dbe08 = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(_0x4c4312) + _0x11c623);
+        _0x11c623 = this.rad;
+        var _0x3c4cf3 = 2 * _0x1dbe08,
+            _0x1dbe08 = 2 * _0x1dbe08,
+            _0x433d7a = _0x429324,
+            _0x45b0e5 = _0x21286e;
+        ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08);
+        this.canCreateFire && (_0x2ed9c5 = getLoadedImg('skins/land/bigfoot/arm2-fire.png')) && (_0x58599c = (timestamp - this.spawnTime) / 1000, _0x58599c = _0x93972d(_0x58599c, 5, 1, 1), ctx.globalAlpha = Math.max(0, _0x58599c), ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08));
+        ctx.restore();
+    }
+};
+Bigfoot.prototype.rightHandAnimation = function (_0x1b64dd) {
+    var _0x4e432d = _0x93972d((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x1b64dd = getLoadedImg('skins/land/bigfoot/arm1.png')) {
+        ctx.save();
+        var _0x1ddbe6 = -_0x4e432d * toRadians(-10),
+            _0x4e432d = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(-5) + _0x1ddbe6);
+        _0x1ddbe6 = 2 * _0x4e432d;
+        _0x4e432d *= 2;
+        ctx.drawImage(_0x1b64dd, -0.55 * _0x1ddbe6, this.rad + -0.85 * _0x4e432d, _0x1ddbe6, _0x4e432d);
+        ctx.restore();
+    }
+};
+Bigfoot.prototype.leftHandAnimation = function (_0x3e895b) {
+    var _0x5e6af1 = _0x93972d((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x3e895b = getLoadedImg('skins/land/bigfoot/arm21.png')) {
+        ctx.save();
+        var _0x38240d = -_0x5e6af1 * toRadians(-10),
+            _0x5e6af1 = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(-5) + _0x38240d);
+        _0x38240d = 2 * _0x5e6af1;
+        _0x5e6af1 *= 2;
+        ctx.drawImage(_0x3e895b, -0.47 * _0x38240d, this.rad + -0.8 * _0x5e6af1, _0x38240d, _0x5e6af1);
+        ctx.restore();
+    }
+};
 
+function Bigfoot() {
+    Bigfoot.superClass.call(this, o_animal);
+    this.oogaBoogaNextT = +new Date() + 15000;
+}
+window.BigFoot = Bigfoot;
+GameObjType.setCustomClassForGameObjType(Bigfoot, o_animal, a_bigfoot);
 
 ///////
 // file: js_src/gameobj/animal/santa.js
