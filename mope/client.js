@@ -9082,7 +9082,7 @@ GameObj.prototype.drawHealthBar = function() {
   }
   ctx.restore(); //restore from fade
 
-  if(this.id == myPlayerID  )
+  if(this.id == myPlayerID)
     this.drawInfectionBar();
 };
 
@@ -14899,6 +14899,11 @@ function Pterodactyl() {
 }
 window.Pterodactyl = Pterodactyl;
 GameObjType.setCustomClassForGameObjType(Pterodactyl, o_animal, a_pterodactyl);
+///////
+// file: js_src/gameobj/animal/bigfoot.js
+///////
+
+
 ///////
 // file: js_src/gameobj/animal/santa.js
 ///////
