@@ -329,7 +329,7 @@ var infoForAnimalType = function (aniT) {
  Right click/W to throw Spears. \n
 Hold to make a fire (every 30s)`;
             infoO.aniCol = "#839eb5";
-            infoO.skinName = "land/bigfoot/bigfoot";
+            infoO.skinName = "bigfoot/bigfoot";
         break;
         case a_kingdragon:
             infoO.aniName = "King Dragon";
@@ -11975,7 +11975,7 @@ Animal.prototype.animalInfo = function() {
  Right click/W to throw Spears. \n
 Hold to make a fire (every 30s)`;
             infoO.aniCol = "#839eb5";
-            infoO.skinName = "land/bigfoot/bigfoot";
+            infoO.skinName = "bigfoot/bigfoot";
         break;
         case a_kingdragon:
             infoO.aniName = "King Dragon";
@@ -14927,7 +14927,7 @@ Bigfoot.superClass = superClass;
 Bigfoot.prototype.animalInfo = function () {
     var _0x1e5890 = {
         'aniName': 'The BigFoot',
-        'skinName': 'land/bigfoot/bigfoot',
+        'skinName': 'bigfoot/bigfoot',
         'aniDesc': ''
     };
     _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... \n
@@ -14940,12 +14940,12 @@ Bigfoot.prototype.getAbilityInfo = function (_0x4f532b) {
     return {
         'abilName': `Throw Spear\
  (Hold for fire!)`,
-        'abilImg': 'skins/land/bigfoot/ability.png'
+        'abilImg': 'skins/bigfoot/ability.png'
     };
 };
 Bigfoot.prototype.getSkinName = function () {
     var _0x21b754;
-    _0x21b754 = 'land/bigfoot/';
+    _0x21b754 = 'bigfoot/';
     return _0x21b754 = this.flag_underWater ? _0x21b754 + 'thebigfoot' : _0x21b754 + 'bigfoot';
 };
 Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
@@ -14966,10 +14966,10 @@ Bigfoot.prototype.flapDur = 1.5;
 Bigfoot.prototype.roarStartT = -500;
 Bigfoot.prototype.spearThrow = function () {
     ctx.save();
-    var _0x579217 = getLoadedImg('skins/land/bigfoot/arm21.png');
+    var _0x579217 = getLoadedImg('skins/bigfoot/arm21.png');
     if (_0x579217) {
         var _0xb1f6b5 = Math.min(1, (timestamp - this.biteStart) / 200),
-            _0x32a744 = -getAnimFrame((timestamp - this.biteStart) / 300, 0, 1) * toRadians(90);
+            _0x32a744 = -clamp((timestamp - this.biteStart) / 300, 0, 1) * toRadians(90);
         ctx.rotate(this.angle + _0x32a744);
         var _0x32a744 = 1.75 * -this.rad,
             _0x5a871d = 2 * _0x32a744,
@@ -14981,14 +14981,14 @@ Bigfoot.prototype.spearThrow = function () {
 Bigfoot.prototype.drawSkinCustomization = function () {
     this.flag_underWater || (this.setSkinScale(), this.flag_usingAbility || (this.biteStart = 0), 0x0 != this.id && this.spearInHand ? this.spearHandAnimation(0) : this.leftHandAnimation(0), this.rightHandAnimation(0), this.bigfootHead(0), this.flag_usingAbility || this.flag_inHidingHole || this.oogaBoogaAnimation(0));
 };
-Bigfoot.prototype.oogaBoogaNextT = +new Date() 15000;
+Bigfoot.prototype.oogaBoogaNextT = +new Date() +15000;
 Bigfoot.prototype.oogaBoogaFrame = 0;
 Bigfoot.prototype.oogaBoogaFrameT = 0;
 Bigfoot.prototype.oogaBoogaAnimation = function (_0x416072) {
     timestamp > this.oogaBoogaNextT && (timestamp > this.oogaBoogaFrameT && (this.oogaBoogaFrameT = timestamp + 300, this.oogaBoogaFrame += 1, 1 == this.oogaBoogaFrame ? this.gotChat('OOGA!') : 3 == this.oogaBoogaFrame && this.gotChat('BOOGA!')), 4 < this.oogaBoogaFrame && (this.oogaBoogaFrame = 0, this.oogaBoogaNextT = +new Date() + 15000));
     if (0 < this.oogaBoogaFrame) {
         _0x416072 = 1.4705882352941;
-        var _0x5e66b4 = getLoadedImg('skins/land/bigfoot/mouth' + this.oogaBoogaFrame + '.png');
+        var _0x5e66b4 = getLoadedImg('skins/bigfoot/mouth' + this.oogaBoogaFrame + '.png');
         if (_0x5e66b4) {
             ctx.save();
             var _0x2321b1 = this.rad;
@@ -15019,7 +15019,7 @@ Bigfoot.prototype.bigfootHead = function (_0x6b80a5) {
     var _0x5095f8 = 1.4705882352941,
         _0x450bb2 = this.flag_usingAbility ? 'head2' : 'head';
     this.flag_usingAbility || (_0x6b80a5 = 0);
-    if (_0x450bb2 = getLoadedImg('skins/land/bigfoot/' + _0x450bb2 + '.png')) {
+    if (_0x450bb2 = getLoadedImg('skins/bigfoot/' + _0x450bb2 + '.png')) {
         ctx.save();
         var _0x1fbab2 = this.rad;
         ctx.drawImage(_0x450bb2, -_0x1fbab2 * _0x5095f8, (-_0x1fbab2 + _0x1fbab2 * _0x6b80a5) * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8);
@@ -15028,8 +15028,8 @@ Bigfoot.prototype.bigfootHead = function (_0x6b80a5) {
 };
 Bigfoot.prototype.spearHandAnimation = function (_0x11c623) {
     var _0x58599c = (timestamp - this.spawnTime) / 1000,
-        _0x58599c = _0x93972d(_0x58599c, _0x57bed6, _0x4bd1bd, 2),
-        _0x2ed9c5 = getLoadedImg('skins/land/bigfoot/arm2.png');
+        _0x58599c = getAnimFrame(_0x58599c, _0x57bed6, _0x4bd1bd, 2),
+        _0x2ed9c5 = getLoadedImg('skins/bigfoot/arm2.png');
     if (_0x2ed9c5) {
         ctx.save();
         _0x11c623 = -(-0.2 + _0x58599c) * toRadians(_0x35932c);
@@ -15041,13 +15041,13 @@ Bigfoot.prototype.spearHandAnimation = function (_0x11c623) {
             _0x433d7a = _0x429324,
             _0x45b0e5 = _0x21286e;
         ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08);
-        this.canCreateFire && (_0x2ed9c5 = getLoadedImg('skins/land/bigfoot/arm2-fire.png')) && (_0x58599c = (timestamp - this.spawnTime) / 1000, _0x58599c = _0x93972d(_0x58599c, 5, 1, 1), ctx.globalAlpha = Math.max(0, _0x58599c), ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08));
+        this.canCreateFire && (_0x2ed9c5 = getLoadedImg('skins/bigfoot/arm2-fire.png')) && (_0x58599c = (timestamp - this.spawnTime) / 1000, _0x58599c = _0x93972d(_0x58599c, 5, 1, 1), ctx.globalAlpha = Math.max(0, _0x58599c), ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08));
         ctx.restore();
     }
 };
 Bigfoot.prototype.rightHandAnimation = function (_0x1b64dd) {
-    var _0x4e432d = _0x93972d((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
-    if (_0x1b64dd = getLoadedImg('skins/land/bigfoot/arm1.png')) {
+    var _0x4e432d = getAnimFrame((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x1b64dd = getLoadedImg('skins/bigfoot/arm1.png')) {
         ctx.save();
         var _0x1ddbe6 = -_0x4e432d * toRadians(-10),
             _0x4e432d = this.rad * _0x8a441a;
@@ -15059,8 +15059,8 @@ Bigfoot.prototype.rightHandAnimation = function (_0x1b64dd) {
     }
 };
 Bigfoot.prototype.leftHandAnimation = function (_0x3e895b) {
-    var _0x5e6af1 = _0x93972d((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
-    if (_0x3e895b = getLoadedImg('skins/land/bigfoot/arm21.png')) {
+    var _0x5e6af1 = getAnimFrame((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x3e895b = getLoadedImg('skins/bigfoot/arm21.png')) {
         ctx.save();
         var _0x38240d = -_0x5e6af1 * toRadians(-10),
             _0x5e6af1 = this.rad * _0x8a441a;
