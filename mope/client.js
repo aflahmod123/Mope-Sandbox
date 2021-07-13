@@ -15005,9 +15005,7 @@ Bigfoot.prototype.getSkinName = function () {
 Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
     this.isCamouflage || Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
 };
-Bigfoot.prototype.drawHealthBar = function () {
-    this.isCamouflage || Bigfoot.superClass.prototype.drawHealthBar.call(this);
-};
+
 Bigfoot.prototype.isTransforming = true;
 Bigfoot.prototype.isCamouflage = true;
 Bigfoot.prototype.carrotAlpha = 0;
