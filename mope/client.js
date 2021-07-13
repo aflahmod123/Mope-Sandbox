@@ -11811,7 +11811,7 @@ AbilityObjSpear.prototype.readCustomData_onUpdate = function (_0x304c65) {
     AbilityObjSpear.superClass.prototype.readCustomData_onUpdate.call(this, _0x304c65);
     this.victimID = _0x304c65.readUInt32();
     this.effect_flying = 1 == _0x304c65.readUInt8();
-    0x0 != this.victimID && _0x47463c[this.victimID] && (this.z = _0x47463c[this.victimID].z + 1);
+    0x0 != this.victimID && gameObjsByID[this.victimID] && (this.z = gameObjsByID[this.victimID].z + 1);
 };
 
 function AbilityObjSpear() {
