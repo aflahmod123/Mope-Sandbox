@@ -14984,8 +14984,8 @@ Bigfoot.prototype.animalInfo = function () {
         'skinName': 'bigfoot/bigfoot',
         'aniDesc': ''
     };
-    _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... \n
- Right click/W to throw Spears. \n
+    _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... 
+ Right click/W to throw Spears. 
 Hold to make a fire (every 30s)`;
     _0x1e5890.aniCol = '#839eb5';
     return _0x1e5890;
@@ -15000,7 +15000,7 @@ Bigfoot.prototype.getAbilityInfo = function (_0x4f532b) {
 Bigfoot.prototype.getSkinName = function () {
     var _0x21b754;
     _0x21b754 = 'bigfoot/';
-    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'thebigfoot' : _0x21b754 + 'bigfoot';
+    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'bigfoot' : _0x21b754 + 'bigfoot';
 };
 Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
     this.isCamouflage || Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
