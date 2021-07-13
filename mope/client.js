@@ -11767,8 +11767,8 @@ GameObjType.setCustomClassForGameObjType(AbilityObj, o_abilityGObj);
 // file: js_src/gameobj/ability/AbilityObjElephant.js
 ///////
 
-thisClass = AbilityObjSpear;
-superClass = AbilityObj;
+var thisClass = AbilityObjSpear;
+var superClass = AbilityObj;
 thisClass.prototype = Object.create(superClass.prototype);
 thisClass.prototype.constructor = thisClass;
 thisClass.superClass = superClass;
@@ -11795,10 +11795,11 @@ AbilityObjSpear.prototype.customDraw = function (_0x423c5e) {
       var _0x24150b = Math.min(1, (timestamp - this.spawnTime) / 200),
             _0xd67ac0 = -clamp((timestamp - this.spawnTime) / 300, 0, 1) * toRadians(90);
         ctx.rotate(this.angle + _0xd67ac0 * (1 == this.specType ? 1 : -1));
-        var _0xd67ac0 = 1.5 * -this.rad,
+      var ae_0xd67ac0 = 2 * this.rad;  
+      var _0xd67ac0 = 1.5 * -this.rad,
             _0x41fc4a = 2 * _0xd67ac0,
             _0x24150b = 2 * _0xd67ac0 * _0x24150b;
-        ctx.drawImage(_0x423c5e, this.rad / 1.7 * _0x41fc4a, this.rad + -0.8 * _0x24150b + _0xd67ac0, _0x41fc4a, _0x24150b);
+        ctx.drawImage(_0x423c5e, ae_0xd67ac0/2, ae_0xd67ac0 /2, _0x41fc4a, _0x24150b);
     }
     ctx.restore();
 };
