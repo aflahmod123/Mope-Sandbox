@@ -11803,7 +11803,7 @@ AbilityObjSpear.prototype.customDraw = function (_0x423c5e) {
 };
 AbilityObjSpear.prototype.effect_flying = true;
 AbilityObjSpear.prototype.readCustomData_onNewlyVisible = function (_0x4e70ff) {
-    _0x384319.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x4e70ff);
+    AbilityObjSpear.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x4e70ff);
 };
 AbilityObjSpear.prototype.readCustomData_onUpdate = function (_0x304c65) {
     AbilityObjSpear.superClass.prototype.readCustomData_onUpdate.call(this, _0x304c65);
