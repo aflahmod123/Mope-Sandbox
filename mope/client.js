@@ -11782,17 +11782,17 @@ AbilityObjSpear.prototype.customDraw = function (_0x423c5e) {
         if (_0x423c5e = getLoadedImg('skins/bigfoot/spear.png')) {
             ctx.save();
             var _0xd67ac0 = 2 * this.rad;
-            ctx.rotate(this.angle + _0x55d748(90));
+            ctx.rotate(this.angle + toRadians(90));
             ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
             ctx.restore();
         }
     } else if (3 == this.specType) {
         ctx.save();
-        if (_0x423c5e = getLoadedImg('skins/bigfoot/spear2.png')) _0xd67ac0 = 2 * this.rad, ctx.rotate(this.angle + _0x55d748(90)), ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
+        if (_0x423c5e = getLoadedImg('skins/bigfoot/spear2.png')) _0xd67ac0 = 2 * this.rad, ctx.rotate(this.angle + toRadians(90)), ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
         ctx.restore();
     } else if (_0x423c5e = getLoadedImg('skins/bigfoot/arm' + (this.specType + (1 == this.specType2 ? '1' : '')) + '.png')) {
         var _0x24150b = Math.min(1, (_0x1534e0 - this.spawnTime) / 200),
-            _0xd67ac0 = -_0x1c8ba9((_0x1534e0 - this.spawnTime) / 300, 0, 1) * _0x55d748(90);
+            _0xd67ac0 = -_0x1c8ba9((_0x1534e0 - this.spawnTime) / 300, 0, 1) * toRadians(90);
         ctx.rotate(this.angle + _0xd67ac0 * (1 == this.specType ? 1 : -1));
         var _0xd67ac0 = 1.5 * -this.rad,
             _0x41fc4a = 2 * _0xd67ac0,
