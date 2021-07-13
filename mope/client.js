@@ -1043,7 +1043,8 @@ var ability_dive = 100,
   ability_kickinair = 77,
   ability_thunderbirdAttack = 78,
    ability_stingscorp= 79,
-   ability_pterodactyl= 80;
+   ability_pterodactyl= 80,
+    ability_spear = 81;
 var infoForAbilityT = function(abilT) {
   var infoO = {};
   var zombieFolder = "";
@@ -11762,8 +11763,61 @@ window.AbilityObj = AbilityObj; //make class global!
 
 //add this class as a thisClass for the right oType!
 GameObjType.setCustomClassForGameObjType(AbilityObj, o_abilityGObj);
+///////
+// file: js_src/gameobj/ability/AbilityObjElephant.js
+///////
 
+thisClass = AbilityObjSpear;
+superClass = AbilityObj;
+thisClass.prototype = Object.create(superClass.prototype);
+thisClass.prototype.constructor = thisClass;
+thisClass.superClass = superClass;
+AbilityObj.prototype.victimID = 0;
+AbilityObjSpear.prototype.updateZ = function () {
+    this.effect_flying ? this.z = 100000 : 0 == this.victimID && (this.z = 1100);
+};
+AbilityObjSpear.prototype.customDraw = function (_0x423c5e) {
+    ctx.save();
+    if (0 == this.specType) {
+        if (_0x423c5e = getLoadedImg('skins/bigfoot/spear.png')) {
+            ctx.save();
+            var _0xd67ac0 = 2 * this.rad;
+            ctx.rotate(this.angle + _0x55d748(90));
+            ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
+            ctx.restore();
+        }
+    } else if (3 == this.specType) {
+        ctx.save();
+        if (_0x423c5e = getLoadedImg('skins/bigfoot/spear2.png')) _0xd67ac0 = 2 * this.rad, ctx.rotate(this.angle + _0x55d748(90)), ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
+        ctx.restore();
+    } else if (_0x423c5e = getLoadedImg('skins/bigfoot/arm' + (this.specType + (1 == this.specType2 ? '1' : '')) + '.png')) {
+        var _0x24150b = Math.min(1, (_0x1534e0 - this.spawnTime) / 200),
+            _0xd67ac0 = -_0x1c8ba9((_0x1534e0 - this.spawnTime) / 300, 0, 1) * _0x55d748(90);
+        ctx.rotate(this.angle + _0xd67ac0 * (1 == this.specType ? 1 : -1));
+        var _0xd67ac0 = 1.5 * -this.rad,
+            _0x41fc4a = 2 * _0xd67ac0,
+            _0x24150b = 2 * _0xd67ac0 * _0x24150b;
+        ctx.drawImage(_0x423c5e, this.rad / 1.7 * _0x41fc4a, this.rad + -0.8 * _0x24150b + _0xd67ac0, _0x41fc4a, _0x24150b);
+    }
+    ctx.restore();
+};
+AbilityObjSpear.prototype.effect_flying = true;
+AbilityObjSpear.prototype.readCustomData_onNewlyVisible = function (_0x4e70ff) {
+    _0x384319.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x4e70ff);
+};
+AbilityObjSpear.prototype.readCustomData_onUpdate = function (_0x304c65) {
+    AbilityObjSpear.superClass.prototype.readCustomData_onUpdate.call(this, _0x304c65);
+    this.victimID = _0x304c65.readUInt32();
+    this.effect_flying = 1 == _0x304c65.readUInt8();
+    0x0 != this.victimID && _0x47463c[this.victimID] && (this.z = _0x47463c[this.victimID].z + 1);
+};
 
+function AbilityObjSpear() {
+    AbilityObjSpear.superClass.call(this);
+    AbilityObjSpear.prototype.easeAngleChanges = true;
+}
+window.AbilityObjSpear = AbilityObjSpear;
+GameObjType.setCustomClassForGameObjType(AbilityObjSpear, o_abilityGObj, ability_spear);
 ///////
 // file: js_src/gameobj/ability/AbilityObjElephant.js
 ///////
