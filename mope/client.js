@@ -11791,7 +11791,8 @@ AbilityObjSpear.prototype.customDraw = function (_0x423c5e) {
         if (_0x423c5e = getLoadedImg('skins/bigfoot/spear2.png')) _0xd67ac0 = 2 * this.rad, ctx.rotate(this.angle + toRadians(90)), ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
         ctx.restore();
     } else if (_0x423c5e = getLoadedImg('skins/bigfoot/arm' + (this.specType + (1 == this.specType2 ? '1' : '')) + '.png')) {
-        var _0x24150b = Math.min(1, (timestamp - this.spawnTime) / 200),
+  
+      var _0x24150b = Math.min(1, (timestamp - this.spawnTime) / 200),
             _0xd67ac0 = -clamp((timestamp - this.spawnTime) / 300, 0, 1) * toRadians(90);
         ctx.rotate(this.angle + _0xd67ac0 * (1 == this.specType ? 1 : -1));
         var _0xd67ac0 = 1.5 * -this.rad,
