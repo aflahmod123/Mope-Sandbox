@@ -329,7 +329,7 @@ var infoForAnimalType = function (aniT) {
  Right click/W to throw Spears. \n
 Hold to make a fire (every 30s)`;
             infoO.aniCol = "#839eb5";
-            infoO.skinName = "bigfoot/bigfoot";
+            infoO.skinName = "bigfoot/thebigfoot";
         break;
         case a_kingdragon:
             infoO.aniName = "King Dragon";
@@ -12031,7 +12031,7 @@ Animal.prototype.animalInfo = function() {
  Right click/W to throw Spears. \n
 Hold to make a fire (every 30s)`;
             infoO.aniCol = "#839eb5";
-            infoO.skinName = "bigfoot/bigfoot";
+            infoO.skinName = "bigfoot/thebigfoot";
         break;
         case a_kingdragon:
             infoO.aniName = "King Dragon";
@@ -14983,7 +14983,7 @@ Bigfoot.superClass = superClass;
 Bigfoot.prototype.animalInfo = function () {
     var _0x1e5890 = {
         'aniName': 'The BigFoot',
-        'skinName': 'bigfoot/bigfoot',
+        'skinName': 'bigfoot/thebigfoot',
         'aniDesc': ''
     };
     _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... 
@@ -15002,7 +15002,7 @@ Bigfoot.prototype.getAbilityInfo = function (_0x4f532b) {
 Bigfoot.prototype.getSkinName = function () {
     var _0x21b754;
     _0x21b754 = 'bigfoot/';
-    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'bigfoot' : _0x21b754 + 'bigfoot';
+    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'thebigfoot' : _0x21b754 + 'bigfoot';
 };
 Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
     this.isCamouflage || Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
