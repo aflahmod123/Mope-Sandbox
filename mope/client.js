@@ -116,7 +116,8 @@ o_dragonfruit = 82,
 o_raspberrynew = 83,
 o_firerange = 84,
 o_gift = 85,
-o_particles = 86;
+o_particles = 86,
+o_firewood = 87;
 //o_hat = 99;
 var GameObjType = {
   //makes it easy to add new subclasses- each class will add itself!
@@ -20808,7 +20809,31 @@ window.TeamStone=TeamStone;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(TeamStone, o_teamStone);
 
+///////
+// file: js_src/gameobj/firewood .js
+///////
+var superClass = GameObj;
 
+FireWood.prototype = Object.create(superClass.prototype);
+FireWood.prototype.constructor = FireWood;
+FireWood.superClass = superClass;
+FireWood.prototype.updateZ = function () {
+    this.z = this.rad;
+};
+FireWood.prototype.customDraw = function (_0xdc5c58) {
+    ctx.save();
+    _0xdc5c58 = 2.2 * this.rad;
+    var _0x455c61 = getLoadedImg('skins/bigfoot/firewood.png');
+    _0x455c61 && ctx.drawImage(_0x455c61, -_0xdc5c58 / 2, -_0xdc5c58 / 2, _0xdc5c58, _0xdc5c58);
+    ctx.restore();
+};
+
+
+function FireWood() {
+    FireWood.superClass.call(this, o_firewood);
+}
+window.FireWood = FireWood;
+FireWood.setCustomClassForGameObjType(FireWood, o_firewood);
 ///////
 // file: js_src/gameobj/ability/AbilityObj1v1Arena.js
 ///////
