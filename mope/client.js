@@ -4979,9 +4979,9 @@ if (KTestingModeON) {
     
 
     reg = "LOCAL";
-//addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
+addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
 //addServerDef("FFA", "35.246.216.142", reg,"80"); 
-addServerDef("FFA", "mopetestserverold.run-eu-central1.goorm.io", reg,"80");
+//addServerDef("FFA", "mopetestserverold.run-eu-central1.goorm.io", reg,"80");
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
   //   reg = "Team Mode";
