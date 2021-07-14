@@ -3504,17 +3504,7 @@ if ((isiOS || isAndroid) && !isMobileApp) {
       oldVisitor = true;
     } //no localStorage= no redirects
   }
-  if (!oldVisitor) {
-    //console.log("ios device detected, sending to app store!");
-    if (isiOS)
-      window.location.href =
-        "http://web.archive.org/web/20201010193727/https://itunes.apple.com/us/app/mope.io/id1086471119?ls=1&mt=8";
-    else if (isAndroid)
-      window.location.href =
-        "http://web.archive.org/web/20201010193727/https://play.google.com/store/apps/details?id=tatarnykov.stan.mopeioandroid";
-  } else {
-    //console.log("ios/android device: not redirecting anymore!");
-  }
+
 }
 
 
