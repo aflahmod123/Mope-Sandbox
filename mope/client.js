@@ -20810,7 +20810,7 @@ window.TeamStone=TeamStone;
 GameObjType.setCustomClassForGameObjType(TeamStone, o_teamStone);
 
 ///////
-// file: js_src/gameobj/firewood .js
+// file:  firewood .js
 ///////
 var superClass = GameObj;
 
@@ -20833,7 +20833,7 @@ function FireWood() {
     FireWood.superClass.call(this, o_firewood);
 }
 window.FireWood = FireWood;
-FireWood.setCustomClassForGameObjType(FireWood, o_firewood);
+GameObjType.setCustomClassForGameObjType(FireWood, o_firewood);
 ///////
 // file: js_src/gameobj/ability/AbilityObj1v1Arena.js
 ///////
