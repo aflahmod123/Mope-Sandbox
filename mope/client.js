@@ -21510,6 +21510,7 @@ function handleWsMessage(msgArrBuf) {
   //console.log("msg of size in bytes:  " + msgArrBuf.byteLength);
   //bytesLastSec += msgArrBuf.byteLength;
   var msgType = msg.readUInt8();
+  alert(msgType)
   //console.log("msg type is " + msgType);
 
   switch (msgType) {
