@@ -21510,7 +21510,7 @@ function handleWsMessage(msgArrBuf) {
   //console.log("msg of size in bytes:  " + msgArrBuf.byteLength);
   //bytesLastSec += msgArrBuf.byteLength;
   var msgType = msg.readUInt8();
-  alert(msgType)
+
   //console.log("msg type is " + msgType);
 
   switch (msgType) {
@@ -21616,7 +21616,7 @@ function handleWsMessage(msgArrBuf) {
       {
         console.log("Recieved code detection");
         var codes =  msg.readString();
-     alert(codes)
+     
         var msgLen = 9 + encode_utf8(codes).length + 5;
         var mes = new MsgWriter(msgLen);
         mes.writeUInt8(12); //MSGTYPE join GAME
