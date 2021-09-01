@@ -1,5 +1,4 @@
 
-
 var gamever = 99;
 var KTestingModeON = true;
 var KTestingBetaMode = true && !KTestingModeON;
@@ -4971,7 +4970,7 @@ if (KTestingModeON) {
     reg = "LOCAL";
 addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
 //addServerDef("FFA", "35.246.216.142", reg,"80"); 
-addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud", reg,"80");
+addServerDef("FFA", "ahmetarras.glitch.me", reg,"8080");
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
   //   reg = "Team Mode";
@@ -5423,7 +5422,7 @@ function gameServerConnect(newGameServer, autoClickPlay = false) {
   document.getElementById("connecting").style.visibility = "visible";
  
 
-  var wsProtocol = window.location.protocol === "https:" ? "ws://" : "ws://";
+  var wsProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
   var wsPort = wsProtocol == "wss://" ? 80: 80;
 
   var conUrl = wsProtocol + curServer.serverConnURL + ":" + curServer.port;
