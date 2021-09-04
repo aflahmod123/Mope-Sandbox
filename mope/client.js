@@ -4968,9 +4968,9 @@ if (KTestingModeON) {
     
 
     reg = "LOCAL";
-addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
+//addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
 //addServerDef("FFA", "35.246.216.142", reg,"80"); 
-addServerDef("FFA", "ahmetarras.glitch.me", reg,"80");
+addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80");
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
   //   reg = "Team Mode";
