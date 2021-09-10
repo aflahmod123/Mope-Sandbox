@@ -2,7 +2,14 @@
 var gamever = 99;
 var KTestingModeON = true;
 var KTestingBetaMode = true && !KTestingModeON;
+var ACTIVATEOURGAMEMODE = false
+var url = new URL(window.location.href);
+var secr = url.searchParams.get("ModeActivate");
 
+if (secr === "true") {
+
+ACTIVATEOURGAMEMODE = true
+}
 console.log("\n\n\n");
 console.log("--------------------------------------------");
 console.log("");
@@ -4968,9 +4975,11 @@ if (KTestingModeON) {
     
 
     reg = "LOCAL";
+  
+  if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
 addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
 //addServerDef("FFA", "35.246.216.142", reg,"80"); 
-//addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80");
+
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
   //   reg = "Team Mode";
@@ -5005,7 +5014,7 @@ addServerDef("LOCALHOST", "127.0.0.1", reg,"80");
   //  addServerDef("Battle Royal 2", "173.199.118.126", reg);
   //  addServerDef("Battle Royal 3", "8.9.6.115", reg);
   //addServerWithPortDef("Battle Royal 22", "127.0.0.1", 7022, reg); // "0.0.0.0", reg); //"0.0.0.0"
- 
+  } 
 } else {
   if (KTestingBetaMode) {
 
