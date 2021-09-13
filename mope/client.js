@@ -10,6 +10,8 @@ if (secr === "true") {
 
 ACTIVATEOURGAMEMODE = true
 }
+console.log("CLIENT BY MOPE.IO , I DO NOT OWN ANY OF THIS , ADDICTINGGAMES OWN MOPE.IO THIS IS JUST A PRIVATE SERVER MADE WITH MOPE CLIENT..");
+
 console.log("\n\n\n");
 console.log("--------------------------------------------");
 console.log("");
@@ -28,7 +30,7 @@ console.log(
     " ----------------"
 );
 console.log("\n\n\n");
-
+console.log("CLIENT BY MOPE.IO , I DO NOT OWN ANY OF THIS , ADDICTINGGAMES OWN MOPE.IO THIS IS JUST A PRIVATE SERVER MADE WITH MOPE CLIENT..");
 //import all js files (correct order matters if using global, lower lvl files first! Eg. GameObj before GameObjBerry)
 
 
