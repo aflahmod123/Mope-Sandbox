@@ -16915,7 +16915,7 @@ BlackDragon.prototype.animalInfo = function () {
   
   
   BlackDragon.prototype.drawSkinCustomization = function() {
-
+  var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
   var lava = this.lava; //waterBarPerc_n;
   var minLowLava = 50;
   //console.log("lava: " + lava)
