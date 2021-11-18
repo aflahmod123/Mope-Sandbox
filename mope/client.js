@@ -938,7 +938,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.aniName = "Dino Monster";
             infoO.upgradeText = "UPGRADED to Dino Monster!";
             infoO.aniCol = "#FF9000";
-            infoO.skinName = "dinomonster";
+            infoO.skinName = "monsters/dinomonster/dinomonster4";
             break;
         case a_pigeon:
             infoO.aniName = "Pigeon";
@@ -4976,11 +4976,11 @@ if (KTestingModeON) {
 
     
 
-    reg = "LOCAL";
+    reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("LOCALHOST", "127.0.0.1", reg,"80"); 
-//addServerDef("FFA", "35.246.216.142", reg,"80"); 
+addServerDef("Local Test 1", "5cf0-190-215-158-88.eu.ngrok.io", reg,"80"); 
+addServerDef("Local Test 2", "5cf0-190-215-158-88.eu.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
