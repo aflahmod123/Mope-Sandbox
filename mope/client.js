@@ -4979,8 +4979,8 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "5cf0-190-215-158-88.eu.ngrok.io", reg,"80"); 
-addServerDef("Local Test 2", "5cf0-190-215-158-88.eu.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "da47-190-215-158-88.eu.ngrok.io", reg,"80"); 
+addServerDef("Local Test 2", "da47-190-215-158-88.eu.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
@@ -12704,7 +12704,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "landmonster";
+      infoO.skinName = "monsters/landmonster";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -12716,7 +12716,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "dinomonster";
+      infoO.skinName = "monsters/dinomonster/dinomonster";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
