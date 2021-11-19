@@ -2371,11 +2371,11 @@ var teamID = 0;
 // team mode vars end
 
 //
-var isInArena = false;
-var isAbility1v1Active = false;
+var isInArena = true;
+var isAbility1v1Active = true;
 var isSoccerEnabled = false;
 var show1v1Button = true;
-var can1v1 = false;
+var can1v1 = true;
 var btn1v1 = null;
 var player1v1ArenaWins = 0;
 var playerGoalsScore = 0;
@@ -2388,7 +2388,7 @@ var bonusRoundDur = 0;
 var homeButton = null;
 var isSpectateMode = false;
 var eggID = 0;
-var isDevMode = false;
+var isDevMode = true;
 //canvases
 var canvas = document.getElementById("gCanvas");
 var lbCanvas = null;
@@ -4368,7 +4368,7 @@ var drawLabelValueOn = function(c, label, value, x, y) {
 function create1v1Button() {
   if (can1v1) {
     if (btn1v1 == null) {
-      btn1v1 = new InterfaceButton(0, 0, 60, 60, "Click to 1v1", 30);
+      btn1v1 = new InterfaceButton(0, 0, 60, 60, "It No Work :Facetroll:", 30);
       btn1v1.showLabeleOnHover = true;
       btn1v1.textShadow = true;
       btn1v1.drawTextOnHowever = function() {
@@ -24079,8 +24079,8 @@ function gameReset() {
   lastPopupC = 0;
 
 
-  isInArena = false;
-  isAbility1v1Active = false;
+  isInArena = true;
+  isAbility1v1Active = true;
   player1v1ArenaWins = 0;
   player1v1Requests = [];
   //if (btn1v1 != null) btn1v1.isVisible = false;
@@ -24089,7 +24089,7 @@ function gameReset() {
   isInBonusRound = false;
   bonusRoundDur = 0;
   eggID = 0;
-  isDevMode = false;
+  isDevMode = true;
   endScreenCanvas = null;
 
   // call interface reset for any game mode if defined
