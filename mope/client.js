@@ -1140,7 +1140,7 @@ var infoForAbilityT = function(abilT) {
       break;
     case ability_crocWaterGrab:
       infoO.abilName = "Bite Drag";
-      infoO.abilImg =
+      infoO.abilImg =crocBite
         "skins/" +
         zombieFolder +
         infoForAnimalType(myPlayerLastAniT).skinName +
