@@ -944,7 +944,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.aniName = "Pigeon";
             infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
             infoO.aniCol = "#FF9000";
-            infoO.skinName = "pigeon/pigeon";
+            infoO.skinName = "pigeon/1/pigeon";
             break;
         case a_toucan:
             infoO.aniName = "Toucan";
@@ -12628,7 +12628,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniDesc = "";
       infoO.upgradeText = "UPGRADED to Frog!!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "frog/frog";
+      infoO.skinName = "frog/frog2";
 
       break;
 
@@ -12738,7 +12738,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "(Animal)";
       infoO.aniDesc = "";
       infoO.aniCol = "#000000";
-      infoO.upgradeText = "UPGRADED!";
+      infoO.upgradeText = "if you read this you will give me robux or money!";
   }
 
   return infoO;
