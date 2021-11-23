@@ -4979,7 +4979,7 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "3f51-190-215-158-88.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "dd8e-190-215-158-88.eu.ngrok.io", reg,"80"); 
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
