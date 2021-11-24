@@ -4979,13 +4979,13 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "127.0.0.1", reg,"80"); 
+addServerDef("Local Test 1", "4bc8-190-215-158-88.eu.ngrok.io", reg,"80"); 
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
-     reg = "1v1";
-    addServerDef("1v1", "4bc8-190-215-158-88.eu.ngrok.io", reg,"80");
+     //reg = "1v1";
+    //addServerDef("1v1", "4bc8-190-215-158-88.eu.ngrok.io", reg,"80");
   //  addServerDef("Team Mode 2", "149.28.48.20", reg);
   //  reg = "Battle Royale";
   //  addServerDef("Battle Royale 1", "144.202.12.79", reg);
