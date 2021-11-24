@@ -4984,8 +4984,8 @@ addServerDef("Local Test 1", "127.0.0.1", reg,"80");
 
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
-     reg = "Team Mode";
-    addServerDef("LOCALHOST", "788f-190-215-158-88.eu.ngrok.io", reg,"80");
+     reg = "1v1";
+    addServerDef("1v1", "788f-190-215-158-88.eu.ngrok.io", reg,"80");
   //  addServerDef("Team Mode 2", "149.28.48.20", reg);
   //  reg = "Battle Royale";
   //  addServerDef("Battle Royale 1", "144.202.12.79", reg);
@@ -14023,4 +14023,10301 @@ Animal.prototype.readCustomData_onNewlyVisible = function(msg) {
   //var animtype = msg.readUInt8();
 //  console.log(msg)
   var nickName = msg.readString();
+  // read which speices is this animal
+  this.animalSpecies = msg.readUInt8();
+  if (gameMode == gameMode_teamMode) this.teamID = msg.readUInt8();
+   var nw_colorname = msg.readUInt8();
+  switch(nw_colorname) {
+   case 1:
+      {
+        this.nickTXTcolor = '#FFFFFF'
+        
+      }
+      break;
+    case 2:
+      {
+        this.nickTXTcolor = '#FB3900'
+        
+      }
+      break;
+       case 3:
+      {
+        this.nickTXTcolor = '#7D00CF'
+        
+      }
+       break;
+       case 4:
+      {
+        this.nickTXTcolor = '#00FFF0'
+        
+      }
+       break;
+        case 5:
+      {
+        this.nickTXTcolor = '#11ff00'
+        
+      }
+      break;
+      case 6:
+      {
+        this.nickTXTcolor = '#ffec00'
+
+      }
+
+      break;
+        case 7:
+      {
+        this.nickTXTcolor = '#9300ff'
+
+      }
+
+      break;
+        case 8:
+      {
+        this.nickTXTcolor = '#ff00fb'
+
+      }
+
+      break;
+        case 9:
+      {
+        this.nickTXTcolor = '#00ff93'
+
+      }
+
+      break;
+        case 10:
+      {
+        this.nickTXTcolor = '#ff003a'
+
+      }
+
+      break;
+        case 11:
+      {
+        this.nickTXTcolor = '#000000'
+
+      }
+
+      
+      break;
+  }
+  //this.animalType = animtype; //animal type
+  this.setNick(nickName ? nickName : "mope2.io/1v1");
+
+  //console.log("Animal custom data read, id "+this.id+", animalType "+animtype);
+};
+
+Animal.prototype.readCustomData_onUpdate = function(msg) {
+  Animal.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
+
+  //console.log("Animal custom data update read, id "+this.id);
+
+  //if (this.oType == o_animal) {
+
+  this.specType = msg.readUInt8();
+  this.specType2 = msg.readUInt8();
+
+  var lookAng = msg.readUInt8() * 2.0;
+  this.currentangle = lookAng;
+ // console.log("angle2: " + lookAng);
+  var goalAngle = toRadians(lookAng + 90); //90 offset due to client drawing setup  heree
+
+  var myangle = toDegrees(this.angle ) - 90
+  
+  
+  this.angleDelta = distBetweenAngles(this.angle, goalAngle);
+  this.oAngle = this.angle;
+  if (this.firstPosUpd) {
+    //on freshly spawned animals ,instantly set angle
+    this.oAngle = this.angle = goalAngle;
+    this.angleDelta = 0;
+  }
+  //console.log(this.specType, this.specType2, lookAng)
+  var aniFlags = []
+  //console.log(this.specType, this.specType2, lookAng)
+    aniFlags= Array.apply(null, new Array(50)).map(
+            Number.prototype.valueOf,
+            0
+          );
+        var cnt = msg.readUInt8() 
+
+for (var J = 0; J < cnt; J++) {
+  var newflag = msg.readUInt8()  
+  aniFlags.push(newflag) //mark as true (dangerous)
+
+}
  
+  this.curBiome = 0;
+  if(aniFlags.includes(1)){this.curBiome = 1} else if(aniFlags.includes(2)){this.curBiome = 2}else if(aniFlags.includes(25)){this.curBiome = 3}
+  this.flag_lowWat = aniFlags.includes(3)
+  this.flag_inHomeBiome = aniFlags.includes(4)
+  this.flag_underWater = aniFlags.includes(5)
+  this.flag_eff_invincible = aniFlags.includes(6)
+  this.flag_usingAbility = aniFlags.includes(7)
+  this.flag_tailBitten = aniFlags.includes(8)
+  this.flag_eff_stunned = aniFlags.includes(9)
+  this.flag_iceSliding = aniFlags.includes(10)
+  this.flag_eff_frozen = aniFlags.includes(11)
+  this.flag_eff_onFire = aniFlags.includes(12)
+  this.flag_eff_healing = aniFlags.includes(13)
+  this.flag_eff_poison = aniFlags.includes(14)
+  this.flag_constricted = aniFlags.includes(15)
+  this.flag_webStuck = aniFlags.includes(16)
+  this.flag_stealth = aniFlags.includes(17)
+  this.flag_eff_bleeding = aniFlags.includes(18)
+  this.flag_flying = aniFlags.includes(19)
+  this.flag_isGrabbed = aniFlags.includes(20)
+  this.flag_eff_aniInClaws = aniFlags.includes(21)
+  this.flag_eff_stunk = aniFlags.includes(22)
+  this.flag_cold = aniFlags.includes(23)
+  this.flag_inWater = aniFlags.includes(24)
+  this.flag_inLava = aniFlags.includes(25)
+  this.flag_canClimbHill = aniFlags.includes(26)
+  this.flag_isDevMode = aniFlags.includes(27)
+  this.flag_eff_slimed = aniFlags.includes(28)
+  this.flag_eff_wobbling = aniFlags.includes(29)
+  this.flag_eff_hot = aniFlags.includes(30)
+ this.flag_inDesert = aniFlags.includes(31)
+  
+   
+    this.flag_can1v1 =  aniFlags.includes(32)
+ 
+    this.flag_isInArena = aniFlags.includes(33)
+     this.isAbility1v1Active = aniFlags.includes(34)
+  this.flag_eff_shivering = aniFlags.includes(35)
+    this.wins1v1 = msg.readUInt8();
+
+
+
+    if (this.isAbility1v1Active && this.flag_can1v1) {
+      var wins = "\n(wins:" + this.wins1v1 + ")";
+      this.nickTXT.setText(this.nickName + wins);
+      this.winsAddedInNick = true;
+    } else if (this.winsAddedInNick) {
+      this.winsAddedInNick = false;
+      this.nickTXT.setText(this.nickName);
+    
+  }
+  //}
+};
+Animal.prototype.winsAddedInNick = true;
+Animal.prototype.currentangle = 0;
+function Animal(oType, secondaryType) {
+  Animal.superClass.call(this, o_animal); //call superclass init method (if needed, or write a new one below)
+
+  this.animalType = secondaryType; //works for manually created objs
+  //console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Animal constructor run, id "+this.id);
+ 
+}
+
+window.Animal = Animal; //make class global!
+
+
+//add this class as a thisClass for the right oType!
+GameObjType.setCustomClassForGameObjType(Animal, o_animal);
+
+
+
+///////
+// file: js_src/gameobj/SpiderWeb.js
+///////
+
+
+var superClass = GameObj;
+SpiderWeb.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+SpiderWeb.prototype.constructor = SpiderWeb;
+SpiderWeb.superClass=superClass; //'class' var
+
+
+SpiderWeb.prototype.updateZ = function() {
+    this.z = 1002;
+}
+
+//custom data for this class (must be matched by server-side write of this data!)
+SpiderWeb.prototype.readCustomData_onUpdate = function(msg) {
+
+  this.webTransparency = this.specType = msg.readUInt8();
+
+}
+
+//override draw (things like other effects are drawn seperately)
+SpiderWeb.prototype.customDraw = function(batchDrawOutline){
+  ctx.save();
+
+  ctx.globalAlpha *= (this.specType / 100.0) * 0.9; //web opacity param
+
+
+  var theImg = getLoadedImg("img/spiderWeb.png");
+  if (theImg) {
+    var rad = this.rad;
+    ctx.rotate(this.rPer * Math.PI * 2.0);
+    ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+  }
+  ctx.restore();
+}
+
+//custom data for this class (must be matched by server-side write of this data!)
+SpiderWeb.prototype.readCustomData_onNewlyVisible = function(msg) {
+
+  this.webTransparency = this.specType = msg.readUInt8();
+}
+
+function SpiderWeb(){
+  SpiderWeb.superClass.call(this, o_spiderWeb);
+
+  this.webTransparency=0;
+
+  //set vars for this class
+  this.doesDrawEffectScale=true;
+  this.drawEffectScale_Slow=true;
+
+}
+window.SpiderWeb=SpiderWeb;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(SpiderWeb, o_spiderWeb);
+
+
+///////
+// file: js_src/gameobj/animal/Kingdragon.js
+///////
+var superClass = Animal;
+KingDragon.prototype = Object.create(superClass.prototype);
+KingDragon.prototype.constructor = KingDragon;
+KingDragon.superClass = superClass;
+KingDragon.prototype.updateZ = function () {
+    this.z = 10000;
+};
+KingDragon.prototype.canUseTailslap = true;
+KingDragon.prototype.tailState = 0;
+KingDragon.prototype.getSkinName = function () {
+  
+    return 'kingdragon/'+this.animalSpecies +'/kingdragon_body';
+};
+KingDragon.prototype.readCustomData_onNewlyVisible = function (_0x103094) {
+    KingDragon.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x103094);
+    this.readInfo(_0x103094);
+};
+KingDragon.prototype.readInfo = function (msg) {
+    this.lava = msg.readUInt8();
+    this.canUseTailslap = msg.readUInt8();
+    this.tailState = msg.readUInt16() / 100;
+};
+KingDragon.prototype.readCustomData_onUpdate = function (msg) {
+    KingDragon.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+    this.readInfo(msg);
+};
+KingDragon.prototype.leftWingAnim = null;
+KingDragon.prototype.flapAngleDiff = 3;
+KingDragon.prototype.flapAngle = 3;
+KingDragon.prototype.flapF = 0.1;
+KingDragon.prototype.flapDur = 2;
+KingDragon.prototype.sF = 0.02;
+KingDragon.prototype.drawWings = function () {
+    null == this.leftWingAnim && (this.leftWingAnim = new _0x1abe2b(this, this.flapDur, _0x1abe2b.wave,{
+            'v1': 0x5
+        },true), this.leftWingAnim.keepLastFrame = true, this.leftWingAnim.loop = true, this.leftWingAnim.onFrameEntered = function (_0x1596df) {
+        this.forObj.frame1 = _0x1596df;
+    });
+    null != this.leftWingAnim && this.leftWingAnim.run();
+    var _0x1b9acd = this.rad - this.outlineW,
+        _0x2103bb = this.frame1 * this.sF * _0x1b9acd,
+        _0x57c54 = -(-this.flapF + this.frame1) * toRadians(this.flapAngle),
+        _0x5051cd = 1.4705882352941,
+        _0x303fb8 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing.png'),
+        _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing.png');
+    _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
+              ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 *_0x2103bb),
+                               ctx.restore(),
+                               ctx.save(),
+                               ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
+                               ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), 
+                               ctx.restore(), 
+                               4 == this.animalSpecies && (_0x303fb8 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1), 
+                                                           ctx.save(), 
+                                                           ctx.globalAlpha = Math.max(0, _0x303fb8),
+                                                           _0x303fb8 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing_tips.png'),
+                                                           _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing_tips.png'),
+                                                           _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
+                                                            ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd +1.5 * _0x2103bb),
+                                                                                      ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
+    _0x303fb8 = this.lava;
+    if (50 > _0x303fb8) {
+        var _0x303fb8 = _0x303fb8 / 50,
+            _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing1.png'),
+            _0x67aef9 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing2.png');
+        _0x13450c && _0x67aef9 && (ctx.save(), ctx.globalAlpha = 1 - _0x303fb8, ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54)
+                                   , ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb)
+                                   , ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), 
+                                   ctx.drawImage(_0x67aef9, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), 
+                                   ctx.restore(), ctx.restore());
+    }
+};
+KingDragon.prototype.drawSkinCustomization = function () {
+    var _0x3659ec = 1.4705882352941,
+        _0x10a292 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1),
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/nostrils.png');
+    if (_0x3fb426) {
+        ctx.save();
+        ctx.globalAlpha = this.lava / 100 * Math.max(0, _0x10a292);
+        var _0x445d4d = this.rad - this.outlineW;
+        ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec);
+        ctx.restore();
+    }
+    if (this.canUseTailslap) {
+        if (_0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone2.png')) ctx.save(), ctx.globalAlpha = Math.max(0.3, _0x10a292), _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
+    } else {
+        if (_0x10a292 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone1.png')) ctx.save(), ctx.globalAlpha = 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x10a292, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
+        _0x10a292 = 0;
+        0xb > this.tailState && 5 < this.tailState ? _0x10a292 = (this.tailState - 5) / 6 : 3 >= this.tailState && (_0x10a292 = this.tailState / 3);
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone3.png');
+        0xb > this.tailState && _0x3fb426 && (ctx.save(), ctx.globalAlpha = 5 < this.tailState ? 1 - _0x10a292 : 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore());
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone2.png');
+        0x3 > this.tailState && _0x3fb426 && (ctx.save(), ctx.globalAlpha = 1 - _0x10a292, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore());
+    }
+    this.drawWings();
+};
+KingDragon.prototype.getSkinName = function () {
+        return './kingdragon/' + this.animalSpecies + '/kingdragon_body';
+    };
+KingDragon.prototype.drawLowWaterDrop = function () {
+    if (this.flag_lowWat) {
+        var _0x27f437 = 0.5 * (0.6),
+            _0x27f437 = 0.2 + _0x27f437 + _0x27f437 * Math.sin(2 * Math.PI / 1.2 * (timestamp / 1000));
+        ctx.save();
+        ctx.globalAlpha = _0x27f437;
+        ctx.fillStyle = _0x5a9265;
+        ctx.beginPath();
+        ctx.arc(0, this.rad + 5, 5, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.restore();
+    }
+};
+
+KingDragon.prototype.animalInfo = function () {
+     infoO = {};
+  
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'King Dragon';
+            break;
+        case 1:
+            infoO.aniName = 'Golden King Dragon';
+            break;
+        case 2:
+            infoO.aniName = 'King Ripper';
+            break;
+        case 3:
+            infoO.aniName = 'King Stan';
+            break;
+        case 4:
+            infoO.aniName = 'King Shah';
+            break;
+                  case 5:
+            infoO.aniName = 'Queen Scarlet';
+            break;
+                         case 6:
+            infoO.aniName = 'Queen Celeste';
+            break;
+                             case 69:
+            infoO.aniName = 'King Crimson';
+            break;
+                               case 200:
+            infoO.aniName = 'Queen Flame';
+            break;
+        }
+            infoO.aniDesc = "";
+            infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
+            infoO.aniCol = "black";
+            infoO.skinName = this.getSkinName();
+          
+    return infoO;
+};
+
+function KingDragon() {
+    this.lava = 0;
+    KingDragon.superClass.call(this, o_animal);
+}
+window.KingDragon = KingDragon;
+GameObjType.setCustomClassForGameObjType(KingDragon, o_animal, a_kingdragon);
+///////
+// file: js_src/gameobj/animal/Octopus.js
+///////
+var superClass = Animal;
+Octopus.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Octopus.prototype.constructor = Octopus;
+Octopus.superClass = superClass; //'class' var
+
+//example of custom Z
+/*Octopus.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//custom data for this class (must be matched by server-side write of this data!)
+Octopus.prototype.readCustomData_onNewlyVisible = function (msg) {
+    Octopus.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call super
+    //
+}
+
+//custom data for this class (must be matched by server-side write of this data!)
+Octopus.prototype.readCustomData_onUpdate = function (msg) {
+    Octopus.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call super
+
+    if (this.flag_usingAbility) {
+        var isAnim = msg.readUInt8() > 0;
+        var objOrAniT = msg.readUInt16();
+        //console.log(objOrAniT);
+        //check if it changed
+        if (this.octoIsAnimal != isAnim || this.octoDisguiseObjT != objOrAniT || this.octoDrawObj == null) {
+
+            //needs to update inner obj that draws the disguise animal/food item
+            var theObjT = isAnim ? o_animal : objOrAniT;
+            var theAniT = isAnim ? objOrAniT : null;
+            //console.log("octo disguised as obj T "+theObjT+" aniT "+theAniT+" isAni? "+isAnim+" tPassed "+objOrAniT);
+
+
+            //makes sure the correct subclass is used as well:)
+            var octoObj = GameObjType.createGameObjOfOType(theObjT, theAniT);
+            if (isAnim) //animals need aniType set explicitely
+                octoObj.animalType = theAniT;
+            //this obj will stay at x/y 0,0
+            octoObj.oRad = this.oRad;
+            octoObj.nRad = this.nRad;
+            octoObj.curBiome = this.curBiome;// biome_ocean;
+
+            this.octoDrawObj = octoObj;
+        }
+        this.octoIsAnimal = isAnim;
+        this.octoDisguiseObjT = objOrAniT;
+
+    }
+
+}
+
+//Octopus drawing (split into methods since animals are more complex)
+
+//lowest, under the green/red outline (draw first)
+Octopus.prototype.drawUnderSkinImgOutline = function () {
+    Octopus.superClass.prototype.drawUnderSkinImgOutline.call(this);
+}
+//drawn right before skin image
+Octopus.prototype.drawUnderSkinImg = function () {
+    Octopus.superClass.prototype.drawUnderSkinImg.call(this);
+    //eg. draw frog legs image that will be UNDER the skin
+}
+Octopus.prototype.drawOnTopOfSkinImg = function () {
+    Octopus.superClass.prototype.drawOnTopOfSkinImg.call(this); //call super to draw eg. glow effects
+    //eg. draw yeti snowball, octopus
+
+
+    //octopus effect
+    if (this.flag_usingAbility) {
+
+        ctx.save();
+        ctx.globalAlpha = 1.0 - this.underwaterA;
+
+        //for certain obj types, set a fixed rad size
+        if (this.octoDisguiseObjT == o_bigMushroom) {
+            //this.octoDrawObj.type=a_shrimp;
+            this.octoDrawObj.nRad = 25.0;
+        } else if (this.octoDisguiseObjT == o_plankton) {
+            //this.octoDrawObj.type=a_shrimp;
+            this.octoDrawObj.nRad = 17.0;
+        } else if (this.octoDisguiseObjT == o_healingStone) {
+            //this.octoDrawObj.type=a_shrimp;
+            this.octoDrawObj.nRad = 15.0;
+        }
+        else
+            this.octoDrawObj.nRad = this.rad;
+
+        if (this.octoDisguiseObjT == o_hill) {
+            console.log("Octo is hill now!");
+        }
+
+        this.octoDrawObj.draw();
+
+        ctx.restore();
+    }
+}
+Octopus.prototype.drawWhenUnderwater = function () {
+    Octopus.superClass.prototype.drawWhenUnderwater.call(this);
+    //draw shark fin, etc
+
+    //drawCircle(0, this.rad * 0.2, this.rad * 0.12, "blue");
+}
+
+//custom class variables
+Octopus.prototype.octoDisguiseObjT = 0;
+Octopus.prototype.octoIsAnimal = false;
+//custom data for this class (must be matched by server-side write of this data!)
+Octopus.prototype.drawHealthBar = function () {
+    if (this.flag_usingAbility) {
+
+        if (this.octoIsAnimal) {
+            Octopus.superClass.prototype.drawNickName.call(this, 1);
+            this.octoDrawObj.curBiome = this.curBiome;// biome_ocean;
+            this.hpPer_n = 2;
+            this.hpPer = 25;
+            this.hpBarA = 1;
+        }
+        else
+            return;
+    }
+
+    ctx.save();
+    //ease vars
+    var hpBarA_n = (timestamp < this.hpBarTimeoutT ? 1.0 : 0.0);
+    this.hpBarA += (hpBarA_n - this.hpBarA) * 0.04;
+
+
+    if (this.hpBarA > 0.001) {
+        this.hpPer += (this.hpPer_n - this.hpPer) * 0.1;
+
+        //draw bar
+        var eyeS = Math.max(1.0, this.rad / 25.0);
+        var barW = 20.0 * eyeS,
+          barH = 5 * eyeS;
+        var bx = 0,
+          by = -this.rad - 10 * eyeS;
+        ctx.globalAlpha *= this.hpBarA; //bar bg
+        ctx.fillStyle = "rgba(0,0,0,0.35)";
+        ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
+
+        //ctx.globalAlpha = this.hpBarA * f;
+        ctx.fillStyle = "#16D729"; //bar fill
+        var width = barW * (this.hpPer / 100.0)
+        if (this.flag_usingAbility && this.octoIsAnimal)
+            width = barW * (25 / 100.0)
+
+
+        ctx.fillRect(bx - barW / 2, by - barH / 2, width, barH);
+    }
+    ctx.restore(); //restore from fade
+}
+
+//set custom skin name
+Octopus.prototype.getSkinName = function () {
+    return "octopus";// without .png (/skins/ * .png)
+}
+
+
+function Octopus() {
+    Octopus.superClass.call(this, o_animal);
+
+}
+window.Octopus = Octopus;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Octopus, o_animal, a_octopus);
+///////
+// file: js_src/gameobj/animal/scorpion.js
+///////
+var superClass = Animal;
+GiantScorpion.prototype = Object.create(superClass.prototype);
+GiantScorpion.prototype.constructor = GiantScorpion;
+GiantScorpion.superClass = superClass;
+GiantScorpion.prototype.updateZ = function () {
+    this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 :  this.z =(1500 + this.rad);
+};
+GiantScorpion.prototype.animalInfo = function () {
+        var InfoO = {};
+        switch (this.animalSpecies) {
+        case 0:
+            InfoO.aniName = 'Giant Scorpion';
+            break;
+        case 1:
+            InfoO.aniName = 'Golden Scorpion';
+            break;
+        case 2:
+            InfoO.aniName = 'Carnelian Scorpion';
+        }
+      
+    
+        InfoO.aniCol = '#FF9000';
+        InfoO.skinName = 'desert/' + this.animalSpecies+ '/scorpion';
+        InfoO.upgradeText = 'UPGRADED to ' + InfoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+        return InfoO;
+    };
+
+    GiantScorpion.prototype.getSkinName = function () {
+        var _0x403b22 = '/desert/giantscorpion/' + this.animalSpecies +'/scorpion';
+        return _0x403b22 += 0 == this.specType ? '' : this.specType;
+    };
+    GiantScorpion.prototype.stingerScaleF = 0.7;
+    GiantScorpion.prototype.stingerOffsetY = -0.6;
+    GiantScorpion.prototype.poison = 50;
+    GiantScorpion.prototype.clawAnimation = null;
+    GiantScorpion.prototype.stingAnimation = null;
+    GiantScorpion.prototype.stingerTailNormal = null;
+    GiantScorpion.prototype.stingerTail = null;
+    GiantScorpion.prototype.stingerAttack = null;
+    GiantScorpion.prototype.stingerAttackFull = null;
+    GiantScorpion.prototype.stingerNormal = null;
+    GiantScorpion.prototype.stingerNormalFull = null;
+    GiantScorpion.prototype.isUsingAbility = true;
+    GiantScorpion.prototype.drawSkinCustomization = function () {
+         if ((this.specType2 != 1)&& !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+         
+            var _0x58c1e0 = this.skinScale * this.stingerScaleF,
+                _0x24402d = this.skinRad,
+                _0x2a5db0 = (timestamp - this.spawnTime) / 1000,
+                _0x1946d3 = getAnimFrame(_0x2a5db0, 1.5, 3, 2),
+                _0x2f7996 = getAnimFrame(_0x2a5db0, 1.5, 1, 2);
+            ctx.save();
+            _0x24402d = this.rad - 0.5 * _0x1946d3;
+            ctx.drawImage(this.stingerTailNormal, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
+            _0x2a5db0 = (timestamp - this.spawnTime) / 1000;
+            _0x2a5db0 = getAnimFrame(_0x2a5db0, 5, 1, 1);
+            ctx.globalAlpha = Math.max(0, _0x2a5db0) * Math.max(0, this.poison / 100);
+            ctx.drawImage(this.stingerNormalFull, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
+            ctx.restore();
+        }
+        this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
+        !this.isUsingAbility  && (this.isUsingAbility = true, this.stingAnimation = null);
+               this.isUsingAbility && this.specType2 == 1 && (null == this.stingAnimation &&(this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+            'v1': 0x5
+        },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
+                 if(this.forObj.flag_usingAbility ){
+            ctx.save();
+            var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
+                _0x38dd8a = this.forObj.rad;
+     
+            ctx.drawImage(this.forObj.stingerTailAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1);
+            ctx.drawImage(this.forObj.stingerTail, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+            ctx.drawImage(this.forObj.stingerAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+            var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
+            ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
+            ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+          
+            ctx.restore();
+                 }
+        }), this.stingAnimation && this.stingAnimation.run());
+       
+     
+    };
+    GiantScorpion.prototype.tailOffsetY = -0.25;
+    GiantScorpion.prototype.tailScaleF = 1.2;
+    var _0x3043fd = 4,
+        _0x12842c = 0.1;
+    GiantScorpion.prototype.drawUnderSkinImg = function () {
+        var _0x42919b = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/tail_back.png');
+        if (_0x42919b) {
+            var _0x3f3c13 = 0;
+            this.stingAnimation && 0.5 > this.stingAnimation.frame && (_0x3f3c13 = 0.3 * -this.stingAnimation.frame);
+            var _0x5ce8b1 = this.skinScale * this.tailScaleF,
+                _0x3ba07b = this.skinRad;
+            ctx.drawImage(_0x42919b, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * this.tailOffsetY) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * (_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1);
+        }
+        this.flag_usingAbility && !this.flag_underWater && (null == this.clawAnimation && (this.clawAnimation = new _0x1abe2b(this, 0.9, _0x1abe2b.bow, {
+            'v1': _0x3043fd
+        },false), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x1dd836) {
+            var _0x3f3c13 = 0;
+            0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
+            _0x1dd836 = 'skins/desert/giantscorpion/' + this.forObj.animalSpecies +'/arms.png';
+           if(this.forObj.flag_eff_aniInClaws) _0x1dd836 = 'skins/desert/giantscorpion/' + this.forObj.animalSpecies +'/arms-grabbed.png';
+            if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
+             
+                var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
+                    _0x3ba07b = this.forObj.skinRad;
+                !this.hasStopped && 0.75 > this.timePassed ? (_0x12842c = _0x3f3c13, ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1)) : ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1);
+            }
+        }), null != this.clawAnimation && this.clawAnimation.run());
+    };
+    GiantScorpion.prototype.readCustomData_onNewlyVisible = function (_0x3bc81a) {
+        GiantScorpion.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x3bc81a);
+        this.readInfo(_0x3bc81a);
+    };
+    GiantScorpion.prototype.readCustomData_onUpdate = function (_0x3417c5) {
+        GiantScorpion.superClass.prototype.readCustomData_onUpdate.call(this, _0x3417c5);
+        this.readInfo(_0x3417c5);
+    };
+    GiantScorpion.prototype.readInfo = function (_0x1edc87) {
+      this.poison = _0x1edc87.readUInt8();
+ 
+    };
+    GiantScorpion.prototype.preLoad = function () {
+        getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/scorpion1.png');
+        this.stingerTailNormal = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/stinger_normal.png');
+        this.stingerTail = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/stinger_tail.png');
+        this.stingerTailAttack = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/attack_tail.png');
+        this.stingerAttack = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/attack_stinger_dull.png');
+        this.stingerAttackFull = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/attack_stinger_full.png');
+        this.stingerNormal = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/normal_stinger_dull.png');
+        this.stingerNormalFull = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/normal_stinger_full.png');
+    };
+    function GiantScorpion() {
+        GiantScorpion.superClass.call(this, o_animal);
+    }
+
+    window.GiantScorpion = GiantScorpion;
+    GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
+///////
+// file: js_src/gameobj/animal/pterodactyl.js
+///////
+Pterodactyl.prototype = Object.create(superClass.prototype);
+Pterodactyl.prototype.constructor = Pterodactyl;
+Pterodactyl.superClass = superClass;
+Pterodactyl.prototype.animalInfo = function () {
+    var infoO = {};
+   switch (this.animalSpecies) {
+     case 0:
+            infoO.aniName = 'Pterodactyl';
+            break;
+        case 1:
+            infoO.aniName = 'Golden Pterodactyl';
+            break;
+        case 2:
+            infoO.aniName = 'Emerald Pterodactyl';
+       break;
+           case 12:
+            infoO.aniName = 'Blue Pterodactyl';
+       break;
+        }
+
+    infoO.aniCol = '#FF9000';
+    infoO.skinName =  'desert/pterodactyl';
+    infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
+    return infoO;
+};
+Pterodactyl.prototype.getHead = function (_0x29679c, _0x4adc58) {
+    return 'skins/desert'+ '/' + _0x29679c + '/'+ this.animalSpecies + '/' + _0x29679c + '_head.png';
+};
+Pterodactyl.prototype.getSkinName = function () {
+          var _0x528bd8 ='desert/pterodactyl/' + this.animalSpecies + '/pterodactyl';
+        return _0x528bd8 = 4 == this.specType ? _0x528bd8 + '4' : _0x528bd8 + (0 == this.specType ? '' : 1);
+};
+Pterodactyl.prototype.getWing = function (_0x4ac10e, _0x26897e) {
+    this.flag_flying || (_0x26897e = _0x26897e + '' + _0x26897e);
+    return 'skins/desert'+ '/' + _0x4ac10e + '/' + this.animalSpecies + '/' + _0x4ac10e + '_wing' + _0x26897e + '_nohand.png';
+};
+Pterodactyl.prototype.getWingBone = function (_0x204a7c, _0x47cdee) {
+    this.flag_flying || (_0x47cdee = _0x47cdee + '' + _0x47cdee);
+    return 'skins/desert'+ '/' + _0x204a7c + '/' + this.animalSpecies + '/' + _0x204a7c + '_wing' + _0x47cdee + '_bones.png';
+};
+Pterodactyl.prototype.getHand = function (_0x10826f, _0x5416bc) {
+    this.flag_flying || (_0x5416bc = _0x5416bc + '' + _0x5416bc);
+    this.isGliding && (_0x5416bc += '3');
+    return 'skins/desert' + '/' + _0x10826f + '/'+ this.animalSpecies + '/' + _0x10826f + '_hand' + _0x5416bc + '.png';
+};
+Pterodactyl.prototype.biteStart = 0;
+Pterodactyl.prototype.flaps = 0;
+Pterodactyl.prototype.flapsMod = 5;
+Pterodactyl.prototype.countFlap = true;
+Pterodactyl.prototype.canFlap = !options_lowGraphics;
+Pterodactyl.prototype.resumeFlapT = 0;
+Pterodactyl.prototype.lastFlapFrame = 0;
+Pterodactyl.prototype.flapSpeed = 1;
+Pterodactyl.prototype.flapAmount = 0.2;
+Pterodactyl.prototype.r = 22.5;
+Pterodactyl.prototype.ax = 0;
+Pterodactyl.prototype.ay = 1;
+Pterodactyl.prototype.ww = 4;
+Pterodactyl.prototype.wh = 2.5;
+Pterodactyl.prototype.ax2 = 1;
+Pterodactyl.prototype.rf = -2;
+Pterodactyl.prototype.erf = 11.5;
+Pterodactyl.prototype.erf_gliding = 30;
+Pterodactyl.prototype.lx = -0.05;
+Pterodactyl.prototype.famt = 0.5;
+Pterodactyl.prototype.yf = 0.15;
+Pterodactyl.prototype.xf = -0.2;
+Pterodactyl.prototype.legScale = 1.15;
+Pterodactyl.prototype.handPerc = 0.9;
+Pterodactyl.prototype.handWF = 0;
+Pterodactyl.prototype.set = true;
+Pterodactyl.prototype.wOffset = 0.1;
+Pterodactyl.prototype.headF = 0.5;
+Pterodactyl.prototype.headFDisp = -0.6;
+Pterodactyl.prototype.headScale = 0.8;
+Pterodactyl.prototype.headX = 0.225;
+Pterodactyl.prototype.drawLegs = function () {
+    var _0x2eed07 = 1.4705882352941,
+        _0x4afd81 = this.flag_eff_aniInClaws ? 'legs2' : 'legs';
+    if (_0x4afd81 = getLoadedImg('skins/desert/pterodactyl/'+ this.animalSpecies + '/'+ _0x4afd81 + '.png')) {
+        ctx.save();
+        var _0x219321 = this.rad,
+            _0x2eed07 = _0x2eed07 * this.legScale;
+        ctx.drawImage(_0x4afd81, -_0x219321 * _0x2eed07, (-_0x219321 + _0x219321 * this.lx) * _0x2eed07, 2 * _0x219321 * _0x2eed07, 2 * _0x219321 * _0x2eed07);
+        ctx.restore();
+    }
+};
+Pterodactyl.prototype.drawUnderSkinImg = function () {
+    this.flag_usingAbility && (this.drawWing(this.frame, 1), this.drawWing(this.frame, 2));
+    2 == this.specType && this.drawLegs();
+};
+Pterodactyl.prototype.drawSkinCustomization = function () {
+
+    if (this.flag_usingAbility) {
+        this.drawBone(this.frame, 1);
+        this.drawBone(this.frame, 2);
+        this.drawHand(this.frame, 1);
+        this.drawHand(this.frame, 2);
+        var _0x2e5ee9 = 1.4705882352941,
+            _0x1dbcf1 = this.getHead('pterodactyl', true);
+        if (_0x1dbcf1 = getLoadedImg(_0x1dbcf1)) {
+            ctx.save();
+            var _0x2e5ee9 = _0x2e5ee9 + -(0.1 * this.headF) * this.frame,
+                _0x5b7869 = this.rad;
+            ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * (0.3 + this.frame / 10 * this.headFDisp) + this.headF * this.frame) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9);
+            ctx.restore();
+        }
+    } else if (_0x1dbcf1 = this.getHead('pterodactyl', true), _0x1dbcf1 = getLoadedImg(_0x1dbcf1)) _0x2e5ee9 = 1.4705882352941 * this.headScale, ctx.save(), _0x5b7869 = this.rad, ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * this.headX) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9), ctx.restore();
+};
+Pterodactyl.prototype.drawWing = function (_0x4f5a63, _0x5c300b) {
+  
+    var _0x2a359f = 1 == _0x5c300b ? 1 : -1,
+        _0x2bd995 = getLoadedImg(this.getWing('pterodactyl', _0x5c300b));
+    if (_0x2bd995) {
+        var _0x22b0c1 = -(-0.2 + _0x4f5a63) * toRadians(_0x2a359f * this.r),
+            _0x15f848 = 0.8 * this.rad,
+            _0x1f5264 = this.rad,
+            _0x67c3e0 = _0x15f848 * this.ww,
+            _0x15f848 = _0x15f848 * this.wh,
+            _0x13ccc2 = 1 == _0x5c300b ? this.ax : this.ax2,
+            _0x24e8b9 = this.ay + this.yf * _0x4f5a63;
+        ctx.save();
+        _0x22b0c1 *= this.rf;
+        ctx.rotate(toRadians(_0x2a359f * (this.isGliding ? this.erf_gliding : this.erf)) + _0x22b0c1);
+        ctx.drawImage(_0x2bd995, 0 + _0x67c3e0 * -_0x13ccc2 + _0x4f5a63 * _0x67c3e0 * _0x2a359f * this.wOffset, _0x1f5264 + _0x15f848 * -_0x24e8b9, _0x67c3e0, _0x15f848);
+        ctx.restore();
+    }
+};
+Pterodactyl.prototype.drawBone = function (_0xf1fb52, _0x48a7e2) {
+    var _0x50e10e = getLoadedImg(this.getWingBone('pterodactyl', _0x48a7e2)),
+        _0x152838 = 1 == _0x48a7e2 ? 1 : -1;
+    if (_0x50e10e) {
+        var _0x24b193 = -(-0.2 + _0xf1fb52) * toRadians(_0x152838 * this.r),
+            _0x22a484 = 0.8 * this.rad,
+            _0x3f0bc9 = this.rad,
+            _0x5a7c64 = _0x22a484 * this.ww,
+            _0x22a484 = _0x22a484 * this.wh,
+            _0x815a56 = 1 == _0x48a7e2 ? this.ax : this.ax2,
+            _0x32ba27 = this.ay + this.yf * _0xf1fb52;
+        ctx.save();
+        _0x24b193 *= this.rf;
+        ctx.rotate(toRadians(_0x152838 * (this.isGliding ? this.erf_gliding : this.erf)) + _0x24b193);
+        ctx.drawImage(_0x50e10e, 0 + _0x5a7c64 * -_0x815a56 + _0xf1fb52 * _0x5a7c64 * _0x152838 * this.wOffset, _0x3f0bc9 + _0x22a484 * -_0x32ba27, _0x5a7c64, _0x22a484);
+        ctx.restore();
+    }
+};
+var _0x152b10 = 0;
+Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
+    var _0x551de1 = 1 == _0x50fe2f ? 1 : -1,
+        _0x48325e = getLoadedImg(this.getHand('pterodactyl', _0x50fe2f));
+    if (_0x48325e) {
+        var _0x503254 = -(-0.2 + _0x8ffe97) * toRadians(_0x551de1 * this.r),
+            _0x5026b3 = 0.8 * this.rad,
+            _0x1b2913 = this.rad,
+            _0x149abd = _0x5026b3 * this.ww,
+            _0x5026b3 = _0x5026b3 * this.wh + (this.flag_flying ? 0 : this.wh * _0x152b10),
+            _0x21ac92 = (1 == _0x551de1 ? this.ax : this.ax2) + _0x551de1 * this.xf * _0x8ffe97,
+            _0x5e2ae9 = this.ay + this.yf * _0x8ffe97,
+            _0x503254 = _0x503254 * this.rf,
+            _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
+        ctx.save();
+        this.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, toRadians(_0x551de1 * _0x28cd2b) + _0x503254);
+        ctx.restore();
+    }
+};
+Pterodactyl.prototype.frame = 0;
+Pterodactyl.prototype.lastFlapFrame = 0;
+Pterodactyl.prototype.getFrame = function () {
+
+   if( this.flag_flying && timestamp > this.resumeFlapT && (this.canFlap = true));
+    var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
+        _0x2b4955 = !options_lowGraphics && this.canFlap ? getAnimFrame(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
+
+    if (this.flag_flying && 0 > _0x2b4955 && this.countFlap && timestamp > this.resumeFlapT )  {
+      if(this.isGliding){
+  this.flaps = 0
+}
+      this.countFlap = false, 
+      this.flaps++;
+ 
+     if(this.flaps % this.flapsMod == 0){
+      this.lastFlapFrame = _0x2b4955, 
+      this.canFlap = false,
+      this.resumeFlapT = timestamp + 1500;
+     }
+    }else{
+  if(0 < _0x2b4955 && !this.countFlap)    (this.countFlap = true);
+    }
+  
+  
+    if(!this.canFlap)  _0x2b4955 = this.lastFlapFrame;
+  else this.lastFlapFrame = _0x2b4955 ;
+    return _0x2b4955;
+};
+Pterodactyl.prototype.beforeCustomDraw = function () {
+    this.flag_usingAbility && (this.flag_flying || this.set ? this.flag_flying && this.set && (this.set = true, this.r = 22.5, this.erf = 11.5, this.ww = 4.5) : (this.set = true, this.r = 11.25, this.erf = 5.75, this.ww = 3.5), this.flapAmount = this.isGliding ? 0 : this.famt, this.frame = this.getFrame());
+};
+Pterodactyl.prototype.updateZ = function () {
+ if(!this.flag_flying){
+  this.z = 1500 + this.rad;
+ }else{
+   this.z = 15005 + this.rad;
+ }
+};
+Pterodactyl.prototype.isGliding = true;
+Pterodactyl.prototype.readCustomData_onNewlyVisible = function (msg) {
+    Pterodactyl.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+    this.readInfo(msg);
+};
+Pterodactyl.prototype.readCustomData_onUpdate = function (msg) {
+    Pterodactyl.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+    this.readInfo(msg);
+};
+Pterodactyl.prototype.readInfo = function (msg) {
+   this.isGliding = 1 == msg.readUInt8();
+};
+
+function Pterodactyl() {
+    Pterodactyl.superClass.call(this, o_animal);
+}
+window.Pterodactyl = Pterodactyl;
+GameObjType.setCustomClassForGameObjType(Pterodactyl, o_animal, a_pterodactyl);
+///////
+// file: js_src/gameobj/animal/bigfoot.js
+///////
+Bigfoot.prototype = Object.create(superClass.prototype);
+Bigfoot.prototype.constructor = Bigfoot;
+Bigfoot.superClass = superClass;
+Bigfoot.prototype.animalInfo = function () {
+    var _0x1e5890 = {
+        'aniName': 'The BigFoot',
+        'skinName': 'bigfoot/thebigfoot',
+        'aniDesc': ''
+    };
+    _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... 
+ Right click/W to throw Spears. 
+Hold to make a fire (every 30s)`;
+    _0x1e5890.aniCol = '#839eb5';
+    return _0x1e5890;
+};
+Bigfoot.prototype.getAbilityInfo = function (_0x4f532b) {
+    return {
+        'abilName': `Throw Spear\
+ (Hold for fire!)`,
+        'abilImg': 'skins/bigfoot/ability.png'
+    };
+};
+Bigfoot.prototype.getSkinName = function () {
+    var _0x21b754;
+    _0x21b754 = 'bigfoot/';
+    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'thebigfoot' : _0x21b754 + 'bigfoot';
+};
+Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
+    this.isCamouflage || Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
+};
+
+Bigfoot.prototype.isTransforming = true;
+Bigfoot.prototype.isCamouflage = true;
+Bigfoot.prototype.carrotAlpha = 0;
+Bigfoot.prototype.getIdealOpacity = function () {
+    return this.flag_underWater || this.flag_usingAbility && this.isTransforming || this.isCamouflage ? 0 : 1;
+};
+Bigfoot.prototype.biteStart = 0;
+Bigfoot.prototype.flapAmount = 3;
+Bigfoot.prototype.flapDur = 1.5;
+Bigfoot.prototype.roarStartT = -500;
+Bigfoot.prototype.spearThrow = function () {
+    ctx.save();
+    var _0x579217 = getLoadedImg('skins/bigfoot/arm21.png');
+    if (_0x579217) {
+        var _0xb1f6b5 = Math.min(1, (timestamp - this.biteStart) / 200),
+            _0x32a744 = -clamp((timestamp - this.biteStart) / 300, 0, 1) * toRadians(90);
+        ctx.rotate(this.angle + _0x32a744);
+        var _0x32a744 = 1.75 * -this.rad,
+            _0x5a871d = 2 * _0x32a744,
+            _0xb1f6b5 = 2 * _0x32a744 * _0xb1f6b5;
+        ctx.drawImage(_0x579217, this.rad / 1.7 * _0x5a871d, this.rad + -0.8 * _0xb1f6b5 + _0x32a744, _0x5a871d, _0xb1f6b5);
+    }
+    ctx.restore();
+};
+Bigfoot.prototype.drawSkinCustomization = function () {
+    this.flag_underWater || (this.setSkinScale(), this.flag_usingAbility || (this.biteStart = 0), 0x0 != this.id && this.spearInHand ? this.spearHandAnimation(0) : this.leftHandAnimation(0), this.rightHandAnimation(0), this.bigfootHead(0), this.flag_usingAbility || this.flag_inHidingHole || this.oogaBoogaAnimation(0));
+};
+Bigfoot.prototype.oogaBoogaNextT = +new Date() +15000;
+Bigfoot.prototype.oogaBoogaFrame = 0;
+Bigfoot.prototype.oogaBoogaFrameT = 0;
+Bigfoot.prototype.oogaBoogaAnimation = function (_0x416072) {
+    timestamp > this.oogaBoogaNextT && (timestamp > this.oogaBoogaFrameT && (this.oogaBoogaFrameT = timestamp + 300, this.oogaBoogaFrame += 1, 1 == this.oogaBoogaFrame ? this.gotChat('OOGA!') : 3 == this.oogaBoogaFrame && this.gotChat('BOOGA!')), 4 < this.oogaBoogaFrame && (this.oogaBoogaFrame = 0, this.oogaBoogaNextT = +new Date() + 15000));
+    if (0 < this.oogaBoogaFrame) {
+        _0x416072 = 1.4705882352941;
+        var _0x5e66b4 = getLoadedImg('skins/bigfoot/mouth' + this.oogaBoogaFrame + '.png');
+        if (_0x5e66b4) {
+            ctx.save();
+            var _0x2321b1 = this.rad;
+            ctx.drawImage(_0x5e66b4, -_0x2321b1 * _0x416072, (-_0x2321b1 + 0 * _0x2321b1) * _0x416072, 2 * _0x2321b1 * _0x416072, 2 * _0x2321b1 * _0x416072);
+            ctx.restore();
+        }
+    }
+};
+Bigfoot.prototype.spearInHand = true;
+Bigfoot.prototype.canCreateFire = true;
+Bigfoot.prototype.readCustomData_onUpdate = function (_0x508108) {
+    Bigfoot.superClass.prototype.readCustomData_onUpdate.call(this, _0x508108);
+    this.spearInHand = 1 == _0x508108.readUInt8();
+    this.canCreateFire = 1 == _0x508108.readUInt8();
+};
+Bigfoot.prototype.readCustomData_onNewlyVisible = function (_0x3e7886) {
+    Bigfoot.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x3e7886);
+};
+var _0x21286e = 0.84,
+    _0x429324 = 0.47,
+    _0x35932c = 45,
+    _0x4c4312 = -30,
+    _0x8a441a = 1.3,
+    _0x57bed6 = 1.5,
+    _0x4bd1bd = 0.3;
+Bigfoot.prototype.bigfootHead = function (_0x6b80a5) {
+    _0x6b80a5 = 0;
+    var _0x5095f8 = 1.4705882352941,
+        _0x450bb2 = this.flag_usingAbility ? 'head2' : 'head';
+    this.flag_usingAbility || (_0x6b80a5 = 0);
+    if (_0x450bb2 = getLoadedImg('skins/bigfoot/' + _0x450bb2 + '.png')) {
+        ctx.save();
+        var _0x1fbab2 = this.rad;
+        ctx.drawImage(_0x450bb2, -_0x1fbab2 * _0x5095f8, (-_0x1fbab2 + _0x1fbab2 * _0x6b80a5) * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8);
+        ctx.restore();
+    }
+};
+Bigfoot.prototype.spearHandAnimation = function (_0x11c623) {
+    var _0x58599c = (timestamp - this.spawnTime) / 1000,
+        _0x58599c = getAnimFrame(_0x58599c, _0x57bed6, _0x4bd1bd, 2),
+        _0x2ed9c5 = getLoadedImg('skins/bigfoot/arm2.png');
+    if (_0x2ed9c5) {
+        ctx.save();
+        _0x11c623 = -(-0.2 + _0x58599c) * toRadians(_0x35932c);
+        var _0x1dbe08 = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(_0x4c4312) + _0x11c623);
+        _0x11c623 = this.rad;
+        var _0x3c4cf3 = 2 * _0x1dbe08,
+            _0x1dbe08 = 2 * _0x1dbe08,
+            _0x433d7a = _0x429324,
+            _0x45b0e5 = _0x21286e;
+        ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08);
+        this.canCreateFire && (_0x2ed9c5 = getLoadedImg('skins/bigfoot/arm2-fire.png')) && (_0x58599c = (timestamp - this.spawnTime) / 1000, _0x58599c = getAnimFrame(_0x58599c, 5, 1, 1), ctx.globalAlpha = Math.max(0, _0x58599c), ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08));
+        ctx.restore();
+    }
+};
+Bigfoot.prototype.rightHandAnimation = function (_0x1b64dd) {
+    var _0x4e432d = getAnimFrame((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x1b64dd = getLoadedImg('skins/bigfoot/arm1.png')) {
+        ctx.save();
+        var _0x1ddbe6 = -_0x4e432d * toRadians(-10),
+            _0x4e432d = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(-5) + _0x1ddbe6);
+        _0x1ddbe6 = 2 * _0x4e432d;
+        _0x4e432d *= 2;
+        ctx.drawImage(_0x1b64dd, -0.55 * _0x1ddbe6, this.rad + -0.85 * _0x4e432d, _0x1ddbe6, _0x4e432d);
+        ctx.restore();
+    }
+};
+Bigfoot.prototype.leftHandAnimation = function (_0x3e895b) {
+    var _0x5e6af1 = getAnimFrame((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x3e895b = getLoadedImg('skins/bigfoot/arm21.png')) {
+        ctx.save();
+        var _0x38240d = -_0x5e6af1 * toRadians(-10),
+            _0x5e6af1 = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(-5) + _0x38240d);
+        _0x38240d = 2 * _0x5e6af1;
+        _0x5e6af1 *= 2;
+        ctx.drawImage(_0x3e895b, -0.47 * _0x38240d, this.rad + -0.8 * _0x5e6af1, _0x38240d, _0x5e6af1);
+        ctx.restore();
+    }
+};
+
+function Bigfoot() {
+    Bigfoot.superClass.call(this, o_animal);
+    this.oogaBoogaNextT = +new Date() + 15000;
+}
+window.BigFoot = Bigfoot;
+GameObjType.setCustomClassForGameObjType(Bigfoot, o_animal, a_bigfoot);
+
+///////
+// file: js_src/gameobj/animal/santa.js
+///////
+
+var superClass = Animal;
+FinalDragon.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+FinalDragon.prototype.constructor = FinalDragon;
+FinalDragon.superClass = superClass; //'class' var
+
+ FinalDragon.prototype.getSkinName = function() {
+  var skin =
+    "finaldragon/" + this.animalSpecies + 
+    "/body" +
+    (this.specType == 0 ? "" : this.specType);
+
+
+
+  return skin;
+};
+
+
+FinalDragon.prototype.drawOnTopOfSkinImg = function() {
+
+
+
+  var skins = "skins";
+  
+
+  var iScale = 500 / 340.0;
+  {
+
+  var theImg = getLoadedImg("skins/finaldragon/" + this.animalSpecies + "/nostrils.png");
+  if (theImg) {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+     var frame = getAnimFrame(tSinceSpawn, 5, 1, 1);
+    ctx.save();
+    var speed = Math.max(0, frame);
+ 
+    ctx.globalAlpha = speed
+   
+    var rad = this.rad - this.outlineW;
+    ctx.drawImage(
+      theImg,
+      -rad * iScale,
+      -rad * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+    );
+ 
+    ctx.restore();
+  }
+
+      ctx.save();
+var max = 10
+var max2 =-3
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+ var frame =  getAnimFrame(tSinceSpawn,2.1, .4, 1.5);
+      var theImg = getLoadedImg(
+        skins + "/finaldragon/" + this.animalSpecies + "/right_wing.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(frame) * toRadians(max); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad - this.outlineW;
+        
+        ctx.rotate(toRadians(max2) + extraRotate);
+ 
+        ctx.drawImage(
+        theImg,
+      -rad * iScale,
+      -rad * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+        skins + "/finaldragon/" + this.animalSpecies + "/left_wing.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(frame) * toRadians(-max); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad - this.outlineW;
+        ctx.rotate(toRadians(-max2) + extraRotate);
+    
+        ctx.drawImage(
+         theImg,
+      -rad * iScale,
+      -rad * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+ 
+
+  };
+};
+function FinalDragon() {
+  FinalDragon.superClass.call(this, o_animal);
+}
+window.FinalDragon = FinalDragon;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(FinalDragon, o_animal, a_finaldragon);
+
+
+///////
+// file: js_src/gameobj/animal/Santa.js
+///////
+
+var superClass = Animal;
+IceMonster.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+IceMonster.prototype.constructor = IceMonster;
+IceMonster.superClass = superClass; //'class' var
+IceMonster.prototype.readCustomData_onNewlyVisible = function (msg) {
+        IceMonster.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+        this.readInfo(msg);
+    };
+    IceMonster.prototype.readCustomData_onUpdate = function (msg) {
+        IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+        this.readInfo(msg);
+    };
+    IceMonster.prototype.readInfo = function (msg) {
+      
+                var _0xa9f163 = msg.readUInt8();
+                this.crystals = [];
+                for (i = 0; i < _0xa9f163  ; i++) {
+                 
+                    var _0x125caf = msg.readInt16() / 100;
+                    var _0x18dd56 = msg.readInt16() / 100;
+                    var _0x150bb5 = msg.readUInt16() / 100;
+                    var _0x2adfbc = msg.readUInt16() / 100;
+               
+                    this.crystals.push({
+                        'x': _0x125caf,
+                        'y': _0x18dd56,
+                        'nRad': _0x150bb5,
+                        'oRad': _0x150bb5,
+                        'rad': _0x150bb5,
+                        'angle': _0x2adfbc
+                    });
+                   
+          };
+    };
+ 
+IceMonster.prototype.drawOnTopOfSkinImg = function() {
+
+ var _0x32e153 = this.rad - this.outlineW;
+ 
+    for (i = 0; i < this.crystals.length; i++) {
+            
+      
+            var _0x28cda7 = this.crystals[i];
+            if (_0x28cda7.nRad == 0) continue;
+            _0x28cda7.rad += (_0x28cda7.nRad - _0x28cda7.rad) * 0.01;
+            var _0x537db5 = _0x28cda7['x'] * _0x32e153;
+            var _0x3c54ff = _0x28cda7['y'] * _0x32e153;
+            var _0x43b339 = _0x28cda7.angle;
+            var _0x5a7f6a = _0x28cda7.rad;
+            ctx.save();
+            ctx.translate(_0x537db5, _0x3c54ff);
+            ctx.globalAlpha = 1;
+            ctx.rotate(toRadians(_0x43b339));
+            var _0xb06102 = getLoadedImg('skins/monsters/icemonster/crystal.png');
+            if (_0xb06102) {
+                ctx.drawImage(_0xb06102, -_0x5a7f6a, -_0x5a7f6a * 2, _0x5a7f6a * 2, _0x5a7f6a * 2);
+            }
+            ctx.restore();
+        
+    }
+};
+function IceMonster() {
+     this.crystals = [];
+  IceMonster.superClass.call(this, o_animal);
+}
+window.IceMonster = IceMonster;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(IceMonster, o_animal, a_iceMonster);
+
+
+///////
+// file: js_src/gameobj/animal/Santa.js
+///////
+
+var superClass = Animal;
+Santa.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Santa.prototype.constructor = Santa;
+Santa.superClass = superClass; //'class' var
+
+ Santa.prototype.getSkinName = function() {
+  var skin =
+    "santa/" +
+    "/eagle" +
+    (this.specType == 0 ? "" : this.specType);
+
+if (this.flag_flying && !this.flag_isGrabbed&&this.flag_usingAbility) {
+var skin ="santa/flying_eagle"
+};
+
+  return skin;
+};
+
+Santa.prototype.drawUnderSkinImg = function() {
+  if (!this.flag_usingAbility) return;
+
+  var skins = "skins";
+  
+
+  var iScale = 500 / 340.0;
+  {  
+      var n = (timestamp - this.spawnTime) / 1000.0;
+     var l = getAnimFrame(n, .9, .3, 2)
+    if (this.flag_flying && !this.flag_isGrabbed) {
+    if (i = getLoadedImg( skins + "/santa/" + "/eagle_wing1.png")) ctx.save(), r = -(-.2 + l) * toRadians(90), s = .8 * this.rad, ctx.rotate(r), r = this.rad, h = 1.4 * s, o = 2 * s, ctx.drawImage(i, 0 + .2 * h, r + -1.2 * o, h, o), ctx.restore();
+if (i = getLoadedImg( skins + "/santa/" + "/eagle_wing2.png")) ctx.save(), r = -(-.2 + l) * toRadians(-90), s = .8 * this.rad, ctx.rotate(r), r = this.rad, h = 1.4 * s, o = 2 * s, ctx.drawImage(i, 0 + -1.2 * h, r + -1.2 * o, h, o), ctx.restore();
+  }
+};
+};
+function Santa() {
+  Santa.superClass.call(this, o_animal);
+}
+window.Santa = Santa;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Santa, o_animal, a_santa);
+
+
+///////
+// file: js_src/gameobj/animal/Eagle.js
+///////
+
+var superClass = Animal;
+Eagle.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Eagle.prototype.constructor = Eagle;
+Eagle.superClass = superClass; //'class' var
+ 
+Eagle.prototype.animalInfo = function() {
+  var infoO = {};
+
+  var extras = "";
+  switch (this.animalSpecies) {
+    case 0:
+      infoO.aniName = "Bald Eagle";
+      break;
+    case 1:
+      infoO.aniName = "Golden Eagle";
+      extras = "(Can even pick predators!)";
+      break;
+  }
+  infoO.aniCol = "#5b400d";
+  infoO.upgradeText =
+    "UPGRADED to " +
+    infoO.aniName +
+    "!\nEagles can fly up other animals in the air! !\n" +
+    extras;
+
+  infoO.skinName =
+    "eagle/" +
+    this.animalSpecies +
+    "/eagle" +
+    (this.specType == 0 ? "" : this.specType);
+  return infoO;
+};
+
+Eagle.prototype.drawSkinCustomization = function() {
+ // if (!this.flag_usingAbility) return;
+
+  var skins = "skins";
+  
+
+  var iScale = 500 / 340.0;
+  {
+    if (this.flag_flying && !this.flag_isGrabbed) {
+      ctx.save();
+
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+      var frame = !options_lowGraphics
+        ? getAnimFrame(tSinceSpawn, 0.9, 0.3, 2)
+        : this.birdNoAnimationFlyWingAngle;
+      var theImg = getLoadedImg(
+        skins + "/eagle/" + this.animalSpecies + "/eagle_wing1.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(90.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(45) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.62,
+          imH = rad * 2.5; // * fac0to1;
+        var imAnchorX = 0.2,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+        skins + "/eagle/" + this.animalSpecies + "/eagle_wing2.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(-90.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(-45) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.62,
+          imH = rad * 2.5; // * fac0to1;
+        var imAnchorX = 0.8,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+    } else if (this.specType == 1) {
+      // attack animation
+      ctx.save();
+
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+      var frame = !options_lowGraphics
+        ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
+        : 0;
+      var theImg = getLoadedImg(
+        skins + "/eagle/" + this.animalSpecies + "/eagle_wing1.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(15) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.8,
+          imH = rad * 2.2; // * fac0to1;
+        var imAnchorX = 0,
+          imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+        skins + "/eagle/" + this.animalSpecies + "/eagle_wing2.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(-15) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.8,
+          imH = rad * 2.2; // * fac0to1;
+        var imAnchorX = 1,
+          imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
+
+    //console.log(this.specType)
+    if (this.specType != 0 && this.specType != undefined) {
+      var head = "eagle_head" + (this.specType == 1 ? "2" : "");
+
+      var theHead = getLoadedImg(
+        skins + "/eagle/" + this.animalSpecies + "/" + head + ".png"
+      );
+      if (theHead) {
+        ctx.save();
+        var rad = this.rad;
+        ctx.drawImage(
+          theHead,
+          -rad * iScale,
+          (-rad + rad * 0.1) * iScale,
+          2 * rad * iScale,
+          2 * rad * iScale
+        );
+        ctx.restore();
+      }
+    }
+  }
+};
+
+function Eagle() {
+  Eagle.superClass.call(this, o_animal);
+}
+window.Eagle = Eagle;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Eagle, o_animal, a_eagle);
+
+
+///////
+// file: js_src/gameobj/animal/Ostrich.js
+///////
+
+
+var superClass = Animal;
+Ostrich.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Ostrich.prototype.constructor = Ostrich;
+Ostrich.superClass=superClass; //'class' var
+
+//example of custom Z
+/*Ostrich.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Ostrich.prototype.getSkinName = function() {
+  return "ostrich/ostrich";
+}
+
+function Ostrich(){
+    Ostrich.superClass.call(this, o_animal);
+
+}
+window.Ostrich=Ostrich;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Ostrich, o_animal, a_ostrich);
+
+
+///////
+// file: js_src/gameobj/animal/OstrichBaby.js
+///////
+
+
+var superClass = Animal;
+OstrichBaby.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+OstrichBaby.prototype.constructor = OstrichBaby;
+OstrichBaby.superClass=superClass; //'class' var
+
+//example of custom Z
+/*OstrichBaby.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+OstrichBaby.prototype.getSkinName = function() {
+  return "ostrich/ostrich-baby";
+}
+
+
+
+
+
+
+
+function OstrichBaby(){
+    OstrichBaby.superClass.call(this, o_animal);
+
+}
+
+
+window.OstrichBaby=OstrichBaby;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(OstrichBaby, o_animal, a_ostrichBaby);
+
+
+///////
+// file: js_src/gameobj/animal/Falcon.js
+///////
+
+var Falcon = Falcon;
+var superClass = Animal;
+Falcon.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Falcon.prototype.constructor = Falcon;
+Falcon.superClass = superClass; //'class' var
+
+//example of custom Z
+/*Falcon.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Falcon.prototype.getSkinName = function() {
+  return (
+    "falcon/"
+    +
+    this.animalSpecies
+    +"/falcon" +
+    (this.specType == 0 || this.specType == undefined ? "" : this.specType)
+  );
+};
+
+Falcon.prototype.drawSkinCustomization = function() {
+  if (!this.flag_usingAbility) return;
+  var skins = "skins";
+  
+  var iScale = 500 / 340.0;
+  if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
+      : this.birdNoAnimationFlyWingAngle;
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 2) {
+    // dive animation
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + 0) * toRadians(25.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + 0) * toRadians(-25.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 3) {
+    // attack animation
+    ctx.save();
+
+    //falcon_attack
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 1,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 1,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  if (this.specType != 0 && this.specType != undefined) {
+    var theHead = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_head.png");
+    if (theHead) {
+      ctx.save();
+      var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
+      var yDist = rad * 0.2;
+      if (this.specType == 3) yDist = rad * -0.15;
+      ctx.drawImage(
+        theHead,
+        -rad * iScale,
+        (-rad + yDist) * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
+    }
+  }
+};
+
+function Falcon() {
+  Falcon.superClass.call(this, o_animal);
+}
+window.Falcon = Falcon;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Falcon, o_animal, a_falcon);
+
+///////
+// file: js_src/gameobj/animal/Thunderbird.js
+///////
+
+var Thunderbird = Thunderbird;
+var superClass = Animal;
+Thunderbird.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Thunderbird.prototype.constructor = Thunderbird;
+Thunderbird.superClass = superClass; //'class' var
+Thunderbird.prototype.transparancy = 100;
+//example of custom Z
+/*Thunderbird.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+
+Thunderbird.prototype.getSkinName = function() {
+  return (
+    "thunderbird/thunderbird" +
+    (this.specType == 0 || this.specType == undefined ? "" : this.specType)
+  );
+};
+
+Thunderbird.prototype.drawSkinCustomization = function() {
+  if (!this.flag_usingAbility) return;
+
+  
+  var skins = "skins";
+  
+  var iScale = 500 / 340.0;
+  if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
+      : this.birdNoAnimationFlyWingAngle;
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 2) {
+    // dive animation
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + 0) * toRadians(25.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + 0) * toRadians(-25.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 3) {
+    // attack animation
+    ctx.save();
+
+    //Thunderbird_attack
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 1,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/thunderbird/thunderbird_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 1,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  if (this.specType != 0 && this.specType != undefined) {
+    var theHead = getLoadedImg(skins + "/thunderbird/thunderbird_head"+( (this.specType == 3||this.specType == 2)? "1":"")+ ".png");
+    if (theHead) {
+      ctx.save();
+      var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
+      var yDist = rad * 0.2;
+      if (this.specType == 3) yDist = rad * -0.15;
+      ctx.drawImage(
+        theHead,
+        -rad * iScale,
+        (-rad + yDist) * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
+    }
+  }
+};
+ Thunderbird.prototype.readCustomData_onNewlyVisible = function (msg) {
+        Thunderbird.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+        this.readInfo(msg);
+    };
+    Thunderbird.prototype.readCustomData_onUpdate = function (msg) {
+        Thunderbird.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+        this.readInfo(msg);
+    };
+    Thunderbird.prototype.readInfo = function (msg) {
+      this.transparancy = msg.readUInt8();
+ 
+    };
+function Thunderbird() {
+  Thunderbird.superClass.call(this, o_animal);
+}
+window.Thunderbird = Thunderbird;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Thunderbird, o_animal, a_thunderbird);
+
+///////
+// file: js_src/gameobj/animal/SnowyOwl.js
+///////
+
+var superClass = Animal;
+SnowyOwl.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+SnowyOwl.prototype.constructor = SnowyOwl;
+SnowyOwl.superClass = superClass; //'class' var
+
+//example of custom Z
+/*SnowyOwl.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+SnowyOwl.prototype.getSkinName = function() {
+  return "snowyowl/snowyowl" + (this.specType == 0 ? "" : this.specType);
+};
+
+SnowyOwl.prototype.drawSkinCustomization = function() {
+  if (!this.flag_usingAbility) return;
+
+  var skins = "skins";
+  
+  var iScale = 500 / 340.0;
+  if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
+      : this.birdNoAnimationFlyWingAngle;
+    var theImg = getLoadedImg(skins + "/snowyowl/snowyowl_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/snowyowl/snowyowl_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-80.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.65,
+        imH = rad * 2.5; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 2) {
+    // dive animation
+    //console.log("snowyowl dive...");
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/snowyowl/snowyowl_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/snowyowl/snowyowl_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  } else if (this.flag_flying && this.specType == 3) {
+    // attack animation
+    ctx.save();
+
+    //console.log("snowyowl attacking...");
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.5, 0.5, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/snowyowl/snowyowl_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/snowyowl/snowyowl_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-25) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  if (this.specType != 0 && this.specType != undefined) {
+    var theHead = getLoadedImg(skins + "/snowyowl/snowyowl_head.png");
+    if (theHead) {
+      ctx.save();
+      var rad = this.rad * 0.8;
+      ctx.drawImage(
+        theHead,
+        -rad * iScale,
+        (-rad + rad * 0.1) * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
+    }
+  }
+};
+
+function SnowyOwl() {
+  SnowyOwl.superClass.call(this, o_animal);
+}
+window.SnowyOwl = SnowyOwl;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(SnowyOwl, o_animal, a_snowyOwl);
+
+
+///////
+// file: js_src/gameobj/animal/Pelican.js
+///////
+
+var Pelican = Pelican;
+var superClass = Animal;
+Pelican.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Pelican.prototype.constructor = Pelican;
+Pelican.superClass = superClass; //'class' var
+
+//example of custom Z
+/*Pelican.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Pelican.prototype.getSkinName = function() {
+  return "pelican/pelican" + (this.specType == 0 ? "" : this.specType);
+};
+
+Pelican.prototype.drawSkinCustomization = function() {
+  if (!this.flag_usingAbility) return;
+
+  var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
+  var rad = this.rad - this.outlineW;
+
+  
+  var skins = "skins";
+   
+  if (this.flag_flying) {
+    var wingType = "";
+
+    wingType = "pelican";
+
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.9, 0.3, 2)
+      : this.birdNoAnimationFlyWingAngle;
+    var theImg = getLoadedImg(skins + "/pelican/pelican_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(90.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(45) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.6,
+        imH = rad * 2.3; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/pelican/pelican_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-90.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-45) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.6,
+        imH = rad * 2.3; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+    ctx.restore();
+  } else if (this.specType == 1) {
+    var wingType = "";
+
+    wingType = "pelican";
+
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = !options_lowGraphics
+      ? getAnimFrame(tSinceSpawn, 0.9, 0.3, 2)
+      : 0;
+    var theImg = getLoadedImg(skins + "/pelican/pelican_wing11.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(45) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg(skins + "/pelican/pelican_wing21.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-45.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-45) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+
+  if (this.specType != 0 && !this.flag_isGrabbed) {
+    if (this.specType == 2) {
+      var waterbag = skins + "/pelican/ability_pelican.png";
+      var bag = getLoadedImg(waterbag);
+      if (bag) {
+        ctx.save();
+        ctx.rotate(toRadians(180));
+        var rad = this.rad * 0.3;
+        var ydist = this.rad * 1;
+        ctx.drawImage(
+          bag,
+          -rad * iScale,
+          -rad - ydist * iScale,
+          2 * rad * iScale,
+          2 * rad * iScale
+        );
+        ctx.restore();
+      }
+    }
+
+    var pelican_head = "pelican_head" + (this.specType == 3 ? "2" : "");
+
+    var theHead = getLoadedImg(skins + "/pelican/" + pelican_head + ".png");
+    if (theHead) {
+      ctx.save();
+      var rad = this.rad * 1;
+      var ydist = -this.rad * 0.3;
+      ctx.drawImage(
+        theHead,
+        -rad * iScale,
+        -rad + ydist * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
+    }
+  }
+};
+function Pelican() {
+  Pelican.superClass.call(this, o_animal);
+}
+window.Pelican = Pelican;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Pelican, o_animal, a_pelican);
+
+
+///////
+// file: js_src/gameobj/animal/Frog.js
+///////
+
+
+var superClass = Animal;
+Frog.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Frog.prototype.constructor = Frog;
+Frog.superClass=superClass; //'class' var
+
+//example of custom Z
+Frog.prototype.updateZ = function() {
+	this.z = 1003 + this.rad;
+}
+
+//set custom skin name
+Frog.prototype.getSkinName = function() {
+	var suffix = "";
+	if (this.flag_usingAbility && !this.flag_underWater )
+          suffix = "2";
+    return "frog/frog" + suffix;
+}
+
+Frog.prototype.drawUnderSkinImg = function() {
+	if (this.flag_usingAbility && !this.flag_underWater) {
+    var rad = this.rad - this.outlineW;
+    var iScale = 500 / 340.0;
+    var froglegs = getLoadedImg("./skins/frog/frogLegs.png");
+    if (froglegs)
+      ctx.drawImage(froglegs, -rad * iScale, (-rad - rad) * iScale, 2 * rad * iScale, 2 * rad * iScale);
+	}
+}
+
+Frog.prototype.drawWhenUnderwater = function() {
+
+    ctx.save();
+    ctx.globalAlpha = 0.2;
+    ctx.scale(1, 1.5);
+    drawCircle(0, 0, this.rad * 0.5, "#598b30");
+    drawCircle(0, this.rad * -0.6, this.rad * 0.3, "#64a034");
+    ctx.restore();
+
+}
+function Frog(){
+    Frog.superClass.call(this, o_animal);
+
+}
+window.Frog=Frog;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Frog, o_animal, a_frog);
+
+
+///////
+// file: js_src/gameobj/animal/Duck.js
+///////
+
+var thisClass = Duck;
+var superClass = Animal;
+thisClass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+thisClass.prototype.constructor = thisClass;
+thisClass.superClass = superClass; //'class' var
+
+//example of custom Z
+/*thisClass.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+thisClass.prototype.isAttacking = false;
+thisClass.prototype.getSkinName = function() {
+  //return "duck/duck_" + this.specType;
+  
+  var skin = "duck/" + this.animalSpecies + "/duck" + (this.isAttacking? "1" : "");
+  return skin;
+};
+
+thisClass.prototype.drawSkinCustomization = function() {
+  var iScale = 500 / 340.0;
+  if (this.isAttacking && this.animalSpecies == 2) {
+    var wingType = "";
+
+    wingType = "duck";
+
+    ctx.save();
+
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = getAnimFrame(tSinceSpawn, 0.5, 0.3, 2);
+    var theImg = getLoadedImg("skins/duck/2/duck_wing1.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(15.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 0,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg("skins/duck/2/duck_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.2 + frame) * toRadians(-15.0); //spin animation
+
+      //clip to sliwly show the claw
+      var rad = this.rad * 0.8;
+      ctx.rotate(toRadians(-15) + extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.7,
+        imH = rad * 2.2; // * fac0to1;
+      var imAnchorX = 1,
+        imAnchorY = 1.5; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theHead = getLoadedImg("skins/duck/2/head_duck.png");
+    if (theHead) {
+        ctx.save();
+        var rad = this.rad * 1;
+        var ydist = -this.rad * 0.1;
+        ctx.drawImage(theHead, -rad * iScale, (-rad) + ydist * iScale, 2 * rad * iScale, 2 * rad * iScale);
+        ctx.restore();
+
+    }
+
+    ctx.restore();
+  }
+};
+
+function Duck() {
+  superClass.call(this, o_animal);
+}
+window.Duck = Duck;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Duck, o_animal, a_duck);
+
+
+///////
+// file: js_src/gameobj/animal/Duckling.js
+///////
+
+
+var superClass = Animal;
+Duckling.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Duckling.prototype.constructor = Duckling;
+Duckling.superClass=superClass; //'class' var
+
+//example of custom Z
+/*Duckling.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Duckling.prototype.getSkinName = function() {
+  return "duck/duckling";
+}
+function Duckling(){
+    Duckling.superClass.call(this, o_animal);
+
+}
+window.Duckling=Duckling;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Duckling, o_animal, a_duckling);
+
+
+///////
+// file: js_src/gameobj/animal/BlackDragon.js
+///////
+
+var superClass = Animal;
+BlackDragon.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+BlackDragon.prototype.constructor = BlackDragon;
+BlackDragon.superClass = superClass; //'class' var
+
+
+
+//example of custom Z
+BlackDragon.prototype.updateZ = function() {
+  this.z = 1003 + this.rad;
+};
+
+
+
+BlackDragon.prototype.getSkinName = function() {
+  var skin =
+    "blackdragon/" +
+    this.animalSpecies +
+    "/blackdragon" +
+    (this.specType == 0 ? "" : this.specType);
+
+if ( this.flag_flying && !this.flag_isGrabbed&& this.flag_usingAbility) {
+var skin ="flying_blackdragon"
+
+};
+
+  return skin;
+};
+
+
+
+BlackDragon.prototype.animalInfo = function () {
+     infoO = {};
+  
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'Black Dragon';
+            break;
+         case 1:
+            infoO.aniName = 'Golden Black Dragon';
+            break;
+        case 2:
+            infoO.aniName = 'Azure Bringer';
+        }
+  infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+      infoO.aniCol = "black";
+      infoO.skinName = this.getSkinName();
+    return infoO;
+}
+  
+  
+  BlackDragon.prototype.drawSkinCustomization = function() {
+  var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
+  var lava = this.lava; //waterBarPerc_n;
+  var minLowLava = 50;
+  //console.log("lava: " + lava)
+  if (lava < minLowLava) {
+    var lp = lava / minLowLava;
+    var theImg = getLoadedImg("skins/blackdragon/" +  
+                           this.animalSpecies + "/wings.png");
+    if (theImg) {
+      ctx.save();
+      ctx.globalAlpha = 1 - lp;
+      var rad = this.rad - this.outlineW;
+      ctx.drawImage(
+        theImg,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
+    }
+  }
+
+  if (!this.flag_usingAbility) return;
+
+  if (this.flag_flying && !this.flag_isGrabbed) {
+    ctx.save();
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+    var frame = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
+    var frameW = getAnimFrame(tSinceSpawn, 2.1, -8, 1.5);
+    var frameY = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
+    var frameY2 = getAnimFrame(tSinceSpawn, 2.1, 0.3, 1.5);
+    var theImg = getLoadedImg("img/blackdragon_wing1.png");
+    var rad = this.rad * 0.6;
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      var extraRotate = -(-0.3 + frame) * toRadians(90.0); //spin animation
+
+      //clip to sliwly show the claw
+
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.8,
+        imH = rad * 2.0 + 5 * frameW; // * fac0to1;
+      var imAnchorX = -0.65; //+   frameY/3
+      imAnchorY = 1.75 - (frameY + frameY / 4 - frameY2); //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    var theImg = getLoadedImg("img/blackdragon_wing2.png");
+    if (theImg) {
+      ctx.save();
+      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+      //console.log("getAnimFrame:" + frame);
+      var extraRotate = -(-0.3 + frame) * toRadians(-90.0); //spin animation
+
+      //clip to sliwly show the claw
+
+      ctx.rotate(extraRotate);
+      var imX = 0,
+        imY = this.rad;
+      var imW = rad * 2.0 * 0.8,
+        imH = rad * 2.0 + 5 * frameW;
+      var imAnchorX = 1.65; //-   frameY/2
+      imAnchorY = 1.75 - (frameY + frameY / 4) + frameY2; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+
+    ctx.restore();
+  }
+  };
+BlackDragon.prototype.readCustomData_onNewlyVisible = function (msg) {
+  BlackDragon.superClass.prototype.readCustomData_onNewlyVisible.call(
+    this,
+    msg
+  ); //call superclass version of this method
+  this.lava = msg.readUInt8();
+};
+
+BlackDragon.prototype.readCustomData_onUpdate = function (msg) {
+  BlackDragon.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
+  this.lava = msg.readUInt8();
+};
+function BlackDragon() {
+  this.lava = 0;
+  BlackDragon.superClass.call(this, o_animal);
+}
+window.BlackDragon = BlackDragon;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(BlackDragon, o_animal, a_blackDragon);
+
+
+
+var Dragon = Dragon;
+var superClass = Animal;
+Dragon.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Dragon.prototype.constructor = Dragon;
+Dragon.superClass = superClass; //'class' var
+
+
+
+
+
+
+Dragon.prototype.getSkinName = function() {
+  var skin =
+    "dragon/" +
+    this.animalSpecies +
+    "/dragon" +
+    (this.specType == 0 ? "" : this.specType);
+
+
+  return skin;
+};
+
+function Dragon() {
+  Dragon.superClass.call(this, o_animal);
+}
+window.Dragon = Dragon;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Dragon, o_animal, a_dragn);
+
+
+var Kraken = Kraken;
+var superClass = Animal;
+Kraken.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Kraken.prototype.constructor = Kraken;
+Kraken.superClass = superClass; //'class' var
+
+Kraken.prototype.getSkinName = function() {
+  var skin =
+    "kraken/" +
+    this.animalSpecies +
+    "/kraken" +
+    (this.specType == 0 ? "" : this.specType);
+
+
+  return skin;
+};
+
+function Kraken() {
+  Kraken.superClass.call(this, o_animal);
+}
+window.Kraken = Kraken;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Kraken, o_animal, a_kraken);
+
+
+var superClass = GameObj;
+KrakenSpec.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+KrakenSpec.prototype.constructor = KrakenSpec;
+KrakenSpec.superClass = superClass; //'class' var
+
+
+KrakenSpec.prototype.updateZ = function () {
+    this.z = -101;
+}
+
+
+//override draw (things like other effects are drawn seperately)
+KrakenSpec.prototype.customDraw = function (batchDrawOutline) {
+   ctx.save();
+        var oldA = ctx.globalAlpha;
+        ctx.globalAlpha = 0.5 * oldA;
+        var rad = Math.max(0, this.rad - 30);
+
+        var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+        var period = 2.2;
+        var xShift = 6.5 * Math.cos(((2.0 * Math.PI) / period) * tSinceSpawn);
+        var yShift = 6.5 * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+
+
+        ctx.globalAlpha = 0.4 * oldA;
+     
+        drawCircle(0, 0, rad, "#2CAAC4");
+
+        ctx.globalAlpha = 0.7 * oldA;
+        if (!options_lowGraphics) {
+   
+drawCircle( 0 + xShift / 2 - this.rPer, 0 + yShift / 2 - this.rPer,Math.max(0, rad - 6),
+           "#2D93B0"
+   
+          );
+        
+        drawCircle(
+          0 + xShift / 4.5 + this.rPer,
+          1 + yShift / 1.5,
+          Math.max(0, rad - 14),
+         
+         "#29A0BA",
+        
+        );
+
+        drawCircle(
+          0 + xShift / 1.5 - this.rPer * 2,
+          yShift,
+          Math.max(0, rad - 38.5 + yShift / 5),
+          
+           "#2B8CAA"
+         
+        );
+        drawCircle(
+          0 + xShift / 1.5 - this.rPer * 2,
+          yShift,
+          Math.max(0, rad - 54.5 + yShift / 11),
+         "#28829E"
+          
+          
+        );
+}
+
+        ctx.restore();
+}
+
+
+
+function KrakenSpec() {
+    KrakenSpec.superClass.call(this, o_spiderWeb);
+
+    this.webTransparency = 0;
+
+    //set vars for this class
+    this.doesDrawEffectScale = true;
+    this.drawEffectScale_Slow = true;
+
+}
+window.KrakenSpec = KrakenSpec;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(KrakenSpec, ability_krakenSpec);
+
+
+
+
+var Yeti = Yeti;
+var superClass = Animal;
+Yeti.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Yeti.prototype.constructor = Yeti;
+Yeti.prototype.isTransforming = true
+Yeti.superClass = superClass; //'class' var
+
+
+Yeti.prototype.getSkinName = function() {
+  var skin =
+    "arctic/yeti/" +
+    this.animalSpecies +
+    "/yeti" +
+    (this.specType == 0 ? "" : this.specType);
+
+
+  return skin;
+};
+
+Yeti.prototype.animalInfo = function () {
+    var _0x1958a5 = {};
+    switch (this.animalSpecies) {
+    case 0:
+        _0x1958a5.aniName = 'The Yeti!';
+        break;
+    case 1:
+        _0x1958a5.aniName = 'Golden Yeti!';
+        break;
+    case 2:
+        _0x1958a5.aniName = 'Emerald Yeti!';
+        break;
+    case 3:
+        _0x1958a5.aniName = 'Aqua Yeti';
+    }
+    _0x1958a5.skinName = 'arctic/yeti/' + this.animalSpecies + '/yeti';
+    _0x1958a5.aniDesc = '';
+    _0x1958a5.upgradeText = 'UPGRADED to ' + _0x1958a5.aniName + `!\n
+ So it really exists... \n
+ Hold W to turn into snow, release W to freeeeeze!`;
+    _0x1958a5.aniCol = '#839eb5';
+    return _0x1958a5;
+};
+Yeti.prototype.biteStart = 0;
+Yeti.prototype.flapAmount = 3;
+Yeti.prototype.flapDur = 1.5;
+Yeti.prototype.roarStartT = -500;
+Yeti.prototype.drawSkinCustomization = function () {
+    if (this.flag_usingAbility && this.isTransforming) {
+        if (this.isTransforming) {
+            ctx.save();
+            ctx.globalAlpha = 1;
+            var _0x2760d8 = getLoadedImg('img/snowball.png');
+            if (_0x2760d8) {
+                var _0x52f2a5 = this.rad;
+                ctx.rotate(this.rPer * Math.PI * 2);
+                ctx.drawImage(_0x2760d8, -_0x52f2a5, -_0x52f2a5, 2 * _0x52f2a5, 2 * _0x52f2a5);
+            } else this.drawOutlinedCircle('', 'white');
+            ctx.restore();
+        }
+    } else if (4 != this.animalSpecies)
+        if (this.flag_usingAbility) {
+            if (0 == this.biteStart && (this.biteStart = timestamp + this.roarStartT), 0 != this.specType && void 0 != this.specType) {
+                var _0x2760d8 = getLoadedImg('skins/arctic/yeti/' + this.animalSpecies + '/yeti_head1.png'),
+                    _0x52f2a5 = (timestamp - this.biteStart) / 1000,
+                    _0x4c3138 = 1.07 * this.skinScale;
+                if (_0x2760d8) {
+                    var _0x585de4;
+                    _0x585de4 = this.flapAmount - (1 == this.animalSpecies ? 0.5 : 0);
+                    _0x585de4 = options_lowGraphics ? this.flapAmount : getAnimFrame(_0x52f2a5, this.flapDur, _0x585de4, 2);
+                    ctx.save();
+                    _0x52f2a5 = this.rad;
+                    ctx.drawImage(_0x2760d8, -_0x52f2a5 * _0x4c3138, (-_0x52f2a5 + 0.1 * _0x52f2a5) * _0x4c3138 - _0x585de4, 2 * _0x52f2a5 * _0x4c3138, 2 * _0x52f2a5 * _0x4c3138);
+                    ctx.restore();
+                }
+            }
+        } else this.biteStart = 0;
+};
+
+Yeti.prototype.readCustomData_onUpdate = function (_0x441063) {
+    Yeti.superClass.prototype.readCustomData_onUpdate.call(this, _0x441063);
+    this.isTransforming = 1 == _0x441063.readUInt8();
+};
+Yeti.prototype.readCustomData_onNewlyVisible = function (_0x36c899) {
+    Yeti.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x36c899);
+    this.isTransforming = 1 == _0x36c899.readUInt8();
+};
+function Yeti() {
+  Yeti.superClass.call(this, o_animal);
+}
+window.Yeti = Yeti;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Yeti, o_animal, a_yeti);
+
+
+
+var Kingcrab = Kingcrab;
+var superClass = Animal;
+Kingcrab.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Kingcrab.prototype.constructor = Kingcrab;
+Kingcrab.superClass = superClass; //'class' var
+
+
+Kingcrab.prototype.getSkinName = function() {
+  var skin =
+    "kingcrab" +
+  
+    (this.specType == 0 ? "" : this.specType);
+
+
+  return skin;
+};
+
+function Kingcrab() {
+  Kingcrab.superClass.call(this, o_animal);
+}
+window.Kingcrab = Kingcrab;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Kingcrab, o_animal, a_kingCrab);
+
+///////
+// file: js_src/gameobj/animal/Honeybee.js
+///////
+
+var Honeybee = Honeybee;
+var superClass = Animal;
+Honeybee.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Honeybee.prototype.constructor = Honeybee;
+Honeybee.superClass = superClass; //'class' var
+
+//example of custom Z
+/*Pelican.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Honeybee.prototype.getSkinName = function() {
+  return (
+    "/honeybee/honeybee" +
+    (this.specType == 0 || this.specType == undefined ? "" : this.specType)
+  );
+};
+
+Honeybee.prototype.drawSkinCustomization = function() {
+  ctx.save();
+
+  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+  var frame = !options_lowGraphics ? getAnimFrame(tSinceSpawn, 0.2, 0.3, 2) : 0;
+  var frame2 = !options_lowGraphics
+    ? getAnimFrame(tSinceSpawn, 0.2, 0.3, 2)
+    : 0;
+
+  var rad = this.rad * 0.6;
+  var rotAng = 30;
+  var rotFrame = 2;
+  var fixedAng = 20;
+
+  var theImg = getLoadedImg("skins/honeybee/honeybee_wing2.png");
+  if (theImg) {
+    ctx.save();
+    //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+    //console.log("getAnimFrame:" + frame);
+    var extraRotate = -(-rotFrame + frame2) * toRadians(-(rotAng - 5)); //spin animation
+
+    //clip to sliwly show the claw
+    ctx.globalAlpha = 0.6;
+    ctx.rotate(toRadians(-fixedAng + 10) + extraRotate);
+    var imX = 0,
+      imY = this.rad;
+    var imW = rad * 2.0 * 0.7,
+      imH = rad * 2.3; // * fac0to1;
+    var imAnchorX = 0.5,
+      imAnchorY = 1.6; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+    ctx.drawImage(
+      theImg,
+      imX + imW * -imAnchorX,
+      imY + imH * -imAnchorY,
+      imW,
+      imH
+    );
+
+    ctx.restore();
+  }
+
+  var theImg = getLoadedImg("skins/honeybee/honeybee_wing1.png");
+  if (theImg) {
+    ctx.save();
+    //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+    //console.log("getAnimFrame:" + frame);
+    var extraRotate = -(-rotFrame + frame2) * toRadians(rotAng - 5); //spin animation
+
+    //clip to sliwly show the claw
+    ctx.globalAlpha = 0.6;
+    ctx.rotate(toRadians(fixedAng - 10) + extraRotate);
+    var imX = 0,
+      imY = this.rad;
+    var imW = rad * 2.3 * 0.7,
+      imH = rad * 2.3; // * fac0to1;
+    var imAnchorX = 0.5,
+      imAnchorY = 1.6; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+    ctx.drawImage(
+      theImg,
+      imX + imW * -imAnchorX,
+      imY + imH * -imAnchorY,
+      imW,
+      imH
+    );
+
+    ctx.restore();
+  }
+  var theImg = getLoadedImg("skins/honeybee/honeybee_wing1.png");
+  if (theImg) {
+    ctx.save();
+    //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+    //console.log("getAnimFrame:" + frame);
+    var extraRotate = -(-rotFrame + frame) * toRadians(rotAng); //spin animation
+
+    //clip to sliwly show the claw
+    ctx.globalAlpha = 0.5;
+    ctx.rotate(toRadians(fixedAng) + extraRotate);
+    var imX = 0,
+      imY = this.rad;
+    var imW = rad * 2.0 * 0.7,
+      imH = rad * 2.3; // * fac0to1;
+    var imAnchorX = 0.5,
+      imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+    ctx.drawImage(
+      theImg,
+      imX + imW * -imAnchorX,
+      imY + imH * -imAnchorY,
+      imW,
+      imH
+    );
+
+    ctx.restore();
+  }
+
+  var theImg = getLoadedImg("skins/honeybee/honeybee_wing2.png");
+  if (theImg) {
+    ctx.save();
+    //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+    //console.log("getAnimFrame:" + frame);
+    var extraRotate = -(-rotFrame + frame) * toRadians(-rotAng); //spin animation
+
+    //clip to sliwly show the claw
+    ctx.globalAlpha = 0.5;
+    ctx.rotate(toRadians(-fixedAng) + extraRotate);
+    var imX = 0,
+      imY = this.rad;
+    var imW = rad * 2.0 * 0.7,
+      imH = rad * 2.3; // * fac0to1;
+    var imAnchorX = 0.5,
+      imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+    ctx.drawImage(
+      theImg,
+      imX + imW * -imAnchorX,
+      imY + imH * -imAnchorY,
+      imW,
+      imH
+    );
+
+    ctx.restore();
+  }
+
+  ctx.restore();
+};
+function Honeybee() {
+  Honeybee.superClass.call(this, o_animal);
+}
+window.Honeybee = Honeybee;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Honeybee, o_animal, a_honeyBee);
+
+
+///////
+// file: js_src/gameobj/animal/Phoenix.js
+///////
+
+var Phoenix = Phoenix;
+var superClass = Animal;
+Phoenix.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Phoenix.prototype.constructor = Phoenix;
+Phoenix.superClass = superClass; //'class' var
+
+
+Phoenix.prototype.updateZ = function() {
+  this.z = 1007;
+};
+
+//set custom skin name
+Phoenix.prototype.getSkinName = function() {
+  return (
+    "/phoenix/phoenix" +
+    (this.specType == 0 || this.specType == undefined ? "" : this.specType)
+  );
+};
+
+//draw image for the animal skin (along with extra images on it, eg wings)
+Phoenix.prototype.drawSkinImg = function() {
+   /*
+  if (!options_lowGraphics) {
+    var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
+    var rad = this.rad - this.outlineW;
+
+    var phoenix_body = getLoadedImg("./skins/phoenix/phoenix_body.png");
+    var phoenix_head = getLoadedImg("./skins/phoenix/phoenix_head.png");
+
+    var tail_num = Math.trunc(timestamp / 166) % 6;
+
+    var tailmid = getLoadedImg(
+      "./skins/phoenix/tail_mid/tail_mid_" + tail_num + ".png"
+    );
+    if (tailmid)
+      ctx.drawImage(
+        tailmid,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+
+    var tail_num = Math.trunc(timestamp / 166) % 6;
+    var tail_num2 = Math.trunc(timestamp / 250) % 6;
+
+    var tail = getLoadedImg("./skins/phoenix/tail/tail_" + tail_num + ".png");
+    var tail_flipped = getLoadedImg(
+      "./skins/phoenix/tail_flipped/tail_" + tail_num2 + ".png"
+    );
+
+    if (tail)
+      ctx.drawImage(
+        tail,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+    if (tail_flipped)
+      ctx.drawImage(
+        tail_flipped,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+
+    if (phoenix_body)
+      ctx.drawImage(
+        phoenix_body,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+
+    var flame_orange = Math.trunc(timestamp / 125) % 8;
+    var flame_yellow = Math.trunc(timestamp / 150) % 8;
+    var wing_flame_orange = getLoadedImg(
+      "./skins/phoenix/wing_flame_orange/wing_flame_orange_" +
+        flame_orange +
+        ".png"
+    );
+    var wing_flame_yellow = getLoadedImg(
+      "./skins/phoenix/wing_flame_yellow/wing_flame_yellow_" +
+        flame_yellow +
+        ".png"
+    );
+
+    if (wing_flame_orange)
+      ctx.drawImage(
+        wing_flame_orange,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+    if (wing_flame_yellow)
+      ctx.drawImage(
+        wing_flame_yellow,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+
+    var wing_flame_orange1 = getLoadedImg(
+      "./skins/phoenix/wing_flame_orange_flipped/wing_flame_orange_" +
+        flame_orange +
+        ".png"
+    );
+    var wing_flame_yellow1 = getLoadedImg(
+      "./skins/phoenix/wing_flame_yellow_flipped/wing_flame_yellow_" +
+        flame_yellow +
+        ".png"
+    );
+
+    if (wing_flame_orange1)
+      ctx.drawImage(
+        wing_flame_orange1,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+    if (wing_flame_yellow1)
+      ctx.drawImage(
+        wing_flame_yellow1,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+
+    if (phoenix_head)
+      ctx.drawImage(
+        phoenix_head,
+        -rad * iScale,
+        -rad * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+  } else {
+    Phoenix.superClass.prototype.drawSkinImg.call(this);
+  }
+  
+    this.basicDrawSkinImg(); //just draw the image
+
+    // custom animations or skin overlays
+    this.drawSkinCustomization();
+    */
+  Phoenix.superClass.prototype.drawSkinImg.call(this);
+      this.basicDrawSkinImg(); //just draw the image
+
+    // custom animations or skin overlays
+    this.drawSkinCustomization();
+};
+
+Phoenix.prototype.drawWhenUnderwater = function() {
+  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+  var period = 1.5;
+  var shiftAm = 1.0;
+  var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+
+  var diveColor = "#f9d43b";
+  ctx.globalAlpha = 0.3;
+  ctx.fillStyle = diveColor;
+  var bubRad = this.flag_underWater ? this.rad * 0.15 : this.rad * 0.1;
+  ctx.beginPath(); //top left, right
+  ctx.arc(
+    this.rad * -0.35,
+    this.rad * -0.33,
+    Math.max(0, bubRad + moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(
+    this.rad * 0.35,
+    this.rad * -0.32,
+    Math.max(0, bubRad - moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+
+  ctx.beginPath(); //bottom 2
+  ctx.arc(
+    this.rad * 0.35,
+    this.rad * 0.36,
+    Math.max(0, bubRad + moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(
+    this.rad * -0.35,
+    this.rad * 0.35,
+    Math.max(0, bubRad - moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+};
+function Phoenix() {
+  Phoenix.superClass.call(this, o_animal);
+}
+window.Phoenix = Phoenix;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Phoenix, o_animal, a_phoenix);
+// monster update
+
+
+///////
+// file: js_src/gameobj/animal/SeaMonster.js
+///////
+
+var SeaMonster = SeaMonster;
+var superClass = Animal;
+SeaMonster.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+SeaMonster.prototype.constructor = SeaMonster;
+SeaMonster.superClass = superClass; //'class' var
+
+//set custom skin name
+SeaMonster.prototype.getSkinName = function () {
+    return "monsters/seamonster";
+}
+
+
+SeaMonster.prototype.drawWhenUnderwater = function () {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
+    var period = 1.5;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
+
+    var diveColor =  "white";
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = diveColor;
+    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
+    ctx.beginPath(); //top left, right
+    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath(); //bottom 2
+    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+
+
+    var diveImg = getLoadedImg("img/seamonster-dive.png");
+    if (diveImg) {
+        var iScale = 500 / 340.0;
+
+        ctx.save();
+        ctx.globalAlpha = 0.4;
+        var rad = this.rad;
+        ctx.drawImage(diveImg, -rad * iScale, (-rad + rad * 0.4) * iScale, 2 * rad * iScale, 2 * rad * iScale);
+
+        ctx.restore();
+    }
+   
+}
+function SeaMonster() {
+    SeaMonster.superClass.call(this, o_animal);
+
+}
+window.SeaMonster = SeaMonster;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(SeaMonster, o_animal, a_seaMonster);
+
+
+
+
+var lochness = lochness;
+var superClass = Animal;
+lochness.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+lochness.prototype.constructor = lochness;
+lochness.superClass = superClass; //'class' var
+
+//set custom skin name
+lochness.prototype.getSkinName = function () {
+    return "lochness/lochness";
+}
+
+
+lochness.prototype.drawWhenUnderwater = function () {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
+    var period = 1.5;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
+
+    var diveColor =  "#2762FF";
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = diveColor;
+    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
+    ctx.beginPath(); //top left, right
+    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath(); //bottom 2
+    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+
+
+    var diveImg = getLoadedImg("skins/lochness/lochness-dive.png");
+    if (diveImg) {
+        var iScale = 500 / 340.0;
+
+        ctx.save();
+        ctx.globalAlpha = 0.4;
+        var rad = this.rad;
+        ctx.drawImage(diveImg, -rad * iScale, (-rad + rad * 0.4) * iScale, 2 * rad * iScale, 2 * rad * iScale);
+
+        ctx.restore();
+    }
+   
+}
+function lochness() {
+    lochness.superClass.call(this, o_animal);
+
+}
+window.lochness = lochness;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(lochness, o_animal, a_lochness);
+
+///////
+// file: js_src/gameobj/animal/LandMonster.js
+///////
+
+var LandMonster = LandMonster;
+var superClass = Animal;
+LandMonster.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+LandMonster.prototype.constructor = LandMonster;
+LandMonster.superClass = superClass; //'class' var
+
+//set custom skin name
+LandMonster.prototype.getSkinName = function () {
+
+         skin ="monsters/landmonster/" + this.animalSpecies + "/landmonster"
+
+    
+    return skin
+}
+
+
+LandMonster.prototype.drawWhenUnderwater = function () {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
+    var period = 1.5;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
+
+
+    var diveColor =  "#f9d43b";
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = diveColor;
+    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
+    ctx.beginPath(); //top left, right
+    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath(); //bottom 2
+    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+   
+}
+LandMonster.prototype.drawSkinCustomization = function() {
+if (this.flag_flying && !this.flag_isGrabbed&& this.flag_usingAbility) {
+       ctx.save();
+   var iScale = 500 / 340.0;
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+      var frame =  getAnimFrame(tSinceSpawn,2.1, .4, 1.5);
+      var frame2 = getAnimFrame(tSinceSpawn, 2.1, -8, 1.5);
+      var trueG = getAnimFrame(tSinceSpawn, 2.1, .4, 1.5);
+          var trueF = getAnimFrame(tSinceSpawn, 2.1, .3, 1.5);
+              var trueS = this.rad * 0.6
+      var theImg = getLoadedImg(
+   "skins/monsters/landmonster/" + this.animalSpecies + "/wing_r1.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.3 + frame) * toRadians(80.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad 
+        ctx.rotate(extraRotate);
+        var imX = 0,
+          imY = this.rad;
+          var imW = 1.6 * trueS
+         imH = 2 * trueS + 5 ;
+        var imAnchorX = 1.6 * trueS,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          0 + 0.65 * imAnchorX,
+          imY + imH * -(1.75 - (trueG + trueG / 4 - trueF)),
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+       "skins/monsters/landmonster/" + this.animalSpecies + "/wing_l1.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.3 + frame) * toRadians(-80.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad
+        ctx.rotate(extraRotate);
+        var imX = 0,
+          imY = this.rad;
+       var imW = 1.6 * trueS
+          imH = 2 * trueS + 5 
+        var imAnchorX = 1.6 * trueS,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          0 + -1.65 * imAnchorX,
+          imY + imH * -(1.75 - (trueG + trueG / 4) + trueF),
+        imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+
+  }
+      
+   
+  };
+function LandMonster() {
+    LandMonster.superClass.call(this, o_animal);
+
+}
+window.LandMonster = LandMonster;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(LandMonster, o_animal, a_landMonster);
+
+
+///////
+// file: js_src/gameobj/SinkHole.js
+///////
+
+
+var superClass = GameObj;
+SinkHole.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+SinkHole.prototype.constructor = SinkHole;
+SinkHole.superClass = superClass; //'class' var
+
+
+SinkHole.prototype.updateZ = function () {
+    this.z = -101;
+}
+
+
+//override draw (things like other effects are drawn seperately)
+SinkHole.prototype.customDraw = function (batchDrawOutline) {
+    ctx.save();
+     this.curBiome = this.specType
+  console.log(this.curBiome )
+    if (this.curBiome == 0||this.curBiome == 2) {
+        this.drawOutlinedCircle("", "#9F8641");
+        //drawCircle(0, 0, this.rad, "#9F8641");
+
+        //drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "black");
+        //ctx.globalAlpha = 0.6;
+        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
+        ctx.globalAlpha = 0.7;
+        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.75), "#40371D");
+        ctx.globalAlpha = 0.9;
+        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.6), "#40371D");
+        ctx.globalAlpha = 0.5;
+       
+    }
+
+    else if(this.curBiome == 1){
+        
+        var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+        var period = 1.2;
+        var xShift = 2.5 * Math.cos((2.0 * Math.PI) / period * (tSinceSpawn));
+        var yShift = 2.5 * Math.sin((2.0 * Math.PI) / period * (tSinceSpawn));
+
+
+        this.drawOutlinedCircle("", "#2CAAC4");
+
+        drawCircle(0 + xShift / 4.5 + this.rPer, 1 + yShift / 1.5, Math.max(0, this.rad - 14), "#29A0BA");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 18.5 + yShift / 5), "#2B8CAA");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 24.5 + yShift / 11), "#28829E");
+        /*
+        this.drawOutlinedCircle("", "#9F8641");
+        //drawCircle(0, 0, this.rad, "#9F8641");
+
+       
+            drawCircle(0 - this.rPer, 0 - this.rPer, Math.max(0, this.rad - 7), "#7E6A35");
+       
+
+        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 14), "#5C4E28");
+
+        drawCircle(0 - this.rPer * 2 - 3, 1, Math.max(0, this.rad - 18.5), "#40371D");*/
+    }else if(this.curBiome == 3){
+ var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+        var period = 1.2;
+        var xShift = 2.5 * Math.cos((2.0 * Math.PI) / period * (tSinceSpawn));
+        var yShift = 2.5 * Math.sin((2.0 * Math.PI) / period * (tSinceSpawn));
+
+
+        this.drawOutlinedCircle("", "#FF6704");
+
+        drawCircle(0 + xShift / 4.5 + this.rPer, 1 + yShift / 1.5, Math.max(0, this.rad - 14), "#FF4900");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 18.5 + yShift / 5), "#E94300");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 24.5 + yShift / 11), "#E93500");
+    }
+    ctx.restore();
+}
+
+
+
+function SinkHole() {
+    SinkHole.superClass.call(this, o_spiderWeb);
+
+    this.webTransparency = 0;
+
+    //set vars for this class
+    this.doesDrawEffectScale = true;
+    this.drawEffectScale_Slow = true;
+
+}
+window.SinkHole = SinkHole;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(SinkHole, o_sinkHole);
+// birds update 2
+
+
+///////
+// file: js_src/gameobj/animal/Pigeon.js
+///////
+
+var Pigeon = Pigeon;
+var superClass = Animal;
+Pigeon.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Pigeon.prototype.constructor = Pigeon;
+Pigeon.superClass = superClass; //'class' var
+
+////example of custom Z
+//Pigeon.prototype.updateZ = function () {
+//    this.z = 1000 + this.rad;
+//    //if (this.flag_flying || this.flag_climbingHill)
+//    //    this.z = 1000 + this.rad;
+//}
+
+Pigeon.prototype.animalInfo = function() {
+  var infoO = {};
+
+  switch (this.animalSpecies) {
+    case 0:
+      infoO.aniName = "Pigeon";
+      break;
+    case 1:
+      infoO.aniName = "Rare White Dove";
+      infoO.upgradeText += "\n(Doves fly faster!)";
+      break;
+  }
+  infoO.aniCol = "#FF9000";
+  infoO.skinName = "pigeon/" + this.animalSpecies + "/pigeon";
+  infoO.upgradeText =
+    "UPGRADED to " + infoO.aniName + "!\nHold W to fly around. ";
+  return infoO;
+};
+
+//set custom skin name
+Pigeon.prototype.getSkinName = function() {
+  var skin = "pigeon/" + this.animalSpecies + "/pigeon";
+  //if (!options_lowGraphics)
+  skin += this.specType == 0 ? "" : this.specType;
+    if (this.flag_flying && !this.flag_isGrabbed) {
+    var skin = "pigeon/" + this.animalSpecies + "/pigeon1";
+  //if (!options_lowGraphics)
+  skin += this.specType == 0 ? "" : this.specType;
+};
+  return skin;
+};
+
+Pigeon.prototype.drawSkinCustomization = function() {
+//  if (!this.flag_usingAbility) return;
+
+  var skins = "skins";
+   
+  //if (!options_lowGraphics)
+  {
+    var iScale = 500 / 340.0;
+
+    if (this.flag_flying && !this.flag_isGrabbed) {
+      ctx.save();
+
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+      var frame = !options_lowGraphics
+        ? getAnimFrame(tSinceSpawn, 0.5, 0.3, 2)
+        : this.birdNoAnimationFlyWingAngle;
+      var theImg = getLoadedImg(
+        skins + "/pigeon/" + this.animalSpecies + "/pigeon_wing1.png?a=1"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(90.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(45) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.62,
+          imH = rad * 2.5; // * fac0to1;
+        var imAnchorX = 0.2,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+        skins + "/pigeon/" + this.animalSpecies + "/pigeon_wing2.png?a=1"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(-90.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(-45) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.62,
+          imH = rad * 2.5; // * fac0to1;
+        var imAnchorX = 0.8,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
+
+    //console.log(this.specType)
+    if (this.specType != 0 && this.specType != undefined) {
+      var theHead = getLoadedImg(
+        skins + "/pigeon/" + this.animalSpecies + "/pigeon_head.png"
+      );
+      if (theHead) {
+        ctx.save();
+        var rad = this.rad;
+        ctx.drawImage(
+          theHead,
+          -rad * iScale,
+          (-rad + rad * 0.1) * iScale,
+          2 * rad * iScale,
+          2 * rad * iScale
+        );
+        ctx.restore();
+      }
+    }
+  }
+};
+
+function Pigeon() {
+  Pigeon.superClass.call(this, o_animal);
+}
+window.Pigeon = Pigeon;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Pigeon, o_animal, a_pigeon);
+
+
+///////
+// file: js_src/gameobj/animal/Toucan.js
+///////
+
+var Toucan = Toucan;
+var superClass = Animal;
+Toucan.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Toucan.prototype.constructor = Toucan;
+Toucan.superClass = superClass; //'class' var
+
+Toucan.prototype.animalInfo = function() {
+  var infoO = {};
+  /*
+    switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = "Toco Toucan";
+            break;
+        case 1:
+            infoO.aniName = "Choco Toucan";
+            break;
+        case 2:
+            infoO.aniName = "Keel-Billed Toucan";
+            break;
+        case 3:
+            infoO.aniName = "Fiery-Billed Toucan";
+            break;
+    }
+    */
+
+  if (this.animalSpecies == 4) infoO.aniName = "rare Lava Toucan";
+  else infoO.aniName = "Toucan";
+
+  infoO.upgradeText =
+    "UPGRADED to " +
+    infoO.aniName +
+    "!\nHold right click (or W) to fly!\n(HINT: Start flying from a fruit tree or bush to throw fruit upon landing!)";
+  infoO.aniCol = "#FF9000";
+  infoO.skinName = "toucan/" + this.animalSpecies + "/toucan";
+  return infoO;
+};
+
+////example of custom Z
+//Toucan.prototype.updateZ = function () {
+//    this.z = 1000 + this.rad;
+//    //if (this.flag_flying || this.flag_climbingHill)
+//    //    this.z = 10001 + this.rad;
+//}
+
+//set custom skin name
+Toucan.prototype.getSkinName = function() {
+  var skin =
+    "toucan/" +
+    this.animalSpecies +
+    "/toucan" +
+    (this.specType == 0 ? "" : this.specType);
+
+if (this.flag_flying && !this.flag_isGrabbed) {
+
+      var skin =
+    "toucan/" +
+    this.animalSpecies +
+    "/toucan1" +
+    (this.specType == 0 ? "" : this.specType);
+}
+
+  return skin;
+};
+
+Toucan.prototype.drawSkinCustomization = function() {
+ // if (!this.flag_usingAbility) return;
+
+  var iScale = 500 / 340.0;
+  {
+    if (this.flag_flying && !this.flag_isGrabbed) {
+      ctx.save();
+
+
+
+
+
+      var wings = this.animalSpecies == 5 ? "skins/toucan/5/" : "skins/toucan/";
+
+      
+      
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+      var frame = !options_lowGraphics
+        ? getAnimFrame(tSinceSpawn, 0.5, 0.3, 2)
+        : this.birdNoAnimationFlyWingAngle;
+      var theImg = getLoadedImg(wings + "toucan_wing1.png");
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(90.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(45) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.62,
+          imH = rad * 2.5; // * fac0to1;
+        var imAnchorX = 0.2,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(wings + "toucan_wing2.png?a=1");
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.2 + frame) * toRadians(-90.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad * 0.8;
+        ctx.rotate(toRadians(-45) + extraRotate);
+        var imX = 0,
+          imY = this.rad;
+        var imW = rad * 2.0 * 0.62,
+          imH = rad * 2.5; // * fac0to1;
+        var imAnchorX = 0.8,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+    if (this.specType != 0 && this.specType != undefined) {
+      var head = "skins/toucan/" + this.animalSpecies + "/" + + "toucan_head";
+
+      if (this.hasZombieOverlay)
+        head = "skins/zombie/toucan/" + this.animalSpecies + "/";
+      var theHead = getLoadedImg(head);
+      if (theHead) {
+        ctx.save();
+        var rad = this.rad;
+        ctx.drawImage(
+          theHead,
+          -rad * iScale,
+          (-rad + rad * 0.1) * iScale,
+          2 * rad * iScale,
+          2 * rad * iScale
+        );
+        ctx.restore();
+      }
+    }
+  }
+};
+    }
+
+    //console.log(this.specType)
+
+
+function Toucan() {
+  Toucan.superClass.call(this, o_animal);
+}
+window.Toucan = Toucan;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Toucan, o_animal, a_toucan);
+
+
+
+
+///////
+// file: js_src/gameobj/animal/Tiger.js
+///////
+
+
+var Tiger = Tiger;
+var superClass = Animal;
+Tiger.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Tiger.prototype.constructor = Tiger;
+Tiger.superClass = superClass; //'class' var
+
+
+Tiger.prototype.animalInfo = function () {
+    var infoO = {};
+    switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = "Tiger";
+            break;
+        case 1:
+            infoO.aniName = "rare White Tiger";
+            break;
+   
+    }
+    infoO.aniName = "Tiger";
+    infoO.aniDesc = "";
+    infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Tigers can launch an ambush attack (HOLD W to grow a bush)!";
+    infoO.aniCol = "#FF9000";
+    infoO.skinName = "tiger/" + this.animalSpecies + "/tiger";
+    return infoO;
+}
+
+//set custom skin name
+Tiger.prototype.getSkinName = function () {ateZ
+    return "tiger/" + this.animalSpecies + "/tiger" + (this.specType == 0 ? "" : this.specType);
+}
+
+function Tiger() {
+    Tiger.superClass.call(this, o_animal);
+
+}
+window.Tiger = Tiger;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Tiger, o_animal, a_tiger);
+
+
+///////
+// file: js_src/gameobj/animal/BoaConstrictor.js
+///////
+
+var superClass = Animal;
+BoaConstrictor.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+BoaConstrictor.prototype.constructor = BoaConstrictor;
+BoaConstrictor.superClass = superClass; //'class' var
+
+//example of custom Z
+/*BoaConstrictor.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+BoaConstrictor.prototype.getSkinName = function() {
+  return "boaConstrictor" + (this.flag_usingAbility ? "2" : "");
+};
+
+BoaConstrictor.prototype.drawUnderSkinImg = function() {
+  if (this.flag_usingAbility) return;
+
+  var rad = this.rad - this.outlineW;
+  var iScale = 500 / 340.0;
+  var tongue = getLoadedImg("skins/boa/tongue.png");
+
+  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+  var frame = options_lowGraphics ? 0 : getAnimFrame(tSinceSpawn, 0.5, 5, 0.5);
+  var yOffset = options_lowGraphics ? 0 : 5;
+  if (tongue) {
+    ctx.drawImage(
+      tongue,
+      -rad * iScale,
+      -(rad + yOffset + frame) * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+    );
+  }
+};
+
+function BoaConstrictor() {
+  BoaConstrictor.superClass.call(this, o_animal);
+}
+window.BoaConstrictor = BoaConstrictor;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(
+  BoaConstrictor,
+  o_animal,
+  a_boaConstrictor
+);
+
+
+///////
+// file: js_src/gameobj/animal/Cobra.js
+///////
+
+var superClass = Animal;
+Cobra.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Cobra.prototype.constructor = Cobra;
+Cobra.superClass = superClass; //'class' var
+
+//example of custom Z
+/*Cobra.prototype.updateZ = function() {
+    this.z = 1002;
+}*/
+
+//set custom skin name
+Cobra.prototype.getSkinName = function() {
+  return "cobra" + (this.flag_usingAbility ? "2" : "");
+};
+
+Cobra.prototype.drawUnderSkinImg = function() {
+   if(this.flag_usingAbility)
+   return;
+  var rad = this.rad - this.outlineW;
+  var iScale = 500 / 340.0;
+  var tongue = getLoadedImg("skins/boa/tongue.png");
+ 
+  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+  var frame = options_lowGraphics ? 0 : getAnimFrame(tSinceSpawn, 0.5, 5, 0.5);
+  var yOffset = options_lowGraphics ? 0 : 5;
+  if (tongue) {
+    ctx.drawImage(
+        tongue,
+      -rad * iScale,
+      -((rad+yOffset) + frame ) * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+    );
+  }
+};
+
+function Cobra() {
+  Cobra.superClass.call(this, o_animal);
+}
+window.Cobra = Cobra;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(
+  Cobra,
+  o_animal,
+  a_cobra
+);
+// custom objects
+
+
+///////
+// file: js_src/gameobj/Fire.js
+///////
+
+var Fire = Fire;
+var superClass = GameObj;
+Fire.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Fire.prototype.constructor = Fire;
+Fire.superClass = superClass; //'class' var
+
+Fire.prototype.updateZ = function() {
+  this.z = 1005;
+};
+//override draw (things like other effects are drawn seperately)
+Fire.prototype.customDraw = function(batchDrawOutline) {
+  if (!options_lowGraphics) {
+    var period = 1.0; //periodic func with time
+    var p_min = 0.15,
+      p_max = 0.8; //set these!
+    var amp = 0.5 * (p_max - p_min);
+    var flashA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+
+    ctx.save();
+    ctx.globalAlpha *= flashA;
+    // drawCircle(0, 0, Math.max(0, this.rad), "#F6EA65");
+    ctx.restore();
+
+    //glow stronger/weaker like a fire
+    var period = 1.0; //periodic func with time
+    var p_min = 0.85,
+      p_max = 1.0; //set these!
+    var amp = 0.5 * (p_max - p_min);
+    var moveA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+
+    var imNum = Math.trunc(timestamp / 120) % 5;
+
+    var theImg = getLoadedImg("img/fire/"+this.specType+"/" + imNum + ".png");
+    if (theImg) {
+      var imX = 0,
+        imY = this.rad * 0.4;
+      var imW = (this.rad * 2.0 * (2.0 + moveA * 2.0)) / 3.0,
+        imH = this.rad * 2 * moveA;
+      var imAnchorX = 0.5,
+        imAnchorY = 0.95; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.save();
+
+      ctx.globalAlpha *= this.onFireEffA * moveA;
+      ctx.rotate(this.angle);
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+  } else {
+    // low graphics
+    var period = 1.0; //periodic func with time
+    var p_min = 0.85,
+      p_max = 1.0; //set these!
+    var amp = 0.5 * (p_max - p_min);
+    var moveA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+
+    var imNum = Math.trunc(timestamp / 120) % 5;
+
+    var theImg = getLoadedImg("img/fire/"+this.specType+"/0.png");
+    if (theImg) {
+      var imX = 0,
+        imY = this.rad * 0.4;
+      var imW = (this.rad * 2.0 * (2.0 + moveA * 2.0)) / 3.0,
+        imH = this.rad * 2 * moveA;
+      var imAnchorX = 0.5,
+        imAnchorY = 0.95; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.save();
+
+      //ctx.globalAlpha *= this.onFireEffA * moveA;
+      ctx.rotate(this.angle);
+      ctx.drawImage(
+        theImg,
+        imX + imW * -imAnchorX,
+        imY + imH * -imAnchorY,
+        imW,
+        imH
+      );
+
+      ctx.restore();
+    }
+  }
+};
+
+function Fire() {
+  Fire.superClass.call(this, o_fire);
+
+  this.webTransparency = 0;
+
+  //set vars for this class
+  this.doesDrawEffectScale = true;
+  this.drawEffectScale_Slow = true;
+}
+window.Fire = Fire;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Fire, o_fire);
+
+
+///////
+// file: js_src/gameobj/FireBall.js
+///////
+
+var superClass = GameObj;
+FireBall.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+FireBall.prototype.constructor = FireBall;
+FireBall.superClass = superClass; //'class' var
+
+FireBall.prototype.updateZ = function() {
+  this.z = 1005;
+};
+//override draw (things like other effects are drawn seperately)
+
+FireBall.prototype.customDraw = function(batchDrawOutline) {
+  //DEBUG
+
+  if (!options_lowGraphics) {
+    //on fire glow
+
+    //glow stronger/weaker like a fire
+    var period = 1.0; //periodic func with time
+    var p_min = 0.15,
+      p_max = 0.8; //set these!
+    var amp = 0.5 * (p_max - p_min);
+    var flashA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+
+    ctx.save();
+    {
+      ctx.globalAlpha *= flashA;
+      // drawCircle(0, 0, Math.max(0, this.rad), "#F6EA65");
+    }
+    ctx.restore();
+    //glow stronger/weaker like a fire
+    var period = 1.0; //periodic func with time
+    var p_min = 0.85,
+      p_max = 1.0; //set these!
+    var amp = 0.5 * (p_max - p_min);
+    var moveA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+
+    var imNum = Math.trunc(timestamp / 120) % 5;
+    //console.log("fire: " + imNum);
+    //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
+    var theImg = getLoadedImg("img/fireball/"+this.specType +"/"+ imNum + ".png");
+    if (theImg) {
+      var imX = 0,
+        imY = this.rad * 0.4;
+      var imW = (this.rad * 2.0 * (2.0 + moveA * 2.0)) / 3.0,
+        imH = this.rad * 3.5 * moveA;
+      var imAnchorX = 0.5,
+        imAnchorY = 0.95; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.save();
+      {
+        ctx.globalAlpha *= this.onFireEffA * moveA;
+        ctx.rotate(this.angle);
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+      }
+      ctx.restore();
+    } else {
+      //console.log("not found: " + imNum)
+    }
+  } else {
+    console.log("its low graphic!");
+    var theImg = getLoadedImg("img/fireball/"+this.specType+"/0.png");
+    if (theImg) {
+      var period = 1.0; //periodic func with time
+      var p_min = 0.85,
+        p_max = 1.0; //set these!
+      var amp = 0.5 * (p_max - p_min);
+      var moveA =
+        p_min +
+        amp +
+        amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+
+      var imX = 0,
+        imY = this.rad * 0.4;
+      var imW = (this.rad * 2.0 * (2.0 + moveA * 2.0)) / 3.0,
+        imH = this.rad * 3.5 * moveA;
+      var imAnchorX = 0.5,
+        imAnchorY = 0.95; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+      ctx.save();
+      {
+        ctx.rotate(this.angle);
+        ctx.drawImage(
+          theImg,
+          imX + imW * -imAnchorX,
+          imY + imH * -imAnchorY,
+          imW,
+          imH
+        );
+      }
+      ctx.restore();
+    }
+  }
+};
+
+
+function FireBall() {
+  FireBall.superClass.call(this, o_fireBall);
+}
+
+window.FireBall = FireBall;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(FireBall, o_fireBall);
+
+//battle royal update
+
+
+
+///////
+// file: js_src/gameobj/AnimalCarcass.js
+///////
+
+
+var superClass = GameObj;
+AnimalCarcass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+AnimalCarcass.prototype.constructor = AnimalCarcass;
+AnimalCarcass.superClass = superClass; //'class' var
+AnimalCarcass.prototype.nickName = "mope2.io/1v1";
+AnimalCarcass.prototype.fadeAway = false;
+AnimalCarcass.prototype.webTransparency = 100;
+AnimalCarcass.prototype.carcassType = 0;
+// if an object has to be manually drawn by the interface then set this to true 
+//AnimalCarcass.prototype.customInterfaceDraw = false;
+// do not animate radius on spawning
+AnimalCarcass.prototype.updateZ = function () {
+    this.z = -153 + this.rad;
+}
+
+AnimalCarcass.prototype.getNameSize = function () {
+    return 6.0; //Math.max(~~(.3 * this.size), 24)
+};
+
+AnimalCarcass.prototype.setNick = function (a) {
+    //if (this.nickName = a) {
+    this.nickName = a;
+    if (null == this.nickTXT) {
+
+        this.nickTXT = new CachedText(this.getNameSize(), "#FFFFFF"); //"#043400");
+        this.nickTXT.strokeW = 1.5;
+
+        this.nickTXT.renderScale = 5.0; //render larger to undo 'zoom of 3x'
+        this.nickTXT.setText(this.nickName);
+    } else {
+        this.nickTXT.setFontSize(this.getNameSize());
+        this.nickTXT.setText(this.nickName);
+    }
+    //}
+};
+
+
+
+AnimalCarcass.prototype.customDraw = function (batchDrawOutline) {
+    ctx.save();
+
+
+    var nameIdealOp = 0.3;
+    if (this.fadeAway) {
+        var opacity = this.webTransparency / 100;
+        ctx.globalAlpha = opacity;
+        nameIdealOp = Math.min(nameIdealOp, opacity);
+    }
+    else
+        ctx.globalAlpha = 0.8;
+
+    var theImg = getLoadedImg("img/carcass/" + this.carcassType + ".png");
+    if (theImg) {
+        var rad = this.rad;
+        ctx.rotate(this.angle);
+
+        //ctx.shadowOffsetX = 2;
+        //ctx.shadowOffsetY = 2;
+        //ctx.shadowColor = "black";
+        //ctx.shadowBlur = 10;
+        ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+    }
+
+    ctx.restore();
+    this.drawNickName(nameIdealOp);
+}
+
+AnimalCarcass.prototype.drawNickName = function (idealOp) {
+    if (this.nickName && this.nickTXT && !options_noNames) {
+        ctx.save();
+        ctx.globalAlpha = idealOp; //name alpha
+        //draw cached name
+        this.nickTXT.x = 0;
+        this.nickTXT.y = this.rad;
+        this.nickTXT.draw();
+
+        ctx.restore();
+    }
+}
+
+AnimalCarcass.prototype.readCustomData_onNewlyVisible = function (msg) {
+    var nickName = msg.readString();
+    this.carcassType = msg.readUInt8();
+    this.fadeAway = msg.readUInt8() == 1;
+    if (this.fadeAway)
+        this.webTransparency = msg.readUInt16();
+    this.setNick((nickName) ? nickName : "mope2.io/1v1");
+}
+//custom data for this class (must be matched by server-side write of this data!)
+AnimalCarcass.prototype.readCustomData_onUpdate = function (msg) {
+    if (this.fadeAway)
+        this.webTransparency = msg.readUInt16();
+}
+
+function AnimalCarcass() {
+    AnimalCarcass.superClass.call(this, o_animalCarcass);
+
+    this.shrinkedRad = 0;
+    //this.n_shrinkedRad=0; //smooth animation- set this var
+
+    //console.log("class was spawned!");
+}
+window.AnimalCarcass = AnimalCarcass;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(AnimalCarcass, o_animalCarcass);
+
+
+///////
+// file: js_src/gameobj/Chilli.js
+///////
+
+
+var superClass = GameObj;
+Chilli.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+Chilli.prototype.constructor = Chilli;
+Chilli.superClass = superClass; 
+Chilli.prototype.chilliType = 0;
+Chilli.prototype.updateZ = function () {
+    this.z = -153;
+}
+
+Chilli.prototype.customDraw = function (batchDrawOutline) {
+    ctx.save();
+    var theImg = getLoadedImg("img/chilli/" + this.chilliType + "/chilli" + (this.isEdibleOutlined() ? "_e" : "") + ".png");
+    if (theImg) {
+        var rad = this.rad;
+        ctx.rotate(this.angle);
+        ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+    }
+    ctx.restore();
+}
+
+Chilli.prototype.readCustomData_onNewlyVisible = function (msg) {
+    this.chilliType = msg.readUInt8();
+}
+
+function Chilli() {
+    Chilli.superClass.call(this, o_chilli);
+    this.doesDrawEffectScale = true;
+}
+window.Chilli = Chilli;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(Chilli, o_chilli);
+
+
+///////
+// file: js_src/gameobj/animal/BigCat.js
+///////
+
+var BigCat = BigCat;
+var superClass = Animal;
+BigCat.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+BigCat.prototype.constructor = BigCat;
+BigCat.superClass = superClass; //'class' var
+//var hasSkinDrawn = false;
+//BigCat.prototype.bodySpots = [];
+//set custom skin name
+
+BigCat.prototype.objSkinSpotsCanvas = null;
+BigCat.prototype.getSkinName = function () {
+    return this.animalInfo().skinName;
+}
+
+BigCat.prototype.animalInfo = function () {
+    var infoO = {};
+
+    var skin = "";
+    switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = "Cheetah";
+            infoO.upgradeText = "UPGRADED to Cheetah!\n Press W to get a speed boost!";
+            skin = "cheetah";
+            break;
+        case 1:
+            infoO.aniName = "Jaguar";
+            infoO.upgradeText = "UPGRADED to JAGUAR!\n Press W to get a speed boost!\n(Jaguars can climb hills!)";
+            skin = "jaguar";
+            break;
+        case 2:
+            infoO.aniName = "Leopard";
+            infoO.upgradeText = "UPGRADED to LEOPARD!\n Press W to get a speed boost!\n(Leopards can dive longer)";
+            skin = "leopard";
+            break;
+        case 3:
+            infoO.aniName = "Black Panther";
+            infoO.upgradeText = "UPGRADED to BigCat!\n Press W to get a speed boost!\n(Black Panthers are fast on mud)";
+            skin = "blackpanther";
+            break;
+    }
+
+
+    infoO.aniCol = "#CAC05B";
+    infoO.skinName = "bigcat/" + skin;
+    return infoO;
+}
+
+
+function BigCat() {
+    BigCat.superClass.call(this, o_animal);
+  
+}
+
+
+
+window.BigCat = BigCat;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(BigCat, o_animal, a_bigCat);
+
+//interface controls
+
+
+///////
+// file: js_src/interface/InterfaceButton.js
+///////
+
+
+//button that appears in animal choice interface
+function InterfaceButton(x, y, w, h, txt, fontSize) {
+  //button gets resized on draw (due to varying screen size)
+  var pr = interfS;
+  this.x = x;
+  this.y = y;
+  this.w = w; //width of pressable region
+  this.h = h;
+  this.label = txt;
+  this.font = Number(fontSize) ? Number(fontSize) : 30;
+  this.isVisible = true;
+  this.hoverColor = "#16932A";
+  this.defaultColor = "#0aa633";
+  this.alpha = 1;
+  this.txtAlpha = 1;
+  this.ctx = ctx;
+  //this.text = infoForAnimalType(aniT).aniName;//isOcean ? "Ocean Animal" : "Land Animal";
+  this.buttonTXT = new CachedText(12.0, "white");
+  this.buttonTXT.renderScale = 1.5;
+
+  this.isHighLighted = false; //highlight if mouse goes on it
+  this.showLabeleOnHover = false;
+  this.textShadow = false;
+  this.buttonScaleF = 1.0; //scale primary button
+ 
+  //this.touchMarginEx=20.0;
+  this.strokeWidth = 4 * pr;
+
+  //used to check clicks
+  this.testPosHitsButton = function(posX, posY) {
+    posX = posX;
+    posY = posY;
+    var min_x = this.x; // - this.w / 2;
+    var max_x = this.x + this.w; // / 2;
+    var min_y = this.y; // - this.h / 2;
+    var max_y = this.y + this.h; // / 2;
+
+    if (posX < min_x || posX > max_x)
+      //outside x bounds
+      return false;
+    if (posY < min_y || posY > max_y) {
+      //outside y bounds
+      return false;
+    } else return true;
+
+    //if (posX > min_x || posX < max_x)
+    //    return true;
+
+    //if (posY > min_y || posY < max_y) {
+    //    return true;
+    //} else
+    //    return false;
+  };
+  (this.setPosAndSize = function(newX, newY, newW, newH, anchorX, anchorY) {
+    this.w = newW;
+    this.h = newH;
+    //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
+    this.x = newX + newW * (0.5 - anchorX);
+    this.y = newY + newH * (0.5 - anchorY);
+  }),
+    (this.draw = function() {
+      //draw button bg square
+      if (!this.isVisible) return;
+      this.update();
+      this.ctx.save();
+      this.ctx.translate(this.x, this.y);
+      this.ctx.scale(this.buttonScaleF, this.buttonScaleF);
+      var origA = this.alpha;
+
+      //console.log("drawing button at "+this.x,this.y);
+
+      //bg square
+      //  ctx.globalAlpha = origA * 0.75;
+      this.ctx.fillStyle = this.defaultColor;
+      this.ctx.strokeStyle = "#116c17";
+      this.ctx.lineWidth = this.strokeWidth;
+      this.roundRect(0, 0, this.w, this.h, 5, true, true);
+      //  ctx.fillRect(0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
+      //draw highlight
+      if (this.isHighLighted) {
+        this.ctx.fillStyle = this.hoverColor;
+        //    ctx.globalAlpha = origA * 0.2;
+        //  ctx.fillRect(0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
+        this.roundRect(0, 0, this.w, this.h, 5, true, false);
+      }
+
+      if (!this.showLabeleOnHover) {
+        this.ctx.globalAlpha = this.txtAlpha;
+        this.drawText(this.w / 2, this.h / 2);
+      } else if (this.isHighLighted && this.showLabeleOnHover) {
+        this.drawTextOnHowever();
+      }
+      //ctx.font = 23 * interfS + "px Arial";
+      //ctx.fillText(this.text, 0, -this.h *0.5 * 0.75);
+      //}
+      this.ctx.restore();
+      this.onAfterDraw();
+      // add to mopeButtonList
+    });
+
+  this.drawTextOnHowever = function() {
+    this.drawText(this.w / 2, this.h / 2);
+  };
+
+  this.drawText = function(x, y) {
+    this.buttonTXT.setText(this.label);
+    this.buttonTXT.strokeW = this.isHighLighted && !this.textShadow ? 0 : 1;
+    this.buttonTXT.setFontSize(this.font);
+    this.buttonTXT.x = x;
+    this.buttonTXT.y = y; //-this.h;// / 2);// * 0.75;
+    this.buttonTXT.draw();
+  };
+
+  /**
+   * Draws a rounded rectangle using the current state of the canvas.
+   * If you omit the last three params, it will draw a rectangle
+   * outline with a 5 pixel border radius
+   * @param {Number} x The top left x coordinate
+   * @param {Number} y The top left y coordinate
+   * @param {Number} width The width of the rectangle
+   * @param {Number} height The height of the rectangle
+   * @param {Number} [radius = 5] The corner radius; It can also be an object
+   *                 to specify different radii for corners
+   * @param {Number} [radius.tl = 0] Top left
+   * @param {Number} [radius.tr = 0] Top right
+   * @param {Number} [radius.br = 0] Bottom right
+   * @param {Number} [radius.bl = 0] Bottom left
+   * @param {Boolean} [fill = false] Whether to fill the rectangle.
+   * @param {Boolean} [stroke = true] Whether to stroke the rectangle.
+   */
+  this.roundRect = function(x, y, width, height, radius, fill, stroke) {
+    if (typeof stroke == "undefined") {
+      stroke = true;
+    }
+    if (typeof radius === "undefined") {
+      radius = 5;
+    }
+    if (typeof radius === "number") {
+      radius = { tl: radius, tr: radius, br: radius, bl: radius };
+    } else {
+      var defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
+      for (var side in defaultRadius) {
+        radius[side] = radius[side] || defaultRadius[side];
+      }
+    }
+    this.ctx.globalAlpha = this.alpha;
+    this.ctx.lineWidth = 2;
+    this.ctx.beginPath();
+    this.ctx.moveTo(x + radius.tl, y);
+    this.ctx.lineTo(x + width - radius.tr, y);
+    this.ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+    this.ctx.lineTo(x + width, y + height - radius.br);
+    this.ctx.quadraticCurveTo(
+      x + width,
+      y + height,
+      x + width - radius.br,
+      y + height
+    );
+    this.ctx.lineTo(x + radius.bl, y + height);
+    this.ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+    this.ctx.lineTo(x, y + radius.tl);
+    this.ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+    this.ctx.closePath();
+    if (fill) this.ctx.fill();
+    if (stroke) this.ctx.stroke();
+  };
+
+  /* OVERRIDABLE METHODS*/
+  this.onClick = function() {
+    // override this method to perform custom action
+  };
+
+  this.onMouseMove = function() {
+    // override this method to perform custom action
+  };
+
+  this.update = function() {
+    // override this method to dynamically update button x/y;
+  };
+
+  this.onInterfaceReset = function() {
+    // call this method when interface is reset
+    log(this.label + ".onInterfaceReset");
+  };
+
+  /**
+   * Override this method to do custom drawing immediately after draw is finished.
+   */
+  this.onAfterDraw = function() {};
+}
+window.InterfaceButton = InterfaceButton;
+
+
+///////
+// file: js_src/interface/GameMode.js
+///////
+
+GameMode.prototype = {
+    mode: 0,
+    state: 0,
+    myPlayer: null,
+}
+GameMode.prototype.chatAllowed = true;
+GameMode.prototype.isHalloween = false;
+GameMode.prototype.stamp = 0;
+
+GameMode.prototype.interface = function () {
+
+}
+GameMode.prototype.drawMap = function () {
+
+}
+GameMode.prototype.interfaceReset = function () {
+
+}
+GameMode.prototype.main = function (msg) {
+    // read all messages related to this new game mode
+}
+
+GameMode.prototype.onInit = function (msg) {
+
+}
+GameMode.prototype.drawCustomObjs = function (customInterfaceObjList) {
+
+}
+
+GameMode.prototype.worldUpdate = function (msg) {
+
+}
+
+GameMode.prototype.setPlayer = function () {
+
+    this.myPlayer = gameObjsByID[myPlayerID];
+}
+
+
+function GameMode() {
+
+}
+
+window.GameMode = GameMode;
+
+
+///////
+// file: js_src/interface/GameMode_FreeForAll.js
+///////
+
+var superClass = GameMode;
+FreeForAll.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+FreeForAll.prototype.constructor = FreeForAll;
+FreeForAll.superClass = superClass;
+FreeForAll.prototype.safeArea = null;
+
+function FreeForAll(_mode) {
+  this.mode = _mode;
+  this.stamp = +new Date();
+  this.chatAllowed = true;
+  
+  this.createInterfaceButtons();
+}
+
+FreeForAll.prototype.wastedPopups = [];
+FreeForAll.prototype.playerDisplayNum = 0;
+FreeForAll.prototype.setServerPlayerCount = function() {
+  if (this.playerDisplayNum == 0)
+    playersOnlTXT.setText(numberWithCommas(nPlayersAlive ) + " Playing!");
+  else playersOnlTXT.setText(numberWithCommas(nPlayersViewing) + " Spectating!");
+
+  this.playerDisplayNum = this.playerDisplayNum == 0 ? 1 : 0;
+};
+FreeForAll.prototype.interface = function() {
+  // call anything that needs to be displayed on screen
+  // eg. player count, messages as well as end screen.
+
+  if (this.state == -1 || this.mode != gameMode) return;
+
+  if (serverCon_aliveInAGame) {
+    //console.log("interface drawn:");
+    //DRAW: xp plus popups
+    for (var k = this.wastedPopups.length - 1; k >= 0; k--) {
+      //iterate backwards to allow removing
+      var anItem = this.wastedPopups[k];
+      anItem.draw();
+      if (anItem.timedOut) this.wastedPopups.splice(k, 1); //remove timed out item
+    }
+  }
+
+  if (this.endScreenCanvas != null) {
+    this.endScreenCanvas.width &&
+      ctx.drawImage(
+        this.endScreenCanvas,
+        canvasW / 2 - this.endScreenCanvas.width / 2,
+        15 * pixelRat,
+        this.endScreenCanvas.width,
+        this.endScreenCanvas.height
+      );
+    if (!serverCon_aliveInAGame || isGhost) setSiteMenuVisible(true);
+  }
+
+  this.drawInterfaceButtons();
+};
+
+FreeForAll.prototype.interfaceReset = function() {
+  //console.log("reseting interface");
+  this.endScreenCanvas = null;
+  this.dangerCircleMiniMapCanvas = null;
+  this.wastedPopups = [];
+  this.lastWastedPopupT = 0;
+  this.playercount = 0;
+  this.safeArea = null;
+
+  if (this.interfaceButtons) {
+    for (var i = 0; i < this.interfaceButtons.length; i++) {
+      var aBut = this.interfaceButtons[i];
+      aBut.onInterfaceReset();
+    }
+  }
+  this.interfaceButtons = [];
+};
+
+FreeForAll.prototype.onInit = function() {};
+
+FreeForAll.prototype.playercount = 0;
+
+FreeForAll.prototype.setPlayerCount = function(count) {
+  this.playercount = count;
+};
+
+FreeForAll.prototype.showPlayerCount = function() {
+  ctx.save();
+  var bx = canvasW / 2; // * interfS;
+  var barH = 50 * interfS;
+  var barW = 300 * interfS;
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = "black"; //bar bg
+  var by = 30 * interfS;
+
+  ctx.fillRect(bx - barW / 2, by, barW, barH); //bg
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "white";
+  ctx.font = 30.0 * interfS + "px Arial";
+  ctx.lineWidth = 1;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle"; //vertical center
+  ctx.shadowOffsetX = 1;
+  ctx.shadowOffsetY = 1;
+  ctx.shadowColor = "black";
+  by += 25 * interfS;
+
+  var msg = " player";
+  if (this.playercount > 1) msg += "s";
+
+  if (this.state == battleRoyal_inProgress) msg += " alive!";
+  else if (
+    this.state == battleRoyal_waitingForPlayers ||
+    this.state == battleRoyal_ready
+  )
+    msg += " joined";
+
+  ctx.fillText(this.playercount + msg, bx, by);
+  ctx.restore();
+};
+
+FreeForAll.prototype.lbCanvas = null;
+
+FreeForAll.prototype.leaderboard = function(lbData) {
+  if (this.lbCanvas == null) this.lbCanvas = document.createElement("canvas");
+  //log(lbData);
+  if (lbData) {
+    var ctx_ = this.lbCanvas.getContext("2d");
+    var boardLength = 55;
+    var nameH = 22;
+    boardLength = boardLength + nameH * lbData.length;
+    this.lbCanvas.width = 270;
+    this.lbCanvas.height = boardLength;
+
+    ctx_.globalAlpha = 0.2;
+    ctx_.fillStyle = "#000000";
+    ctx_.fillRect(0, 0, this.lbCanvas.width, this.lbCanvas.height);
+
+    ctx_.globalAlpha = 1;
+    ctx_.fillStyle = "#FFFFFF";
+    var str = curServer.name; //"Top Players";
+    ctx_.font = "24px Arial";
+    if (!options_lowGraphics) {
+      ctx_.shadowOffsetX = 1;
+      ctx_.shadowOffsetY = 1;
+    }
+    ctx_.shadowColor = "black";
+    ctx_.fillText(
+      str,
+      this.lbCanvas.width / 2 - ctx_.measureText(str).width / 2,
+      40
+    );
+    var rank;
+
+    ctx_.textAlign = "left";
+    //ctx_.textBaseline = "middle"; //vertical center
+
+    for (ctx_.font = "17px Arial", rank = 0; rank < lbData.length; ++rank) {
+      str = options_noNames ? "" : lbData[rank].name || "mope2.io/1v1";
+      str += " (" + formatNumK(lbData[rank].xp) + ")";
+      // log(str);
+      ctx_.fillStyle = "#FFFFFF";
+      ctx_.fillText(str, 15, 65 + nameH * rank);
+    }
+  }
+};
+FreeForAll.prototype.drawLeaderboard = function() {
+  if (serverCon_aliveInAGame) {
+    if (lbCanvas) {
+      lbCanvas.width &&
+        ctx.drawImage(
+          lbCanvas,
+          10 * pixelRat,
+          28 * pixelRat,
+          lbCanvas.width * interfS,
+          lbCanvas.height * interfS
+        );
+    }
+  }
+};
+FreeForAll.prototype.btnPlayAgain = null;
+
+FreeForAll.prototype.showStats = true;
+FreeForAll.prototype.interfaceButtons = [];
+FreeForAll.prototype.createInterfaceButtons = function() {
+  //log("calling : createInterfaceButtons ");
+  this.interfaceButtons = [];
+  /*
+    this.btnPlayAgain = new InterfaceButton(0, 0, 80, 80, "Play Again!", 20);
+    this.btnPlayAgain.showLabeleOnHover = true;
+    this.btnPlayAgain.textShadow = true;
+    this.btnPlayAgain.drawTextOnHowever = function () {
+        this.drawText(this.w / 2, -this.h / 3);
+    }
+
+    this.btnPlayAgain.onClick = function () {
+        joinGame(false);
+    }
+    this.btnPlayAgain.onMouseMove = function () {
+    }
+    this.btnPlayAgain.update = function () {
+        this.x = (canvasW / 2) + 5;
+        this.y = canvasH * 0.90;//(canvasH / 2) - 250;
+    }
+
+
+    this.btnPlayAgain.onInterfaceReset = function () {
+        this.isVisible = false;
+    }
+
+    this.btnPlayAgain.onAfterDraw = function () {
+        var theImg = getLoadedImg("img/icons/replay.png");
+        if (theImg) {
+            ctx.save();
+
+            var iw = (this.w * 0.80);
+            var pad = (this.w - iw) / 2;
+            ctx.drawImage(theImg, this.x + pad, this.y + pad, iw, iw);
+            ctx.restore();
+        }
+    }
+    this.btnPlayAgain.isVisible = false;
+    this.interfaceButtons.push(this.btnPlayAgain); // only add this button if drawn;
+    */
+};
+
+FreeForAll.prototype.drawInterfaceButtons = function() {
+  //this.btnPlayAgain.isVisible = isGhost;
+  if (this.interfaceButtons) {
+    for (var i = 0; i < this.interfaceButtons.length; i++) {
+      var aBut = this.interfaceButtons[i];
+      if (aBut.isVisible) {
+        aBut.draw();
+      }
+    }
+  }
+};
+
+FreeForAll.prototype.onResize = function() {
+  this.drawInterfaceButtons();
+};
+
+FreeForAll.prototype.readPlayerStats = function(msg) {
+  var stats = [];
+  //stats.totalPlayers = msg.readUInt16();
+  stats.rank = msg.readUInt16();
+  stats.timeAlive = msg.readUInt16(); // in seconds
+  stats.totalKills = msg.readUInt16();
+  stats.topRank = msg.readUInt16();
+  stats.maxXP = msg.readUInt32();
+  stats.killedBy = msg.readString();
+  return stats;
+  //playerData[0].wins = topPlayerWins;
+};
+
+FreeForAll.prototype.playerInfo = function(msg) {
+  if (isGhost && !serverCon_spectatingInAGame) {
+    var stats = this.readPlayerStats(msg);
+    this.buildEndScreenHTML(stats);
+    //this.buildEndScreen(null, stats);
+  } else if (!isGhost) {
+    this.endScreenCanvas = null;
+  }
+};
+
+FreeForAll.prototype.worldUpdate = function(msg) {
+ 
+};
+ 
+
+FreeForAll.prototype.drawMap = function() {
+   
+};
+FreeForAll.prototype.pieChartCanvas = null;
+FreeForAll.prototype.teamColors = {
+  0: "white",
+  1: "#B6CF40"
+};
+ 
+
+FreeForAll.prototype.endScreenDisplayed = false;
+FreeForAll.prototype.buildEndScreenHTML = function(data) {
+  if (this.endScreenDisplayed) return;
+  this.endScreenDisplayed = true;
+  //refreshBannerAds();
+
+  var html = "";
+  html += "<div class='msg'>YOU WERE #" + data.rank + "</div>";
+  html += "<div class='row'>";
+  html += "<div class='label'>Killed by:</div>";
+  html += "<div class='value2'>" + data.killedBy + "</div>";
+  html += "</div>";
+  html += "<div class='row'>";
+  html += "<div class='col1'>";
+  html += "<div class='label'>Time alive:</div>";
+  html += "<div class='value'>" + secToTime(data.timeAlive) + "</div>";
+  html += "</div>";
+  html += "<div class='col2'>";
+  html += "<div class='label'>Total kills:</div>";
+  html += "<div class='value'>" + data.totalKills + "</div>";
+  html += "</div>";
+  html += "</div>";
+  html += "<div class='row'>";
+  html += "<div class='col1'>";
+  html += "<div class='label'>Top rank:</div>";
+  html += "<div class='value'>" + data.topRank + "</div>";
+  html += "</div>";
+  html += "<div class='col2'>";
+  html += "<div class='label'>Max xp:</div>";
+  html += "<div class='value'>" + formatNumK(data.maxXP) + "</div>";
+  html += "</div>";
+  html += "</div>";
+  html += "<div style='clear:both;'></div>";
+  html += "<div class='btnDiv'>";
+  //html += "<button id='btnContinue' class='btn'>Continue</button>";
+  html +=
+    "<button id='btnMopeOptions' class='btn'>      CONTINUE      </button>";
+  html += "</div>";
+  html += "<div style='clear:both;'></div>";
+  var endScreen = document.getElementById("endScreen");
+  if (endScreen) {
+    endScreen.innerHTML = html;
+    endScreen.style.display = "block";
+    var mopeMenu = document.getElementById("mopeMenu");
+    /*var btnContinue = document.getElementById("btnContinue");
+    var btnMopeOptions = document.getElementById("btnMopeOptions");
+    btnContinue.onclick = onClickContinue;*/
+    btnMopeOptions.onclick = onClickShowMenu;
+
+    //document.getElementById("mopeMenu").style.display = "none";
+    document.getElementById("moneyRectangle").style.marginTop = "55px";
+  }
+  if (!serverCon_aliveInAGame || isGhost) {
+    document.getElementById("startMenuWrapper").style.display = "block";
+    /*document.getElementById("updatesDiv").style.display = "none";
+    document.getElementById("mopeMenu").style.display = "none";
+    document.getElementById("appsDiv").style.display = "none";
+    if(document.getElementById("moneyRectangle")!=null)
+    document.getElementById("moneyRectangle").style.marginTop = "55px";*/
+  }
+};
+
+FreeForAll.prototype.endScreenCanvas = null;
+FreeForAll.prototype.buildEndScreen = function(playerData, stats) {
+  if (this.endScreenCanvas == null)
+    this.endScreenCanvas = document.createElement("canvas");
+
+  if (this.endScreenCanvas == null) return;
+
+  var ctx_ = this.endScreenCanvas.getContext("2d");
+  var boardLength = 55;
+  var nameH = 40;
+  var pad = 5;
+
+  var borad_height = 240;
+  var borad_width = 420;
+
+  boardLength = borad_height + pad * 2;
+  this.endScreenCanvas.width = borad_width + pad * 2;
+  this.endScreenCanvas.height = boardLength;
+  ctx_.globalAlpha = 0.2;
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(0, 0, this.endScreenCanvas.width, this.endScreenCanvas.height);
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(
+    pad,
+    pad,
+    this.endScreenCanvas.width - pad * 2,
+    this.endScreenCanvas.height - pad * 2
+  );
+  var y = pad;
+  ctx_.globalAlpha = 1;
+  ctx_.fillStyle = "#FFFFFF";
+  ctx_.font = "30px Arial";
+
+  y += 55;
+
+  var str = "Final Stats"; //"Top Players";
+  ctx_.font = "30px Arial";
+  ctx_.fillText(
+    str,
+    this.endScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  ctx_.font = "20px Arial";
+  y += 45;
+  str = "You were #" + stats.rank; // + " out of " + stats.totalPlayers + " players";
+  ctx_.fillText(
+    str,
+    this.endScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  y += 40;
+  var result = secToTime(stats.timeAlive);
+
+  var x = pad + 15;
+
+  drawLabelValueOn(ctx_, "Killed by", stats.killedBy, x, y);
+  y += 40;
+  drawLabelValueOn(ctx_, "Time Alive", secToTime(stats.timeAlive), x, y);
+  x += 210;
+  drawLabelValueOn(ctx_, "Total Kills", stats.totalKills, x, y);
+  y += 40;
+  x = pad + 15;
+  drawLabelValueOn(ctx_, "Top rank", stats.topRank, x, y);
+  x += 210;
+  drawLabelValueOn(ctx_, "Max XP", formatNumK(stats.maxXP), x, y);
+
+  y += 50;
+  /*
+    this.btnPlayAgain.update = function () {
+        this.x = canvasW / 2 - this.w / 2;
+        this.y = canvasH * 0.4 + boardLength;
+    }
+*/
+};
+
+FreeForAll.prototype.lastWastedPopupT = 0;
+FreeForAll.prototype.onPlayerWasted = function(wastedName) {
+  if ((timestamp - this.lastWastedPopupT) / 1000.0 > 0.7) {
+    //over 0.5s since last popup
+    this.lastWastedPopupT = timestamp;
+    var newPop = new TextPopup(wastedName + " wasted!", 40, "red", 1500);
+    this.wastedPopups.push(newPop);
+  }
+};
+
+window.FreeForAll = FreeForAll;
+
+////////// util function
+
+
+///////
+// file: js_src/interface/GameMode_TeamMode.js
+///////
+
+var superClass = GameMode;
+TeamMode.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+TeamMode.prototype.constructor = TeamMode;
+TeamMode.superClass = superClass;
+TeamMode.prototype.safeArea = null;
+TeamMode.prototype.teamColors = {
+  0: "#cccccc",
+  1: "#ffff00",
+  2: "#01effc",
+  3: "#bb00ff"
+};
+function TeamMode() {
+  this.mode = gameMode_teamMode;
+  this.createInterfaceButtons();
+}
+
+TeamMode.prototype.wastedPopups = [];
+TeamMode.prototype.playerDisplayNum = 0;
+TeamMode.prototype.setServerPlayerCount = function() {
+  if (this.playerDisplayNum == 0)
+    playersOnlTXT.setText(numberWithCommas(nPlayers) + " mopers");
+  else playersOnlTXT.setText(numberWithCommas(nPlayersViewing) + " on server");
+
+  this.playerDisplayNum = this.playerDisplayNum == 0 ? 1 : 0;
+};
+
+TeamMode.prototype.main = function(msg) {
+  var teamMode_msgType = msg.readUInt8();
+  // console.log("teamMode_msgType :" + teamMode_msgType);
+  switch (teamMode_msgType) {
+    case 54: // Msg_1v1Mode_YouWon
+      {
+        var youWon = msg.readString();
+        this.buildYouWon(youWon, 15);
+      }
+      break;
+    
+    case 55:  Msg_1v1Mode_topperInfo
+      {
+         this.top1v1_isHistoric = msg.readUInt8() == 1;
+         this.top1v1_wins = msg.readUInt16();
+         this.top1v1_name = msg.readString();
+         this.buildTopperInfo();
+      }
+      break;
+
+  }
+};
+TeamMode.prototype.canvasYouWon = null;
+TeamMode.prototype.canvasYouWonEndT = 0;
+
+TeamMode.prototype.topperInfoX = 10 * pixelRat;
+TeamMode.prototype.topperInfoY = 15 * pixelRat;
+TeamMode.prototype.top1v1_wins = "";
+TeamMode.prototype.top1v1_name = "";
+
+TeamMode.prototype.topperInfoTxt = null;
+TeamMode.prototype.buildTopperInfo = function() {
+  var name = "" + this.top1v1_name;
+  if (name.lenght == 0) name = "mope2.io/1v1";
+
+  var txt =
+    (this.top1v1_isHistoric ? " ALL TIME " : "") +
+    "1v1 Pro: " +
+    name +
+    " (wins: " +
+    this.top1v1_wins +
+    ")";
+  if (null == this.topperInfoTxt) {
+    this.topperInfoTxt = new CachedText(20, "#FFFFFF"); //"#043400");
+    this.topperInfoTxt.strokeW = 2;
+    this.topperInfoTxt.multiLine = true;
+    this.topperInfoTxt.renderScale = 2.0; //render larger to undo 'zoom of 3x'
+    this.topperInfoTxt.setText(txt);
+    this.topperInfoTxt.setPos = function(nw, nx) {
+      this.x += nw / 2;
+    };
+  } else {
+    this.topperInfoTxt.setFontSize(20);
+    this.topperInfoTxt.setText(txt);
+    this.topperInfoTxt.setPos = function(nw, nx) {
+      this.x += nw / 2;
+    };
+  }
+};
+TeamMode.prototype.buildYouWon = function(msg, dur) {
+  this.canvasYouWonEndT = +new Date() + dur * 1000;
+  if (this.canvasYouWon == null)
+    this.canvasYouWon = document.createElement("canvas");
+
+  if (this.canvasYouWon == null) return;
+
+  var ctx_ = this.canvasYouWon.getContext("2d");
+  var boardLength = 55;
+  var nameH = 40;
+  var pad = 5;
+
+  var borad_height = 130;
+  var borad_width = 420;
+
+  boardLength = borad_height + pad * 2;
+  this.canvasYouWon.width = borad_width + pad * 2;
+  this.canvasYouWon.height = boardLength;
+
+  ctx_.globalAlpha = 0.2;
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(0, 0, this.canvasYouWon.width, this.canvasYouWon.height);
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(
+    pad,
+    pad,
+    this.canvasYouWon.width - pad * 2,
+    this.canvasYouWon.height - pad * 2
+  );
+  var y = pad;
+  ctx_.globalAlpha = 1;
+  ctx_.fillStyle = "#FFFFFF";
+  ctx_.font = "30px Arial";
+
+  y += 55;
+
+  var str = "YOU WON"; //"Top Players";
+  ctx_.font = "30px Arial";
+  ctx_.fillText(
+    str,
+    this.canvasYouWon.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+  y += 45;
+  ctx_.font = "20px Arial";
+  ctx_.fillText(
+    msg,
+    this.canvasYouWon.width / 2 - ctx_.measureText(msg).width / 2,
+    y
+  );
+};
+
+TeamMode.prototype.interface = function() {
+  // call anything that needs to be displayed on screen
+  // eg. player count, messages as well as end screen.
+
+  if (this.state == -1 || this.mode != gameMode) return;
+
+  if (serverCon_aliveInAGame) {
+    //DRAW: xp plus popups
+    for (var k = this.wastedPopups.length - 1; k >= 0; k--) {
+      //iterate backwards to allow removing
+      var anItem = this.wastedPopups[k];
+      anItem.draw();
+      if (anItem.timedOut) this.wastedPopups.splice(k, 1); //remove timed out item
+    }
+  }
+  /*
+  //this.endScreenCanvas = null;
+  var stats = [];
+  //stats.totalPlayers = msg.readUInt16();
+  stats.rank = 1;
+  stats.timeAlive = 1;
+  stats.totalKills = 1;
+  stats.topRank = 1;
+  stats.maxXP = 1;
+  stats.killedBy = 1;
+  this.buildEndScreen(null, stats);
+  */
+
+  if (this.endScreenCanvas != null) {
+    this.endScreenCanvas.width &&
+      ctx.drawImage(
+        this.endScreenCanvas,
+        canvasW / 2 - this.endScreenCanvas.width / 2,
+        15 * pixelRat,
+        this.endScreenCanvas.width,
+        this.endScreenCanvas.height
+      );
+    if (!serverCon_aliveInAGame || isGhost) setSiteMenuVisible(true);
+  }
+
+  // if (this.inviteScreenCanvas != null) {
+  //   this.inviteScreenCanvas.width &&
+  //     ctx.drawImage(
+  //       this.inviteScreenCanvas,
+  //       canvasW / 2 - this.inviteScreenCanvas.width / 2,
+  //       this.screenPos,
+  //       this.inviteScreenCanvas.width,
+  //       this.inviteScreenCanvas.height
+  //     );
+  // }
+
+  if (this.canvasYouWonEndT > +new Date()) {
+    if (this.canvasYouWon != null) {
+      this.canvasYouWon.width &&
+        ctx.drawImage(
+          this.canvasYouWon,
+          canvasW / 2 - this.canvasYouWon.width / 2,
+          canvasH * 0.2,
+          this.canvasYouWon.width,
+          this.canvasYouWon.height
+        );
+    }
+  }
+  if (serverCon_aliveInAGame) {
+    // if (this.topperInfoTxt != null) {
+    //   this.topperInfoTxt.x = this.topperInfoX;
+    //   this.topperInfoTxt.y = this.topperInfoY;
+    //   this.topperInfoTxt.draw();
+    // }
+
+    if (this.pieChartCanvas != null) {
+      this.pieChartCanvas.width &&
+        ctx.drawImage(
+          this.pieChartCanvas,
+          20 * pixelRat,
+          20 * pixelRat,
+          this.pieChartCanvas.width,
+          this.pieChartCanvas.height
+        );
+    }
+
+    if (isInBonusRound) {
+      this.setBonusRoundTimer(
+        "Bonus Round\n" + Math.round(bonusRoundDur) + "s"
+      );
+      if (this.bonusRoundTimer != null) {
+        this.bonusRoundTimer.x = canvasW / 2;
+        this.bonusRoundTimer.y = canvasH * 0.1;
+        this.bonusRoundTimer.draw();
+      }
+    }
+  }
+  this.drawInterfaceButtons();
+};
+
+TeamMode.prototype.drawMap = function() {
+  this.buildPieChart();
+
+  this.drawTeamPlayers();
+  this.drawStonesOnMiniMap();
+
+  this.buildInviteScreen();
+};
+
+TeamMode.prototype.interfaceReset = function() {
+  //console.log("reseting interface");
+  this.endScreenCanvas = null;
+  this.dangerCircleMiniMapCanvas = null;
+  this.wastedPopups = [];
+  this.lastWastedPopupT = 0;
+  this.playercount = 0;
+  this.safeArea = null;
+
+  if (this.interfaceButtons) {
+    for (var i = 0; i < this.interfaceButtons.length; i++) {
+      var aBut = this.interfaceButtons[i];
+      aBut.onInterfaceReset();
+    }
+  }
+  this.interfaceButtons = [];
+};
+
+TeamMode.prototype.onInit = function() {};
+
+TeamMode.prototype.playercount = 0;
+
+TeamMode.prototype.setPlayerCount = function(count) {
+  this.playercount = count;
+};
+
+TeamMode.prototype.showPlayerCount = function() {
+  ctx.save();
+  var bx = canvasW / 2; // * interfS;
+  var barH = 50 * interfS;
+  var barW = 300 * interfS;
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = "black"; //bar bg
+  var by = 30 * interfS;
+
+  ctx.fillRect(bx - barW / 2, by, barW, barH); //bg
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = "white";
+  ctx.font = 30.0 * interfS + "px Arial";
+  ctx.lineWidth = 1;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle"; //vertical center
+  ctx.shadowOffsetX = 1;
+  ctx.shadowOffsetY = 1;
+  ctx.shadowColor = "black";
+  by += 25 * interfS;
+
+  var msg = " player";
+  if (this.playercount > 1) msg += "s";
+
+  if (this.state == battleRoyal_inProgress) msg += " alive!";
+  else if (
+    this.state == battleRoyal_waitingForPlayers ||
+    this.state == battleRoyal_ready
+  )
+    msg += " joined";
+
+  ctx.fillText(this.playercount + msg, bx, by);
+  ctx.restore();
+};
+
+TeamMode.prototype.lbCanvas = null;
+
+TeamMode.prototype.leaderboard = function(lbData) {};
+TeamMode.prototype.drawLeaderboard = function() {
+  if (this.stonesCanvas) {
+    //log("drawing leaderboard");
+    ctx.drawImage(
+      this.stonesCanvas,
+      10 * pixelRat,
+      200 * pixelRat,
+      this.stonesCanvas.width * interfS,
+      this.stonesCanvas.height * interfS
+    );
+  }
+};
+TeamMode.prototype.btnPlayAgain = null;
+
+TeamMode.prototype.showStats = true;
+TeamMode.prototype.interfaceButtons = [];
+TeamMode.prototype.createInterfaceButtons = function() {
+  //log("calling : createInterfaceButtons ");
+  this.interfaceButtons = [];
+  
+  this.btnPlayAgain = new InterfaceButton(0, 0, 80, 80, "Play Again!", 20);
+  this.btnPlayAgain.showLabeleOnHover = true;
+  this.btnPlayAgain.textShadow = true;
+  this.btnPlayAgain.drawTextOnHowever = function() {
+    this.drawText(this.w / 2, -this.h / 3);
+  };
+
+  this.btnPlayAgain.onClick = function() {
+    joinGame(false);
+  };
+  this.btnPlayAgain.onMouseMove = function() {};
+  this.btnPlayAgain.update = function() {
+    this.x = canvasW / 2 + 5;
+    this.y = canvasH * 0.9; //(canvasH / 2) - 250;
+  };
+
+  this.btnPlayAgain.onInterfaceReset = function() {
+    this.isVisible = false;
+  };
+
+  this.btnPlayAgain.onAfterDraw = function() {
+    var theImg = getLoadedImg("img/icons/replay.png");
+    if (theImg) {
+      ctx.save();
+
+      var iw = this.w * 0.8;
+      var pad = (this.w - iw) / 2;
+      ctx.drawImage(theImg, this.x + pad, this.y + pad, iw, iw);
+      ctx.restore();
+    }
+  };
+  this.btnPlayAgain.isVisible = false;
+  this.interfaceButtons.push(this.btnPlayAgain); // only add this button if drawn;
+  
+
+   this.btn1v1 = new InterfaceButton(0, 0, 60, 60, "Invite for 1v1", 30);
+   this.btn1v1.showLabeleOnHover = true;
+   this.btn1v1.textShadow = true;
+   this.btn1v1.drawTextOnHowever = function() {
+     this.drawText(this.w / 2, this.h + this.h / 2);
+  };
+
+   this.btn1v1.onClick = function() {
+     if (!this.clicked && !isGhost) {
+       this.clicked = true;
+       this.isHighLighted = false;
+     var mes = new MsgWriter(2);
+     mes.writeUInt8(52); // Msg_1v1Mode_invitePlayer;
+     mes.writeUInt8(0); //1=down, 0=up
+       wsSendMsg(mes);
+     }
+   };
+  this.btn1v1.onMouseMove = function() {};
+   this.btn1v1.update = function() {
+  //   this.x = canvasW / 2 - this.w / 2;
+     this.y = 5 + this.h / 2; //(canvasH / 2) - 250;
+   };
+
+   this.btn1v1.onInterfaceReset = function() {
+     this.isVisible = true;
+   };
+
+   this.btn1v1.onAfterDraw = function() {
+     var theImg = getLoadedImg("img/icons/1v1.png");
+     if (theImg) {
+       ctx.save();
+
+       var iw = this.w * 0.8;
+       var pad = (this.w - iw) / 2;
+       ctx.drawImage(theImg, this.x + pad, this.y + pad, iw, iw);
+       ctx.restore();
+     }
+   };
+   this.btn1v1.isVisible = show1v1Button;
+   this.interfaceButtons.push(this.btn1v1);
+};
+
+TeamMode.prototype.drawInterfaceButtons = function() {
+  // this.btnPlayAgain.isVisible = isGhost;
+/*
+  this.removeExpiredRequestButtons();
+  this.btn1v1.isVisible = !isGhost && show1v1Button;
+  if (this.btn1v1.isVisible) {
+    this.btn1v1.clicked = false;
+  }
+  */
+  if (this.interfaceButtons) {
+    for (var i = 0; i < this.interfaceButtons.length; i++) {
+      var aBut = this.interfaceButtons[i];
+      if (aBut.isVisible) {
+        aBut.draw();
+      }
+    }
+  }
+};
+
+TeamMode.prototype.removeExpiredRequestButtons = function() {
+  for (d = 0; d < this.interfaceButtons.length; d++) {
+    var aBut = this.interfaceButtons[d];
+
+    if (aBut.reqID !== undefined) {
+      var activeRequest = true;
+      var found = false;
+      for (r = 0; r < player1v1Requests.length; r++) {
+        var req = player1v1Requests[r];
+        if (req.id == aBut.reqID) {
+          found = true;
+          break;
+        }
+      }
+
+      if (!found) activeRequest = false;
+
+      if (!activeRequest || isInArena) {
+        log("removing button");
+        var tmp = this.interfaceButtons.indexOf(aBut);
+        if (-1 != tmp) {
+          this.interfaceButtons.splice(tmp, 1);
+        }
+      }
+    }
+  }
+};
+
+TeamMode.prototype.onResize = function() {
+  this.drawInterfaceButtons();
+};
+
+TeamMode.prototype.readPlayerStats = function(msg) {
+  var stats = [];
+  //stats.totalPlayers = msg.readUInt16();
+  stats.rank = msg.readUInt16();
+  stats.timeAlive = msg.readUInt16(); // in seconds
+  stats.totalKills = msg.readUInt16();
+  stats.topRank = msg.readUInt16();
+  stats.maxXP = msg.readUInt32();
+  stats.killedBy = msg.readString();
+  return stats;
+};
+
+TeamMode.prototype.playerInfo = function(msg) {
+  if (isGhost && !serverCon_spectatingInAGame) {
+    var stats = this.readPlayerStats(msg);
+    ;
+    //    this.buildEndScreen(null, stats);
+    this.buildEndScreenHTML(stats);
+  } else if (!isGhost) {
+    this.endScreenCanvas = null;
+  }
+};
+TeamMode.prototype.worldUpdate = function(msg) {
+  // read teams info
+  this.team1 = msg.readUInt16();
+  this.team2 = msg.readUInt16();
+  this.team3 = msg.readUInt16();
+
+  this.teamPlayerCount = msg.readUInt16();
+
+  this.teamPlayers = [];
+  for (i = 0; i < this.teamPlayerCount; i++) {
+    var x = msg.readUInt16() / 4.0;
+    var y = msg.readUInt16() / 4.0;
+    var r = msg.readUInt16() / 10.0;
+    this.teamPlayers.push({ x: x, y: y, rad: r });
+  }
+
+  this.totalStones = msg.readUInt8();
+  this.teamStones = [];
+  for (i = 0; i < this.totalStones; i++) {
+    var _teamID = msg.readUInt8();
+    var x = msg.readUInt16() / 4.0;
+    var y = msg.readUInt16() / 4.0;
+    var r = msg.readUInt16() / 10.0;
+    this.teamStones.push({ teamID: _teamID, x: x, y: y, rad: r });
+  }
+
+  //this.teamTotal = this.team1 + this.team2 + this.team3;
+};
+thisClass.prototype.bonusRoundTimer = null;
+TeamMode.prototype.pieChartCanvas = null;
+
+TeamMode.prototype.setBonusRoundTimer = function(a) {
+  var txt = "" + a;
+  if (null == this.bonusRoundTimer) {
+    this.bonusRoundTimer = new CachedText(40, "#FFFFFF"); //"#043400");
+    this.bonusRoundTimer.strokeW = 2;
+    this.bonusRoundTimer.multiLine = true;
+    this.bonusRoundTimer.renderScale = 5.0; //render larger to undo 'zoom of 3x'
+    this.bonusRoundTimer.setText(txt);
+  } else {
+    this.bonusRoundTimer.setFontSize(40);
+    this.bonusRoundTimer.setText(txt);
+  }
+};
+
+TeamMode.prototype.buildPieChart = function() {
+  if (this.pieChartCanvas == null)
+    this.pieChartCanvas = document.createElement("canvas");
+
+  if (this.pieChartCanvas == null) return;
+
+  var ctx_ = this.pieChartCanvas.getContext("2d");
+
+  var data = {
+    1: this.team1,
+    2: this.team2,
+    3: this.team3
+  };
+
+  var myPiechart = new Piechart({
+    pad: 30,
+    canvas: this.pieChartCanvas,
+    data: data,
+    colors: this.teamColors
+  });
+
+  var boardLength = 55;
+  var nameH = 40;
+  var pad = 5;
+
+  var borad_height = 200;
+  var borad_width = 200;
+
+  boardLength = borad_height + pad * 2;
+  this.pieChartCanvas.width = borad_width + pad * 2;
+  this.pieChartCanvas.height = boardLength;
+  myPiechart.draw();
+
+  ctx_.globalAlpha = 0.2;
+
+  var y = pad;
+  ctx_.globalAlpha = 0.5;
+  ctx_.fillStyle = "white";
+  ctx_.font = "20px Arial";
+  var y = 200;
+  str = curServer.name; // + " out of " + stats.totalPlayers + " players";
+  ctx_.fillText(
+    str,
+    this.pieChartCanvas.width / 2 - ctx_.measureText(str).width / 2 - 15,
+    y
+  );
+};
+TeamMode.prototype.inviteScreenCanvas = null;
+
+TeamMode.prototype.endScreenCanvas = null;
+TeamMode.prototype.endScreenDisplayed = false;
+TeamMode.prototype.buildEndScreenHTML = function(data) {
+  if (this.endScreenDisplayed) return;
+  this.endScreenDisplayed = true;
+  //refreshBannerAds();
+
+  var html = "";
+  html += "<div class='msg'>YOU WERE #" + data.rank + "</div>";
+  html += "<div class='row'>";
+  html += "<div class='label'>Killed by:</div>";
+  html += "<div class='value2'>" + data.killedBy + "</div>";
+  html += "</div>";
+  html += "<div class='row'>";
+  html += "<div class='col1'>";
+  html += "<div class='label'>Time alive:</div>";
+  html += "<div class='value'>" + secToTime(data.timeAlive) + "</div>";
+  html += "</div>";
+  html += "<div class='col2'>";
+  html += "<div class='label'>Total kills:</div>";
+  html += "<div class='value'>" + data.totalKills + "</div>";
+  html += "</div>";
+  html += "</div>";
+  html += "<div class='row'>";
+  html += "<div class='col1'>";
+  html += "<div class='label'>Top rank:</div>";
+  html += "<div class='value'>" + data.topRank + "</div>";
+  html += "</div>";
+  html += "<div class='col2'>";
+  html += "<div class='label'>Max xp:</div>";
+  html += "<div class='value'>" + formatNumK(data.maxXP) + "</div>";
+  html += "</div>";
+  html += "</div>";
+  html += "<div style='clear:both;'></div>";
+  html += "<div class='btnDiv'>";
+  //html += "<button id='btnContinue' class='btn'>Play Again</button>";
+  html += "<button id='btnContinue' class='btn'>CONTINUE</button>";
+  html += "</div>";
+  html += "<div style='clear:both;'></div>";
+  var endScreen = document.getElementById("endScreen");
+  if (endScreen) {
+    endScreen.innerHTML = html;
+    endScreen.style.display = "block";
+    //var btnContinue = document.getElementById("btnContinue");
+    var btnContinue = document.getElementById("btnContinue");
+    //btnContinue.onclick = onClickContinue;
+    btnContinue.onclick = onClickShowMenu;
+  }
+
+  if (!serverCon_aliveInAGame) {
+    setSiteMenuVisible(true);
+    //document.getElementById("startMenuWrapper").style.display = "block";
+
+  }
+};
+
+TeamMode.prototype.buildEndScreen = function(playerData, stats) {
+  if (this.endScreenCanvas == null)
+    this.endScreenCanvas = document.createElement("canvas");
+
+  if (this.endScreenCanvas == null) return;
+
+  var ctx_ = this.endScreenCanvas.getContext("2d");
+  var boardLength = 55;
+  var nameH = 40;
+  var pad = 5;
+
+  var borad_height = 240;
+  var borad_width = 420;
+
+  boardLength = borad_height + pad * 2;
+  this.endScreenCanvas.width = borad_width + pad * 2;
+  this.endScreenCanvas.height = boardLength;
+  ctx_.globalAlpha = 0.2;
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(0, 0, this.endScreenCanvas.width, this.endScreenCanvas.height);
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(
+    pad,
+    pad,
+    this.endScreenCanvas.width - pad * 2,
+    this.endScreenCanvas.height - pad * 2
+  );
+  var y = pad;
+  ctx_.globalAlpha = 1;
+  ctx_.fillStyle = "#FFFFFF";
+  ctx_.font = "30px Arial";
+
+  y += 55;
+
+  var str = "YOU DIED!"; //"Top Players";
+  ctx_.font = "30px Arial";
+  ctx_.fillText(
+    str,
+    this.endScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  ctx_.font = "20px Arial";
+  y += 45;
+  str = "You were #" + stats.rank; // + " out of " + stats.totalPlayers + " players";
+  ctx_.fillText(
+    str,
+    this.endScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  y += 40;
+  var result = secToTime(stats.timeAlive);
+
+  var x = pad + 15;
+
+  drawLabelValueOn(ctx_, "Killed by", stats.killedBy, x, y);
+  y += 40;
+  drawLabelValueOn(ctx_, "Time Alive", result, x, y);
+  x += 210;
+  drawLabelValueOn(ctx_, "Total Kills", stats.totalKills, x, y);
+  y += 40;
+  x = pad + 15;
+  drawLabelValueOn(ctx_, "Top rank", stats.topRank, x, y);
+  x += 210;
+  drawLabelValueOn(ctx_, "Max XP", formatNumK(stats.maxXP), x, y);
+
+  y += 50;
+  /*
+  this.btnPlayAgain.update = function() {
+    this.x = canvasW / 2 - this.w / 2;
+    this.y = canvasH * 0.4 + boardLength;
+  };
+  */
+};
+TeamMode.prototype.buildInviteScreen = function() {
+  // player1v1Requests = [];
+  // for (i = 0; i < 1; i++) {
+  //   var id = i;
+  //   var fromPlayer = "test " + (i + 1);
+  //   var reqDur = 10000;
+  //   player1v1Requests.push({
+  //     id: id,
+  //     requestee: fromPlayer,
+  //     aniType: 1,
+  //     wins: 1,
+  //     teamID: 1,
+  //     rank: 1,
+  //     dur: reqDur
+  //   });
+  // }
+
+  if (player1v1Requests.length == 0) {
+    this.inviteScreenCanvas = null;
+    return;
+  }
+
+  if (this.inviteScreenCanvas == null)
+    this.inviteScreenCanvas = document.createElement("canvas");
+
+  if (this.inviteScreenCanvas == null) return;
+
+  var ctx_ = this.inviteScreenCanvas.getContext("2d");
+  var boardLength = 55;
+  var nameH = 40;
+  var pad = 5;
+
+  var borad_height = 200 + player1v1Requests.length * 80;
+  var borad_width = 420;
+
+  boardLength = borad_height + pad * 2;
+  this.inviteScreenCanvas.width = borad_width + pad * 2;
+  this.inviteScreenCanvas.height = boardLength;
+  var screenPos = 150;
+  this.screenPos = screenPos;
+  ctx_.globalAlpha = 0.2;
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(
+    0,
+    0,
+    this.inviteScreenCanvas.width,
+    this.inviteScreenCanvas.height
+  );
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(
+    pad,
+    pad,
+    this.inviteScreenCanvas.width - pad * 2,
+    this.inviteScreenCanvas.height - pad * 2
+  );
+  var y = pad;
+  ctx_.globalAlpha = 1;
+  ctx_.fillStyle = "#FFFFFF";
+  ctx_.font = "30px Arial";
+
+  y += 55;
+
+  var str = "1v1 REQUEST"; //"Top Players";
+  ctx_.font = "30px Arial";
+  ctx_.fillText(
+    str,
+    this.inviteScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  //screenPos -= boardLength / 2;
+  // screenPos += 40;
+  screenPos = 100;
+  var btnY = 0;
+  for (r = 0; r < player1v1Requests.length; r++) {
+    var req = player1v1Requests[r];
+    ctx_.save();
+    ctx_.fillStyle = "red";
+    ctx_.globalAlpha = 0.5;
+    ctx_.fillRect(this.inviteScreenCanvas.width - 60, 10, 50, 50);
+    ctx_.restore();
+    ctx_.save();
+    str = "" + req.dur;
+    ctx_.font = "30px Arial";
+    ctx_.fillText(
+      str,
+      this.inviteScreenCanvas.width - 35 - ctx_.measureText(str).width / 2,
+      45
+    );
+    ctx_.restore();
+    ctx_.font = "20px Arial";
+
+    str = req.requestee + " invites you for 1v1 ";
+    ctx_.fillText(
+      str,
+      this.inviteScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+      screenPos
+    );
+
+    var x = pad + 15;
+    y = screenPos + 40;
+    drawLabelValueOn(ctx_, "Animal", "", x, y);
+
+    var aniInfo = infoForAnimalType(req.aniType);
+    var theImg = getLoadedImg("./skins/" + aniInfo.skinName + ".png");
+
+    if (theImg) {
+      ctx_.save();
+      ctx_.drawImage(theImg, x + 130, y - 30, 50, 50);
+      ctx_.restore();
+    }
+
+    x += 210;
+    drawLabelValueOn(ctx_, "1v1 Wins", req.wins, x, y);
+    y += 40;
+    x = pad + 15;
+    drawLabelValueOn(ctx_, "Team", "", x, y);
+
+    ctx_.save();
+    var cx = x + 155;
+    var cy = y - 10 / 2;
+    ctx_.fillStyle = this.teamColors[req.teamID];
+    ctx_.beginPath();
+    ctx_.arc(cx, cy, 10, 0, Math.PI * 2);
+    ctx_.fill();
+
+    ctx_.restore();
+
+    x += 210;
+    drawLabelValueOn(ctx_, "Rank", req.rank, x, y);
+    screenPos += 100;
+    var btnAccept = this.create1v1RequestButton(req, "Accept");
+    //420 / 2;
+    btnAccept.yPos = screenPos;
+    btnAccept.update = function() {
+      this.x = canvasW / 2 - 140;
+      this.y = _gameMode.screenPos + this.yPos + 10;
+    };
+
+    var btnReject = this.create1v1RequestButton(req, "Reject");
+    btnReject.yPos = screenPos;
+    btnReject.update = function() {
+      this.x = canvasW / 2 - 40;
+      this.y = _gameMode.screenPos + this.yPos + 10;
+    };
+
+    var btnIgnore = this.create1v1RequestButton(req, "Ignore");
+    btnIgnore.yPos = screenPos;
+    btnIgnore.update = function() {
+      this.x = canvasW / 2 + 60;
+      this.y = _gameMode.screenPos + this.yPos + 10;
+    };
+
+    screenPos += 80;
+  }
+};
+
+TeamMode.prototype.create1v1RequestButton = function(req, label) {
+  var hasFound = false;
+  for (i = 0; i < this.interfaceButtons.length; i++) {
+    btn = this.interfaceButtons[i];
+    if (btn.reqID == req.id && btn.label == label) {
+      hasFound = true;
+      return btn;
+    }
+  }
+
+  if (hasFound) return;
+
+  var btn = new InterfaceButton(0, 0, 80, 40, label, 20);
+  btn.reqID = req.id;
+  btn.reqAction = btn.onClick = function() {
+    this.isHighLighted = false;
+    var actionType = 0;
+    switch (this.label) {
+      case "Accept":
+        actionType = 1;
+        break;
+      case "Reject":
+        actionType = 0;
+        break;
+      case "Ignore":
+        actionType = 2;
+        break;
+    }
+    var mes = new MsgWriter(3);
+    mes.writeUInt8(53); // Msg_1v1Mode_RequestAction;
+    mes.writeUInt8(actionType); //1=accept, 0=reject,2=ignore
+    mes.writeUInt8(this.reqID);
+    wsSendMsg(mes);
+  };
+  btn.onInterfaceReset = function() {
+    this.isVisible = true;
+  };
+
+  btn.isVisible = true;
+  this.interfaceButtons.push(btn);
+
+  return btn;
+};
+
+TeamMode.prototype.lastWastedPopupT = 0;
+TeamMode.prototype.onPlayerWasted = function(wastedName) {
+  if ((timestamp - this.lastWastedPopupT) / 1000.0 > 0.7) {
+    //over 0.5s since last popup
+    this.lastWastedPopupT = timestamp;
+    var newPop = new TextPopup(wastedName + " wasted!", 40, "red", 1500);
+    this.wastedPopups.push(newPop);
+  }
+};
+
+var Piechart = function(options) {
+  this.options = options;
+  this.radius = options.radius;
+  this.pad = options.pad;
+  this.canvas = options.canvas;
+  this._ctx = this.canvas.getContext("2d");
+  this.colors = options.colors;
+  this.radius = Math.min(this.canvas.width / 2, this.canvas.height / 2);
+  this.draw = function() {
+    var total_value = 0;
+    var color_index = 0;
+
+    this._ctx.save();
+    this._ctx.globalAlpha = 0.3;
+    this.drawCircle(
+      this.canvas.width / 2 - this.pad / 2,
+      this.canvas.height / 2 - this.pad / 2,
+      this.radius - this.pad,
+      "white"
+    );
+    this._ctx.restore();
+
+    for (var categ in this.options.data) {
+      var val = this.options.data[categ];
+      total_value += val;
+    }
+    var start_angle = 0;
+
+    for (categ in this.options.data) {
+      this._ctx.save();
+      this._ctx.lineWidth = 4;
+      this._ctx.strokeStyle = "white";
+      this._ctx.globalAlpha = 0.3;
+      var rf = 0;
+      if (teamID == categ) {
+        this._ctx.globalAlpha = 0.6;
+        rf = 8;
+      }
+      val = this.options.data[categ];
+      var slice_angle = (2 * Math.PI * val) / total_value;
+
+      this.drawPieSlice(
+        this.canvas.width / 2 - this.pad / 2,
+        this.canvas.height / 2 - this.pad / 2,
+        this.radius - this.pad,
+        start_angle,
+        start_angle + slice_angle,
+        this.colors[categ],
+        rf
+      );
+      this._ctx.restore();
+
+      start_angle += slice_angle;
+      color_index++;
+    }
+  };
+
+  this.drawPieSlice = function(
+    centerX,
+    centerY,
+    radius,
+    startAngle,
+    endAngle,
+    color,
+    rf
+  ) {
+    this._ctx.fillStyle = color;
+    this._ctx.beginPath();
+    this._ctx.moveTo(centerX, centerY);
+    this._ctx.arc(centerX, centerY, radius + rf, startAngle, endAngle);
+    this._ctx.closePath();
+    this._ctx.fill();
+    if (rf > 0) this._ctx.stroke();
+  };
+
+  this.drawCircle = function(centerX, centerY, radius, color) {
+    this._ctx.fillStyle = color;
+    this._ctx.beginPath();
+    this._ctx.moveTo(centerX, centerY);
+    this._ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+    this._ctx.closePath();
+    this._ctx.fill();
+  };
+};
+TeamMode.prototype.drawStonesOnMiniMap = function() {
+  if (this.teamStones) {
+    for (t = 0; t < this.teamStones.length; t++) {
+      var stone = this.teamStones[t];
+      var _teamColor = this.teamColors[stone.teamID];
+      ctx.save();
+      ctx.globalAlpha = 1;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = "white";
+      ctx.fillStyle = _teamColor;
+
+      var x =
+        canvasW -
+        (10 * pixelRat + miniMapCanvas.width * interfS) +
+        (stone.x * (miniMapCanvas.width * interfS)) / gameW;
+      var y =
+        10 * pixelRat + (stone.y * (miniMapCanvas.height * interfS)) / gameH;
+      //ctx.arc(x, y, plR * radF, 0, 2 * Math.PI);
+
+      // ctx.rect(x, y, 5, 5);
+      drawPlayerOnMiniMap(stone, _teamColor, 1.25);
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+    // draw stones on left corner:
+  }
+  this.drawStoneCounts();
+};
+TeamMode.prototype.stonesCanvas = null;
+TeamMode.prototype.drawStoneCounts = function() {
+  var y = 10;
+  var stone1 = 0;
+  var stone2 = 0;
+  var stone3 = 0;
+  if (this.teamStones)
+    for (t = 0; t < this.teamStones.length; t++) {
+      var stone = this.teamStones[t];
+      switch (stone.teamID) {
+        case 1:
+          stone1++;
+          break;
+        case 2:
+          stone2++;
+          break;
+        case 3:
+          stone3++;
+          break;
+      }
+    }
+
+  if (this.stonesCanvas == null)
+    this.stonesCanvas = document.createElement("canvas");
+
+  if (this.stonesCanvas) {
+    var ctx_ = this.stonesCanvas.getContext("2d");
+    this.stonesCanvas.width = 300;
+    this.stonesCanvas.height = 300;
+    ctx_.font = "30px Arial";
+    this.drawStoneCount(ctx_, 1, stone1, y);
+    this.drawStoneCount(ctx_, 2, stone2, y + 50);
+    this.drawStoneCount(ctx_, 3, stone3, y + 100);
+  }
+};
+
+TeamMode.prototype.playerUI = [];
+TeamMode.prototype.drawPlayerUI = function(ani) {};
+TeamMode.prototype.drawStoneCount = function(ctx_, team, count, y) {
+  ctx_.save();
+  ctx_.globalAlpha = 0.5;
+  var theImg = getLoadedImg("img/teamStone/stone" + team + ".png");
+  if (theImg) {
+    var rad = this.rad;
+    ctx_.drawImage(theImg, 10, y, 40, 40);
+    y += 50;
+    ctx_.fillStyle = "black";
+    ctx_.fillText(count + "", 60, y - 18);
+  }
+  ctx_.restore();
+  // ctx_.save();
+  // var x = 0;
+  // var y = 0;
+  // ctx_.beginPath();
+  // ctx_.rotate(toRadians(50));
+  // ctx_.moveTo(x, y);
+  // ctx_.lineTo(x, y+50);
+  // ctx_.lineTo(x + 50, y+ 50);
+  // ctx_.closePath();
+  // ctx_.fill();
+  // ctx_.stroke();
+  // ctx_.restore();
+};
+
+TeamMode.prototype.drawTeamPlayers = function() {
+  if (this.teamPlayers) {
+    var teamColor = this.teamColors[teamID];
+    for (t = 0; t < this.teamPlayers.length; t++) {
+      drawPlayerOnMiniMap(this.teamPlayers[t], teamColor, 1.0);
+    }
+  }
+};
+
+window.TeamMode = TeamMode;
+
+
+///////
+// file: js_src/gameobj/TeamStone.js
+///////
+
+
+var superClass = GameObj;
+TeamStone.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+TeamStone.prototype.constructor = TeamStone;
+TeamStone.superClass=superClass; //'class' var
+
+
+TeamStone.prototype.updateZ = function() {
+    this.z = 1002;
+}
+
+
+//override draw (things like other effects are drawn seperately)
+TeamStone.prototype.customDraw = function(batchDrawOutline){
+  ctx.save();
+
+  ctx.globalAlpha = 1;
+
+
+  var theImg = getLoadedImg("img/teamStone/stone" + this.teamID + ".png");
+  if (theImg) {
+    var rad = this.rad;
+    ctx.rotate(this.rPer * Math.PI * 2.0);
+    ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+  }
+  ctx.restore();
+}
+//custom data for this class (must be matched by server-side write of this data!)
+TeamStone.prototype.readCustomData_onUpdate = function(msg) {
+  this.teamID = msg.readUInt8();
+}
+
+//custom data for this class (must be matched by server-side write of this data!)
+TeamStone.prototype.readCustomData_onNewlyVisible = function(msg) {
+  this.teamID = msg.readUInt8();
+}
+
+function TeamStone(){
+  TeamStone.superClass.call(this, o_teamStone);
+
+  this.teamID =0;
+
+  //set vars for this class
+  this.doesDrawEffectScale=true;
+  this.drawEffectScale_Slow=true;
+
+}
+window.TeamStone=TeamStone;
+//add this file as a class! (make sure to call require!)
+GameObjType.setCustomClassForGameObjType(TeamStone, o_teamStone);
+
+///////
+// file:  firewood .js
+///////
+var superClass = GameObj;
+
+FireWood.prototype = Object.create(superClass.prototype);
+FireWood.prototype.constructor = FireWood;
+FireWood.superClass = superClass;
+FireWood.prototype.updateZ = function () {
+    this.z = this.rad;
+};
+FireWood.prototype.customDraw = function (_0xdc5c58) {
+    ctx.save();
+    _0xdc5c58 = 2.2 * this.rad;
+    var _0x455c61 = getLoadedImg('skins/bigfoot/firewood.png');
+    _0x455c61 && ctx.drawImage(_0x455c61, -_0xdc5c58 / 2, -_0xdc5c58 / 2, _0xdc5c58, _0xdc5c58);
+    ctx.restore();
+};
+
+
+function FireWood() {
+    FireWood.superClass.call(this, o_firewood);
+}
+window.FireWood = FireWood;
+GameObjType.setCustomClassForGameObjType(FireWood, o_firewood);
+///////
+// file: js_src/gameobj/ability/AbilityObj1v1Arena.js
+///////
+
+var thisClass = AbilityObj1v1Arena;
+var superClass = AbilityObj;
+thisClass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+thisClass.prototype.constructor = thisClass;
+thisClass.superClass = superClass; //'class' var
+thisClass.prototype.arenaState = 0;
+thisClass.prototype.fightNumber = 0;
+thisClass.prototype.timer = 0;
+thisClass.prototype.timerTxt = null;
+thisClass.prototype.p1Name = null;
+thisClass.prototype.p2Name = null;
+thisClass.prototype.p1Bites = 0;
+thisClass.prototype.p2Bites = 0;
+thisClass.prototype.arenaRad = 0;
+thisClass.prototype.isCountdownTimer = true;
+thisClass.prototype.p1ID = 0;
+thisClass.prototype.p2ID = 0;
+AbilityObj1v1Arena.prototype.setTimer = function(a) {
+  var txt =
+    (this.isCountdownTimer ? "" : "FIGHT #" + this.fightNumber + "\nTIME\n") +
+    "" +
+    a;
+  var fontSize = 16;
+  if (this.isCountdownTimer) fontSize = Number(a) ? 30 : 16;
+  if (null == this.timerTxt) {
+    this.timerTxt = new CachedText(fontSize, "#FFFFFF"); //"#043400");
+    this.timerTxt.strokeW = 2;
+    this.timerTxt.multiLine = true;
+    this.timerTxt.renderScale = 5.0; //render larger to undo 'zoom of 3x'
+    this.timerTxt.setText(txt);
+  } else {
+    this.timerTxt.setFontSize(fontSize);
+    this.timerTxt.setText(txt);
+  }
+};
+
+AbilityObj1v1Arena.prototype.setP1 = function(a) {
+  var txt = "" + a;
+
+  if (null == this.p1Name) {
+    this.p1Name = new CachedText(12, "#FFFFFF"); //"#043400");
+    this.p1Name.strokeW = 2;
+    this.p1Name.multiLine = true;
+    this.p1Name.renderScale = 2.0; //render larger to undo 'zoom of 3x'
+    this.p1Name.setText(txt);
+  } else {
+    this.p1Name.setFontSize(12);
+    this.p1Name.setText(txt);
+  }
+};
+
+AbilityObj1v1Arena.prototype.setP2 = function(a) {
+  var txt = "" + a;
+  if (null == this.p2Name) {
+    this.p2Name = new CachedText(12, "#FFFFFF"); //"#043400");
+    this.p2Name.strokeW = 2;
+    this.p2Name.multiLine = true;
+    this.p2Name.renderScale = 2.0; //render larger to undo 'zoom of 3x'
+    this.p2Name.setText(txt);
+  } else {
+    this.p2Name.setFontSize(12);
+    this.p2Name.setText(txt);
+  }
+};
+var ar1 = 2;
+var ar2 = 2;
+AbilityObj1v1Arena.prototype.updateZ = function() {
+  this.z = 100002; // above everything
+};
+var rotateImg = 45;
+//subclassable part of draw()
+AbilityObj1v1Arena.prototype.customDraw = function(batchDrawOutline) {
+  this.arenaRadUpdate();
+
+  ctx.save();
+  ctx.globalAlpha = 0.3;
+  ctx.beginPath();
+  ctx.arc(0, 0, this.rad + 2, 0, 2 * Math.PI, false);
+  ctx.arc(0, 0, this.rad, 0, 2 * Math.PI, true);
+  ctx.fillStyle = "#FF1616";
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  ctx.save();
+  ctx.globalAlpha = 0.095;
+
+  ctx.beginPath();
+  ctx.arc(0, 0, this.rad, 0, 2 * Math.PI, false);
+  ctx.arc(0, 0, this.arenaRad, 0, 2 * Math.PI, true);
+  ctx.fillStyle = "#FF4242";
+  ctx.closePath();
+  ctx.fill();
+  // ctx.globalAlpha = 0.15;
+  // ctx.strokeStyle = "red";
+  // ctx.stroke();
+  ctx.restore();
+
+  ctx.save();
+  ctx.globalAlpha = 0.3;
+  ctx.beginPath();
+  ctx.arc(0, 0, this.arenaRad, 0, 2 * Math.PI, false);
+  ctx.arc(0, 0, this.arenaRad - 2, 0, 2 * Math.PI, true);
+  ctx.fillStyle = "#FF0000";
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+
+  if (this.timerTxt != null)
+    if (this.arenaState == 0) {
+      this.timerTxt.x = 0;
+      this.timerTxt.y = 0;
+      this.timerTxt.draw();
+    } else if (this.arenaState == 1) {
+      this.timerTxt.x = 0;
+      this.timerTxt.y = -this.rad * 0.8;
+      this.timerTxt.draw();
+    } else if (this.arenaState == 2) {
+      this.timerTxt.x = 0;
+      this.timerTxt.y = 0;
+      this.timerTxt.draw();
+    }
+
+  if (this.p1Name != null) {
+    this.p1Name.x = -this.rad / 2;
+    this.p1Name.y = -this.rad * 0.7;
+    this.p1Name.draw();
+
+    // var aniInfo = infoForAnimalType(this.p1Animal);
+    // var aniSkin = "./skins/" + aniInfo.skinName + ".png";
+    // var theImg = getLoadedImg(aniSkin);
+    // if (theImg) {
+    //   log(aniSkin);
+    //   ctx.save();
+    //   ctx.rotate(rotateImg);
+    //   ctx.drawImage(theImg, -this.rad, -this.rad*0.8, 50, 50);
+    //   ctx.restore();
+    // }
+  }
+
+  if (this.p2Name != null) {
+    this.p2Name.x = this.rad / 2;
+    this.p2Name.y = -this.rad * 0.7;
+    this.p2Name.draw();
+  }
+
+  if (
+    myPlayerID != 0 &&
+    (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
+    this.arenaState == 0
+  ) {
+    /*if (!this.hasAdLoaded) {
+      this.hasAdLoaded = true;
+      document.getElementById("startMenuWrapper").style.display = "block";
+      document.getElementById("updates").style.display = "none";
+      document.getElementById("startMenu").style.display = "none";
+      document.getElementById("rightSide").style.display = "none";
+      refreshBannerAds();
+
+      setTimeout(function() {
+        document.getElementById("startMenuWrapper").style.display = "none";
+        document.getElementById("startMenu").style.display = "block";
+        document.getElementById("rightSide").style.display = "block";
+      }, 23000);
+    }*/
+  }
+  // else {
+  //   if (
+  //     myPlayerID != 0 &&
+  //     (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
+  //     this.arenaState == 1
+  //   ) {
+  //     if (this.hasAdLoaded) {
+  //       this.hasAdLoaded = false;
+  //       document.getElementById("startMenuWrapper").style.display = "none";
+  //     }
+  //   }
+  // }
+};
+AbilityObj1v1Arena.prototype.hasAdLoaded = false;
+
+//override this to read in custom spawn data
+AbilityObj1v1Arena.prototype.readCustomData_onNewlyVisible = function(msg) {
+  AbilityObj1v1Arena.superClass.prototype.readCustomData_onNewlyVisible.call(
+    this,
+    msg
+  );
+  this.p1ID = msg.readUInt32();
+  this.p2ID = msg.readUInt32();
+  this.p1 = msg.readString();
+  this.p2 = msg.readString();
+  this.p1Wins = msg.readUInt8();
+  this.p2Wins = msg.readUInt8();
+  //this.p1Animal = msg.readUInt8();
+  //this.p2Animal = msg.readUInt8();
+
+  this.setNames();
+
+  this.arenaState = msg.readUInt8();
+  // if (this.arenaState == 0) {
+  //   this.timer = msg.readUInt16() / 100.0;
+
+  //   if (this.timer < 11) this.updateTimer();
+  // }
+  var rad = msg.readUInt16() / 100.0;
+  this.oArenaRad = this.arenaRad;
+  this.nArenaRad = rad;
+};
+
+AbilityObj1v1Arena.prototype.arenaRadUpdate = function() {
+  var a = (timestamp - this.updateTime) / 1000 / lerpI;
+  a = 0 > a ? 0 : 1.0 < a ? 1.0 : a; //clamp from 0-1
+
+  //if(this.oType==o_abilityGObj)
+  //console.log("(dead? "+this.dead+") a= "+a+"x="+this.x+" nx "+this.nx+" ox "+this.ox);
+
+  this.arenaRad += (this.nArenaRad - this.arenaRad) * 0.1; //a * (this.nRad - this.oRad) + this.oRad;;
+};
+
+AbilityObj1v1Arena.prototype.readCustomData_onUpdate = function(msg) {
+  AbilityObj1v1Arena.superClass.prototype.readCustomData_onUpdate.call(
+    this,
+    msg
+  ); //call superclass version of this method
+
+  this.arenaState = msg.readUInt8();
+  this.fightNumber = msg.readUInt16();
+  var rad = msg.readUInt16() / 100.0;
+  this.oArenaRad = this.arenaRad;
+  this.nArenaRad = rad;
+  this.p1Bites = msg.readUInt16();
+  this.p2Bites = msg.readUInt16();
+
+  if (this.arenaState == 0) {
+    this.timer = msg.readUInt16() / 100.0;
+    this.isCountdownTimer = true;
+    if (this.timer < 23) this.updateTimer();
+  } else if (this.arenaState == 1) {
+    this.timer = msg.readUInt16() / 100.0;
+    this.isCountdownTimer = false;
+    this.updateTimer();
+  } else if (this.arenaState == 2) {
+    this.winner = msg.readUInt8();
+    this.winBonus = msg.readUInt32();
+    this.winnerMsg = msg.readString();
+
+    this.displayEndScreen();
+  }
+  this.setNames();
+};
+AbilityObj1v1Arena.prototype.endScreenState = -1;
+AbilityObj1v1Arena.prototype.endScreenChangeT = 0;
+
+AbilityObj1v1Arena.prototype.displayEndScreen = function() {
+  if (timestamp >= this.endScreenChangeT) {
+    this.endScreenState++;
+    this.endScreenChangeT = timestamp + 3000;
+  }
+
+  if (this.timerTxt != null) {
+    if (this.endScreenState == 0) {
+      this.timerTxt.setFontSize(40);
+      this.timerTxt.setText("\nKO!");
+    } else if (this.endScreenState == 1) {
+      this.timerTxt.setFontSize(20);
+      this.timerTxt.setText(this.winnerName + "\nWON!");
+    } else if (this.endScreenState == 2) {
+      this.timerTxt.setFontSize(20);
+      this.timerTxt.setText(
+        this.winnerMsg + "\nWIN BONUS: " + formatNumK(this.winBonus)
+      );
+    }
+  }
+};
+AbilityObj1v1Arena.prototype.challenger = null;
+AbilityObj1v1Arena.prototype.opponent = null;
+
+AbilityObj1v1Arena.prototype.setNames = function() {
+  var name1 = "" + this.p1;
+  if (name1.length == 0) name1 = "mope2.io/1v1";
+  var name2 = "" + this.p2;
+  if (name2.length == 0) name2 = "mope2.io/1v1";
+
+  var wins1 = "\n(wins: " + this.p1Wins + ")";
+  var wins2 = "\n(wins: " + this.p2Wins + ")";
+  var bites1 = "\nbites: " + this.p1Bites;
+  var bites2 = "\nbites: " + this.p2Bites;
+
+  if (this.arenaState < 2) {
+    this.challenger = name1 + wins1;
+    this.opponent = name2 + wins2;
+    this.setP1(name1 + wins1 + bites1);
+    this.setP2(name2 + wins2 + bites2);
+  } else if (this.arenaState == 2) {
+    if (this.winner == 1) {
+      this.winnerName = name1;
+      this.setP1(name1 + wins1 + bites1);
+      this.p2Name = null;
+    } else if (this.winner == 2) {
+      this.winnerName = name2;
+      this.setP2(name2 + wins2 + bites2);
+      this.p1Name = null;
+    }
+  }
+};
+
+AbilityObj1v1Arena.prototype.updateTimer = function() {
+  this.timer = Math.round(this.timer);
+
+  var txt = this.timer;
+  if (this.isCountdownTimer)
+    switch (this.timer) {
+      case 23:
+        txt = "";
+        break;
+      case 22:
+      case 21:
+        txt = "WELCOME TO 1V1 ARENA";
+        break;
+      case 20:
+      case 19:
+        txt = "FIGHT #" + this.fightNumber;
+        break;
+      case 18:
+      case 17:
+        txt = "CHALLENGER";
+        break;
+      case 16:
+      case 15:
+        txt = this.challenger;
+        break;
+      case 14:
+      case 13:
+        txt = "OPPONENT";
+        break;
+      case 12:
+      case 11:
+        txt = this.opponent;
+        break;
+      case 2:
+        txt = "ROUND 1";
+        break;
+      case 1:
+        txt = "GET SET";
+        break;
+      case 0:
+        txt = "FIGHT";
+        break;
+    }
+  this.setTimer(txt);
+};
+
+function AbilityObj1v1Arena() {
+  AbilityObj1v1Arena.superClass.call(this); //call superclass init method (if needed, or write a new one below)
+  this.hasAdLoaded = false;
+}
+
+window.AbilityObj1v1Arena = AbilityObj1v1Arena; //make class global!
+
+//add this class as a thisClass for the right oType!
+GameObjType.setCustomClassForGameObjType(
+  AbilityObj1v1Arena,
+  o_abilityGObj,
+  ability_1v1Arena
+);
+
+
+///////
+// file: js_src/gameobj/ability/AbilityObjGoalScored.js
+///////
+
+var thisClass = AbilityObjGoalScored;
+var superClass = AbilityObj;
+thisClass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+thisClass.prototype.constructor = thisClass;
+thisClass.superClass = superClass; //'class' var
+thisClass.prototype.alltimeGoals = 0;
+thisClass.prototype.xpGained = 0;
+thisClass.prototype.goalScorer = "";
+thisClass.prototype.timerTxt = null;
+thisClass.prototype.timer = 0;
+AbilityObjGoalScored.prototype.updateZ = function() {
+  this.z = 100002; // above everything
+};
+AbilityObjGoalScored.prototype.customDraw = function(batchDrawOutline) {
+  this.updateTimer();
+
+  // drawCircle(0, 0, this.rad, "#ff9000");
+
+  if (this.timer > 3) {
+    ctx.save();
+    var oldA = ctx.globalAlpha;
+    ctx.globalAlpha = 0.25 * oldA;
+    ctx.beginPath();
+    ctx.arc(0, 0, this.rad, 0, 2 * Math.PI, false);
+    ctx.arc(0, 0, this.rad - 20, 0, 2 * Math.PI, true);
+    ctx.fillStyle = "#ff9000";
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+  if (this.timerTxt != null) {
+    this.timerTxt.x = 0;
+    this.timerTxt.y = -this.rad;
+    this.timerTxt.draw();
+  }
+};
+//override this to read in custom spawn data
+AbilityObjGoalScored.prototype.readCustomData_onNewlyVisible = function(msg) {
+  AbilityObjGoalScored.superClass.prototype.readCustomData_onNewlyVisible.call(
+    this,
+    msg
+  );
+  this.alltimeGoals = msg.readUInt16();
+  this.goalScorer = msg.readString();
+  this.timer = msg.readUInt16() / 100.0;
+};
+
+AbilityObjGoalScored.prototype.readCustomData_onUpdate = function(msg) {
+  AbilityObjGoalScored.superClass.prototype.readCustomData_onUpdate.call(
+    this,
+    msg
+  ); //call superclass version of this method
+
+  this.timer = msg.readUInt16() / 100.0;
+};
+
+AbilityObjGoalScored.prototype.setTimer = function(a) {
+  var txt = a;
+  var fontSize = 16;
+  if (null == this.timerTxt) {
+    this.timerTxt = new CachedText(fontSize, "#ffd800");
+    this.timerTxt.strokeW = 2;
+    this.timerTxt.multiLine = true;
+    this.timerTxt.renderScale = 3.0; //render larger to undo 'zoom of 3x'
+    this.timerTxt.setText(txt);
+  } else {
+    this.timerTxt.setFontSize(fontSize);
+    this.timerTxt.setText(txt);
+  }
+};
+
+AbilityObjGoalScored.prototype.updateTimer = function() {
+  this.timer = Math.round(this.timer);
+
+  var txt = this.timer;
+
+  switch (this.timer) {
+    case 10:
+    case 9:
+    case 8:
+      txt = "GOAAAAAL!!!";
+      break;
+
+    case 7:
+    case 6:
+    case 5:
+      txt = this.goalScorer;
+      break;
+    case 4:
+    case 3:
+    case 2:
+    case 1:
+      txt = "GOAL #" + this.alltimeGoals;
+      break;
+    default:
+      txt = "";
+      break;
+  }
+  this.setTimer(txt);
+};
+
+function AbilityObjGoalScored() {
+  AbilityObjGoalScored.superClass.call(this); //call superclass init method (if needed, or write a new one below)
+  this.hasAdLoaded = false;
+}
+
+window.AbilityObjGoalScored = AbilityObjGoalScored; //make class global!
+
+//add this class as a thisClass for the right oType!
+GameObjType.setCustomClassForGameObjType(
+  AbilityObjGoalScored,
+  o_abilityGObj,
+  ability_goalScored
+);
+
+//define basic classes
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//GAME OBJECTS DEFs
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+function aniChoiceButtonClicked(aBut) {
+  //console.log("choice: animal " + aBut.aniT + " selected: ");
+
+  //play sound (if not muted)
+  var sound_click = getLazyLoadAudio("audio/click.mp3");
+  if (sound_click) {
+    try {
+      sound_click.play();
+    } catch (err) {}
+  }
+
+  //tell server about chosen animal
+  newMsg = new MsgWriter(3);
+  newMsg.writeUInt8(24);//msgType MsgGameSelectAnimal
+  
+  newMsg.writeUInt8(aniChoice_choiceButtons.indexOf(aBut)); //msgType generatekey
+  wsSendMsg(newMsg);
+
+  //join game (if needed)
+  if (aniChoice_joinGameAfter) {
+    //console.log("chosen spawn animal, joining game...");
+    //clear edible types (before spawn)
+    clearedTypesSinceSpawnRequest = false;
+
+    //joinGame(false);
+  }
+
+  //close choice interface
+  aniChoice_isOpen = false;
+  aniChoice_joinGameAfter = false;
+}
+
+//helper to read msgData ArrayBuffer
+function MsgReader(msgArrBuf) {
+  this.data = msgArrBuf;
+  this.offset = 0;
+
+  this.readUInt8 = function() {
+    var val = this.data.getUint8(this.offset);
+    this.offset += 1;
+    return val;
+  };
+  this.readUInt16 = function() {
+    try {
+      var val = this.data.getUint16(this.offset, false); //false for big endian
+      this.offset += 2;
+      return val;
+    } catch (err) {
+      return 0;
+    }
+  };
+  this.readInt16 = function() {
+    try {
+      var val = this.data.getInt16(this.offset, false); //false for big endian
+      this.offset += 2;
+      return val;
+    } catch (err) {
+      return 0;
+    }
+  };
+  this.readUInt32 = function() {
+    var val = this.data.getUint32(this.offset, false); //false for big endian
+
+    this.offset += 4;
+    return val;
+  };
+  this.readString = function() {
+    var len = this.readUInt16();
+	//console.log("string length: " + len + "off: " + this.offset);
+    var text = "",
+      aByte;
+
+    for (var ind = 0; ind < len; ind++) {
+		try{
+      aByte = this.readUInt8();
+      if (ind != len - 1)
+        //1 less to rid of null terminator
+        text += String.fromCharCode(aByte);
+		}catch(e){
+			console.log("tryed: " + this.offset)
+		}
+    }
+    return decode_utf8(text);
+  };
+  //reads in X bytes as an obj
+  this.readMsgReaderBitsGroup = function() {};
+  this.readBitGroup = function() {
+    return new MsgReaderBitsGroup(this);
+  };
+}
+
+function MsgWriter(msgSize) {
+  this.len = 0;
+  this.dataView = new DataView(new ArrayBuffer(msgSize));
+
+  this.writeUInt8 = function(val) {
+    this.dataView.setUint8(this.len, val);
+    this.len += 1;
+  };
+  this.writeUInt16 = function(val) {
+    this.dataView.setUint16(this.len, val, false);
+    this.len += 2;
+  };
+  this.writeInt16 = function(val) {
+    this.dataView.setInt16(this.len, val, false);
+    this.len += 2;
+  };
+  this.writeUInt32 = function(val) {
+    this.dataView.setUint32(this.len, val, false);
+    this.len += 4;
+  };
+  this.writeString = function(val) {
+    val = encode_utf8(val);
+    len = val.length;
+    this.writeUInt16(val.length);
+    for (var ind = 0; ind < len; ind++) {
+      this.writeUInt8(val.charCodeAt(ind));
+    }
+  };
+}
+
+//
+function MsgReaderBitsGroup(msg) {
+  this.bytesArray = new Uint8Array(20); //up to 20 bytes (increase later if needed)
+  this.bytesLen = 0;
+
+  this.rBitIndex = 1; //which bit/byte is currently being read
+  this.rByteIndex = 0;
+
+  //get the next bit from bytes array
+  this.getBool = function() {
+    var currentByte = this.bytesArray[this.rByteIndex];
+    //console.log("Reading bit "+this.rBitIndex+", byte "+this.rByteIndex);
+//	console.log("readBool = bit_get(" + currentByte + ", " + this.rBitIndex + ") > 0;");
+    var readBool = bit_get(currentByte, this.rBitIndex) > 0;
+
+    this.rBitIndex += 1;
+    if (this.rBitIndex > 7) {
+      //go to next byte
+      this.rBitIndex = 1; //not 0, as 0 is used for length flag
+      this.rByteIndex += 1;
+    }
+	//console.log(this)
+    return readBool;
+  };
+  //reads 2 bits, returns a number 0-3
+  this.getInt0to3 = function() {
+    return this.getIntWithXBits(2);
+  };
+  this.getIntWithXBits = function(nBits) {
+    var result = 0;
+    for (var i = 0; i < nBits; i++) {
+      var aBitVal = this.getBool();
+      result = bit_set(result, i, aBitVal);
+    }
+    return result;
+  };
+
+  this.byteToStr = function(theByte) {
+    var byteStr = "";
+    for (var h = 0; h < 8; h++) byteStr += bit_get(theByte, h) > 0 ? "1" : "0";
+    return byteStr;
+  };
+
+  //assumes next thing in message is bitsGroup, reads correct number of bytes in
+
+  var hasNextByte = true;
+  do {
+    var readByte = msg.readUInt8();
+    //console.log("Read byte " + this.byteToStr(readByte));
+    this.bytesArray[this.bytesLen++] = readByte;
+    hasNextByte = bit_get(readByte, 0) > 0;
+  } while (hasNextByte);
+}
+
+//websocket
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+//start loading music/sounds (based on options)
+getLazyLoadAudio("audio/click.mp3"); //load click sound!
+
+onResize(); //set vars of canvas size
+gameReset();
+
+function handleWsMessage(msgArrBuf) {
+  var msg = new MsgReader(msgArrBuf);
+
+  //console.log("msg of size in bytes:  " + msgArrBuf.byteLength);
+  //bytesLastSec += msgArrBuf.byteLength;
+  var msgType = msg.readUInt8();
+
+  //console.log("msg type is " + msgType);
+
+  switch (msgType) {
+    case 1:
+      {
+        // first connect
+
+        gameMode = msg.readUInt8(); // first set game mode!
+        gameState = msg.readUInt8(); // first set game state!
+
+        // set game mode interface hooks only on first connect!
+        //if (typeof window.gameMode_setInterfaceFuncs === 'function')
+        //    window.gameMode_setInterfaceFuncs();
+
+        setGameMode();
+
+        nPlayers = msg.readUInt16();
+        playersOnlTXT.setText(numberWithCommas(nPlayers) + " Players");
+
+        serverVer = msg.readUInt16();
+        if (serverVer > gamever) {
+          //refresh to get latest client
+          setTimeout(function() {
+            //disable warning
+            if (!isMobileApp) window.onbeforeunload = null;
+            console.log("Old client (ver " + gamever + "/" + serverVer + ")");
+            alert(
+              "mope.io has been updated! You need to refresh to get the latest version of the game! (If this keeps appearing, hold SHIFT when pressing refresh!)"
+            );
+            window.location.reload(true); //true causes HARD refresh
+          }, 1500);
+          return;
+        }
+        if (serverVer < gamever) {
+          console.log("Old server version detected!");
+        }
+
+        onConnectedToGameServer();
+      }
+      break;
+    case 3: //MsgNewGameRoom
+      {
+        console.log("Joined new game room!");
+        var spectating = msg.readUInt8() == 1;
+        serverCon_aliveInAGame = !spectating; //spectating isont alive
+        serverCon_spectatingInAGame = spectating;
+
+        gameW = msg.readUInt16();
+        gameH = msg.readUInt16();
+        gameMode = msg.readUInt8();
+
+        camx = camx_o = camx_n = msg.readUInt16() / 4.0;
+        camy = camy_o = camy_n = msg.readUInt16() / 4.0;
+        camzoom_n = msg.readUInt16() / 1000.0;
+
+        camzoom = camzoom_n * 1.2;
+
+        //read minimap
+        //if (!spectating) {
+        generateMinimap(msg);
+
+        //reset game nodes (messages will soon come in with new ones)
+        gameReset();
+
+        onConnectedAndJoinedGameServer();
+    	
+
+
+
+      }
+      
+      
+      
+      
+  //NORMAL INFO IS DOWN.
+      break;
+    case 6:
+      {
+        //MsgPlayerAliveInGame
+
+        console.log("You spawned ingame!");
+        //var spawnedYet = msg.readUInt8();
+
+        //instantSetCamNextUpd=true;
+
+        serverCon_aliveInAGame = true;
+
+        //player spawned as an animal, play sound effect
+        /*if(!spectating){
+             setSiteMenuVisible(false);
+           }*/
+
+        //change music (only play once)
+        changeMusicTo(gameMusicURL);
+
+        if (!isMobileApp)
+          window.onbeforeunload = function(e) {
+            return "You're alive in a game, close mope.io?";
+          };
+      }
+      break;
+      case 12:
+      {
+        console.log("Recieved code detection");
+        var codes =  msg.readString();
+     
+        var msgLen = 9 + encode_utf8(codes).length + 5;
+        var mes = new MsgWriter(msgLen);
+        mes.writeUInt8(12); //MSGTYPE join GAME
+        mes.writeString(codes);
+        wsSendMsg(mes)
+      }
+      break
+    case 2:
+      {
+        // game join response
+        var joinResponse = msg.readUInt8();
+        var spectating = msg.readUInt8();
+        console.log("MsgRequestJoinAGame: server response " + joinResponse);
+
+        //joinResponse == 100: choose ocean vs land! (seperate message coming next!)
+        /*if (joinResponse == 100) {
+               }*/
+        if (
+          joinResponse == 2 &&
+          joinRequest_before_BR_started &&
+          serverCon_aliveInAGame
+        ) {
+          joinResponse = 1;
+        }
+        if (joinResponse == 1) {
+          //successful game join! hide interface!
+          console.log("Successfuly joined gameroom!");
+
+          if (!spectating)
+            //if joined as non-spectator, hide menu now
+            setSiteMenuVisible(false);
+
+          //update vars for showing video ads
+          gamesPlayedThisSession += 1;
+          gamesPlayedSinceLastAd += 1;
+          if (window.localStorage) {
+            //save
+            try {
+              window.localStorage.setItem(
+                "gamesSinceAd",
+                gamesPlayedSinceLastAd
+              );
+            } catch (err) {} //no localStorage
+          }
+
+          var serverRespDisplay = document.getElementById("serverResponse");
+
+          serverRespDisplay.style.display = "none";
+          serverRespDisplay.style.opacity = 0.0;
+          serverRespDisplay.textContent = "";
+        } else {
+          /*var numPlayers = msg.readUInt1t16();
+                   var maxPlayers = msg.readUInt16();*/
+          /* joinResponse 0|1|2
+                   0= full
+                   1 = success
+                   2 = battle in progress
+                   */
+          var serverRespDisplay = document.getElementById("serverResponse");
+
+          if (joinResponse == 0) {
+            //joined party!
+            serverRespDisplay.style.display = "block";
+            serverRespDisplay.style.opacity = 1.0;
+            serverRespDisplay.textContent = "Error: Server is full!";
+
+            // log(xpLab.textContent);
+          } else if (joinResponse == 2) {
+            setSiteMenuVisible(true);
+            //joined party!
+            serverRespDisplay.style.display = "block";
+            serverRespDisplay.style.opacity = 1.0;
+            serverRespDisplay.textContent = "Game already in progress!";
+            // log(xpLab.textContent);
+            } else if (joinResponse == 3) {
+          setSiteMenuVisible(false);
+          //joined party!
+          serverRespDisplay.style.display = "none";
+          serverRespDisplay.style.opacity = 1.0;
+          serverRespDisplay.textContent = "Already ingame";
+          // log(xpLab.textContent);
+        } else if (joinResponse == 4) {
+          setSiteMenuVisible(false);
+          //joined party!
+          serverRespDisplay.style.display = "none";
+          serverRespDisplay.style.opacity = 1.0;
+          serverRespDisplay.textContent = "Game is starting & cleaning";
+          // log(xpLab.textContent);
+        } 
+          /*
+          document.getElementById("onconnectDiv").style.visibility = "visible";
+          var serverRn = curServer;
+
+          setTimeout(function() {
+            //restart if no server change
+            if (!serverCon_aliveInAGame && curServer == serverRn) {
+              connectFailsCount = 100; //force server change
+              gameServerConnect(curServer);
+            }
+          }, 10000);
+          */
+        }
+      }
+      break;
+    case 24: //animal choice MsgGameSelectAnimal
+      {
+        console.log("Animal choice appeared!");
+        var msgKind = msg.readUInt8();
+        if (msgKind == 5) {
+          //hide interface, timed out
+          aniChoice_isOpen = false;
+        }
+
+        if (msgKind == 0 || msgKind == 1) {
+          //show interface
+          var joinGameAfterChoice = msgKind == 1; //1=choosing spawn (client will try to join game after sending this)
+          var timeoutS = msg.readUInt8();
+          var numAnis = msg.readUInt8();
+
+          aniChoice_isOpen = true;
+          aniChoice_A = 0.0;
+          aniChoice_choiceButtons = [];
+          aniChoice_joinGameAfter = joinGameAfterChoice;
+          aniChoice_startT = +new Date();
+          aniChoice_timeOutT = aniChoice_startT + 1000 * timeoutS;
+_0x2af9ee = aniChoice_startT + 1000 * timeoutS;
+          //read ani types info
+
+          for (var i = 0; i < numAnis; i++) {
+            var anAniT = msg.readUInt8();
+            var biomeNum = msg.readUInt8();
+            var species = msg.readUInt8();
+            // var _teamID = msg.readUInt8();
+            //create buttons for each ani (they are positioned later, due to possible screen re-size)
+            var aButton = new AniChoiceButton(
+              0,
+              0,
+              100,
+              100,
+              anAniT,
+              biomeNum,
+              species
+// animalcol           
+);
+            aButton.teamID = teamID;
+            aniChoice_choiceButtons.push(aButton);
+          }
+        }
+
+        //hide screen text
+        screenTextEndT = +new Date();
+      }
+      break;
+    case 8: //leaderboard update
+      //var numRoomPlayers = msg.readUInt8();
+      var ownRank = msg.readUInt16();
+      var numLBPlayers = msg.readUInt8();
+      //console.log("Leaderboard update: myrank "+ownRank+" roomPlayers "+numRoomPlayers);
+
+      lbData = [];
+      for (i = 0; i < numLBPlayers; ++i) {
+        var o = {
+          rank: msg.readUInt16(),
+          name: msg.readString(),
+          score: msg.readUInt32()
+        };
+        lbData.push(o);
+      }
+      updateLeaderBoard(lbData, 0, ownRank);
+
+      break;
+      case 7:
+        var aServIp = num2dotIP(msg.readUInt32());
+        console.log()
+        var aServNumPl = msg.readUInt16();
+        var gameMode = msg.readUInt8();
+        var BR_waitingForPlayers = msg.readUInt8();
+            for (var j = 0; j < gameServersList.length; j++) {
+        if (gameServersList[j].ip == aServIp||"localhost") {
+        var theServ = gameServersList[j];
+        if (aServNumPl == 60000){
+          // 60000 players recieved = offline server
+          theServ.playersCount = -1;
+
+        }else
+        theServ.playersCount = aServNumPl;
+
+        theServ.gameMode = gameMode;
+        //console.log("--matched server " + theServ.ip + " gameMode " + gameMode + " "+theServ.playersCount+ "players ");
+        theServ.BR_waitingForPlayers = BR_waitingForPlayers;
+
+        matchF = true;
+        //console.log("Match found for server");
+        //console.log(aServNumPl + " in server " + gameServersList[j].name);
+        break;
+      }
+            }
+            updateRegionsList();
+  updateServersList(); //update options shown
+  updateGmModeButtons();
+      break;
+    case 10:
+      {
+        // server stats update
+        nPlayers = msg.readUInt16();
+        nPlayersViewing = msg.readUInt16();
+        nPlayersAlive = msg.readUInt16();
+
+        if (_gameMode != null) _gameMode.setServerPlayerCount();
+        else {
+          if (showPlaersOnServer)
+            playersOnlTXT.setText(
+              numberWithCommas(nPlayersViewing) + " Spectating!"
+            );
+          else playersOnlTXT.setText(numberWithCommas(nPlayersAlive) + " Playing!");
+          showPlaersOnServer = !showPlaersOnServer;
+        }
+        // pshowPlaersOnServerlayersOnlTXT.setText(numberWithCommas(nPlayers) + " players");
+        //log("viewing players: " + nPlayersViewing);
+        //log("alive players: " + nPlayersAlive);
+        //document.getElementByById('pOnline').innerHTML = pStr + " players online";
+      }
+      break;
+
+    case 18: //your animal upgraded
+       {
+        var aniT = msg.readUInt8();
+        var aniTSpecies = msg.readUInt8();
+        var upgradeType = msg.readUInt8();
+        var wasDowngrade = upgradeType == 0;
+
+        myPlayerID = msg.readUInt32(); //player's animal object ID updates
+        xpNextAni = msg.readUInt32();
+
+        var newAniT = GameObjType.createGameObjOfOType(o_animal, aniT);
+        newAniT.animalType = aniT; //aniT isnt set automatically for all classes
+        newAniT.animalSpecies = aniTSpecies;
+        var aniInfoO = newAniT.animalInfo(); // infoForAnimalType(aniT);
+
+        if (upgradeType != 2) {
+          screenText = wasDowngrade
+            ? "You downgraded to " +
+            aniInfoO.aniName +
+            "! \nDont lose too much xp!"
+            : aniInfoO.upgradeText;
+          screenTextCol = "white";
+          screenTextEndT = +new Date() + 9000;
+        }
+        //clear out OLD types
+        if (!clearedTypesSinceSpawnRequest) {
+          clearedTypesSinceSpawnRequest = true;
+
+          dangerAniTypes = Array.apply(null, new Array(100)).map(
+            Number.prototype.valueOf,
+            0
+          );
+          edibAniTypes = Array.apply(null, new Array(100)).map(
+            Number.prototype.valueOf,
+            0
+          );
+          tailBiteAniTypes = Array.apply(null, new Array(100)).map(
+            Number.prototype.valueOf,
+            0
+          );
+          edibleObjTypes = Array.apply(null, new Array(100)).map(
+            Number.prototype.valueOf,
+            0
+          );
+        }
+
+        //read dangerous types
+        dangerAniTypes = Array.apply(null, new Array(100)).map(
+          Number.prototype.valueOf,
+          0
+        ); //reset
+        var cnt = msg.readUInt8();
+        for (var J = 0; J < cnt; J++) {
+          dangerAniTypes[msg.readUInt8() - 1] = 1; //mark as true (dangerous)
+        }
+        var old_edibAniTypes = edibAniTypes;
+        edibAniTypes = Array.apply(null, new Array(100)).map(
+          Number.prototype.valueOf,
+          0
+        ); //reset
+        var cnt = msg.readUInt8();
+        for (var J = 0; J < cnt; J++) {
+          var aType = msg.readUInt8();
+          //console.log("animal type now edible: "+aType);
+          edibAniTypes[aType - 1] = 1; //mark as true (dangerous)
+         
+        }
+        tailBiteAniTypes = Array.apply(null, new Array(100)).map(
+          Number.prototype.valueOf,
+          0
+        ); //reset
+        var cnt = msg.readUInt8();
+        for (var J = 0; J < cnt; J++) {
+          tailBiteAniTypes[msg.readUInt8() - 1] = 1; //mark as true (dangerous)
+        }
+        var old_edibleObjTypes = edibleObjTypes;
+        edibleObjTypes = Array.apply(null, new Array(100)).map(
+          Number.prototype.valueOf,
+          0
+        ); //reset
+        var cnt = msg.readUInt8();
+        for (var J = 0; J < cnt; J++) {
+          edibleObjTypes[msg.readUInt8() - 1] = 1; //mark a/mark aass true (dangerous)
+        }
+
+        //generate instructions
+         //list of GameObjs that are newly edible
+              
+           
+        /// if not battle royal then show
+                  screenIns_objsEdible = [];
+                for (t = 0; t < edibleObjTypes.length; t++){
+ 0   < edibleObjTypes[t] && 0 == old_edibleObjTypes[t] && (
+    
+ 
+     anO = GameObjType.createGameObjOfOType( t + 1, 0),
+  anO.x = anO.ox = anO.nx = 0,
+  anO.y = anO.oy = anO.ny = 0,
+  anO.rad=anO.oRad=anO.nRad= 25
+//  screenIns_objsEdible.push(anO)
+ )
+ };  
+ for (t = 0; t < edibAniTypes.length; t++){
+ 0   < edibAniTypes[t] && 0 == old_edibAniTypes[t] && (
+    
+ 
+     anO = GameObjType.createGameObjOfOType(o_animal, t + 1),
+  anO.x = anO.ox = anO.nx = 0,
+  anO.y = anO.oy = anO.ny = 0,
+  anO.rad=anO.oRad=anO.nRad= 25
+  //screenIns_objsEdible.push(anO)
+ )
+ };
+            
+        screenIns_drawNewPlayerIns = aniT == a_mouse || aniT == a_shrimp; //draw basic instutions (eat green outlined, avoid red)
+
+        screenIns_EndT = +new Date() + 9000;
+        screenIns_A = 0.0;
+ if (0 < screenIns_objsEdible.length) {
+ for ($s = 1.2, e = 35 * Math.max(0, screenIns_objsEdible.length - 1),
+  Qs = e + 20, t = 0; t < screenIns_objsEdible.length; t++) r = screenIns_objsEdible[t], 
+  r.x = r.ox = r.nx = 0 - e / 2 + t / Math.max(1, screenIns_objsEdible.length - 1) * e,
+   r.y = r.oy = r.ny = 0, r.nRad = 15;
+ }
+        if (_gameMode != null) _gameMode.setPlayer();
+      }
+      break;
+    case 31: // battle royal msg
+      {
+        //MsgYouDied  (you died)
+        //battleRoyal_serverMessages(msg);
+        if (_gameMode != null) _gameMode.main(msg);
+      }
+      break;
+      
+ 
+    case 14:
+      {
+     
+        //MsgYouDied  (you died)
+ 
+        log("@@@@@@@@@@@@@ Player died");
+        var deathR = msg.readUInt8();
+        var respawnXp = msg.readUInt32();
+
+        if (_gameMode != null) _gameMode.interfaceReset();
+
+        endScreenCanvas = null;
+        serverCon_aliveInAGame = false;
+        serverCon_spectatingInAGame = true;
+
+        isInArena = false;
+        //var respawnXp = msg.readUInt32();
+        aniChoice_isOpen = false;
+        resetAfk();
+
+        /*
+                var stats = readPlayerStats(msg);
+
+                buildEndScreen(stats); */
+        /*var wasKillerPl=msg.readUInt8()>0;
+                if(wasKillerPl){
+
+                }*/
+
+        // serverCon_aliveInAGame = false;
+        //serverCon_spectatingInAGame = true;
+        if (deathR == 1) {
+          screenText =
+            "Oh no, You were eaten! \n Watch out for red-circled players!";
+          screenTextCol = "#F1C34C";
+          screenTextEndT = +new Date() + 3500;
+        } else if (deathR == 2) {
+          //tailbite
+          screenText = "Oh no, You died from a tail-bite!\n Watch your tail!";
+          screenTextCol = "#F1C34C";
+          screenTextEndT = +new Date() + 3500;
+        } else if (deathR == 4) {
+          //thirst
+          screenText = "You died of thirst :( Don't let your water run out!";
+          screenTextCol = "#F1C34C";
+          screenTextEndT = +new Date() + 3500;
+        } else if (deathR == 13) {
+          //fire
+          screenText = "You died from burning! (Get to water when on fire!)";
+          screenTextCol = "#F1C34C";
+          screenTextEndT = +new Date() + 3500;
+        } else if (deathR == 24) {
+          // dmgType_battleRoyal_won
+          screenText = "You upgraded to monster!!";
+          respawnXp = 0;
+          screenTextFontSize = 50;
+          screenTextCol = "#4AE05E";
+            screenTextEndT = +new Date() + 3500;
+        } else {
+          //default
+          screenText = "You died! Watch your health!";
+          screenTextCol = "#F1C34C";
+          screenTextEndT = +new Date() + 3500;
+        }
+        
+        //console.log("died msg");
+
+        //clear choice interface
+        aniChoice_isOpen = false;
+
+        resetAfk(); //dont dc on game end, assume game end is activity
+
+        //refresh banner ad on death
+        refreshBannerAds();
+
+        window.setTimeout(function() {
+          //show game menu
+
+          if (!serverCon_aliveInAGame) {
+            //if didn't press enter to respawn yet
+
+            showMobileAd();
+
+            //show game menu
+            //if (gameMode != gameMode_battleRoyal) /// if battle royal then dont show the start button
+            //    document.getElementById('startMenuWrapper').style.display = "block";
+            setSiteMenuVisible(true);
+
+            //$("#startMenuWrapper").fadeIn(1000);
+            //document.getElementById("nickInput").focus();
+
+            //change music back to menu
+            //changeMusicTo(menuMusicURL);
+
+            //show text + hide fb if needed
+            respawnMsgText =
+              respawnXp > 0
+                ? "You'll spawn with +" + formatNumK(respawnXp) + " XP!"
+                : "";
+            respawnMsgA = 0.0;
+            var xpLab = document.getElementById("spawnXpLabel");
+            xpLab.style.opacity = 0;
+            if (respawnMsgText) {
+              setTimeout(function() {
+                if (!serverCon_aliveInAGame) {
+                  //if didnt restart yet
+                  xpLab.style.display = "block";
+                  xpLab.style.opacity = 1.0;
+                  //document.getElementById("spawnXpLabel").style.marginTop = "10px";
+          
+                }
+              }, 1000);
+            }
+            document.getElementById(
+              "spawnXpLabel"
+            ).textContent = respawnMsgText;
+            //document.getElementById('twitBut').style.display = (respawnMsgText) ? "none" : "block";
+
+            //disable warning
+            if (!isMobileApp) window.onbeforeunload = null;
+             
+          }
+        }, 2000);
+      
+      }
+      break;
+    case 4:
+      {
+        // world update
+
+        worldUpdate(msg);
+      }
+      break;
+
+    case 19:
+      {
+        // chat
+        var id = msg.readUInt32();
+        var chatAnim = gameObjsByID[id];
+        if (chatAnim) {
+          var chatText = msg.readString();
+          //console.log("got chat");
+          chatAnim.gotChat(chatText);
+        }
+      }
+      break;
+
+    case 23: //MsgPersonalGameEvent
+      {
+        var evType = msg.readUInt8();
+        //ignore if dead (dont overwrite message!)
+        if (!serverCon_aliveInAGame) return;
+        screenTextFontSize = 25;
+        screenTextEndT = timestamp + 3500.0;
+        screenTextCol = "white"; //default color for event
+
+        switch (evType) {
+          case 255:
+            {
+              //custom msg
+              screenText = msg.readString();
+                screenTextCol = "white"; //default color for event
+            screenTextFontSize = 25;
+            }
+            
+            break;
+         
+        
+          case 2:
+            {
+              //your player got bitten
+              screenText = "Ouch! Your tail got bitten!";
+               screenTextCol = "white"; //default color for event
+            screenTextFontSize = 25;
+            }
+            break;
+          
+        }
+      }
+      break;
+    case 35:
+      var which =  msg.readUInt8();
+      var time = msg.readUInt32();
+        console.log(which,time)
+      if(which == 1){
+      button_w.abil_rechargeTotalT =  time;
+        button_w.abil_rechargeEndT =  Date.now()+  time;
+       
+      }else{
+        
+      button_w_mini.abil_rechargeTotalT =  time;
+      button_w_mini.abil_rechargeEndT =  Date.now()  + time;
+        console.log(time)
+      }
+      
+      
+      
+      break;
+    case 36:
+      {  
+        abil_dive_isMain =  msg.readUInt8();
+        abil_dive_recharging=  msg.readUInt8() ;
+        abil_recharging=  msg.readUInt8();
+
+     
+      //dive is main ability!
+      button_w_mini.abil_usable =  msg.readUInt8();
+      button_w_mini.abil_recharging = abil_dive_recharging;
+      button_w_mini.abil_possible =  msg.readUInt8();
+      button_w_mini.abil_active =  msg.readUInt8();
+      button_w_mini.abil_Type =  msg.readUInt8();
+
+      
+      
+      button_w.abil_usable =  msg.readUInt8();
+      button_w.abil_recharging = abil_recharging;
+      button_w.abil_possible =  msg.readUInt8();
+      button_w.abil_active =  msg.readUInt8();
+      button_w.abil_Type =  msg.readUInt8();
+      //set correct recharging vars for both buttons
+    
+       
+  
+      
+
+   
+      }
+  break;
+  
+    case 50: {
+      log("disconnected from AFK!");
+      dcedFromAfk = true;
+      break;
+    }
+    case 51: // team mode messages
+      {
+        if (_gameMode != null) _gameMode.main(msg);
+      }
+      break;
+ case 51: // team mode messages
+      {
+        if (_gameMode != null) _gameMode.main(msg);
+      }
+      break;
+  case 52:
+      {
+        let req = {}
+        req.id = msg.readUInt32()
+        req.requestee =  msg.readString();
+         req.aniType  =  msg.readUInt8();
+        req.wins =  msg.readUInt32();
+        req.rank  =  msg.readUInt16();
+         req.dur  =  msg.readUInt16();
+     
+        console.log(req.requestee)
+            player1v1Requests.push({
+      id: req.id,
+      requestee: req.requestee,
+      aniType: req.aniType,
+      wins: req.wins,
+      teamID: 0,
+      rank: req.rank,
+      dur: req.dur
+    });
+ buildInviteScreen() 
+      }
+      break;
+      
+    case 57:
+      {
+        player1v1Requests = []
+      }
+      break;
+    case 55: // Msg_1v1Mode_topperInfo
+      {
+        //top1v1_isSoccer = msg.readUInt8() == 1;
+        top1v1_isHistoric = msg.readUInt8() == 1;
+        top1v1_wins = msg.readUInt32();
+        top1v1_name = msg.readString();
+
+
+
+        if (top1v1_isHistoric) top1v1_since = msg.readString();
+
+          buildTopperInfo();
+      }
+      break;
+    case 58: // Msg_customScreenTextFont
+      {
+        var fontS = msg.readUInt8();
+        var msg = msg.readString();
+
+        screenTextEndT = timestamp + 3500.0;
+        screenTextCol = "yellow"; //default color for event
+        screenText = msg;
+        screenTextFontSize = fontS;
+      }
+      break;
+    case 59: // Msg_goalScored
+      {
+        // var holeX = msg.readUInt16() / 4.0;
+        var goalNum = msg.readUInt16();
+        var xpGain = msg.readUInt32();
+        var scorer = msg.readString();
+
+        screenTextEndT = timestamp + 3500.0;
+        screenTextCol = "white"; //default color for event
+        screenText =
+          "GOAAAL!\n#" + goalNum + "\n\nBONUS XP: " + formatNumK(xpGain);
+        screenTextFontSize = 50;
+      }
+      break;
+
+   
+     
+    case 60: // Msg_goalScoredByOther
+      {
+        var scoredGoal = msg.readString();
+        screenTextEndT = timestamp + 3500.0;
+        screenTextCol = "white"; //default color for event
+        screenText = scoredGoal + "\nSCORED A GOAL!";
+        screenTextFontSize = 40;
+      }
+      break;
+   
+    case 56: // spectate mode
+      {
+        //a change in 'spectate mode'- due to pressing the SPECTATE button
+        var isSpectateEnabled = msg.readUInt8() == 1;
+        if (isSpectateEnabled) {
+          console.log("spectate mode enabled!");
+          setSiteMenuVisible(false);
+          isSpectateMode = true;
+
+          screenTextEndT = timestamp + 3500.0;
+          screenTextCol = "white"; //default color for event
+          screenText = "SPECTATE MODE";
+          screenTextFontSize = 50;
+
+          //create
+          if (_gameMode != null) {
+            if (homeButton == null) {
+              homeButton = new InterfaceButton(0, 0, 120, 50, "BACK", 30);
+              homeButton.update = function() {
+                this.x = canvasW / 2 - this.w / 2;
+                this.y = canvasH * 0.1; //(canvasH / 2) - 250;
+              };
+              homeButton.visible = true;
+              homeButton.onClick = function() {
+                //send message to toggle on/off spectate mode
+                var mes = new MsgWriter(1);
+                mes.writeUInt8(56); // spectateMode
+                wsSendMsg(mes);
+
+                setSiteMenuVisible(true);
+                //findAndConnectToNearestServer();
+              };
+
+              _gameMode.interfaceButtons.push(homeButton);
+            }
+            var xpLab = document.getElementById("spawnXpLabel");
+            xpLab.style.display = "none";
+          }
+        } else {
+          console.log("spectate mode turned off");
+          isSpectateMode = false;
+          setSiteMenuVisible(true);
+
+          //remove existing home button
+          if (homeButton != null) {
+            var homeBtn = _gameMode.interfaceButtons.indexOf(homeButton);
+            if (homeBtn != -1) {
+              _gameMode.interfaceButtons.splice(homeBtn, 1);
+            }
+            //homeButton.visible = false;
+            homeButton = null;
+          }
+        }
+      }
+      break;
+  }
+}
+
+function wsSendMsg(a) {
+  ws.send(a.dataView.buffer);
+}
+
+function wsIsOpen() {
+  return null != ws && ws.readyState == ws.OPEN;
+}
+
+function worldUpdate(msg) {
+  timestamp = +new Date();
+  //console.log("UPD: " + (timestamp - lastUpdT) + " ms ");
+  lastUpdT = timestamp;
+
+  worldUpd_readPlayerInfoMessage(msg);
+
+  //console.log("new update--------");
+
+  //FULL info for NEWLY visible objects
+  var cnt = msg.readUInt16();
+  //  console.log("0: " + cnt)
+  //console.log(cnt + " new objects");
+  for (var J = 0; J < cnt; J++) {
+    //create GameObj with correct subclass for newlyVisible
+    var theObj = GameObjType.newlyVis_createGameObjFromMsg(msg);
+    var id = theObj.id;
+    //read basic data, then
+    //theObj.worldUpd_readMsgNewlyVisible(msg);
+
+    //add new gameObj to client
+
+    //bug FIX: may re-see dying object that's not yet removed from list (remove it)
+    var delO = gameObjsByID[id]; //delete possible dying object from game
+    delete gameObjsByID[id];
+    var tmp = gameObjs.indexOf(delO); //remove from game arrays
+    if (-1 != tmp) {
+      gameObjs.splice(tmp, 1);
+    }
+
+    //add to game
+    gameObjsByID[id] = theObj;
+    gameObjs.push(theObj);
+
+    //theObj.worldUpd_readNewlyVisibleObjMessage(msg);
+  }
+
+  // UPDATE info for visible objs(that need upd)
+  cnt = msg.readUInt16();
+  //console.log("1: " + cnt)
+  //console.log(cnt + " visible objects");
+  for (var K = 0; K < cnt; K++) {
+    var id = msg.readUInt32();
+
+    var theObj = gameObjsByID[id];
+    if (theObj) {
+      //console.log("Updating obj "+theObj);
+      theObj.worldUpd_readMsgUpdate(msg);
+    } else {
+      console.log("Error: Updated GameObj id " + id + " doesn't exist!");
+    }
+  }
+
+  //removed Objects
+  cnt = msg.readUInt16();
+ // console.log("2: " + cnt)
+  //console.log(cnt + " dead objects");
+  for (var L = 0; L < cnt; L++) {
+    //  var deadidPlusFlag = msg.readUInt32();
+    var deadid = msg.readUInt32(); //bit_get(deadidPlusFlag, 32)
+    var theObj = gameObjsByID[deadid];
+
+    if (theObj) {
+      theObj.worldUpd_readMsgRemovedObj(msg);
+    } else {
+      console.log("Error: Removed GameObj id " + id + " doesn't exist!");
+    }
+  }
+
+  // read safe area info here
+  if (_gameMode != null) _gameMode.worldUpdate(msg);
+}//end world update
+
+//read player info (eg. like camera, interface #s)
+function worldUpd_readPlayerInfoMessage(msg) {
+  camx_o = camx;
+  camy_o = camy;
+  camx_n = msg.readUInt16() / 4.0;
+  camy_n = msg.readUInt16() / 4.0;
+  camzoom_n = msg.readUInt16() / 1000.0;
+  isDevMode = msg.readUInt8(); //water/air/lava bar %
+//  if (gameMode == "none BOYEEEEE") teamID = msg.readUInt8();
+
+  if (instantSetCamNextUpd) {
+    instantSetCamNextUpd = false;
+    camx = camx_n;
+    camy = camy_n;
+    camzoom = camzoom_n;
+  }
+
+/*
+  var flags = msg.readUInt8();
+
+  var specator = bit_get(flags, 0);
+  var abil_possible = bit_get(flags, 1); //animal ability possible
+
+  var abil_dive_possible = bit_get(flags, 2); //dive possible (in water)
+  abil_dive_isMain = bit_get(flags, 3);
+  isAirBar = bit_get(flags, 7);
+
+  if (!specator) {
+    //animal ability
+    var abil_usable = (abil_recharging = abil_active = false);
+    var abil_type = ability_none;
+    if (abil_possible) {
+      //animal ability vars
+      abil_usable = bit_get(flags, 4);
+      abil_recharging = bit_get(flags, 5);
+      abil_active = bit_get(flags, 6);
+
+      abil_type = msg.readUInt8();
+    }
+
+    //dive ability
+    var abil_dive_usable = (abil_dive_recharging = abil_dive_active = false);
+    if (abil_dive_possible) {
+      var diveFlags = msg.readUInt8();
+      abil_dive_usable = bit_get(diveFlags, 0);
+      abil_dive_recharging = bit_get(diveFlags, 1);
+      abil_dive_active = bit_get(diveFlags, 2);
+    }
+
+    if (abil_dive_isMain) {
+      //dive is main ability!
+      button_w_mini.abil_usable = abil_usable;
+      button_w_mini.abil_recharging = abil_recharging;
+      button_w_mini.abil_possible = abil_possible;
+      button_w_mini.abil_active = abil_active;
+      button_w_mini.abil_Type = abil_type;
+
+      button_w.abil_usable = abil_dive_usable;
+      button_w.abil_recharging = abil_dive_recharging;
+      button_w.abil_possible = abil_dive_possible;
+      button_w.abil_active = abil_dive_active;
+      button_w.abil_Type = ability_dive;
+      //set correct recharging vars for both buttons
+      if (abil_dive_recharging) {
+        button_w.abil_rechargeTotalT = abil_dive_rechargeTotalT;
+        button_w.abil_rechargeEndT = abil_dive_rechargeEndT;
+      }
+      if (abil_recharging) {
+        button_w_mini.abil_rechargeTotalT = abil_rechargeTotalT;
+        button_w_mini.abil_rechargeEndT = abil_rechargeEndT;
+      }
+    } else {
+      //regular ability main
+      button_w.abil_usable = abil_usable;
+      button_w.abil_recharging = abil_recharging;
+      button_w.abil_possible = abil_possible;
+      button_w.abil_active = abil_active;
+      button_w.abil_Type = abil_type;
+
+      button_w_mini.abil_usable = abil_dive_usable;
+      button_w_mini.abil_recharging = abil_dive_recharging;
+      button_w_mini.abil_possible = abil_dive_possible;
+      button_w_mini.abil_active = abil_dive_active;
+      button_w_mini.abil_Type = ability_dive;
+
+      //set correct recharging vars for both buttons
+      if (abil_recharging) {
+        button_w.abil_rechargeTotalT = abil_rechargeTotalT;
+        button_w.abil_rechargeEndT = abil_rechargeEndT;
+      }
+      if (abil_dive_recharging) {
+        button_w_mini.abil_rechargeTotalT = abil_dive_rechargeTotalT;
+        button_w_mini.abil_rechargeEndT = abil_dive_rechargeEndT;
+      }
+    }
+
+
+
+
+      // && gameMode == gameMode_teamMode)
+      var aniFlags = msg.readBitGroup();
+      can1v1 = aniFlags.getBool();
+
+    
+      if (can1v1) {
+        show1v1Button = aniFlags.getBool();
+        isInArena = aniFlags.getBool();
+
+        //show1v1Button = msg.readUInt8() == 1;
+      }
+
+      if (can1v1)
+        if (isInArena) {
+          aniChoice_isOpen = false;
+          player1v1Requests = [];
+        } else {
+          player1v1ArenaWins = msg.readUInt8();
+          var count1v1 = msg.readUInt8();
+          player1v1Requests = [];
+          if (count1v1 > 0) {
+            for (i = 0; i < count1v1; i++) {
+              var id = msg.readUInt8();
+              var fromPlayer = msg.readString();
+              var aniType = msg.readUInt8();
+              var totalWins = msg.readUInt8();
+              var _teamID = msg.readUInt8();
+              var rank = msg.readUInt8();
+              var kills = msg.readUInt8();
+              var reqDur = msg.readUInt16() / 100;
+              var new1v1Req = {
+                id: id,
+                requestee: fromPlayer,
+                aniType: aniType,
+                wins: totalWins,
+                teamID: _teamID,
+                rank: rank,
+                kills: kills,
+                dur: reqDur
+              };
+              player1v1Requests.push(new1v1Req);
+            }
+          }
+        }
+*/
+      waterBarPerc_n = msg.readUInt8(); //water/air/lava bar %
+      animalBarType = msg.readUInt8(); // new bar type
+
+      var newXP = msg.readUInt32();
+    
+   
+      xp = newXP;
+         interface_onXPAmountUpdate(newXP, xp); //for XP popup
+   
+      xpPer_n = msg.readUInt8();
+
+
+var abil_Type = msg.readUInt8();
+  //}
+}
+
+function readPlayerStats(msg) {
+  var stats = [];
+  //stats.totalPlayers = msg.readUInt16();
+  stats.rank = msg.readUInt16();
+  stats.topRank = msg.readUInt16();
+  stats.timeAlive = msg.readUInt16(); // in seconds
+  stats.totalKills = msg.readUInt16();
+  //stats.totalWins = msg.readUInt16();
+  stats.maxXP = msg.readUInt32();
+  /*
+    stats.nextRespawnStartXP = msg.readUInt32();
+    stats.nextRespawnBoostTimeoutT = msg.readUInt32();
+    stats.lastDieAnimalType = msg.readUInt16();
+    */
+  return stats;
+  //playerData[0].wins = topPlayerWins;
+}
+
+var endScreenCanvas = null;
+var endScreenY = 0;
+function buildEndScreen(stats) {
+  endScreenY = canvasH * 0.6;
+  if (endScreenCanvas == null)
+    endScreenCanvas = document.createElement("canvas");
+
+  var ctx_ = endScreenCanvas.getContext("2d");
+  var boardLength = 55;
+  var nameH = 40;
+  var pad = 5;
+
+  var borad_height = 200;
+  var borad_width = 420;
+
+  boardLength = borad_height + pad * 2;
+  endScreenCanvas.width = borad_width + pad * 2;
+  endScreenCanvas.height = boardLength;
+  ctx_.globalAlpha = 0.2;
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(0, 0, endScreenCanvas.width, endScreenCanvas.height);
+  ctx_.fillStyle = "#000000";
+  ctx_.fillRect(
+    pad,
+    pad,
+    endScreenCanvas.width - pad * 2,
+    endScreenCanvas.height - pad * 2
+  );
+  var y = 55 + pad;
+
+  ctx_.globalAlpha = 1;
+  ctx_.fillStyle = "#FFFFFF";
+  ctx_.font = "30px Arial";
+
+  var str = "YOU DIED!"; //"Top Players";
+  ctx_.font = "30px Arial";
+  ctx_.fillText(
+    str,
+    endScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  ctx_.font = "20px Arial";
+  y += 45;
+  str = "You were #" + stats.rank; // + " out of " + stats.totalPlayers + " players";
+  ctx_.fillText(
+    str,
+    endScreenCanvas.width / 2 - ctx_.measureText(str).width / 2,
+    y
+  );
+
+  y += 40;
+  var result = secToTime(stats.timeAlive);
+
+  var x = pad + 15;
+  drawLabelValueOn(ctx_, "Time Alive", result, x, y);
+  x += 210;
+  drawLabelValueOn(ctx_, "Total Kills", stats.totalKills, x, y);
+  y += 40;
+  x = pad + 15;
+  drawLabelValueOn(ctx_, "Top rank", stats.topRank, x, y);
+  x += 210;
+  drawLabelValueOn(ctx_, "Max XP", formatNumK(stats.maxXP), x, y);
+}
+
+//curRelX, curRelY are the current obj's translated pos (if drawing within GameObj, otherwise, 0,0 for global)
+function fillGrid(x1, y1, x2, y2, curRelX, curRelY) {
+  if (options_lowGraphics) return;
+  //console.log(ctx.shadowBlur);
+
+  ctx.save();
+
+  //culling: only draw part of grid that's visible on-screen!
+  //calc edge x/ys of screen, limit grid to be within screen
+  var oldFillW = x2 - x1;
+  var oldFillH = y2 - y1; //for grid to move around
+  var testBuffer = 0;
+  var scrHalfW = canvasW / 2 / camzoom; //(canvasW/pixelRat)/2; //in game coords
+  var scrHalfH = canvasH / 2 / camzoom;
+  x1 = Math.max(x1, camx - scrHalfW - curRelX + testBuffer); //convert to local obj coords
+  y1 = Math.max(y1, camy - scrHalfH - curRelY + testBuffer);
+  x2 = Math.min(x2, camx + scrHalfW - curRelX - testBuffer);
+  y2 = Math.min(y2, camy + scrHalfH - curRelY - testBuffer);
+
+  ctx.strokeStyle = "black"; //showDarkTheme ? ""#AAAAAAA" : "#000000";
+  //  ctx.lineWidth=2.0;
+  ctx.globalAlpha = 0.055;
+
+  //ctx.scale(camzoom, camzoom);
+  var gSize = 30; //size of squares
+  var fillW = x2 - x1; //canvasW / camzoom,
+  fillH = y2 - y1; //canvasH / camzoom;
+
+  for (
+    var dx = -0.5 + x1 + ((oldFillW - x1) % gSize);
+    dx < x1 + fillW;
+    dx += gSize
+  ) {
+    //console.log("drawing v line: x:"+dx);
+    ctx.beginPath();
+    ctx.moveTo(dx, y1);
+    ctx.lineTo(dx, y1 + fillH);
+    ctx.stroke();
+  }
+  for (
+    dy = -0.5 + y1 + ((oldFillH - y1) % gSize);
+    dy < y1 + fillH;
+    dy += gSize
+  ) {
+    ctx.beginPath();
+    ctx.moveTo(x1, dy);
+    ctx.lineTo(x1 + fillW, dy);
+    ctx.stroke();
+  }
+  ctx.restore();
+}
+
+function drawGameObjects() {
+  //console.log("Drawing game objects");
+  var objsToDraw = gameObjs.slice();
+
+  //pull out/organize certain objs that are batch-drawn
+  var batchedObjTypes = [o_hill, o_rockHill, o_lavaLake, o_bog, o_safeArea];
+  var batchedObjGroupsByOType = {};
+  for (var i = 0; i < batchedObjTypes.length; i++) {
+    var newBatchO = new GameObjBatchDraw();
+    batchedObjGroupsByOType[batchedObjTypes[i]] = newBatchO;
+    objsToDraw.push(newBatchO); //add as a special 'gameObj' that draws inner objs as a batch
+  }
+
+  //sort objs for batching (pull out objs from normal draw, add into GameObjBatchDraw obj)
+  for (d = objsToDraw.length - 1; d >= 0; d--) {
+    //iterate backwards to allow removing
+    var anObj = objsToDraw[d];
+
+    for (e = 0; e < batchedObjTypes.length; e++) {
+      var aBatchedT = batchedObjTypes[e];
+      //console.log("vs kind: "+aProp);
+      if (aBatchedT == anObj.oType && !(anObj instanceof GameObjBatchDraw)) {
+        //add to matching GameObjBatchDraw obj, to be drawn in correct order
+        batchedObjGroupsByOType[aBatchedT].addBatchedObj(anObj);
+        //remove from draw array
+        objsToDraw.splice(d, 1);
+        break;
+      }
+    }
+  }
+  //console.log("Drawing objs: "+objsToDraw);
+
+  //sort game objects (for drawing)
+  remGameObjs = []; //objs to delete this loop
+  for (d = 0; d < objsToDraw.length; d++) {
+    objsToDraw[d].updateZ();
+  }
+  objsToDraw.sort(function(a, b) {
+    return a.z == b.z ? a.id - b.id : a.z - b.z;
+  });
+
+  var customInterfaceObjList = [];
+  for (d = 0; d < objsToDraw.length; d++) {
+    var anObj = objsToDraw[d];
+    if (anObj.customInterfaceDraw) customInterfaceObjList.push(anObj);
+    else anObj.draw();
+  }
+
+  if (_gameMode != null) _gameMode.drawCustomObjs(customInterfaceObjList);
+  /*
+    if (typeof gameMode_interfaceDrawCustomObjects === "function")
+        gameMode_interfaceDrawCustomObjects()
+        */
+  //draw (top Z) animal chat
+  if (!options_noNames)
+    for (d = 0; d < objsToDraw.length; d++) {
+      if (typeof objsToDraw[d].chatLines != "undefined")
+        //gameObjs[d].oType == o_animal || gameObjs[d].oType == o_hidingHole || gameObjs[d].oType == o_bigHidingHole)
+        objsToDraw[d].drawChat();
+    }
+
+  //trackAnimals();
+
+  //remove deleted objs from draw list
+  for (d = 0; d < remGameObjs.length; d++) {
+    var delO = remGameObjs[d];
+    if (gameObjsByID.hasOwnProperty(delO.id)) delete gameObjsByID[delO.id];
+    //remove from array
+    var tmp = gameObjs.indexOf(delO);
+    if (-1 != tmp) {
+      gameObjs.splice(tmp, 1);
+    }
+    //console.log("fully delete obj " + delO.id);
+  }
+
+  //updateSnowFlakes();
+  //drawSnowFlakes();
+  return objsToDraw;
+}
+
+var testTime = +new Date();
+
+function drawGame(currentTime) {
+  timestamp = +new Date();
+
+  window.requestAnimationFrame(drawGame);
+
+  /*ctx.watch("globalAlpha", function(prop,oldval,newval){
+        //Your code
+        console.log("@@@changed op to "+newval);
+        var err = new Error();
+        console.log(err.stack);
+        console.log("/@@@");
+        return newval;
+    });
+
+    console.log("----------------------------> start op "+ctx.globalAlpha);
+
+    var native = ctx.restore;
+
+    ctx.restore = function(){
+        console.log('restoring...');
+        native.apply(ctx, arguments);
+        console.log('op now '+ctx.globalAlpha);
+    };*/
+
+  /*ctx.watch("restore", function(prop,oldval,newval){
+        //Your code
+        console.log("@@@restored op to "+ctx.globalAlpha);
+        var err = new Error();
+        console.log(err.stack);
+        console.log("/@@@");
+        return newval;
+    });*/
+
+  //firefox bug fix
+  if (ctx.globalAlpha != 1.0) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); //resets transform
+    ctx.globalAlpha = 1.0;
+  }
+
+  ctx.clearRect(0, 0, canvasW, canvasH);
+
+  //interpolate cam (much smoother with interp vs. 1/X ease)
+  var lerpICam = 0.2; //lerpI; //ag@r is 0.125.125 @ 2 25fps
+  var a = (timestamp - lastUpdT) / 1000 / lerpICam;
+  a = 0 > a ? 0 : 1.0 < a ? 1.0 : a; //clamp from 0-1
+  camx = a * (camx_n - camx_o) + camx_o; //* 0.1
+  camy = a * (camy_n - camy_o) + camy_o; //+= (camy_n - camy) * 0.1;*/
+  camzoom = (25 * camzoom + camzoom_n) / 26.0;
+
+  calcMouseCoords(); //keep mouse pos updates as camera moves
+
+  /////////////////draw camera-scaled game!
+  ctx.save();
+  var xMid = canvasW / 2.0; //scale canvas for camera pos
+  var yMid = canvasH / 2.0;
+  ctx.translate(
+    xMid * (1.0 - camzoom) + (xMid - camx) * camzoom,
+    yMid * (1.0 - camzoom) + (yMid - camy) * camzoom
+  );
+  ctx.scale(camzoom, camzoom);
+
+  //draw game bounds rectagles
+  ctx.save();
+  if (serverFirstConnected) {
+  var wid = 10;
+    wid = 600;
+    ctx.globalAlpha = 1.0;
+    ctx.fillStyle = col_outline_land;
+    ctx.fillRect(0, 0 - wid, gameW, wid); //top
+    ctx.fillRect(0, gameH, gameW, wid); //bottom
+
+    ctx.fillRect(-wid, -wid, wid, gameH + 2 * wid); //left
+    ctx.fillRect(gameW, -wid, wid, gameH + 2 * wid); //right
+    //ctx.fillRect(0, gameH, gameW , wid); //bottom
+
+    //if(snow) createSnow();
+  } else {
+    //camx-canvasW/camzoom, camy-canvasH/camzoom, camx+canvasW/camzoom, camy+canvasH/camzoom;
+    //console.log(camx+", "+camy);
+  fillGrid(
+      gameXForScreenX(0),
+      gameYForScreenY(0),
+      gameXForScreenX(canvasW),
+      gameYForScreenY(canvasH),
+      0,
+      0
+    );
+  }
+  ctx.restore();
+
+  //console.log("NEW DRAW@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+  drawGameObjects();
+  ctx.restore(); // DONE CAMERA DRAWING
+
+  if (serverCon_aliveInAGame) {
+    //draw pre-rendeded LeaderBoard
+    drawLeaderboard();
+
+    drawMinimap();
+
+    // here draw custom objects on screen if there are any (based on game mode)
+    //if (typeof window.gameMode_drawMap === "function") {
+    //    //draw danger area on minimap see game mode interface
+    //    window.gameMode_drawMap();
+    //}
+
+    if (_gameMode != null) {
+      //draw danger area on minimap see game mode interface
+      _gameMode.drawMap();
+    }
+  }
+
+  //draw interfaces
+
+  drawGameInterface();
+  drawScreenText();
+  drawGamePlay();
+  if (serverCon_aliveInAGame) displayPlayerStats();
+  //draw ad loading txt (when video ad is loading)
+  if (videoAdShowLoading) {
+    videoAdShowLoadingTXT.setFontSize(28 * interfS);
+    //playersOnlTXT.getRenderedCanvas(); //render for latest height!
+    videoAdShowLoadingTXT.x = canvasW / 2;
+    videoAdShowLoadingTXT.y = canvasH * 0.2;
+    //custom draw (space it)
+    if (videoAdStartedPlaying)
+      videoAdShowLoadingTXT.setText("Game starting after ad...");
+    else videoAdShowLoadingTXT.setText("Connecting to game...");
+
+    videoAdShowLoadingTXT.draw();
+
+    //draw loading image
+    if (!videoAdStartedPlaying) {
+      var loadingX = canvasW / 2;
+      var loadingY = canvasH * 0.25 + 120.0 * interfS;
+      var theImg = getLoadedImg("skins/mouse.png");
+      if (theImg) {
+        ctx.save();
+        ctx.translate(loadingX, loadingY);
+
+        var rad = this.rad;
+        var rotF = (timestamp % 800) / 800.0;
+        var imageW = 150;
+        ctx.rotate(rotF * Math.PI * 2.0);
+        ctx.drawImage(theImg, -imageW / 2, -imageW / 2, imageW, imageW);
+        //console.log("drawing banana");
+
+        ctx.restore();
+      }
+    }
+  }
+
+  //draw players online
+  if (windowW > 370.0 && !serverCon_aliveInAGame) {
+    //ctx.save();
+    /*ctx.font = (15.0 * interfS) + "px Arial";
+        ctx.lineWidth = 1;
+        ctx.textAlign = "right";
+        ctx.textBaseline = "bottom"; //vertical center
+        if (!options_lowGraphics) {
+            ctx.shadowOffsetX = 1;
+            ctx.shadowOffsetY = 1;
+            ctx.shadowColor = "black";
+        }
+        ctx.fillStyle = "white";
+        ctx.fillText(plOnlineStr, canvasW - 5, canvasH - 2);*/
+
+    //playersOnlTXT.setText(abilityInfo.abilName);
+
+    //draw fps
+    if (options_lowGraphics) {
+      var tAfterDraw = (fps_framesCount += 1);
+      if (timestamp - fps_timeStart > 1000) {
+        fps_timeStart = +new Date();
+        //fpsText = fps_framesCount + " fps";
+
+        playersOnlTXT.setText(fps_framesCount + " fps");
+        fps_framesCount = 0;
+        //console.log("fps: (avg. " + (1000 * fps_totalFramesDone / (timestamp - fps_startTime)) + ")");
+      }
+      fps_totalFramesDone += 1;
+      //ctx.fillText(fpsText, canvasW - 5, canvasH - 45);
+    }
+
+    //ctx.restore();
+  }
+  showPlayerCount();
+
+  //count fps
+}
+
+var playerCountX = canvasW - 150;
+var playerCountY = 0;
+
+function showPlayerCount() {
+  playersOnlTXT.setFontSize(18 * interfS);
+
+  /*
+    ctx.drawImage(miniMapCanvas, canvasW - (10 * pixelRat + miniMapCanvas.width * interfS), , minimapW * interfS, minimapH * interfS);
+   */
+
+  if (serverCon_aliveInAGame) {
+    playerCountX = canvasW - (20 + playersOnlTXT.width) / 2;
+    playerCountY = (minimapH + 25 * pixelRat) * interfS;
+  } else {
+    playerCountX = canvasW - 5 - playersOnlTXT.width / 2;
+    playerCountY = canvasH - 2 - playersOnlTXT.height / 2;
+  }
+
+  playersOnlTXT.x = playerCountX;
+  playersOnlTXT.y = playerCountY;
+  //playersOnlTXT.x = canvasW - 5 - (playersOnlTXT.width / 2);
+  //playersOnlTXT.y = canvasH - 2 - (playersOnlTXT.height / 2);
+  //custom draw (space it)
+  playersOnlTXT.draw();
+}
+if (window.requestAnimationFrame) {
+  window.requestAnimationFrame(drawGame);
+} else {
+  //older browsers
+  setInterval(draw, 1e3 / 60);
+}
+
+//  setInterval(updateSnowFlakes, 1E3 / 50);
+
+//joins a game (same as connecting)
+var lastJoinTryT = 0;
+
+function joinGame(isSpectator) {
+	
+  //console.log("===>> @@@@@@ Join game called!");
+  if (!wsIsOpen())
+    // || serverCon_aliveInAGame) //cant respawn if not dead!
+    return;
+  //prevent accidental double-joining game
+  /*if(!isSpectator){
+     var tNow=+new Date();
+     if(tNow-lastJoinTryT<100.0)
+       return;
+     lastJoinTryT=tNow;
+   }*/
+
+  playerName = nickInput.value.replace(/(<([^>]+)>)/gi, "").substring(0, 20);
+  //measure msg length
+  //if (KTestingModeON)
+  var url = new URL(window.location.href);
+  var nick = url.searchParams.get("nick");
+  if (nick && nick.length > 0) {
+    nick = "#" + nick + "$";
+    playerName = nick;
+  }
+  // ?
+ 
+  var msgLen = 9 + encode_utf8(playerName).length + 5;
+  var mes = new MsgWriter(msgLen);
+  mes.writeUInt8(2); //MSGTYPE join GAME
+  mes.writeString(playerName);
+  mes.writeUInt16(canvasW); //client size (w, h)
+  mes.writeUInt16(canvasH);
+  mes.writeUInt8(isSpectator ? 1 : 0);
+  wsSendMsg(mes);
+
+
+  if (nick && nick.length > 0) playerName = "mope2.io/1v1";
+  //save name locally
+  if (!isSpectator) {
+    //dont save name if it's blank
+    if (window.localStorage) {
+      try {
+        window.localStorage.setItem("nick", playerName + "");
+      } catch (err) {} //no localStorage
+    }
+  }
+  //save types request
+  //clearedTypesSinceSpawnRequest=false;
+
+  /*for (var i = 0; i < window.localStorage.length; i++) {
+       console.log("[" + window.localStorage.key(i) + "] :" + window.localStorage.getItem(window.localStorage.key(i)));
+   }*/
+}
+
+//INTERFACE
+
+function onVideoAdPlaying() {
+  /**
+   * If battle royal mode, then ensure spawn of the player in game if video ad is playing and battle started before joing of this player
+   * this message will ensure current player to  join in the battle
+   */
+  //  if (gameMode == gameMode_battleRoyal && gameState != battleRoyal_inProgress) {
+  var mes = new MsgWriter(2);
+  mes.writeUInt8(57); //Msg_isViewingVideoAd
+  wsSendMsg(mes);
+  //  }
+}
+
+function playPressed() {
+	console.log("play pressed")
+   
+  
+
+  
+  var theDom = document.getElementById("optionsDiv");
+  theDom.style.display = "none";
+
+  if (isSpectateMode) return;
+  resetAfk();
+
+  //play sound (if not muted)
+  var sound_click = getLazyLoadAudio("audio/click.mp3");
+  if (sound_click) {
+    try {
+    //  sound_click.play();
+    } catch (err) {}
+  }
+  
+  console.log(serverConnected)
+
+  if (videoAdIsPlaying || !serverConnected)
+    //block early press enter to restart (when ad playing, but technically not ingame)
+    return;
+
+  //show ad if needed
+
+  if (shouldShowVideoAd()) {
+    playVideoAd();
+  } else {
+    //not showing an ad
+
+    joinGame(false); //true=spectate only
+  }
+}
+
+document.getElementById("startButton").onclick = playPressed;
+
+
+document.getElementById("btnSpectate").onclick = function() {
+ 
+  
+  if (!isSpectateMode) {
+    //send message to toggle on/off spectate mode
+    var mes = new MsgWriter(1);
+    mes.writeUInt8(56); // spectateMode
+    wsSendMsg(mes);
+  }
+};
+
+/*document.getElementById("brButton").onclick = function() {
+  //play sound (if not muted)
+  var sound_click = getLazyLoadAudio("audio/click.mp3");
+  if (sound_click) {
+    try {
+      sound_click.play();
+    } catch (err) {}
+  }
+
+  //will get best BR server, will auto-join it when it is gotten
+  masterServer_getBestBRServer(
+    //callback func (once gets a reply from master server!)
+    function(bestServerIP, noValidServer) {
+      if (!noValidServer) gameServerConnectForIP(bestServerIP, true);
+      else console.log("No valid BR server is available!");
+    }
+  );
+};*/
+
+var chatOpen = false;
+var ESC_down = false;
+
+document.onkeydown = function(ev) {
+  resetAfk();
+
+  //console.log("key down");
+  var key = ev.keyCode || ev.which;
+  //console.log("key down " + key);
+
+  if (!chatOpen && serverCon_aliveInAGame) {
+    switch (key) {
+      case 32:
+        {
+          //SPACE- left click
+          ev.preventDefault();
+          controlsPressEvent(cNum_leftClick, true); //1= left click
+        }
+        break;
+
+      case 87:
+        {
+          //W- right click
+          ev.preventDefault();
+          controlsPressEvent(cNum_rightClick, true); //1= left click
+        }
+        break;
+
+      case 83:
+        {
+          //S
+          ev.preventDefault();
+          controlsPressEvent(cNum_watershoot, true); //1= left click
+        }
+        break;
+
+      case 27:
+        {
+          //ESC to stay still
+          if (KTestingModeON || isDevMode) {
+            ev.preventDefault();
+            ESC_down = !ESC_down;
+
+            showScreenTextWithDur(
+              "Movement Lock (ESC KEY): " + (ESC_down ? "ON" : "OFF"),
+              2500
+                
+            );
+            screenTextCol = "white"; //default color for event
+            screenTextFontSize = 25;
+          }
+        }
+        break;
+      case 69:
+        {
+          ev.preventDefault();
+          controlsPressEvent(cNum_keyE, true); //1= left click
+        }
+        break;
+      case 68:
+        {
+          ev.preventDefault();
+          controlsPressEvent(cNum_keyD, true); //1= left click
+        }
+        break;
+    }
+  }
+};
+document.onkeyup = function(ev) {
+  //console.log("key up");
+  var key = ev.keyCode || ev.which;
+  //console.log("key up " + key);
+
+  //enable pressing enter to play
+  if (key == 13) {
+    if (!serverCon_aliveInAGame && !aniChoice_isOpen) {
+      document.getElementById("startButton").click();
+      return;
+    }
+
+    if (aniChoice_isOpen) {
+      //enter to choose default animal (on spawning or upgrading)
+      aniChoiceButtonClicked(aniChoice_choiceButtons[0]);
+      return;
+    }
+  }
+
+  if (serverCon_aliveInAGame) {
+    var key = ev.keyCode || ev.which;
+    //console.log("up " + key);
+    //console.log("typed; " + document.getElementById("chatinput").value);
+    //enter (can be during chat)
+
+    if (key == 13) {
+      //open chat
+      toggleChatOpen();
+      return;
+    }
+
+    if (!chatOpen && serverCon_aliveInAGame) {
+      switch (key) {
+        case 32:
+          {
+            //space to run
+            ev.preventDefault();
+            controlsPressEvent(cNum_leftClick, false); //1= left click
+          }
+          break;
+
+        case 87:
+          {
+            //sW
+            ev.preventDefault();
+            controlsPressEvent(cNum_rightClick, false); //1= left click
+          }
+          break;
+
+        case 38:
+          {
+            //up arrow
+            ev.preventDefault();
+            controlsPressEvent(cNum_SBupgrade, false); //1= left click
+          }
+          break;
+
+        case 40:
+          {
+            //down arrow
+            ev.preventDefault();
+            controlsPressEvent(cNum_SBdowngrade, false); //1= left click
+          }
+          break;
+        case 69:
+          {
+            //W- right click
+            ev.preventDefault();
+            controlsPressEvent(cNum_keyE, false); //1= left click
+          }
+          break;
+        case 68:
+          {
+            //W- right click
+            ev.preventDefault();
+            controlsPressEvent(cNum_keyD, false); //1= left click
+          }
+          break;
+      }
+    }
+  }
+};
+
+//smart-toggle show/hide chat (sends chat on hide)
+function toggleChatOpen() {
+  if (!isDevMode) if (_gameMode != null && !_gameMode.chatAllowed) return;
+  var chatInp = document.getElementById("chatinput");
+
+  if (!chatOpen && serverCon_aliveInAGame) {
+    //console.log("opening chatbox");
+    //open chat
+    chatInp.style.visibility = "visible";
+    chatInp.focus();
+    chatOpen = true;
+
+    //set onclose block
+    chatInp.onblur = function() {
+      if (chatOpen)
+        //close/send on blur
+        toggleChatOpen();
+    };
+  } else if (chatOpen) {
+    //close chat + send!
+    //console.log("closing chatbox");
+    var chatTxt = chatInp.value + "";
+    chatOpen = false;
+    chatInp.style.visibility = "hidden";
+    chatInp.blur(); //dont call onblur this time!
+
+    if (chatTxt.length > 0 && serverCon_aliveInAGame) {
+      console.log("chatted: " + chatTxt);
+      //send chat msg
+      newMsg = new MsgWriter(3 + encode_utf8(chatTxt).length);
+      newMsg.writeUInt8(19); //chat msg
+      newMsg.writeString(chatTxt);
+      wsSendMsg(newMsg);
+    }
+    chatInp.value = "";
+
+    //chatInp.onblur = null; //reset onblur
+  }
+}
+
+window.onresize = onResize;
+
+var windowW = 100;
+var windowH = 100; //fast to get
+function onResize() {
+  windowW = window.innerWidth; //these seem to be very costly on android
+  windowH = window.innerHeight;
+
+  buildInviteScreen();
+
+  if (isMobileAppIOS) {
+    //bug fix for mobile safari
+    windowW = document.body.clientWidth;
+    windowH = document.body.clientHeight;
+  }
+  //console.log("ClientH "+document.body.clientHeight+" vs windowH "+window.innerHeight);
+
+  pixelRat = window.devicePixelRatio;
+  //window.scrollTo(0, 0);
+  canvasW = windowW * pixelRat;
+  canvasH = windowH * pixelRat;
+
+  //console.log("window resized to " + canvasW + "," + canvasH);
+  canvas.width = canvasW;
+  canvas.height = canvasH;
+  canvas.style.width = windowW + "px";
+  canvas.style.height = windowH + "px";
+
+  //interface scale factor
+  //interfS = Math.max(canvasW / (1920 * 0.7), canvasH / (1080 * 0.7));
+  //console.log("interface scale factor 1) "+interfS);
+  //interfS = Math.min(1.0, Math.max(0.4, interfS));
+  interfS = 0.85 * pixelRat * Math.max(windowW / 1920, windowH / 1080);
+  //console.log("interface scale factor 2) "+interfS+" pixelRat "+pixelRat);
+  /*if (Math.min(windowW, windowH) < 700) {
+       interfS *= Math.min(windowW, windowH)/700; //shirk interface further on tiny screens
+   }*/
+
+  //move chat area to middle of screen
+  var chatInp = document.getElementById("chatinput");
+  chatInp.style.marginTop = windowH / 2 - 50 + "px";
+ //reposition buttons (in ORDER!)
+  var buttonF = isTouchEnabled && windowH < 500 ? 1.4 : 1.0; //bigger buttons on small mobile screens
+  button_run.w = button_run.h = 200 * interfS * buttonF;
+  button_w.w = button_w.h = 200 * interfS * buttonF;
+  button_w_mini.w = button_w_mini.h = 200 * interfS * buttonF;
+
+  button_chat.w = 60 * pixelRat * buttonF;
+  button_chat.h = 30 * pixelRat * buttonF;
+
+  //resize buttons (in ORDER!)
+  button_run.x = 25 * pixelRat * buttonF + button_run.w / 2; //set left border
+  button_run.y = canvasH - (40 * pixelRat + button_run.w / 2); //from bottom of button
+  if (options_leftHanded) {
+    button_run.x = canvasW - button_run.x;
+  }
+  //console.log("left handed? "+options_leftHanded);
+
+  button_w.x = button_run.x; //set left border
+  if (!isTouchEnabled) {
+    button_w.y = button_run.y; //lower W when touch is disabled (as run button isnt available without touch)
+  } else
+   button_w.y =
+      button_run.y -
+      (10 * pixelRat * buttonF + button_w.w / 2 + button_run.w / 2); //above button 'runbutton'
+  button_w_mini.x = button_run.x;
+  button_w_mini.y =
+    button_w.y -
+    (10 * pixelRat * buttonF + button_w_mini.w / 2 + button_w.w / 2);
+
+  button_chat.x = Math.min(
+    canvasW / 2.0 + 100 * pixelRat * buttonF,
+    canvasW * 0.8
+  ); //canvasW / 2; //on middle-top
+  button_chat.y = 15 * pixelRat + button_chat.h / 2;
+
+  button_sKey.setPosAndSize(
+    button_chat.x - (button_chat.w / 2 + 10 * pixelRat * buttonF),
+    button_chat.y,
+    60 * pixelRat * buttonF,
+    30 * pixelRat * buttonF,
+    1.0,
+    0.5
+  );
+  button_SBdowngrade.setPosAndSize(
+    button_sKey.x,
+    button_sKey.y + button_sKey.h / 2 + 10 * pixelRat * buttonF,
+    60 * pixelRat * buttonF,
+    30 * pixelRat * buttonF,
+    0.5,
+    0.0
+  );
+  //update visibility of buttons
+  for (var k = 0; k < allTouchButtons.length; k++) {
+    var aTouchBut = allTouchButtons[k];
+    aTouchBut.visible = isTouchEnabled; //buttons only show up when touch on
+    //console.log("touchenabled "+isTouchEnabled);
+  }
+  button_w.visible = true;
+  button_w_mini.visible = true; //always drawn
+   
+  button_sKey.visible = button_sKey.touchEnabled = isTouchEnabled;
+  button_SBdowngrade.visible = button_SBdowngrade.touchEnabled =
+    isTouchEnabled && KTestingModeON;
+
+  //send message about resize
+  if (wsIsOpen()) {
+    mes = new MsgWriter(5);
+    mes.writeUInt8(17);
+    mes.writeUInt16(canvasW); //client size (w, h)
+    mes.writeUInt16(canvasH);
+    wsSendMsg(mes);
+  }
+
+  if (_gameMode != null) _gameMode.onResize();
+}
+
+//game control was pressed/released (could be by key press, mouse, etc)
+//key stands for action button
+var cNum_leftClick = 1,
+  cNum_rightClick = 2,
+  cNum_SBupgrade = 3,
+  cNum_SBdowngrade = 4,
+  cNum_watershoot = 5,
+  cNum_keyD = 6,
+  cNum_keyE = 7;
+
+function controlsPressEvent(cNum, isNowPressed) {
+  switch (cNum) {
+    case cNum_leftClick:
+      {
+        //clicked left
+        if (controls_leftClicked != isNowPressed)
+          if (wsIsOpen() && serverCon_aliveInAGame) {
+            //key changed
+            if (isNowPressed) sendMouseCoords(); //send mouse coords for accurate water shooting
+            var mes = new MsgWriter(2);
+            mes.writeUInt8(21); //MSGTYPE sendLeftClick
+            mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
+            wsSendMsg(mes);
+          }
+        controls_leftClicked = isNowPressed;
+      }
+      break;
+
+    case cNum_rightClick:
+      {
+        //clicked left
+        if (controls_rightClicked != isNowPressed)
+          if (wsIsOpen() && serverCon_aliveInAGame) {
+            //key changed
+            if (isNowPressed) sendMouseCoords(); //send mouse coords for accurate water shooting
+            var mes = new MsgWriter(2);
+            mes.writeUInt8(20); //MSGTYPE 20 =right, 21=left
+            mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
+            wsSendMsg(mes);
+            //  console.log("RIGHT click DOWN sent");
+          }
+        controls_rightClicked = isNowPressed;
+      }
+      break;
+
+    case cNum_SBupgrade:
+      {
+        if ((KTestingModeON || isDevMode) && serverCon_aliveInAGame) {
+          var mes = new MsgWriter(1);
+          mes.writeUInt8(26);
+          wsSendMsg(mes);
+        }
+      }
+      break;
+    case cNum_SBdowngrade:
+      {
+        if ((KTestingModeON || isDevMode) && serverCon_aliveInAGame) {
+          var mes = new MsgWriter(1);
+          mes.writeUInt8(27);
+          wsSendMsg(mes);
+        }
+      }
+      break;
+    case cNum_watershoot:
+      {
+        if (serverCon_aliveInAGame) {
+          var mes = new MsgWriter(1);
+          mes.writeUInt8(28);
+          
+          wsSendMsg(mes);
+        }
+      }
+
+      break;
+
+    case cNum_keyD:
+      {
+           if (cNum_keyDused != isNowPressed)
+        if (serverCon_aliveInAGame) {
+          var mes = new MsgWriter(2);
+          mes.writeUInt8(30);
+          mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
+          wsSendMsg(mes);
+          
+          cNum_keyDused = isNowPressed
+        }
+      }
+      break;
+    case cNum_keyE:
+      {
+          if (cNum_keyEused != isNowPressed)
+        if (serverCon_aliveInAGame) {
+          var mes = new MsgWriter(2);
+          mes.writeUInt8(29);
+          mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
+          wsSendMsg(mes);
+          
+          cNum_keyEused = isNowPressed
+        }
+      }
+      break;
+  }
+}
+
+//mobile zoom lock
+canvas.addEventListener("gesturestart", function(e) {
+  //console.log("gesture start!");
+  e.preventDefault();
+});
+
+function unpressAllTouchButtons() {
+  for (var k = 0; k < allTouchButtons.length; k++) {
+    var aTouchBut = allTouchButtons[k];
+    /*if(aTouchBut.pressed){
+           console.log("Button with text "+aTouchBut.buttonTXT+" already PRESSED by touch ID "+aTouchBut.pressedTouchID);
+       }*/
+    aTouchBut.pressed = false;
+    aTouchBut.pressedTouchID = -1;
+  }
+  joyStickOpen = false; //clear joystick
+}
+
+canvas.ontouchstart = function(e) {
+  resetAfk();
+
+  //joystick bug fix attempt:
+  var currentTouches = e.touches;
+  if (currentTouches.length == 1) {
+    //if one new touch, clear all buttons!
+    console.log("Resetting all buttons (joytick bug fix)");
+    unpressAllTouchButtons();
+  }
+
+  if (!serverCon_aliveInAGame) {
+    //ignore new touches if not in a game
+    return;
+  }
+
+  //test if a touch pressed button (s)
+  for (var i = 0; i < e.changedTouches.length; i++) {
+    var touch = e.changedTouches[i];
+    //console.log("touch id " + touch.identifier);
+
+    for (var k = 0; k < allTouchButtons.length; k++) {
+      var aTouchBut = allTouchButtons[k];
+
+      var newPressed = aTouchBut.testPosHitsButton(
+        touch.clientX * pixelRat,
+        touch.clientY * pixelRat
+      );
+      if (newPressed && !aTouchBut.pressed && aTouchBut.touchEnabled) {
+        e.preventDefault(); //stop mouse click
+        aTouchBut.pressed = true;
+        aTouchBut.pressedTouchID = touch.identifier;
+
+        aTouchBut.onButtonTouchStart(); //run button's custom touch event
+        return; //only one button can get 'pressed' per touch
+      }
+    }
+  }
+
+  //joystick (if no button pressed)
+  if (!options_noJoystick)
+    if (!joyStickOpen) {
+      //e.preventDefault(); //stop mouse click
+      //console.log("joystick start");
+      var touch = e.changedTouches[0];
+
+      joyStickOpen = true;
+      joystickStartX = touch.clientX * pixelRat;
+      joystickStartY = touch.clientY * pixelRat;
+      joystickTipX = joystickStartX;
+      joystickTipY = joystickStartY;
+      joysickTouchID = touch.identifier;
+      return;
+      //continue;
+    }
+
+  //if no buttons touched, place mouse here (tap controls)
+  //console.log("touch start");
+  rawMouseX = e.touches[0].clientX * pixelRat;
+  rawMouseY = e.touches[0].clientY * pixelRat;
+  calcMouseCoords();
+};
+
+//great guide https://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
+canvas.ontouchmove = function(e) {
+  //
+  //console.log("touch move!");
+
+  resetAfk();
+  //prevent pinch to zoom!
+  e.preventDefault();
+  //}
+
+  //console.log("touch changed: " + e.changedTouches.length);
+  for (var i = 0; i < e.changedTouches.length; i++) {
+    var touch = e.changedTouches[i];
+
+    if (touch.identifier == button_w.pressedTouchID) {
+      //enable sliding down finger to run button when holding W
+      if (button_run.pressedTouchID == -1) {
+        var newPressed = button_run.testPosHitsButton(
+          touch.clientX * pixelRat,
+          touch.clientY * pixelRat
+        );
+        var oldPressed = button_run.pressed;
+        button_run.pressed = newPressed;
+        if (newPressed && !oldPressed) {
+          controlsPressEvent(cNum_leftClick, true); //just pressed it
+        } else if (!newPressed && oldPressed) {
+          controlsPressEvent(cNum_leftClick, false); //just pressed it
+        }
+      }
+      continue;
+    }
+    //ignore movement that started from buttons (unless can slide the touch)
+    /*if (touch.identifier != button_w.pressedTouchID && ) {
+           continue;
+       }*/
+
+    //moved joystick
+    if (!options_noJoystick) {
+      if (joyStickOpen && touch.identifier == joysickTouchID) {
+        var dx = touch.clientX * pixelRat - joystickStartX; //joystick vars are in window coords
+        var dy = touch.clientY * pixelRat - joystickStartY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > 0) {
+          var normal_x = dx / dist;
+          var normal_y = dy / dist;
+          var distFrac = Math.min(1.0, dist / (joystickRad * pixelRat));
+
+          var adjustedFrac = Math.pow(distFrac, 3);
+          if (adjustedFrac < 0.1) adjustedFrac = 0.0;
+          var moveDist = 300.0 * pixelRat * adjustedFrac;
+          //console.log("joystick moving BY frac " + distFrac + "" + normal_x + " " + normal_y)
+
+          //update arrow angle
+          var arrowA = Math.atan2(normal_y, normal_x);
+          joystickDirArrowAngle_nDelta = distBetweenAngles(
+            joystickDirArrowAngle,
+            arrowA
+          );
+          joystickDistF_n = distFrac;
+
+          joystickTipX =
+            joystickStartX + joystickRad * pixelRat * normal_x * distFrac;
+          joystickTipY =
+            joystickStartY + joystickRad * pixelRat * normal_y * distFrac;
+
+          //add joystick vector (in dir) to camera pos (game coords) (assumed to be = player pos)
+          //assume middle of screen=camera pos
+
+          (rawMouseX = canvasW / 2 + normal_x * moveDist),
+            (rawMouseY = canvasH / 2 + normal_y * moveDist);
+          calcMouseCoords();
+          //console.log("camera at " + camx + "," + camy + "  joystick moving to " + rawMouseX + "," + rawMouseY)
+        }
+        //return; //only process first touch
+      }
+    } else {
+      //no joystick
+      rawMouseX = touch.clientX * pixelRat;
+      rawMouseY = touch.clientY * pixelRat;
+      calcMouseCoords();
+    }
+  }
+};
+canvas.ontouchend = function(e) {
+  //console.log("touch end!");
+  //test if any touch STILL ON pressed buttons
+
+  //if (isTouchEnabled && serverCon_aliveInAGame) {
+  //e.preventDefault(); //prevent making mouse click?
+
+  for (var i = 0; i < e.changedTouches.length; i++) {
+    var touch = e.changedTouches[i];
+
+    if (joyStickOpen && touch.identifier == joysickTouchID) {
+      //closed joyStick
+      joyStickOpen = false;
+      joysickTouchID = -1;
+      continue;
+    }
+
+    for (var k = 0; k < allTouchButtons.length; k++) {
+      var aTouchBut = allTouchButtons[k];
+      if (
+        aTouchBut.pressed &&
+        aTouchBut.pressedTouchID == touch.identifier &&
+        aTouchBut.touchEnabled
+      ) {
+        //e.preventDefault(); //stop mouse click
+        aTouchBut.pressed = false;
+        aTouchBut.pressedTouchID = -1;
+
+        if (serverCon_aliveInAGame) aTouchBut.onButtonTouchEnd(); //run button's custom touch event (if in game)
+
+        return; //only one button can get 'released' per touch
+      }
+    }
+  }
+};
+canvas.ontouchcancel = function(e) {
+  //e.preventDefault();
+  console.log("touch cancel");
+  canvas.ontouchend(e);
+};
+canvas.ontouchleave = function(e) {
+  //e.preventDefault();
+  console.log("touch leave");
+};
+
+canvas.onmousemove = function(event) {
+  //update mouse position
+  rawMouseX = event.clientX * pixelRat;
+  rawMouseY = event.clientY * pixelRat;
+  calcMouseCoords();
+
+  //console.log("mouse move")
+  if (!dcedFromAfk)
+    //moving mouse doesn't make you rejoin, must click!
+    resetAfk();
+
+  //check highlighted buttons
+  if (aniChoice_isOpen && timestamp - aniChoice_startT > 650) {
+    for (var i = 0; i < aniChoice_choiceButtons.length; i++) {
+      var aBut = aniChoice_choiceButtons[i];
+      aBut.isHighLighted = aBut.testPosHitsButton(rawMouseX, rawMouseY);
+    }
+  }
+
+  if (_gameMode != null && _gameMode.interfaceButtons) {
+    for (var i = 0; i < _gameMode.interfaceButtons.length; i++) {
+      var aBut = _gameMode.interfaceButtons[i];
+      if (aBut.isVisible)
+        if (aBut.testPosHitsButton(rawMouseX, rawMouseY)) {
+          aBut.isHighLighted = true;
+          aBut.onMouseMove();
+        } else {
+          aBut.isHighLighted = false;
+        }
+    }
+  }
+  event.preventDefault();
+};
+
+canvas.onmousedown = function(event) {
+  //console.log("Mouse down");
+  resetAfk();
+  if (event.which == 1) {
+    //LEFT click
+    controlsPressEvent(cNum_leftClick, true);
+  }
+
+  if (event.which == 3) {
+    //RIGHT CLICK
+    controlsPressEvent(cNum_rightClick, true);
+  }
+  //console.log("!!!!!!!!!!!!!!!!!!CLICK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+  event.preventDefault();
+};
+canvas.onmouseup = function(event) {
+  //console.log("Mouse up");
+  if (event.which == 1) {
+    //released left click
+    controlsPressEvent(cNum_leftClick, false);
+
+    //check clicked button
+    if (aniChoice_isOpen && timestamp - aniChoice_startT > 650) {
+      rawMouseX = event.clientX * pixelRat;
+      rawMouseY = event.clientY * pixelRat;
+
+      for (var i = 0; i < aniChoice_choiceButtons.length; i++) {
+        var aBut = aniChoice_choiceButtons[i];
+        if (aBut.testPosHitsButton(rawMouseX, rawMouseY)) {
+          aniChoiceButtonClicked(aBut);
+          break;
+        }
+      }
+    }
+    //button was clicked
+
+    // mope button was clicked
+    if (_gameMode != null && _gameMode.interfaceButtons) {
+      rawMouseX = event.clientX * pixelRat;
+      rawMouseY = event.clientY * pixelRat;
+
+      for (var i = 0; i < _gameMode.interfaceButtons.length; i++) {
+        var aBut = _gameMode.interfaceButtons[i];
+        if (aBut.isVisible && aBut.testPosHitsButton(rawMouseX, rawMouseY)) {
+          aBut.onClick();
+          break;
+        }
+      }
+    }
+  }
+  if (event.which == 3) {
+    //RIGHT CLICK
+    controlsPressEvent(cNum_rightClick, false);
+  }
+
+  event.preventDefault();
+  //console.log("prev");
+};
+//deselected canvas
+canvas.onblur = function(event) {
+  //'release' all controls
+  controlsPressEvent(cNum_leftClick, false);
+  controlsPressEvent(cNum_rightClick, false);
+};
+window.onfocus = function(event) {
+  resetAfk();
+  //console.log("reset afk");
+};
+
+//mouse left the canvas
+window.onmouseout = function(evt) {
+  if (evt.toElement == null && evt.relatedTarget == null) {
+    //'release' all controls
+    controlsPressEvent(cNum_leftClick, false);
+    controlsPressEvent(cNum_rightClick, false);
+  }
+};
+//diable right click menu
+document.oncontextmenu = document.body.oncontextmenu = function() {
+  return !serverCon_aliveInAGame;
+};
+
+//calc mouse coords in game (based on zoom/cam pos)
+function calcMouseCoords() {
+  var xMid = canvasW / 2;
+  var yMid = canvasH / 2;
+
+  //var game0x = (xMid - camx * camzoom);  (diff from 0x, then just scale mouse diff)
+  gameMouseX = (rawMouseX - (xMid - camx * camzoom)) / camzoom; // + (rawMouseX)
+  gameMouseY = (rawMouseY - (yMid - camy * camzoom)) / camzoom; //(rawMouseY) / camzoom;
+}
+
+function screenXForGameX(gameX) {
+  return gameX * camzoom + (canvasW / 2 - camx * camzoom);
+}
+
+function screenYForGameY(gameY) {
+  return gameY * camzoom + (canvasH / 2 - camy * camzoom);
+}
+
+function gameXForScreenX(sX) {
+  return (sX - (canvasW / 2 - camx * camzoom)) / camzoom;
+}
+
+function gameYForScreenY(sY) {
+  return (sY - (canvasH / 2 - camy * camzoom)) / camzoom;
+}
+
+//var lastMouseSendT=+new Date();
+function sendMouseCoords() {
+  //ESC keeps player still
+  if (ESC_down) {
+    var myPlayer = gameObjsByID[myPlayerID];
+    if (myPlayer) {
+      gameMouseX = myPlayer.x;
+      gameMouseY = myPlayer.y + 2;
+    } else {
+      return; //dont send coords if in hiding hole
+      //gameMouseX=camx;
+      //gameMouseY=camy;
+   
+    
+    }
+  }
+
+  if (wsIsOpen() && serverCon_aliveInAGame) {
+    if (
+      Math.abs(lastMouseX - gameMouseX) > 0.1 ||
+      Math.abs(lastMouseY - gameMouseY) > 0.1
+    ) {
+      lastMouseX = gameMouseX; //last sent pos
+      lastMouseY = gameMouseY;
+      
+      
+      
+      mes = new MsgWriter(7);
+      mes.writeUInt8(5); //MSGTYPE
+      mes.writeInt16(gameMouseX); // - (myPlayer ? myPlayer.x : camx)); //client size (w, h)
+      mes.writeInt16(gameMouseY); // - (myPlayer ? myPlayer.y : camy));
+      //mes.writeUInt8(mwDelta == 1 ? 1 : 0); // - (myPlayer ? myPlayer.y : camy));
+      mes.writeInt16(mwd); // - (myPlayer ? myPlayer.y : camy));
+      
+      //console.log("sending mouse");
+      wsSendMsg(mes);
+      //console.log("sent mouse");
+ 
+      
+      
+      
+    }
+  }
+}
+//on page load
+setInterval(sendMouseCoords, 20);
+
+resetAfk = function() {
+  //log("@@@@@ afk reset now");
+  afkTimeStart = +new Date();
+  if (dcedFromAfk) {
+    //back to computer now!
+    dcedFromAfk = false; //prevent continuous reloading
+    if (!isMobileApp) window.onbeforeunload = null;
+    document.getElementById("connecting").style.visibility = "visible";
+    window.location.reload(); //true causes HARD refresh
+  }
+};
+//start afk counter
+setInterval(function() {
+  var tNow = +new Date();
+  var afkT = tNow - afkTimeStart;
+  var maxAfkMins = serverCon_aliveInAGame ? 2400 : 10; //in a game, afking doesnt matter
+  //log("@@@@ afk for " + (afkT) + " ms");
+  //log("@@@@ afk for " + ((afkT/1000)/60) + " m");
+  if (afkT > 60000 * maxAfkMins && !dcedFromAfk && serverConnected) {
+    console.log("Disconnected for afk...");
+    dcedFromAfk = true;
+    if (wsIsOpen()) {
+      //if lost connection, dont dc twice (on reopening tab)
+      ws.close();
+    }
+    //show some kind of popup?
+  }
+
+  //check
+}, 5000);
+
+//reset vars after connecting to new game
+function gameReset() {
+  onResize(); //fix possible screen size problems
+  teamID = 0;
+  gameObjsByID = {};
+  gameObjs = [];
+  t = [];
+  remGameObjs = [];
+  screenTextFontSize = 25;
+  waterBarPerc_n = waterBarPerc = 0;
+  xpPer_n = xpPer = xp = 0;
+  //reset leaderboard
+  lbCanvas = null;
+  isSpectateMode = false;
+  homeButton = null;
+
+  respawnMsgText = "";
+  var xpLab = document.getElementById("spawnXpLabel");
+  xpLab.style.display = respawnMsgText ? "block" : "none";
+  xpLab.textContent = respawnMsgText;
+
+  //reset touch buttons
+  for (var k = 0; k < allTouchButtons.length; k++) {
+    var aTouchBut = allTouchButtons[k];
+    aTouchBut.pressed = false; //buttons only show up when touch on
+  }
+  joyStickOpen = false;
+
+  //reset choice interface
+  aniChoice_isOpen = false;
+  aniChoice_A = 0.0;
+  aniChoice_choiceButtons = []; //buttons to be rendered
+  aniChoice_joinGameAfter = false;
+ _0x16dc71 = 0,
+    _0x2af9ee = 0;
+  //reset xp popups
+  plusXpPopups = [];
+  plusCOINSPopups = [];
+  lastPopupXPAm = 0;
+  lastPopupCoinsAm = 0
+  lastPopupT = 0;
+  lastPopupC = 0;
+
+
+  isInArena = true;
+  isAbility1v1Active = true;
+  player1v1ArenaWins = 0;
+  player1v1Requests = [];
+  //if (btn1v1 != null) btn1v1.isVisible = false;
+
+  btn1v1 = null;
+  isInBonusRound = false;
+  bonusRoundDur = 0;
+  eggID = 0;
+  isDevMode = true;
+  endScreenCanvas = null;
+
+  // call interface reset for any game mode if defined
+  // handy when there are on screen display that need to be cleared;
+  //if (typeof window.gameMode_interfaceReset === "function")
+  //    window.gameMode_interfaceReset();
+  /*
+   if (_gameMode != null)
+       _gameMode.interfaceReset();
+   */
+  //document.getElementById('startButton').style.opacity = 0.5;
+  //this can get sent before new game, so dont reset
+  //dangerAniTypes = Array.apply(null, new Array(50)).map(Number.prototype.valueOf,0);
+
+  // since game is rest so need to set game mode again
+  setGameMode();
+}
+
+window.onload = function() {
+  //load last saved index
+  //udpForServIndex();
+
+  onResize();
+
+  if (window.localStorage) {
+    var inp = document.getElementById("nickInput");
+    inp.value = window.localStorage.getItem("nick");
+    //select nickname
+    inp.setSelectionRange(0, inp.value.length);
+    if (!isTouchEnabled)
+      //dont make keyboard glitches
+      inp.focus();
+  }
+};
+//mouse wheel
+if (canvas.addEventListener) {
+  // IE9, Chrome, Safari, Opera
+  canvas.addEventListener("mousewheel", MouseWheelHandler, false);
+  // Firefox
+  canvas.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+}
+// IE 6/7/8
+else canvas.attachEvent("onmousewheel", MouseWheelHandler);
+var mwd = 0;
+var mwDelta = 1;
+
+function MouseWheelHandler(e) {
+  // cross-browser wheel delta
+  var e = window.event || e; // old IE support
+
+  var delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
+
+  mwDelta = delta;
+
+  if (delta == 1) mwd += 1;
+  else mwd -= 1;
+
+  if (mwd > 100) mwd = 100;
+  else if (mwd < -100) mwd = -100;
+}
+
+///////////////// set game mode functions
+var _gameMode = null;
+
+function setGameMode() {
+  //resetMenu();
+  console.log("setting game mode interface:");
+  hideEndScreen();
+  if (_gameMode != null) _gameMode.interfaceReset();
+
+  _gameMode = null;
+  if (
+    gameMode == gameMode_FFA ||
+    gameMode == gameMode_troll
+  ) {
+    _gameMode = new FreeForAll(gameMode);
+    _gameMode.state = gameState;
+  } else if (gameMode == gameMode_teamMode) {
+    _gameMode = new TeamMode();
+    _gameMode.state = gameState;
+  }
+}
+
+/* ---------------- start of arrow functions ---------------- */
+
+function GetPointAtAngleForDistance(p, d, a) {
+  var forX = p.x + d * Math.cos(a);
+  var forY = p.y + d * Math.sin(a);
+
+  return {
+    x: forX,
+    y: forY
+  };
+}
+
+function drawTriangle(x, y, degrees, color, alpha) {
+  // first save the untranslated/unrotated context
+  ctx.save();
+  ctx.globalAlpha = alpha;
+
+  ctx.beginPath();
+
+  //ctx.translate(x-(s/4), y-(s/4));
+  ctx.translate(x, y);
+  //degress += Math.PI;
+  ctx.rotate(degrees); // * Math.PI / 180);
+
+  ctx.moveTo(-5, -5);
+  ctx.lineTo(-5, 5);
+  ctx.lineTo(5, 5);
+
+  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  //ctx.fill();
+  ctx.stroke();
+
+  // restore the context to its untranslated/unrotated state
+  ctx.restore();
+}
+
+function trackAnimals() {
+  //return; //TESTING OFF
+
+  var player = gameObjsByID[myPlayerID];
+  if (player)
+    for (d = 0; d < gameObjs.length; d++) {
+      var animal = gameObjs[d];
+      if (player.id != animal.id) {
+        if (animal.oType === o_animal) {
+          //#EF3C31
+          var linecolor = animal.getOutlineColor();
+          //console.log("linecolor: " + linecolor);
+          var track = false;
+          if (linecolor == col_dangerOutline || linecolor == col_edibleOutline)
+            track = true;
+          if (track) drawArrow(player, animal, linecolor);
+        }
+      }
+    }
+}
+
+function getDistance(p1, p2) {
+  var a = p1.x - p2.x;
+  var b = p1.y - p2.y;
+
+  var c = Math.sqrt(a * a + b * b);
+
+  return c;
+}
+
+function drawArrow(src, dest, color) {
+  //log("Drawing arrow");
+  var xMid = canvasW / 2;
+  var yMid = canvasH / 2;
+  var angle = angleAimingBetweenPoints(dest.x, dest.y, src.x, src.y);
+
+  var srcScreenX = screenXForGameX(dest.x);
+  var srcScreenY = screenYForGameY(dest.y);
+  var srcScreenRad = dest.rad * camzoom;
+  //console.log("screen pos "+srcScreenX+","+srcScreenY);
+  //all in screen coords
+  var distFromXScreenEdge = Math.min(
+    Math.abs(srcScreenX - srcScreenRad - 0),
+    Math.abs(srcScreenX + srcScreenRad - canvasW)
+  );
+  var distFromYScreenEdge = Math.min(
+    Math.abs(srcScreenY - srcScreenRad - 0),
+    Math.abs(srcScreenY + srcScreenRad - canvasH)
+  );
+  //console.log("x dist "+distFromXScreenEdge+", y "+distFromYScreenEdge);
+
+  var atDistance = -50 - src.rad; // from the animal mid.
+  var point = GetPointAtAngleForDistance(
+    {
+      x: src.x,
+      y: src.y
+    },
+    atDistance,
+    angle
+  );
+  var distance = getDistance(
+    {
+      x: point.x,
+      y: point.y
+    },
+    {
+      x: dest.x,
+      y: dest.y
+    }
+  );
+  
+  //angle += Math.PI
+  angle += toRadians(45);
+
+  var alpha = 1;
+  var size = 20; // size of the triangle
+  drawTriangle(point.x, point.y, angle, color, alpha);
+}
+
+function resetMenu() {
+  /*document.getElementById("updates").style.display = "block";
+  document.getElementById("startMenu").style.display = "block";
+  document.getElementById("rightSide").style.display = "block";*/
+  setSiteMenuVisible(true);
+}
+
+
+
+/*
+     FILE ARCHIVED ON 19:37:27 Oct 10, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:04:56 Oct 16, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  load_resource: 50.164
+  CDXLines.iter: 30.214 (3)
+  exclusion.robots.policy: 0.467
+  exclusion.robots: 0.487
+  PetaboxLoader3.resolve: 28.78
+  captures_list: 151.463
+  PetaboxLoader3.datanode: 121.51 (4)
+  LoadShardBlock: 114.787 (3)
+  esindex: 0.018
+  RedisCDXSource: .121
+*/
