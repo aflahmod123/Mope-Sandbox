@@ -4979,14 +4979,14 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "18b0-190-215-158-88.ap.ngrok.io", reg,"80"); 
+//addServerDef("Local Test 1", "2002-0-215-58-88.ap.ngrok.io", reg,"80"); 
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
-//reg = "FFA";
+reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
      //reg = "1v1";
     //addServerDef("1v1", "4bc8-190-215-158-88.eu.ngrok.io", reg,"80");
-  //  addServerDef("Team Mode 2", "149.28.48.20", reg);
+    //addServerDef("Team Mode 2", "2002-190-215-158-88.ap.ngrok.io", reg,"80");
   //  reg = "Battle Royale";
   //  addServerDef("Battle Royale 1", "144.202.12.79", reg);
   //  addServerDef("Battle Royale 2", "144.202.56.145", reg);
@@ -4997,9 +4997,9 @@ addServerDef("Local Test 1", "18b0-190-215-158-88.ap.ngrok.io", reg,"80");
   //addServerDef("TESTSERVER", "testserver.mope.io", reg); //"0.0.0.0"
   //addServerDef("LOCAL TEST", "45.76.2.164", reg);
 
-  // reg = "Team Mode";
+   reg = "Team Mode";
   // //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
-  // addServerDef("TEAM MODE 1", "8.12.17.70", reg);
+   addServerDef("TEAM MODE 1", "2002-190-215-158-88.ap.ngrok.io", reg,"80");
   // addServerDef("TEAM MODE 2", "209.246.143.231", reg);
   // addServerDef("TEAM MODE 3", "149.28.229.26", reg);
   // addServerDef("TEAM MODE 4", "108.61.158.209", reg);
@@ -14103,7 +14103,7 @@ Animal.prototype.readCustomData_onNewlyVisible = function(msg) {
       break;
   }
   //this.animalType = animtype; //animal type
-  this.setNick(nickName ? nickName : "mope2.io/1v1");
+  this.setNick(nickName ? nickName : "mopesandbox1.glitch.me/mope/");
 
   //console.log("Animal custom data read, id "+this.id+", animalType "+animtype);
 };
@@ -14195,7 +14195,7 @@ for (var J = 0; J < cnt; J++) {
       this.nickTXT.setText(this.nickName + wins);
       this.winsAddedInNick = true;
     } else if (this.winsAddedInNick) {
-      this.winsAddedInNick = false;
+      this.winsAddedInNick = true;
       this.nickTXT.setText(this.nickName);
     
   }
@@ -18763,7 +18763,7 @@ var superClass = GameObj;
 AnimalCarcass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 AnimalCarcass.prototype.constructor = AnimalCarcass;
 AnimalCarcass.superClass = superClass; //'class' var
-AnimalCarcass.prototype.nickName = "mope2.io/1v1";
+AnimalCarcass.prototype.nickName = "mopesandbox1.glitch.me/mope/";
 AnimalCarcass.prototype.fadeAway = false;
 AnimalCarcass.prototype.webTransparency = 100;
 AnimalCarcass.prototype.carcassType = 0;
@@ -19685,7 +19685,7 @@ TeamMode.prototype.main = function(msg) {
   var teamMode_msgType = msg.readUInt8();
   // console.log("teamMode_msgType :" + teamMode_msgType);
   switch (teamMode_msgType) {
-    case 54: // Msg_1v1Mode_YouWon
+    case 54:  Msg_1v1Mode_YouWon
       {
         var youWon = msg.readString();
         this.buildYouWon(youWon, 15);
@@ -20065,7 +20065,7 @@ TeamMode.prototype.drawInterfaceButtons = function() {
   if (this.btn1v1.isVisible) {
     this.btn1v1.clicked = false;
   }
-  */
+  
   if (this.interfaceButtons) {
     for (var i = 0; i < this.interfaceButtons.length; i++) {
       var aBut = this.interfaceButtons[i];
@@ -20357,20 +20357,20 @@ TeamMode.prototype.buildEndScreen = function(playerData, stats) {
 };
 TeamMode.prototype.buildInviteScreen = function() {
   // player1v1Requests = [];
-  // for (i = 0; i < 1; i++) {
-  //   var id = i;
-  //   var fromPlayer = "test " + (i + 1);
-  //   var reqDur = 10000;
-  //   player1v1Requests.push({
-  //     id: id,
-  //     requestee: fromPlayer,
-  //     aniType: 1,
-  //     wins: 1,
-  //     teamID: 1,
-  //     rank: 1,
-  //     dur: reqDur
-  //   });
-  // }
+   for (i = 0; i < 1; i++) {
+     var id = i;
+     var fromPlayer = "test " + (i + 1);
+     var reqDur = 10000;
+     player1v1Requests.push({
+       id: id,
+       requestee: fromPlayer,
+       aniType: 1,
+       wins: 1,
+       teamID: 1,
+       rank: 1,
+       dur: reqDur
+     });
+   }
 
   if (player1v1Requests.length == 0) {
     this.inviteScreenCanvas = null;
