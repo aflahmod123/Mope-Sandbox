@@ -4997,9 +4997,9 @@ reg = "FFA";
   //addServerDef("TESTSERVER", "testserver.mope.io", reg); //"0.0.0.0"
   //addServerDef("LOCAL TEST", "45.76.2.164", reg);
 
-   reg = "Team Mode";
+   //reg = "Team Mode";
   // //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
-   addServerDef("TEAM MODE 1", "2002-190-215-158-88.ap.ngrok.io", reg,"80");
+  // addServerDef("TEAM MODE 1", "2002-190-215-158-88.ap.ngrok.io", reg,"80");
   // addServerDef("TEAM MODE 2", "209.246.143.231", reg);
   // addServerDef("TEAM MODE 3", "149.28.229.26", reg);
   // addServerDef("TEAM MODE 4", "108.61.158.209", reg);
@@ -20065,7 +20065,7 @@ TeamMode.prototype.drawInterfaceButtons = function() {
   if (this.btn1v1.isVisible) {
     this.btn1v1.clicked = false;
   }
-  
+  //
   if (this.interfaceButtons) {
     for (var i = 0; i < this.interfaceButtons.length; i++) {
       var aBut = this.interfaceButtons[i];
@@ -20357,20 +20357,20 @@ TeamMode.prototype.buildEndScreen = function(playerData, stats) {
 };
 TeamMode.prototype.buildInviteScreen = function() {
   // player1v1Requests = [];
-   for (i = 0; i < 1; i++) {
-     var id = i;
-     var fromPlayer = "test " + (i + 1);
-     var reqDur = 10000;
-     player1v1Requests.push({
-       id: id,
-       requestee: fromPlayer,
-       aniType: 1,
-       wins: 1,
-       teamID: 1,
-       rank: 1,
-       dur: reqDur
-     });
-   }
+  // for (i = 0; i < 1; i++) {
+  //   var id = i;
+  //   var fromPlayer = "test " + (i + 1);
+  //   var reqDur = 10000;
+  //   player1v1Requests.push({
+  //     id: id,
+  //     requestee: fromPlayer,
+  //     aniType: 1,
+  //     wins: 1,
+  //     teamID: 1,
+  //     rank: 1,
+  //     dur: reqDur
+  //   });
+  // }
 
   if (player1v1Requests.length == 0) {
     this.inviteScreenCanvas = null;
