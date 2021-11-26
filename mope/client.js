@@ -19714,7 +19714,7 @@ TeamMode.prototype.top1v1_name = "";
 TeamMode.prototype.topperInfoTxt = null;
 TeamMode.prototype.buildTopperInfo = function() {
   var name = "" + this.top1v1_name;
-  if (name.lenght == 0) name = "mope2.io/1v1";
+  if (name.lenght == 0) name = "mopesandbox1.glitch.me/mope/";
 
   var txt =
     (this.top1v1_isHistoric ? " ALL TIME " : "") +
