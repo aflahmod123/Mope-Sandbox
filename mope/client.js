@@ -2377,7 +2377,7 @@ var isSoccerEnabled = false;
 var show1v1Button = true;
 var can1v1 = true;
 var btn1v1 = null;
-var player1v1ArenaWins = 0;
+var player1v1ArenaWins = 50;
 var playerGoalsScore = 0;
 var serverAllTimeGoals = 0;
 var playersInfected = 0;
@@ -4381,7 +4381,7 @@ function create1v1Button() {
           this.clicked = true;
           this.isHighLighted = false;
           var mes = new MsgWriter(2);
-          mes.writeUInt8(52); // Msg_1v1Mode_invitePlayer;
+          mes.writeUInt8(52);  Msg_1v1Mode_invitePlayer;
           mes.writeUInt8(0); //1=down, 0=up
           wsSendMsg(mes);
         }
@@ -4979,7 +4979,7 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "2211-190-215-158-88.ap.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "1be2-190-215-158-88.ap.ngrok.io", reg,"80"); 
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
@@ -20058,8 +20058,8 @@ TeamMode.prototype.createInterfaceButtons = function() {
 };
 
 TeamMode.prototype.drawInterfaceButtons = function() {
-  // this.btnPlayAgain.isVisible = isGhost;
-/*
+   this.btnPlayAgain.isVisible = isGhost;
+
   this.removeExpiredRequestButtons();
   this.btn1v1.isVisible = !isGhost && show1v1Button;
   if (this.btn1v1.isVisible) {
