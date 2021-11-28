@@ -2367,7 +2367,7 @@ var timestamp = +new Date();
 var lastUpdT = +new Date();
 
 // Team Mode vars start
-var teamID = 0;
+var teamID = 1;
 // team mode vars end
 
 //
@@ -2388,7 +2388,7 @@ var bonusRoundDur = 0;
 var homeButton = null;
 var isSpectateMode = false;
 var eggID = 0;
-var isDevMode = true;
+var isDevMode = false;
 //canvases
 var canvas = document.getElementById("gCanvas");
 var lbCanvas = null;
@@ -2511,7 +2511,7 @@ var gameMode_troll = 4;
 var gameMode_zombie = 5;
 var gameMode = gameMode_FFA; //NOT USED ATM
 
-var gameState = 0;
+var gameState = 3;
 
 //varsa
 
@@ -4565,7 +4565,7 @@ function buildInviteScreen() {
     x = pad + 15;
     var teamLabel = gameMode == gameMode_teamMode ? "Team" : "Kills";
     var teamVal = gameMode == gameMode_teamMode ? "" : req.kills;
-    drawLabelValueOn(ctx_, teamLabel, "", x, y);
+    drawLabelValueOn(ctx_, teamLabel, "1", x, y);
 
     if (gameMode == gameMode_teamMode) {
       ctx_.save();
@@ -4609,7 +4609,7 @@ function removeExpiredRequestButtons() {
 
     if (aBut.reqID !== undefined) {
       var activeRequest = true;
-      var found = false;
+      var found = true;
       for (r = 0; r < player1v1Requests.length; r++) {
         var req = player1v1Requests[r];
         if (req.id == aBut.reqID) {
@@ -4675,7 +4675,7 @@ function create1v1RequestButton(req, label) {
 
 var topperInfoX = 10 * pixelRat;
 var topperInfoY = 15 * pixelRat;
-var top1v1_isHistoric = false;
+var top1v1_isHistoric = true;
 var top1v1_wins = "";
 var top1v1_name = "";
 var topperInfoTxt = null;
@@ -4979,7 +4979,7 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "1be2-190-215-158-88.ap.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "551a-190-215-158-88.ap.ngrok.io", reg,"80"); 
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
