@@ -4186,17 +4186,17 @@ function interface_onXPAmountUpdate(newAmount, oldAmount) {
 }
 
 function drawLeaderboard() {
-  // if (gameMode != gameMode_teamMode)
-  //   if (lbCanvas && serverCon_aliveInAGame) {
-  //     lbCanvas.width &&
-  //       ctx.drawImage(
-  //         lbCanvas,
-  //         10 * pixelRat,
-  //         28 * pixelRat,
-  //         lbCanvas.width * interfS,
-  //         lbCanvas.height * interfS
-  //       );
-  //   }
+   if (gameMode != gameMode_teamMode)
+     if (lbCanvas && serverCon_aliveInAGame) {
+       lbCanvas.width &&
+         ctx.drawImage(
+           lbCanvas,
+           10 * pixelRat,
+           28 * pixelRat,
+           lbCanvas.width * interfS,
+           lbCanvas.height * interfS
+         );
+     }
 
   if (_gameMode != null) _gameMode.drawLeaderboard();
 }
@@ -4979,7 +4979,7 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "190-215-158-88.ap.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "551a-190-215-158-88.ap.ngrok.io", reg,"80"); 
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
@@ -12856,11 +12856,11 @@ idealOp = this.transparancy / 100;
   )
     if (gameMode == gameMode_teamMode && this.teamID != 0) {
       var teamColor = _gameMode.teamColors[this.teamID];
-      /*
+      
     if (this.teamID == 1) teamColor = "#ff0000";
     else if (this.teamID == 2) teamColor = "#00ff00";
     else if (this.teamID == 3) teamColor = "#0000ff";
-    */
+    
       ctx.save();
       ctx.globalAlpha = idealOp;
       drawCircle(0, 0, this.rad + 2, teamColor);
