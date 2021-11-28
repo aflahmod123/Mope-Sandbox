@@ -4413,7 +4413,7 @@ function create1v1Button() {
     } else {
       if (btn1v1 != null) {
         btn1v1.isVisible = show1v1Button;
-        if (btn1v1.isVisible) btn1v1.clicked = false;
+        if (btn1v1.isVisible) btn1v1.clicked = true;
         btn1v1.draw();
       }
     }
@@ -4464,7 +4464,8 @@ var displayWinsGoals = 0;
 var inviteScreenCanvas = null;
 var inviteScreenPos = 0;
 function buildInviteScreen() {
-  /* player1v1Requests = [];
+  /*
+  layer1v1Requests = [];
   for (i = 0; i < 1; i++) {
     var id = i;
     var fromPlayer = "test " + (i + 1);
