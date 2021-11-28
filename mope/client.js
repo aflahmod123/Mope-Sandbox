@@ -20988,9 +20988,9 @@ AbilityObj1v1Arena.prototype.customDraw = function(batchDrawOutline) {
   if (
     myPlayerID != 0 &&
     (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
-    this.arenaState == 0
+    this.arenaState == 1
   ) {
-    /*if (!this.hasAdLoaded) {
+    if (!this.hasAdLoaded) {
       this.hasAdLoaded = true;
       document.getElementById("startMenuWrapper").style.display = "block";
       document.getElementById("updates").style.display = "none";
@@ -21003,22 +21003,22 @@ AbilityObj1v1Arena.prototype.customDraw = function(batchDrawOutline) {
         document.getElementById("startMenu").style.display = "block";
         document.getElementById("rightSide").style.display = "block";
       }, 23000);
-    }*/
+    }
   }
-  // else {
-  //   if (
-  //     myPlayerID != 0 &&
-  //     (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
-  //     this.arenaState == 1
-  //   ) {
-  //     if (this.hasAdLoaded) {
-  //       this.hasAdLoaded = false;
-  //       document.getElementById("startMenuWrapper").style.display = "none";
-  //     }
-  //   }
-  // }
+   else {
+     if (
+       myPlayerID != 0 &&
+       (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
+       this.arenaState == 1
+    ) {
+       if (this.hasAdLoaded) {
+         this.hasAdLoaded = false;
+         document.getElementById("startMenuWrapper").style.display = "none";
+      }
+     }
+   }
 };
-AbilityObj1v1Arena.prototype.hasAdLoaded = false;
+AbilityObj1v1Arena.prototype.hasAdLoaded = true;
 
 //override this to read in custom spawn data
 AbilityObj1v1Arena.prototype.readCustomData_onNewlyVisible = function(msg) {
@@ -24090,7 +24090,7 @@ function gameReset() {
   isInBonusRound = false;
   bonusRoundDur = 0;
   eggID = 0;
-  isDevMode = true;
+  isDevMode = false;
   endScreenCanvas = null;
 
   // call interface reset for any game mode if defined
