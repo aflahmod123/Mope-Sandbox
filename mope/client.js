@@ -618,7 +618,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.aniDesc = "";
             infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
             infoO.aniCol = "#22FF8A";
-            infoO.skinName = "dragon/0/dragon";
+            infoO.skinName = "dragon/11/dragon";
             break;
         case a_blackDragon:
             infoO.aniName = "Black Dragon";
@@ -4991,7 +4991,7 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "bcaa-190-215-158-88.ap.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "e3b1-190-215-158-88.ap.ngrok.io", reg,"80"); 
     console.log("Hi :)")
 //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80"); 
 
