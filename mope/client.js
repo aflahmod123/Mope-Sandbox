@@ -656,7 +656,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
         infoO.aniName +
         "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
       infoO.aniCol = "#22FF8A";
-      infoO.skinName = "dragon/11/dragon";
+      infoO.skinName = "dragon/0/dragon";
       break;
     case a_blackDragon:
       infoO.aniName = "Black Dragon";
