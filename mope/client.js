@@ -5098,6 +5098,7 @@ if (KTestingModeON) {
   } else {
     addServerDef("Local Test 1", "127.0.0.1", reg, "80");
     console.log("Hi :)");
+    console.log(":v");
     //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80");
 
     //reg = "FFA";
