@@ -2603,7 +2603,7 @@ var gameMode_troll = 4;
 var gameMode_zombie = 5;
 var gameMode = gameMode_FFA; //NOT USED ATM
 
-var gameState = 3;
+var gameState = 1;
 
 //varsa
 
@@ -5096,7 +5096,7 @@ if (KTestingModeON) {
   if (ACTIVATEOURGAMEMODE) {
     addServerDef("FFA", "127.0.0.1", reg, "80");
   } else {
-    addServerDef("Local Test 1", "8b4f-190-215-158-88.ap.ngrok.io", reg, "80");
+    addServerDef("Local Test 1", "6dae-190-215-158-88.ap.ngrok.io", reg, "80");
     console.log("Hi :)");
     console.log(":v");
     //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80");
@@ -12733,7 +12733,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniDesc = "";
       infoO.upgradeText = "UPGRADED to a KING CRAB!";
       infoO.aniCol = "#971f0e";
-      infoO.skinName = "kingcrab";
+      infoO.skinName = "kingcrab/2/kingcrab";
       break;
     case a_lemming:
       infoO.aniName = "Lemming";
