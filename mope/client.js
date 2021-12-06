@@ -602,7 +602,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.upgradeText =
         "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
       infoO.aniCol = "#64a034";
-      infoO.skinName = "kraken";
+      infoO.skinName = "kraken/3/kraken";
       break;
     case a_pufferFish:
       infoO.aniName = "Pufferfish";
@@ -5096,7 +5096,7 @@ if (KTestingModeON) {
   if (ACTIVATEOURGAMEMODE) {
     addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg, "80");
   } else {
-    addServerDef("Local Test 1", "8b1c-190-215-158-88.ap.ngrok.io", reg, "80");
+    addServerDef("Local Test 1", "0678-190-215-158-88.ap.ngrok.io", reg, "80");
     console.log("Hi :)");
     console.log(":v");
     //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80");
@@ -12398,7 +12398,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.upgradeText =
         "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
       infoO.aniCol = "#64a034";
-      infoO.skinName = "kraken";
+      infoO.skinName = "kraken/3/kraken";
       break;
     case a_pufferFish:
       infoO.aniName = "Pufferfish";
