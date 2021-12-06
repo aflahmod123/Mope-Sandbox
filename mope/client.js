@@ -4659,8 +4659,8 @@ function buildInviteScreen() {
     y
   );
 
-  //screenPos -= boardLength / 2;
-  // screenPos += 40;
+  screenPos -= boardLength / 2;
+   screenPos += 40;
   screenPos = 100;
   var btnY = 0;
   for (r = 0; r < player1v1Requests.length; r++) {
