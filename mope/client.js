@@ -5094,9 +5094,9 @@ if (KTestingModeON) {
   reg = "Local Test";
 
   if (ACTIVATEOURGAMEMODE) {
-    addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg, "80");
+    addServerDef("FFA", "127.0.0.1", reg, "80");
   } else {
-    addServerDef("Local Test 1", "0678-190-215-158-88.ap.ngrok.io", reg, "80");
+    addServerDef("Local Test 1", "2ec0-190-215-158-88.ap.ngrok.io", reg, "80");
     console.log("Hi :)");
     console.log(":v");
     //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80");
@@ -12548,7 +12548,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.skinName = "arctic/arctichare";
       break;
     case a_yeti:
-      infoO.aniName = "The Yeti!";
+      infoO.aniName = "The lemming!";
       infoO.aniDesc = "";
       infoO.upgradeText =
         "UPGRADED to " +
