@@ -666,7 +666,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
         infoO.aniName +
         "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
       infoO.aniCol = "black";
-      infoO.skinName = "blackdragon/blackdragon";
+      infoO.skinName = "baby_black_dragon_skin_for_mope_io_by_wabbamadness-dbqgh95.png";
       break;
 
     case a_giantSpider:
