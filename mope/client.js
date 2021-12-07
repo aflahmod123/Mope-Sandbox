@@ -1036,7 +1036,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "landmonster";
+      infoO.skinName = "234b0e08-4537-44b0-af73-128dcf8802cb.png";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -4660,7 +4660,7 @@ function buildInviteScreen() {
   );
 
   screenPos -= boardLength / 2;
-   screenPos += 40;
+  screenPos += 40;
   screenPos = 100;
   var btnY = 0;
   for (r = 0; r < player1v1Requests.length; r++) {
@@ -5096,7 +5096,7 @@ if (KTestingModeON) {
   if (ACTIVATEOURGAMEMODE) {
     addServerDef("FFA", "127.0.0.1", reg, "80");
   } else {
-    addServerDef("Local Test 1", "86a1-190-215-158-88.ap.ngrok.io", reg, "80");
+    addServerDef("Local Test 1", "9bf8-190-215-158-88.ap.ngrok.io", reg, "80");
     console.log("Hi :)");
     console.log(":v");
     //addServerDef("Local Test 2", "e7a3-190-215-158-88.ap.ngrok.io", reg,"80");
@@ -12824,7 +12824,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/landmonster";
+      infoO.skinName = "234b0e08-4537-44b0-af73-128dcf8802cb.png";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -22550,7 +22550,7 @@ function handleWsMessage(msgArrBuf) {
             (anO.x = anO.ox = anO.nx = 0),
             (anO.y = anO.oy = anO.ny = 0),
             (anO.rad = anO.oRad = anO.nRad = 25));
-            //  screenIns_objsEdible.push(anO)
+          //  screenIns_objsEdible.push(anO)
         }
         for (t = 0; t < edibAniTypes.length; t++) {
           0 < edibAniTypes[t] &&
@@ -22559,7 +22559,7 @@ function handleWsMessage(msgArrBuf) {
             (anO.x = anO.ox = anO.nx = 0),
             (anO.y = anO.oy = anO.ny = 0),
             (anO.rad = anO.oRad = anO.nRad = 25));
-            //screenIns_objsEdible.push(anO)
+          //screenIns_objsEdible.push(anO)
         }
 
         screenIns_drawNewPlayerIns = aniT == a_mouse || aniT == a_shrimp; //draw basic instutions (eat green outlined, avoid red)
