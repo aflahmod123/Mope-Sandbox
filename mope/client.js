@@ -1036,7 +1036,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "234b0e08-4537-44b0-af73-128dcf8802cb.png";
+      infoO.skinName = "monsters/superland";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -12824,7 +12824,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "234b0e08-4537-44b0-af73-128dcf8802cb.png";
+      infoO.skinName = "mope/skins/monsters/superland";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -12836,7 +12836,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "dinomonster";
+      infoO.skinName = "mope/skins/monsters/dinomonster/51iz1whcv6t41.png";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
