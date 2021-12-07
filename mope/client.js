@@ -5096,7 +5096,7 @@ if (KTestingModeON) {
   if (ACTIVATEOURGAMEMODE) {
     addServerDef("FFA", "127.0.0.1", reg, "80");
   } else {
-    addServerDef("Local Test 1", "5245-190-215-158-88.ap.ngrok.io", reg, "80");
+    addServerDef("Local Test 1", "24e4-190-215-158-88.ap.ngrok.io", reg, "80");
     console.log("Hi :)");
     console.log(":v");
     addServerDef("Local Test 2", "127.0.0.1", reg,"80");
@@ -12824,7 +12824,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "mope/skins/monsters/superland";
+      infoO.skinName = "monsters/superland";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -12836,7 +12836,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "dinomonster";
+      infoO.skinName = "monsters/dinomonster/dinomonster3";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
