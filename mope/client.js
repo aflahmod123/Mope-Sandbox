@@ -5099,7 +5099,7 @@ if (KTestingModeON) {
     addServerDef("Local Test 1", "ace2-190-215-158-88.ap.ngrok.io", reg, "80");
     console.log("Hi :)");
     console.log(":v");
-    addServerDef("Local Test 2", "f27f-190-215-158-88.eu.ngrok.io", reg,"80");
+    //addServerDef("Local Test 2", "f27f-190-215-158-88.eu.ngrok.io", reg,"80");
 
     //reg = "FFA";
     //  addServerDef("FFA", "146.148.81.224", reg);
