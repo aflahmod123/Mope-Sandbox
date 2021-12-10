@@ -12734,7 +12734,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniDesc = "";
       infoO.upgradeText = "UPGRADED to a KING CRAB!";
       infoO.aniCol = "#971f0e";
-      infoO.skinName = "kingcrab/2/kingcrab";
+      infoO.skinName = "kingcrab/0/kingcrab";
       break;
     case a_lemming:
       infoO.aniName = "Lemming";
