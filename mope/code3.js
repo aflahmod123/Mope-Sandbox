@@ -22,7 +22,6 @@ console.log("\n\n\n");
 
 //import all js files (correct order matters if using global, lower lvl files first! Eg. GameObj before GameObjBerry)
 
-
 ///////
 // file: js_src/gameobj/GameObjType.js
 ///////
@@ -208,7 +207,6 @@ var GameObjType = {
 
 //window.GameObjType=GameObjType;
 
-
 ///////
 // file: js_src/gameobj/animal/AnimalType.js
 ///////
@@ -289,574 +287,661 @@ var a_mouse = 1,
   a_pigeon = 74,
   a_toucan = 75;
 
+var infoForAnimalType = function(aniT) {
+  var infoO = {};
+  switch (aniT) {
+    case a_snail:
+      infoO.aniName = "Snail";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "You're a super slow snail!";
 
-var infoForAnimalType = function (aniT) {
-    var infoO = {};
-    switch (aniT) {
-        case a_snail:
-            infoO.aniName = "Snail";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "You're a super slow snail!";
+      infoO.aniCol = "#fcc02b";
+      infoO.skinName = "snail";
+      break;
+    case a_mouse:
+      infoO.aniName = "Mouse";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "";
 
-            infoO.aniCol = "#fcc02b";
-            infoO.skinName = "snail";
-            break;
-        case a_mouse:
-            infoO.aniName = "Mouse";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "";
+      infoO.aniCol = "#9BA9B9";
+      infoO.skinName = "mouse";
+      break;
+    case a_rabbit:
+      infoO.aniName = "Rabbit";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
+      infoO.aniCol = "#AA937E";
+      infoO.skinName = "rabbit";
+      break;
+    case a_pig:
+      infoO.aniName = "Pig";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to PIG!\n Pigs move FAST through MUD! (Can use 'stink' on mud/ hiding holes!)";
+      infoO.aniCol = "#DD6BD4";
+      infoO.skinName = "pig";
+      break;
+    case a_fox:
+      infoO.aniName = "Fox";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to FOX! ,\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
+      infoO.aniCol = "#FF9D43";
+      infoO.skinName = "fox";
+      break;
+    case a_deer:
+      infoO.aniName = "Deer";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to DEER! \nPress W to dig up food! \nDig in mud for better food!\n Hint:Check water areas for new food sources!";
+      infoO.aniCol = "#C4773E";
+      infoO.skinName = "deer";
+      break;
+    case a_mole:
+      infoO.aniName = "Mole";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to MOLE!\n Hold W to dig underground!\nGo under anything, do surprise attacks!";
+      infoO.aniCol = "#4C4A45";
+      infoO.skinName = "mole";
+      break;
+    case a_zebra:
+      infoO.aniName = "Zebra";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to ZEBRA! \nPress W to kick side ways!";
+      infoO.aniCol = "#FFFFFF";
+      infoO.skinName = "zebra";
+      break;
+    case a_lion:
+      infoO.aniName = "Lion";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to LION!\n Press W to release a mighty ROAR (Rawr!)!";
+      infoO.aniCol = "#f8c923";
+      infoO.skinName = "lion";
+      break;
 
-            infoO.aniCol = "#9BA9B9";
-            infoO.skinName = "mouse";
-            break;
-        case a_rabbit:
-            infoO.aniName = "Rabbit";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
-            infoO.aniCol = "#AA937E";
-            infoO.skinName = "rabbit";
-            break;
-        case a_pig:
-            infoO.aniName = "Pig";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to PIG!\n Pigs move FAST through MUD! (Can use 'stink' on mud/ hiding holes!)";
-            infoO.aniCol = "#DD6BD4";
-            infoO.skinName = "pig";
-            break;
-        case a_fox:
-            infoO.aniName = "Fox";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to FOX! ,\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
-            infoO.aniCol = "#FF9D43";
-            infoO.skinName = "fox";
-            break;
-        case a_deer:
-            infoO.aniName = "Deer";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to DEER! \nPress W to dig up food! \nDig in mud for better food!\n Hint:Check water areas for new food sources!";
-            infoO.aniCol = "#C4773E";
-            infoO.skinName = "deer";
-            break;
-        case a_mole:
-            infoO.aniName = "Mole";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to MOLE!\n Hold W to dig underground!\nGo under anything, do surprise attacks!";
-            infoO.aniCol = "#4C4A45";
-            infoO.skinName = "mole";
-            break;
-        case a_zebra:
-            infoO.aniName = "Zebra";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to ZEBRA! \nPress W to kick side ways!";
-            infoO.aniCol = "#FFFFFF";
-            infoO.skinName = "zebra";
-            break;
-        case a_lion:
-            infoO.aniName = "Lion";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to LION!\n Press W to release a mighty ROAR (Rawr!)!";
-            infoO.aniCol = "#f8c923";
-            infoO.skinName = "lion";
-            break;
+    case a_bigCat:
+      infoO.aniName = "CHEETAH";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to CHEETAH!\n Press W to get a speed boost! (Every 8 seconds)!";
+      infoO.aniCol = "#CAC05B";
+      infoO.skinName = "bigcat/cheetah";
+      break;
+    case a_bear:
+      infoO.aniName = "Bear";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to BEAR!\n Bears climb through green hills! (Press W to use your claw!)";
+      infoO.aniCol = "#99591C";
+      infoO.skinName = "bear";
+      break;
+    case a_croc:
+      infoO.aniName = "Croc";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to CROCODILE!\n Press W to bite and drag around animals! \n+ (Now hide in water spots)+ Swim well in Mud, Lakes & Oceans!";
+      infoO.aniCol = "#30F51C";
+      infoO.skinName = "croc";
+      break;
+    case a_hippo:
+      infoO.aniName = "Hippo";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to HIPPO!\nHippos are great swimmers, dominate the Lakes/Oceans/Mud!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "hippo";
+      break;
+    case a_rhino:
+      infoO.aniName = "Rhino";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to RHINO!\n Press W to CHARGE with your mighty horn!";
+      infoO.aniCol = "#94a3a9";
+      infoO.skinName = "rhino";
+      break;
+    case a_shrimp:
+      infoO.aniName = "Shrimp";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "";
+      infoO.aniCol = "#f88e37";
+      infoO.skinName = "shrimp";
+      break;
+    case a_trout:
+      infoO.aniName = "Trout";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to TROUT!\nHint: Hold Left-click to RUN! (Uses extra water)";
+      infoO.aniCol = "#ac8686";
+      infoO.skinName = "trout";
+      break;
+    case a_crab:
+      infoO.aniName = "Crab";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to CRAB!\n Crabs can survive on dry land!\n (On land, Press W to go into your shell!)";
+      infoO.aniCol = "#bf2408";
+      infoO.skinName = "crab";
+      break;
+    case a_squid:
+      infoO.aniName = "Squid";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to SQUID!\n Squids can use INK when injured (press W!) \n+ you can hide in plankton bushes!";
+      infoO.aniCol = "#40dda4";
+      infoO.skinName = "squid";
+      break;
+    case a_shark:
+      infoO.aniName = "Shark";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to SHARK!\n A vicious predator of the oceans!";
+      infoO.aniCol = "#999fc6";
+      infoO.skinName = "shark";
+      break;
+    case a_seaHorse:
+      infoO.aniName = "Sea-horse";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to SEA HORSE!\n An agile hunter!";
+      infoO.aniCol = "#73BE2F";
+      infoO.skinName = "seahorse";
+      break;
+    case a_jellyFish:
+      infoO.aniName = "Jellyfish";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to JELLYFISH!\n A slowly-turning animal that can grow quite large!";
+      infoO.aniCol = "#FDB9BA";
+      infoO.skinName = "jellyfish";
+      break;
+    case a_turtle:
+      infoO.aniName = "Turtle";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to TURTLE!\n Lives well on land & water! (On land, Press W to go into your shell!)";
+      infoO.aniCol = "#502E1A";
+      infoO.skinName = "turtle";
+      break;
+    case a_stingray:
+      infoO.aniName = "Stringray";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to STINGRAY!\n Use electic shock (Release W key!) to shock animals! \n(Takes time to recharge)";
+      infoO.aniCol = "#164336";
+      infoO.skinName = "stingray";
+      break;
+    case a_kraken:
+      infoO.aniName = "The Kraken";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
+      infoO.aniCol = "#64a034";
+      infoO.skinName = "kraken";
+      break;
+    case a_pufferFish:
+      infoO.aniName = "Pufferfish";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to PUFFERFISH!\n (Hold W to inflate- become spiky, and dangerous to touch!)";
+      infoO.aniCol = "#6C5C2C";
+      infoO.skinName = "pufferfish";
+      break;
+    case a_killerWhale:
+      infoO.aniName = "Killer Whale";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Killer Whale! \nWhales blow out water when diving! (And sometimes other loot!)";
+      infoO.aniCol = "#141414";
+      infoO.skinName = "killerwhale";
+      break;
+    case a_swordfish:
+      infoO.aniName = "Swordfish";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n (Press W to rush with your sharp nose!)";
+      infoO.aniCol = "#689CD7";
+      infoO.skinName = "swordfish";
+      break;
+    case a_gorilla:
+      infoO.aniName = "Gorilla";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Gorillas are very fast on hills/trees!\n Press W to throw bananas! (from trees)";
+      infoO.aniCol = "#323232";
+      infoO.skinName = "gorilla";
+      break;
+    case a_octopus:
+      infoO.aniName = "Octopus";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Octopus!\nHold W to use your 'Disguise' ability!\n(Hint: wait for prey to bite you- they get stunned!)";
+      infoO.aniCol = "#ff8340";
+      infoO.skinName = "octopus";
+      break;
+    case a_dragn:
+      infoO.aniName = "Dragon";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
+      infoO.aniCol = "#22FF8A";
+      infoO.skinName = "dragon";
+      break;
+    case a_blackDragon:
+      infoO.aniName = "Black Dragon";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+      infoO.aniCol = "black";
+      infoO.skinName = "blackdragon";
+      break;
 
-        case a_bigCat:
-            infoO.aniName = "CHEETAH";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to CHEETAH!\n Press W to get a speed boost! (Every 8 seconds)!";
-            infoO.aniCol = "#CAC05B";
-            infoO.skinName = "bigcat/cheetah";
-            break;
-        case a_bear:
-            infoO.aniName = "Bear";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to BEAR!\n Bears climb through green hills! (Press W to use your claw!)";
-            infoO.aniCol = "#99591C";
-            infoO.skinName = "bear";
-            break;
-        case a_croc:
-            infoO.aniName = "Croc";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to CROCODILE!\n Press W to bite and drag around animals! \n+ (Now hide in water spots)+ Swim well in Mud, Lakes & Oceans!";
-            infoO.aniCol = "#30F51C";
-            infoO.skinName = "croc";
-            break;
-        case a_hippo:
-            infoO.aniName = "Hippo";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to HIPPO!\nHippos are great swimmers, dominate the Lakes/Oceans/Mud!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "hippo";
-            break;
-        case a_rhino:
-            infoO.aniName = "Rhino";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to RHINO!\n Press W to CHARGE with your mighty horn!";
-            infoO.aniCol = "#94a3a9";
-            infoO.skinName = "rhino";
-            break;
-        case a_shrimp:
-            infoO.aniName = "Shrimp";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "";
-            infoO.aniCol = "#f88e37";
-            infoO.skinName = "shrimp";
-            break;
-        case a_trout:
-            infoO.aniName = "Trout";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to TROUT!\nHint: Hold Left-click to RUN! (Uses extra water)";
-            infoO.aniCol = "#ac8686";
-            infoO.skinName = "trout";
-            break;
-        case a_crab:
-            infoO.aniName = "Crab";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to CRAB!\n Crabs can survive on dry land!\n (On land, Press W to go into your shell!)";
-            infoO.aniCol = "#bf2408";
-            infoO.skinName = "crab";
-            break;
-        case a_squid:
-            infoO.aniName = "Squid";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to SQUID!\n Squids can use INK when injured (press W!) \n+ you can hide in plankton bushes!";
-            infoO.aniCol = "#40dda4";
-            infoO.skinName = "squid";
-            break;
-        case a_shark:
-            infoO.aniName = "Shark";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to SHARK!\n A vicious predator of the oceans!";
-            infoO.aniCol = "#999fc6";
-            infoO.skinName = "shark";
-            break;
-        case a_seaHorse:
-            infoO.aniName = "Sea-horse";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to SEA HORSE!\n An agile hunter!";
-            infoO.aniCol = "#73BE2F";
-            infoO.skinName = "seahorse";
-            break;
-        case a_jellyFish:
-            infoO.aniName = "Jellyfish";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to JELLYFISH!\n A slowly-turning animal that can grow quite large!";
-            infoO.aniCol = "#FDB9BA";
-            infoO.skinName = "jellyfish";
-            break;
-        case a_turtle:
-            infoO.aniName = "Turtle";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to TURTLE!\n Lives well on land & water! (On land, Press W to go into your shell!)";
-            infoO.aniCol = "#502E1A";
-            infoO.skinName = "turtle";
-            break;
-        case a_stingray:
-            infoO.aniName = "Stringray";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to STINGRAY!\n Use electic shock (Release W key!) to shock animals! \n(Takes time to recharge)";
-            infoO.aniCol = "#164336";
-            infoO.skinName = "stingray";
-            break;
-        case a_kraken:
-            infoO.aniName = "The Kraken";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
-            infoO.aniCol = "#64a034";
-            infoO.skinName = "kraken";
-            break;
-        case a_pufferFish:
-            infoO.aniName = "Pufferfish";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to PUFFERFISH!\n (Hold W to inflate- become spiky, and dangerous to touch!)";
-            infoO.aniCol = "#6C5C2C";
-            infoO.skinName = "pufferfish";
-            break;
-        case a_killerWhale:
-            infoO.aniName = "Killer Whale";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Killer Whale! \nWhales blow out water when diving! (And sometimes other loot!)";
-            infoO.aniCol = "#141414";
-            infoO.skinName = "killerwhale";
-            break;
-        case a_swordfish:
-            infoO.aniName = "Swordfish";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (Press W to rush with your sharp nose!)";
-            infoO.aniCol = "#689CD7";
-            infoO.skinName = "swordfish";
-            break;
-        case a_gorilla:
-            infoO.aniName = "Gorilla";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Gorillas are very fast on hills/trees!\n Press W to throw bananas! (from trees)";
-            infoO.aniCol = "#323232";
-            infoO.skinName = "gorilla";
-            break;
-        case a_octopus:
-            infoO.aniName = "Octopus";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Octopus!\nHold W to use your 'Disguise' ability!\n(Hint: wait for prey to bite you- they get stunned!)";
-            infoO.aniCol = "#ff8340";
-            infoO.skinName = "octopus";
-            break;
-        case a_dragn:
-            infoO.aniName = "Dragon";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
-            infoO.aniCol = "#22FF8A";
-            infoO.skinName = "dragon";
-            break;
-        case a_blackDragon:
-            infoO.aniName = "Black Dragon";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
-            infoO.aniCol = "black";
-            infoO.skinName = "blackdragon";
-            break;
+    case a_giantSpider:
+      infoO.aniName = "Giant Spider";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Place web around the game to catch prey!";
+      infoO.aniCol = "black";
+      infoO.skinName = "giantSpider";
+      break;
 
-        case a_giantSpider:
-            infoO.aniName = "Giant Spider";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Place web around the game to catch prey!";
-            infoO.aniCol = "black";
-            infoO.skinName = "giantSpider";
-            break;
+    case a_cobra:
+      infoO.aniName = "Cobra";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Hold W to Spit venom, and poison animals with your bite!";
+      infoO.aniCol = "black";
+      infoO.skinName = "cobra";
+      break;
 
-        case a_cobra:
-            infoO.aniName = "Cobra";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Hold W to Spit venom, and poison animals with your bite!";
-            infoO.aniCol = "black";
-            infoO.skinName = "cobra";
-            break;
+    case a_boaConstrictor:
+      infoO.aniName = "Boa Constrictor";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Coil and suffocate other animals!";
+      infoO.aniCol = "black";
+      infoO.skinName = "boaConstrictor";
+      break;
 
-        case a_boaConstrictor:
-            infoO.aniName = "Boa Constrictor";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Coil and suffocate other animals!";
-            infoO.aniCol = "black";
-            infoO.skinName = "boaConstrictor";
-            break;
+    case a_trex:
+      infoO.aniName = "T-REX";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
+      infoO.aniCol = "#862A2A";
+      infoO.skinName = "trex";
+      break;
+    case a_tiger:
+      infoO.aniName = "Tiger";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Tiger!\n Tigers can launch an ambush attack (HOLD W to grow a bush) Release to attack!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "tiger";
+      break;
 
-        case a_trex:
-            infoO.aniName = "T-REX";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
-            infoO.aniCol = "#862A2A";
-            infoO.skinName = "trex";
-            break;
-        case a_tiger:
-            infoO.aniName = "Tiger";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Tiger!\n Tigers can launch an ambush attack (HOLD W to grow a bush) Release to attack!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "tiger";
-            break;
+    case a_giraffe:
+      infoO.aniName = "Giraffe";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Giraffe!\nGiraffe have huge legs and stomp anyone in their way!";
+      infoO.aniCol = "#E9BD23";
+      infoO.skinName = "giraffe";
+      break;
 
-        case a_giraffe:
-            infoO.aniName = "Giraffe";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Giraffe!\nGiraffe have huge legs and stomp anyone in their way!";
-            infoO.aniCol = "#E9BD23";
-            infoO.skinName = "giraffe";
-            break;
+    case a_eagle:
+      infoO.aniName = "Eagle";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Eagle!\nEagles can fly up other animals in the air! !\n";
+      infoO.aniCol = "#5b400d";
+      infoO.skinName = "eagle";
+      break;
 
+    case a_arcticFox:
+      infoO.aniName = "Arctic Fox";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
+      infoO.aniCol = "#CFCFCF";
+      infoO.skinName = "arctic/arcticfox";
+      break;
+    case a_arcticHare:
+      infoO.aniName = "Arctic Hare";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n \nPress W to burrow a hole to hide in!";
+      infoO.aniCol = "#D5D5D5";
+      infoO.skinName = "arctic/arctichare";
+      break;
+    case a_yeti:
+      infoO.aniName = "The Yeti!";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
+      infoO.aniCol = "#839eb5";
+      infoO.skinName = "arctic/yeti";
+      break;
+    case a_chipmunk:
+      infoO.aniName = "Chipmunk";
+      infoO.aniDesc = "";
+      infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
+      infoO.aniCol = "#A77C30";
+      infoO.skinName = "arctic/chipmunk";
+      break;
 
-        case a_eagle:
-            infoO.aniName = "Eagle";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Eagle!\nEagles can fly up other animals in the air! !\n";
-            infoO.aniCol = "#5b400d";
-            infoO.skinName = "eagle";
-            break;
+    case a_muskox:
+      infoO.aniName = "Muskox";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to charge with your horns! \nPlus move decently on ice!";
+      infoO.aniCol = "#231f18";
+      infoO.skinName = "arctic/muskox";
+      break;
+    case a_penguin:
+      infoO.aniName = "Penguin";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Left-click to run!\n (HOLD W to slide FAST on ice)!";
+      infoO.aniCol = "#FFFFFF";
+      infoO.skinName = "arctic/penguin";
+      break;
+    case a_polarBear:
+      infoO.aniName = "Polar Bear";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Polar bears can climb hills! \n+ They're amazing swimmers!";
+      infoO.aniCol = "#e4e4e4";
+      infoO.skinName = "arctic/polarbear";
+      break;
+    case a_seal:
+      infoO.aniName = "Seal";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Seals can slide on ice (Hold W) + can climb hills (rocks too!)";
+      infoO.aniCol = "#cfcfcf";
+      infoO.skinName = "arctic/seal";
+      break;
+    case a_snowLeopard:
+      infoO.aniName = "Snow leopard";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to get a speed boost! (Every 8 seconds)!";
+      infoO.aniCol = "#cfcfcf";
+      infoO.skinName = "arctic/snowleopard";
+      break;
+    case a_walrus:
+      infoO.aniName = "Walrus";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n You can slide on ice (Hold W) + can climb hills (rocks too!)";
+      infoO.aniCol = "#633838";
+      infoO.skinName = "arctic/walrus";
+      break;
+    case a_reindeer:
+      infoO.aniName = "Reindeer";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to dig up food! \n Your sharp hooves let you turn very well on ice!";
+      infoO.aniCol = "#a68976";
+      infoO.skinName = "arctic/reindeer";
+      break;
+    case a_wolf:
+      infoO.aniName = "Wolf";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Wolf paws turn very well on ice!\n Press W to howl!";
+      infoO.aniCol = "#6B6B6B";
+      infoO.skinName = "arctic/wolf";
+      break;
+    case a_wolverine:
+      infoO.aniName = "Wolverine";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to Let out a Powerful GROWL! (Knocks back prey!)";
+      infoO.aniCol = "#843A0F";
+      infoO.skinName = "arctic/wolverine";
+      break;
+    case a_mammoth:
+      infoO.aniName = "Mammoth";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to roll snowballs with your trunk!\n The bigger the snowball gets, the longer the freeze!";
+      infoO.aniCol = "#9d4717";
+      infoO.skinName = "arctic/mammoth";
+      break;
+    case a_donkey:
+      infoO.aniName = "Donkey";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to Kick any animal behind you";
+      infoO.aniCol = "#8c7c64";
+      infoO.skinName = "donkey";
+      break;
+    /* NEW ANIMALS */
+    case a_sabertoothTiger:
+      infoO.aniName = "Sabertooth Tiger";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Sabertooth Tiger!\nSabertooth Tigers are great swimmers, dominate the Lakes/Oceans/Mud!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "sabertoothtiger";
+      break;
+    case a_elephant:
+      infoO.aniName = "Elephant";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Use your long trunk to attack and eat food!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "elephant";
+      break;
 
-        case a_arcticFox:
-            infoO.aniName = "Arctic Fox";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
-            infoO.aniCol = "#CFCFCF";
-            infoO.skinName = "arctic/arcticfox";
-            break;
-        case a_arcticHare:
-            infoO.aniName = "Arctic Hare";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n \nPress W to burrow a hole to hide in!";
-            infoO.aniCol = "#D5D5D5";
-            infoO.skinName = "arctic/arctichare";
-            break;
-        case a_yeti:
-            infoO.aniName = "The Yeti!";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
-            infoO.aniCol = "#839eb5";
-            infoO.skinName = "arctic/yeti";
-            break;
-        case a_chipmunk:
-            infoO.aniName = "Chipmunk";
-            infoO.aniDesc = "";
-            infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
-            infoO.aniCol = "#A77C30";
-            infoO.skinName = "arctic/chipmunk";
-            break;
+    case a_blueWhale:
+      infoO.aniName = "Blue Whale";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Blue Whale!\n Smash with your powerful tail!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "bluewhale";
+      break;
 
-        case a_muskox:
-            infoO.aniName = "Muskox";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to charge with your horns! \nPlus move decently on ice!";
-            infoO.aniCol = "#231f18";
-            infoO.skinName = "arctic/muskox";
-            break;
-        case a_penguin:
-            infoO.aniName = "Penguin";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Left-click to run!\n (HOLD W to slide FAST on ice)!";
-            infoO.aniCol = "#FFFFFF";
-            infoO.skinName = "arctic/penguin";
-            break;
-        case a_polarBear:
-            infoO.aniName = "Polar Bear";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Polar bears can climb hills! \n+ They're amazing swimmers!";
-            infoO.aniCol = "#e4e4e4";
-            infoO.skinName = "arctic/polarbear";
-            break;
-        case a_seal:
-            infoO.aniName = "Seal";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Seals can slide on ice (Hold W) + can climb hills (rocks too!)";
-            infoO.aniCol = "#cfcfcf";
-            infoO.skinName = "arctic/seal";
-            break;
-        case a_snowLeopard:
-            infoO.aniName = "Snow leopard";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to get a speed boost! (Every 8 seconds)!";
-            infoO.aniCol = "#cfcfcf";
-            infoO.skinName = "arctic/snowleopard";
-            break;
-        case a_walrus:
-            infoO.aniName = "Walrus";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n You can slide on ice (Hold W) + can climb hills (rocks too!)";
-            infoO.aniCol = "#633838";
-            infoO.skinName = "arctic/walrus";
-            break;
-        case a_reindeer:
-            infoO.aniName = "Reindeer";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to dig up food! \n Your sharp hooves let you turn very well on ice!";
-            infoO.aniCol = "#a68976";
-            infoO.skinName = "arctic/reindeer";
-            break;
-        case a_wolf:
-            infoO.aniName = "Wolf";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Wolf paws turn very well on ice!\n Press W to howl!";
-            infoO.aniCol = "#6B6B6B";
-            infoO.skinName = "arctic/wolf";
-            break;
-        case a_wolverine:
-            infoO.aniName = "Wolverine";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to Let out a Powerful GROWL! (Knocks back prey!)";
-            infoO.aniCol = "#843A0F";
-            infoO.skinName = "arctic/wolverine";
-            break;
-        case a_mammoth:
-            infoO.aniName = "Mammoth";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to roll snowballs with your trunk!\n The bigger the snowball gets, the longer the freeze!";
-            infoO.aniCol = "#9d4717";
-            infoO.skinName = "arctic/mammoth";
-            break;
-        case a_donkey:
-            infoO.aniName = "Donkey";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to Kick any animal behind you";
-            infoO.aniCol = "#8c7c64";
-            infoO.skinName = "donkey";
-            break;
-            /* NEW ANIMALS */
-        case a_sabertoothTiger:
-            infoO.aniName = "Sabertooth Tiger";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Sabertooth Tiger!\nSabertooth Tigers are great swimmers, dominate the Lakes/Oceans/Mud!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "sabertoothtiger";
-            break;
-        case a_elephant:
-            infoO.aniName = "Elephant";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Use your long trunk to attack and eat food!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "elephant";
-            break;
+    // case a_duck:
+    //     infoO.aniName = "Duck";
+    //     infoO.aniDesc = "";
+    //     infoO.upgradeText = "UPGRADED to a DUCK!";
+    //     infoO.aniCol = "#FF9000";
+    //     infoO.skinName = "duck";
+    //     break;
+    case a_duckling:
+      infoO.aniName = "Duckling";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to a DUCK!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "duck/duckling";
+      break;
 
-        case a_blueWhale:
-            infoO.aniName = "Blue Whale";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Blue Whale!\n Smash with your powerful tail!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "bluewhale";
-            break;
+    case a_hedgehog:
+      infoO.aniName = "Hedgehog";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Hedgehog!\n (Hold W to become spiky, and dangerous to touch!)";
+      infoO.aniCol = "#5b400d";
+      infoO.skinName = "hedgehog";
+      break;
 
-        // case a_duck:
-        //     infoO.aniName = "Duck";
-        //     infoO.aniDesc = "";
-        //     infoO.upgradeText = "UPGRADED to a DUCK!";
-        //     infoO.aniCol = "#FF9000";
-        //     infoO.skinName = "duck";
-        //     break;
-        case a_duckling:
-            infoO.aniName = "Duckling";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to a DUCK!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "duck/duckling";
-            break;
+    case a_kingCrab:
+      infoO.aniName = "King Crab";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to a KING CRAB!";
+      infoO.aniCol = "#971f0e";
+      infoO.skinName = "kingcrab";
+      break;
+    case a_lemming:
+      infoO.aniName = "Lemming";
+      infoO.aniDesc = "";
+      infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
+      infoO.aniCol = "#A77C30";
+      infoO.skinName = "arctic/lemming";
+      break;
 
-        case a_hedgehog:
-            infoO.aniName = "Hedgehog";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Hedgehog!\n (Hold W to become spiky, and dangerous to touch!)";
-            infoO.aniCol = "#5b400d";
-            infoO.skinName = "hedgehog";
-            break;
+    case a_frog:
+      infoO.aniName = "Frog";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to Frog!!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "frog/frog";
 
+      break;
 
-        case a_kingCrab:
-            infoO.aniName = "King Crab";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to a KING CRAB!";
-            infoO.aniCol = "#971f0e";
-            infoO.skinName = "kingcrab";
-            break;
-        case a_lemming:
-            infoO.aniName = "Lemming";
-            infoO.aniDesc = "";
-            infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
-            infoO.aniCol = "#A77C30";
-            infoO.skinName = "arctic/lemming";
-            break;
+    case a_ostrich:
+      infoO.aniName = "Ostrich";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Ostrich! Lay eggs to hatch babies! \nCommand babies by placing your crosshair (right-click/W)-\n They can attack prey!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "ostrich/ostrich";
 
-        case a_frog:
+      break;
+    case a_pelican:
+      infoO.aniName = "Pelican";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Pelican! \nPick up water (and prey!) in your mouth,\nfly, and drop water on prey! (press W again)";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "pelican/pelican";
 
-            infoO.aniName = "Frog";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Frog!!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "frog/frog";
+      break;
+    case a_falcon:
+      infoO.aniName = "Falcon";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "falcon/falcon";
 
-            break;
+      break;
 
-        case a_ostrich:
+    case a_snowyOwl:
+      infoO.aniName = "Snowy Owl";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Snowy Owl!\n Aim the crosshair, \n right click/W when it's on top of prey, to attack!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "snowyowl/snowyowl";
 
-            infoO.aniName = "Ostrich";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Ostrich! Lay eggs to hatch babies! \nCommand babies by placing your crosshair (right-click/W)-\n They can attack prey!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "ostrich/ostrich";
+      break;
 
-            break;
-        case a_pelican:
+    case a_ostrichBaby:
+      infoO.aniName = "Baby Ostrich";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to Baby Ostrich!!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "ostrich/baby-ostrich";
 
-            infoO.aniName = "Pelican";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Pelican! \nPick up water (and prey!) in your mouth,\nfly, and drop water on prey! (press W again)";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "pelican/pelican";
+      break;
+    case a_phoenix:
+      infoO.aniName = "Phoenix";
+      infoO.upgradeText =
+        "UPGRADED to Phoenix!\nCreate powerful fire tornados to burn your enemies alive!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "phoenix/phoenix";
+      break;
 
-            break;
-        case a_falcon:
+    case a_seaMonster:
+      infoO.aniName = "Sea Monster";
+      infoO.upgradeText = "UPGRADED to Sea Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "seamonster";
+      break;
+    case a_landMonster:
+      infoO.aniName = "Land Monster";
+      infoO.upgradeText = "UPGRADED to Land Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "landmonster";
+      break;
+    case a_iceMonster:
+      infoO.aniName = "Ice Monster";
+      infoO.upgradeText = "UPGRADED to Ice Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "icemonster";
+      break;
+    case a_dinoMonster:
+      infoO.aniName = "Dino Monster";
+      infoO.upgradeText = "UPGRADED to Dino Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "dinomonster";
+      break;
+    case a_pigeon:
+      infoO.aniName = "Pigeon";
+      infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "pigeon/pigeon";
+      break;
+    case a_toucan:
+      infoO.aniName = "Toucan";
+      infoO.upgradeText = "UPGRADED to Toucan!\nHold W to fly around. ";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "toucan/toucan";
+      break;
 
-            infoO.aniName = "Falcon";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "falcon/falcon";
+    default:
+      infoO.aniName = "(Animal)";
+      infoO.aniDesc = "";
+      infoO.aniCol = "#000000";
+      infoO.upgradeText = "UPGRADED!";
+  }
 
-            break;
+  return infoO;
+};
 
-        case a_snowyOwl:
-
-            infoO.aniName = "Snowy Owl";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Snowy Owl!\n Aim the crosshair, \n right click/W when it's on top of prey, to attack!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "snowyowl/snowyowl";
-
-            break;
-
-
-        case a_ostrichBaby:
-
-            infoO.aniName = "Baby Ostrich";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Baby Ostrich!!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "ostrich/baby-ostrich";
-
-            break;
-        case a_phoenix:
-
-            infoO.aniName = "Phoenix";
-            infoO.upgradeText = "UPGRADED to Phoenix!\nCreate powerful fire tornados to burn your enemies alive!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "phoenix/phoenix";
-            break;
-
-        case a_seaMonster:
-            infoO.aniName = "Sea Monster";
-            infoO.upgradeText = "UPGRADED to Sea Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "seamonster";
-            break;
-        case a_landMonster:
-            infoO.aniName = "Land Monster";
-            infoO.upgradeText = "UPGRADED to Land Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "landmonster";
-            break;
-        case a_iceMonster:
-            infoO.aniName = "Ice Monster";
-            infoO.upgradeText = "UPGRADED to Ice Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "icemonster";
-            break;
-        case a_dinoMonster:
-            infoO.aniName = "Dino Monster";
-            infoO.upgradeText = "UPGRADED to Dino Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "dinomonster";
-            break;
-        case a_pigeon:
-            infoO.aniName = "Pigeon";
-            infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "pigeon/pigeon";
-            break;
-        case a_toucan:
-            infoO.aniName = "Toucan";
-            infoO.upgradeText = "UPGRADED to Toucan!\nHold W to fly around. ";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "toucan/toucan";
-            break;
-
-
-        default:
-            infoO.aniName = "(Animal)";
-            infoO.aniDesc = "";
-            infoO.aniCol = "#000000";
-            infoO.upgradeText = "UPGRADED!";
-    }
-
-    return infoO;
-}
-
-function onAniTypeSet() {
-
-}
-
+function onAniTypeSet() {}
 
 ///////
 // file: js_src/gameobj/ability/AbilityType.js
@@ -940,8 +1025,6 @@ var infoForAbilityT = function(abilT) {
   var zombieFolder = "";
 
   var myPlayer = gameObjsByID[myPlayerID];
-
-  
 
   switch (abilT) {
     case ability_whaleTailHit:
@@ -1245,7 +1328,13 @@ var infoForAbilityT = function(abilT) {
       if (myPlayer) {
         var aniInfoO = myPlayer.animalInfo();
 
-        infoO.abilImg = "skins/" + zombieFolder + "eagle/" + myPlayer.animalSpecies + "/eagle" + ".png";
+        infoO.abilImg =
+          "skins/" +
+          zombieFolder +
+          "eagle/" +
+          myPlayer.animalSpecies +
+          "/eagle" +
+          ".png";
       }
       /*
       infoO.abilImg =
@@ -1309,51 +1398,45 @@ var infoForAbilityT = function(abilT) {
   return infoO;
 };
 
-
-
 ///////
 // file: js_src/game/utils.js
 ///////
-
-
 
 //UTILITIES
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 var getRandomDouble = function(min, max) {
   return Math.random() * (max - min) + min;
-}
+};
 
 var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 var angle_1to360 = function(angle) {
-var angle = (Math.trunc(angle) % 360) + (angle - Math.trunc(angle)); //converts angle to range -360 + 360
-  if (angle > 0.0)
-    return angle;
-  else
-    return angle + 360.0;
-}
+  var angle = (Math.trunc(angle) % 360) + (angle - Math.trunc(angle)); //converts angle to range -360 + 360
+  if (angle > 0.0) return angle;
+  else return angle + 360.0;
+};
 //convert ip string to int32
 var dot2numIP = function(dot) {
-  var d = dot.split('.');
-  return ((((((+d[0]) * 256) + (+d[1])) * 256) + (+d[2])) * 256) + (+d[3]);
-}
+  var d = dot.split(".");
+  return ((+d[0] * 256 + +d[1]) * 256 + +d[2]) * 256 + +d[3];
+};
 //convert int32 num to ip string
 var num2dotIP = function(num) {
   var d = num % 256;
   for (var i = 3; i > 0; i--) {
     num = Math.floor(num / 256);
-    d = num % 256 + '.' + d;
+    d = (num % 256) + "." + d;
   }
   return d;
-}
+};
 //replace part of url
 var removeParam = function(key, sourceURL) {
   var rtn = sourceURL.split("?")[0],
     param,
     params_arr = [],
-    queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+    queryString = sourceURL.indexOf("?") !== -1 ? sourceURL.split("?")[1] : "";
   if (queryString !== "") {
     params_arr = queryString.split("&");
     for (var i = params_arr.length - 1; i >= 0; i -= 1) {
@@ -1365,53 +1448,53 @@ var removeParam = function(key, sourceURL) {
     rtn = rtn + "?" + params_arr.join("&");
   }
   return rtn;
-}
+};
 
 var toDegrees = function(angle) {
   return angle * (180 / Math.PI);
-}
+};
 
 var toRadians = function(angle) {
   return angle * (Math.PI / 180);
-}
+};
 
 //returns angle in rad
 var angleAimingBetweenPoints = function(x1, y1, x2, y2) {
   return Math.atan2(y2 - y1, x2 - x1);
-}
+};
 
 var bit_get = function(num, bit) {
-  return ((num >> bit) % 2 != 0);
-}
+  return (num >> bit) % 2 != 0;
+};
 
 var bit_set = function(num, bit, setTo1) {
-  if (setTo1)
-    return num | 1 << bit; //set 1
-  else
-    return num & ~(1 << bit); //set 0
-}
+  if (setTo1) return num | (1 << bit);
+  //set 1
+  else return num & ~(1 << bit); //set 0
+};
 
 /** gives shortest angle dist between two angles, (dist negative or positive!)*/
 //accepts/returns RADIANS
 var distBetweenAngles = function(fromAngle, toAngle) {
   var rawDiff = toAngle - fromAngle;
   var d = angle_1to360(toDegrees(rawDiff));
-  if (d > 180.0) //going backwards is shorter
+  if (d > 180.0)
+    //going backwards is shorter
     d = d - 360; //gives negative angle
   return toRadians(d);
-}
+};
 
 var clamp = function(n, min, max) {
   return Math.min(max, Math.max(min, n));
-}
+};
 
 var encode_utf8 = function(s) {
   return unescape(encodeURIComponent(s));
-}
+};
 
 var decode_utf8 = function(s) {
   return decodeURIComponent(escape(s));
-}
+};
 
 var fillTextMultiLine = function(text, x, y) {
   var lineHeight = ctx.measureText("M").width * 1.2;
@@ -1420,23 +1503,23 @@ var fillTextMultiLine = function(text, x, y) {
     ctx.fillText(lines[i], x, y);
     y += lineHeight;
   }
-}
+};
 
 var formatTimeSecs = function(theT) {
   var sec_num = parseInt(theT, 10); // don't forget the second param
   var hours = Math.floor(sec_num / 3600);
-  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-  var seconds = sec_num - (hours * 3600) - (minutes * 60);
+  var minutes = Math.floor((sec_num - hours * 3600) / 60);
+  var seconds = sec_num - hours * 3600 - minutes * 60;
 
   if (seconds < 10) {
     seconds = "0" + seconds;
   }
   return minutes + ":" + seconds;
-}
+};
 
-var numberWithCommas=function(x) {
+var numberWithCommas = function(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 var formatNumK = function(num) {
   return abbreviate_number(num);
@@ -1446,73 +1529,63 @@ var formatNumK = function(num) {
       return (Math.trunc(10 * (num / 1000)) / 10.0) + "k";
   else
       return (Math.trunc(100 * (num / 1000000)) / 100.0) + "m";*/
-}
+};
 var abbreviate_number = function(num, fixed) {
   if (num === null) {
     return null;
   } // terminate early
   if (num === 0) {
-    return '0';
+    return "0";
   } // terminate early
-  fixed = (!fixed || fixed < 0) ? 0 : fixed; // number of decimal places to show
-  var b = (num).toPrecision(2).split("e"), // get power
+  fixed = !fixed || fixed < 0 ? 0 : fixed; // number of decimal places to show
+  var b = num.toPrecision(2).split("e"), // get power
     k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
     c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3)).toFixed(2), // divide by power
     d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
-    e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
+    e = d + ["", "K", "M", "B", "T"][k]; // append power
   return e;
-}
+};
 
-
-
-var drawCircle= function (x, y, rad, col) {
+var drawCircle = function(x, y, rad, col) {
   ctx.fillStyle = col;
   ctx.beginPath();
   ctx.arc(x, y, Math.max(0, rad), 0, Math.PI * 2);
   ctx.fill();
-}
-
-var drawStroke = function (x, y, rad, lineWidth, col) {
-    ctx.strokeStyle = col;
-    ctx.lineWidth = lineWidth;
-    ctx.beginPath();
-    ctx.arc(x, y, Math.max(0, rad), 0, Math.PI * 2);
-    ctx.stroke();
-}
-
-
-var getAnimFrame= function(tSinceSpawn, period, shiftAm, sinF) {
-
-  var moveA = shiftAm * Math.sin((sinF * Math.PI) / period * tSinceSpawn);
-  return moveA;
-
-}
-
-var log = function(txt, showLog) {
-	if(KTestingModeON || showLog) {
-    //if(txt=="Stats.onInterfaceReset")
-	  // throw new Error();
-		console.log(txt);
-	}
 };
 
+var drawStroke = function(x, y, rad, lineWidth, col) {
+  ctx.strokeStyle = col;
+  ctx.lineWidth = lineWidth;
+  ctx.beginPath();
+  ctx.arc(x, y, Math.max(0, rad), 0, Math.PI * 2);
+  ctx.stroke();
+};
+
+var getAnimFrame = function(tSinceSpawn, period, shiftAm, sinF) {
+  var moveA = shiftAm * Math.sin(((sinF * Math.PI) / period) * tSinceSpawn);
+  return moveA;
+};
+
+var log = function(txt, showLog) {
+  if (KTestingModeON || showLog) {
+    //if(txt=="Stats.onInterfaceReset")
+    // throw new Error();
+    console.log(txt);
+  }
+};
 
 function secToTime(sec) {
-    var date = new Date(null);
-    date.setSeconds(sec); // specify value for SECONDS here
-    var mm = date.getMinutes();
-    var ss = date.getSeconds();
+  var date = new Date(null);
+  date.setSeconds(sec); // specify value for SECONDS here
+  var mm = date.getMinutes();
+  var ss = date.getSeconds();
 
-    var result = "";
-    if (mm > 0)
-        result = mm + "m ";
-    if (ss > 0)
-        result += ss + "s";
+  var result = "";
+  if (mm > 0) result = mm + "m ";
+  if (ss > 0) result += ss + "s";
 
-    return result;
+  return result;
 }
-
-
 
 ///////
 // file: js_src/interface/CachedText.js
@@ -1520,12 +1593,10 @@ function secToTime(sec) {
 
 //a node that can cache text, call draw() to draw it, set pos with .x, .y
 CachedText.prototype = {
-
   //can edit stroke vars, before first render!
   strokeW: 1.0, //0 to turn off stroke
   strokeColor: "#000000",
   multiLine: false,
-
 
   _text: "",
   _color: "#000000",
@@ -1542,7 +1613,6 @@ CachedText.prototype = {
   //read-ony vars
   width: 0,
   height: 0, //canvas w/h (fast)
-  
 
   /*setScale: function(a) {
       if (this._scale != a) {
@@ -1584,14 +1654,13 @@ CachedText.prototype = {
         text = this._text,
         scale = this._scale,
         fontsize = this._fntSize * this.renderScale,
-        font = (fontsize) + 'px Arial';
+        font = fontsize + "px Arial";
 
       _ctx.font = font;
-      var h = ~~(.2 * fontsize);
+      var h = ~~(0.2 * fontsize);
       _ctx.font = font; //set font before measureText
 
       //_ctx.scale(scale, scale);
-
 
       if (this.multiLine) {
         //basic multi-line fill!
@@ -1610,7 +1679,6 @@ CachedText.prototype = {
         //fix size for renderScale
         this.width /= this.renderScale;
         this.height /= this.renderScale;
-
 
         _ctx.globalAlpha = 1;
         _ctx.font = font;
@@ -1631,8 +1699,7 @@ CachedText.prototype = {
           y += lineHeight;
         }
       } else {
-        this.width = (_ctx.measureText(text).width +
-          6) * scale;
+        this.width = (_ctx.measureText(text).width + 6) * scale;
         this.height = (fontsize + h) * scale;
         _canvas.width = this.width;
         _canvas.height = this.height;
@@ -1644,19 +1711,18 @@ CachedText.prototype = {
         _ctx.globalAlpha = 1;
         _ctx.font = font;
         //_ctx.lineWidth = 6;
-        if (this.strokeW > 0.0 ) {
+        if (this.strokeW > 0.0) {
           _ctx.shadowOffsetX = this.strokeW; //0.3333 *this.renderScale;
           _ctx.shadowOffsetY = this.strokeW; //0.3333 * this.renderScale;
           _ctx.shadowColor = this.strokeColor; //"black";
         }
         _ctx.fillStyle = this._color;
 
-
         _ctx.fillText(text, 3, fontsize - h / 2);
       }
       //console.log("cached name : "+text);
     }
-    return this._canvas
+    return this._canvas;
   },
 
   //convinience method to draw pre-rendered canvas at x/y pos
@@ -1670,24 +1736,19 @@ CachedText.prototype = {
       ctx.drawImage(rnchache, this.x - nw / 2.0, this.y - nh / 2.0, nw, nh);
     }
   },
-  setPos: function(w,h) {
-    
-  }
+  setPos: function(w, h) {}
 };
 
 function CachedText(uFntSize, ucolor) {
   uFntSize && (this._fntSize = uFntSize);
   ucolor && (this._color = ucolor);
-
 }
 
-window.CachedText=CachedText;
-
+window.CachedText = CachedText;
 
 ///////
 // file: js_src/interface/InterfaceButtons.js
 ///////
-
 
 //button that appears in animal choice interface
 function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
@@ -1717,34 +1778,32 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
   anO.x = anO.ox = anO.nx = 0;
   anO.y = anO.oy = anO.ny = 0;
-  anO.rad=anO.oRad=anO.nRad= 30;
+  anO.rad = anO.oRad = anO.nRad = 30;
   anO.alwaysPlainOutline = true;
   this.drawnAniObj = anO;
-  
+
   this.buttonScaleF = 1.0; //scale primary button
   //this.touchMarginEx=20.0;
 
   //used to check clicks
   this.testPosHitsButton = function(posX, posY) {
-
     if (posX < this.x - this.w / 2 || posX > this.x + this.w / 2)
       //outside x bounds
       return false;
     if (posY < this.y - this.w / 2 || posY > this.y + this.w / 2) {
       //outside y bounds
       return false;
-    } else
-      return true;
+    } else return true;
   };
-  this.setPosAndSize = function(newX, newY, newW, newH, anchorX, anchorY) {
-      this.w = newW;
-      this.h = newH;
-      //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
-      this.x = newX + (newW) * (0.5 - anchorX);
-      this.y = newY + (newH) * (0.5 - anchorY);
-    },
-
-    this.draw = function() { //ani draw mod
+  (this.setPosAndSize = function(newX, newY, newW, newH, anchorX, anchorY) {
+    this.w = newW;
+    this.h = newH;
+    //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
+    this.x = newX + newW * (0.5 - anchorX);
+    this.y = newY + newH * (0.5 - anchorY);
+  }),
+    (this.draw = function() {
+      //ani draw mod
       //draw button bg square
       ctx.save();
       ctx.translate(this.x, this.y);
@@ -1752,7 +1811,6 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       var origA = ctx.globalAlpha;
 
       //console.log("drawing button at "+this.x,this.y);
-
 
       //bg square
       ctx.globalAlpha = origA * 0.75;
@@ -1778,7 +1836,8 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       //draw animal
       ctx.globalAlpha = origA;
 
-      this.drawnAniObj.nRad = this.drawnAniObj.rad = 0.6 * w / 2.0 * interfS;
+      this.drawnAniObj.nRad = this.drawnAniObj.rad =
+        ((0.6 * w) / 2.0) * interfS;
       ctx.save();
       ctx.scale(2.0, 2.0);
       this.drawnAniObj.teamID = teamID;
@@ -1794,9 +1853,9 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       //ctx.fillText(this.text, 0, -this.h *0.5 * 0.75);
       //}
       ctx.restore();
-    };
+    });
 }
-window.AniChoiceButton=AniChoiceButton;
+window.AniChoiceButton = AniChoiceButton;
 
 //button for touch controls (and abilities display)
 TouchButton.prototype = {
@@ -1820,16 +1879,15 @@ TouchButton.prototype = {
     if (posY < this.y - this.w / 2 || posY > this.y + this.w / 2) {
       //outside y bounds
       return false;
-    } else
-      return true;
+    } else return true;
   },
   //set x/y, set to an anchorpoint (0)=0.5
   setPosAndSize: function(newX, newY, newW, newH, anchorX, anchorY) {
     this.w = newW;
     this.h = newH;
     //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
-    this.x = newX + (newW) * (0.5 - anchorX);
-    this.y = newY + (newH) * (0.5 - anchorY);
+    this.x = newX + newW * (0.5 - anchorX);
+    this.y = newY + newH * (0.5 - anchorY);
   },
   //set this for each button
   onButtonTouchStart: function() {
@@ -1841,19 +1899,17 @@ TouchButton.prototype = {
 };
 
 function TouchButton(text) {
-
   this.buttonTXT = new CachedText(10.0, "white");
   this.buttonTXT.renderScale = 1.5;
   this.buttonTXT.setText(text);
 
   this.draw = function() {
-    if (!this.visible)
-      return;
+    if (!this.visible) return;
 
     //draw button square
     ctx.save();
     ctx.globalAlpha = 0.2;
-    ctx.fillStyle = (this.pressed) ? "white" : "#000000";
+    ctx.fillStyle = this.pressed ? "white" : "#000000";
     ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
 
     //draw button text
@@ -1865,10 +1921,9 @@ function TouchButton(text) {
     this.buttonTXT.draw();
 
     ctx.restore();
-
   };
 }
-window.TouchButton=TouchButton;
+window.TouchButton = TouchButton;
 
 var AbilityButton = function() {
   this.buttonTXT = new CachedText(10.0, "white");
@@ -1879,15 +1934,18 @@ var AbilityButton = function() {
   this.isMiniRechargeBut = false; //shows above W button, when dive is available
   this.abil_Type = 0;
   this.abil_possible = this.abil_usable = this.abil_recharging = this.abil_active = false;
-  this.abil_rechargeEndT = 0, this.abil_rechargeTotalT = 0;
-  this.abil_rechargeBarA = 0, this.abil_avilableA = 0;
+  (this.abil_rechargeEndT = 0), (this.abil_rechargeTotalT = 0);
+  (this.abil_rechargeBarA = 0), (this.abil_avilableA = 0);
 
   this.draw = function() {
-    if (!this.visible)
-      return;
+    if (!this.visible) return;
 
-    this.abil_rechargeBarA += ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
-    this.abil_avilableA += (((this.abil_usable || this.abil_active) ? 1.0 : 0.2) - this.abil_avilableA) * 0.1;
+    this.abil_rechargeBarA +=
+      ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
+    this.abil_avilableA +=
+      ((this.abil_usable || this.abil_active ? 1.0 : 0.2) -
+        this.abil_avilableA) *
+      0.1;
     if (this.isMiniRechargeBut) {
       this.h = this.w * 0.6;
     }
@@ -1900,12 +1958,12 @@ var AbilityButton = function() {
         this.h = this.w * 0.8;
         ctx.translate(this.x, this.y + this.h * 0.36);
         ctx.scale(0.65, 0.65);
-      } else
-        ctx.translate(this.x, this.y);
+      } else ctx.translate(this.x, this.y);
 
       //draw button square
       var fillOp = 0.2 * this.abil_avilableA;
-      var fillCol = (this.pressed || controls_rightClicked) ? "#CECECE" : "#000000";
+      var fillCol =
+        this.pressed || controls_rightClicked ? "#CECECE" : "#000000";
       if (this.abil_active) {
         fillCol = col_edibleOutline;
         fillOp = 0.7;
@@ -1917,40 +1975,51 @@ var AbilityButton = function() {
       //ability img
       var abilityInfo = infoForAbilityT(this.abil_Type);
 
-	   if(this.abil_Type == ability_fireShoot || this.abil_Type == ability_fireShoot2) {
+      if (
+        this.abil_Type == ability_fireShoot ||
+        this.abil_Type == ability_fireShoot2
+      ) {
+        var imNum = Math.trunc(timestamp / 120) % 5;
+        //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
+        var theImg = getLoadedImg("img/fireball/" + imNum + ".png");
+        if (theImg) {
+          var rad = this.w * 0.4;
+          var frame = 0;
+          if (gameObjsByID[myPlayerID]) {
+            var tSpawn = gameObjsByID[myPlayerID].spawnTime;
 
-		     var imNum= Math.trunc(timestamp / 120) % 5;
-          //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-		  var theImg = getLoadedImg("img/fireball/" + imNum + ".png");
-		  if (theImg) {
-			  var rad = this.w * 0.4;
-	var frame = 0;
-			if(gameObjsByID[myPlayerID]) {
-				var tSpawn = gameObjsByID[myPlayerID].spawnTime;
+            var tSinceSpawn = (timestamp - tSpawn) / 1000.0;
+            frame = getAnimFrame(tSinceSpawn, 1, 10, 2);
+          }
+          ctx.globalAlpha = oAlpha * this.abil_avilableA;
+          ctx.drawImage(
+            theImg,
+            -rad,
+            -rad * 0.85 - frame,
+            2 * rad,
+            2 * rad + frame
+          );
+        }
+      } else {
+        var abilImg = abilityInfo.abilImg;
+        //  console.log("abilImg: " + abilImg)
 
-                var tSinceSpawn = (timestamp - tSpawn) / 1000.0
-				frame = (getAnimFrame(tSinceSpawn, 1, 10, 2));
-			}
-			ctx.globalAlpha = oAlpha * this.abil_avilableA;
-			ctx.drawImage(theImg, -rad, -rad * 0.85 - frame, 2 * rad, 2 * rad + frame);
-		  }
+        var myPlayer = gameObjsByID[myPlayerID];
+        if (
+          myPlayer &&
+          myPlayer.animalType == a_phoenix &&
+          this.abil_Type == ability_dive
+        )
+          abilImg = "img/ability_dive_lava.png";
 
-	  } else {
-	       var abilImg = abilityInfo.abilImg;
-       //  console.log("abilImg: " + abilImg)
-
-	       var myPlayer = gameObjsByID[myPlayerID];
-	       if (myPlayer && myPlayer.animalType == a_phoenix && this.abil_Type == ability_dive)
-	           abilImg = "img/ability_dive_lava.png";
-
-	       var theImg = getLoadedImg(abilImg);
-		  //console.log("image info "+theImg);
-		  if (theImg) {
-			var rad = this.w * 0.4;
-			ctx.globalAlpha = oAlpha * this.abil_avilableA;
-			ctx.drawImage(theImg, -rad, -rad * 0.85, 2 * rad, 2 * rad);
-		  }
-	  }
+        var theImg = getLoadedImg(abilImg);
+        //console.log("image info "+theImg);
+        if (theImg) {
+          var rad = this.w * 0.4;
+          ctx.globalAlpha = oAlpha * this.abil_avilableA;
+          ctx.drawImage(theImg, -rad, -rad * 0.85, 2 * rad, 2 * rad);
+        }
+      }
       this.buttonTXT.setText(abilityInfo.abilName);
       this.buttonTXT.setFontSize(25 * interfS);
       this.buttonTXT.x = 0;
@@ -1960,38 +2029,36 @@ var AbilityButton = function() {
       //rercharging bar (fade based on updated recharing var, as more accurte)
       var tTillRecharged = Math.max(0, this.abil_rechargeEndT - timestamp);
       //console.log("recharged in "+tTillRecharged);
-      this.abil_rechargeBarA += ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
+      this.abil_rechargeBarA +=
+        ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
 
       if (this.abil_rechargeBarA > 0.01) {
-
-
-
         //recharge bar
-        ctx.globalAlpha = (oAlpha * this.abil_rechargeBarA) * 0.35;
+        ctx.globalAlpha = oAlpha * this.abil_rechargeBarA * 0.35;
         ctx.fillStyle = "#000000"; //bar bg
         var bx = 0,
           by = 0;
         var barW = this.w * 0.8;
         var barH = this.h * 0.5;
 
-
         ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH); //bg
-        ctx.globalAlpha = (oAlpha * this.abil_rechargeBarA) * 1.0;
+        ctx.globalAlpha = oAlpha * this.abil_rechargeBarA * 1.0;
         ctx.fillStyle = "#F3C553";
-        ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (tTillRecharged / this.abil_rechargeTotalT), barH); //fill
-
+        ctx.fillRect(
+          bx - barW / 2,
+          by - barH / 2,
+          barW * (tTillRecharged / this.abil_rechargeTotalT),
+          barH
+        ); //fill
       }
-
 
       ctx.restore();
     }
-  }
-}
+  };
+};
 AbilityButton.prototype = Object.create(TouchButton.prototype); //inherit from TouchButton
 
-window.AbilityButton=AbilityButton;
-
-
+window.AbilityButton = AbilityButton;
 
 ///////
 // file: js_src/game/typedefs.js
@@ -2051,9 +2118,9 @@ var outlineColForBiome = function(biomeN) {
   switch (biomeN) {
     case biome_ocean:
       return col_outline_ocean;
-      case biome_arctic:
+    case biome_arctic:
       return col_outline_arctic;
-      case biome_desert:
+    case biome_desert:
       return col_outline_desert;
     default:
     case biome_land:
@@ -2523,7 +2590,7 @@ var isAirBar = false;
 var animalBarType = 0;
 var waterBarPerc = (waterBarPerc_n = 100);
 var xpPer_n = (xp = xpPer = 0);
-var infectionBarPerc = infectionBarPerc_n = 100;
+var infectionBarPerc = (infectionBarPerc_n = 100);
 //interface/animation vars
 var waterBarTXT = new CachedText(16.0, "white");
 var player1v1TXT = new CachedText(16.0, "white");
@@ -2614,8 +2681,6 @@ var lastUpdT = +Date.now();
 
 var ws = null;
 
-
-
 ///////
 // file: js_src/client/login.js
 ///////
@@ -2627,17 +2692,12 @@ var $_GET = getQueryParams(document.location.search);
 var token = $_GET["token"];
 
 function parseJwt(token) {
-  var base64Url = token.split('.')[1];
-  var base64 = base64Url.replace('-', '+').replace('_', '/');
+  var base64Url = token.split(".")[1];
+  var base64 = base64Url.replace("-", "+").replace("_", "/");
   return JSON.parse(window.atob(base64));
-};
-
-
-
-function loginWithFB(){
-
 }
 
+function loginWithFB() {}
 
 ///////
 // file: js_src/client/desktopAds.js
@@ -2798,18 +2858,17 @@ function refreshBannerAds() {
   try {
     console.log("refreshing banner ads...");
 
-    console.log("CALLED FROM: "+new Error().stack);
+    console.log("CALLED FROM: " + new Error().stack);
 
-      //CURSE
-      //curse refresh banners
+    //CURSE
+    //curse refresh banners
 
-      factorem.refreshAds([1, 2], true);
+    factorem.refreshAds([1, 2], true);
 
-      //setTimeout(factorem.refreshAds.bind(factorem, null, true), 800);
+    //setTimeout(factorem.refreshAds.bind(factorem, null, true), 800);
 
-      //adinplay
-      //googletag.pubads().refresh();
-    
+    //adinplay
+    //googletag.pubads().refresh();
   } catch (ex) {
     //factorem/ads dont exist
     console.log("error refreshing ad: " + ex);
@@ -3008,13 +3067,11 @@ window["onBoltLoaded"] = function(playerName) {
 });*/
 };
 
-
 ///////
 // file: js_src/client/mobileApp.js
 ///////
 
 //detelct mobile app/ mobile browser @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
 
 //console.log("is mobile? " + isMobileAppIOS);
 
@@ -3029,9 +3086,9 @@ function setupWebViewJavascriptBridge(callback) {
     return window.WVJBCallbacks.push(callback);
   }
   window.WVJBCallbacks = [callback];
-  var WVJBIframe = document.createElement('iframe');
-  WVJBIframe.style.display = 'none';
-  WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+  var WVJBIframe = document.createElement("iframe");
+  WVJBIframe.style.display = "none";
+  WVJBIframe.src = "wvjbscheme://__BRIDGE_LOADED__";
   document.documentElement.appendChild(WVJBIframe);
   setTimeout(function() {
     document.documentElement.removeChild(WVJBIframe);
@@ -3048,26 +3105,29 @@ if (isMobileAppIOS) {
 var showAdMobileIOS = function() {
   if (jsObjcBridge && isMobileAppIOS) {
     console.log("Showing ad IOS...");
-    jsObjcBridge.callHandler('adShowCallBack', {
-      'foo': 'bar'
-    }, function(response) {
-      console.log('JS got response ' + response);
-    });
+    jsObjcBridge.callHandler(
+      "adShowCallBack",
+      {
+        foo: "bar"
+      },
+      function(response) {
+        console.log("JS got response " + response);
+      }
+    );
   }
-}
+};
 
 //android app ads calling
 var showAdMobileAndroid = function() {
   console.log("Showing ad android...");
   window.location = "myscheme://showAdmob";
-}
+};
 
-function showMobileAd(){
+function showMobileAd() {
   console.log("showing mobile ad......");
   if (isMobileAppIOS) showAdMobileIOS();
   if (isMobileAppAndroid) showAdMobileAndroid();
 }
-
 
 //@@@@@@@@@@@@@@@@@@@@  SETUP MOBILE @@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -3098,7 +3158,6 @@ if ((isiOS || isAndroid) && !isMobileApp) {
   }
 }
 
-
 ///////
 // file: js_src/interface/interface.js
 ///////
@@ -3107,106 +3166,102 @@ if ((isiOS || isAndroid) && !isMobileApp) {
 var GameInterface = {};
 function drawGameInterface() {
   if (!serverCon_aliveInAGame) return;
- 
-    ctx.save();
 
-    //ease animated vars
-    waterBarPerc += (waterBarPerc_n - waterBarPerc) * 0.1;
+  ctx.save();
 
-    xpPer += (xpPer_n - xpPer) * 0.03;
-    //flashing LOW water animation
+  //ease animated vars
+  waterBarPerc += (waterBarPerc_n - waterBarPerc) * 0.1;
 
-    var myPlayer = gameObjsByID[myPlayerID];
-    if (myPlayer) {
-      myPlayerLastAniT = myPlayer.animalType;
-    }
+  xpPer += (xpPer_n - xpPer) * 0.03;
+  //flashing LOW water animation
 
-    var waterBarA = 1.0;
-    var lowBarPerc = waterBarPerc <= 25;
-    if (lowBarPerc) {
-      var period = 1.2; //periodic func with time
-      var p_min = 0.4,
-        p_max = 1.0;
-      var amp = 0.5 * (p_max - p_min);
-      waterBarA =
-        p_min +
-        amp +
-        amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
-    }
+  var myPlayer = gameObjsByID[myPlayerID];
+  if (myPlayer) {
+    myPlayerLastAniT = myPlayer.animalType;
+  }
 
-    //water bar
-    var barW = Math.min(450, canvasW * 0.9) * interfS,
-      barH = 30 * interfS;
-    var bx = canvasW / 2, //from bottom
-      by = canvasH - 60 * interfS;
-    ctx.globalAlpha = 0.35 * waterBarA; //bar bg
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
+  var waterBarA = 1.0;
+  var lowBarPerc = waterBarPerc <= 25;
+  if (lowBarPerc) {
+    var period = 1.2; //periodic func with time
+    var p_min = 0.4,
+      p_max = 1.0;
+    var amp = 0.5 * (p_max - p_min);
+    waterBarA =
+      p_min +
+      amp +
+      amp * Math.sin(((2.0 * Math.PI) / period) * (timestamp / 1000.0));
+  }
 
-    ctx.globalAlpha = waterBarA;
-    if (animalBarType == 2)
-      // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
-      ctx.fillStyle = col_lava;
-    else ctx.fillStyle = isAirBar || animalBarType == 1 ? "#8CCEF4" : col_wat1; //bar fill
+  //water bar
+  var barW = Math.min(450, canvasW * 0.9) * interfS,
+    barH = 30 * interfS;
+  var bx = canvasW / 2, //from bottom
+    by = canvasH - 60 * interfS;
+  ctx.globalAlpha = 0.35 * waterBarA; //bar bg
+  ctx.fillStyle = "#000000";
+  ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
 
-    ctx.fillRect(
-      bx - barW / 2,
-      by - barH / 2,
-      barW * (waterBarPerc / 100.0),
-      barH
-    );
+  ctx.globalAlpha = waterBarA;
+  if (animalBarType == 2)
+    // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
+    ctx.fillStyle = col_lava;
+  else ctx.fillStyle = isAirBar || animalBarType == 1 ? "#8CCEF4" : col_wat1; //bar fill
 
-    ctx.fillStyle = controls_leftClicked
-      ? lowBarPerc
-        ? col_food1
-        : "orange"
-      : lowBarPerc
-        ? col_food1
-        : "white";
-    ctx.globalAlpha = 1.0 * waterBarA;
+  ctx.fillRect(
+    bx - barW / 2,
+    by - barH / 2,
+    barW * (waterBarPerc / 100.0),
+    barH
+  );
 
-    //text settings
-    var barTxt;
-    if (animalBarType == 1) barTxt = lowBarPerc ? "LOW AIR" : "AIR";
-    else if (animalBarType == 2) barTxt = lowBarPerc ? "LOW LAVA" : "LAVA";
-    else if (animalBarType == 3) barTxt = lowBarPerc ? "LOW ICE" : "ICE";
-    else {
-      barTxt = lowBarPerc ? "LOW WATER" : "WATER";
-    }
+  ctx.fillStyle = controls_leftClicked
+    ? lowBarPerc
+      ? col_food1
+      : "orange"
+    : lowBarPerc
+    ? col_food1
+    : "white";
+  ctx.globalAlpha = 1.0 * waterBarA;
 
-    waterBarTXT.setText(barTxt);
-    waterBarTXT.setFontSize(22.0 * interfS);
-    if (animalBarType == 4) waterBarTXT.setColor("black");
-    else waterBarTXT.setColor(lowBarPerc ? col_food1 : "white");
-    waterBarTXT.x = bx;
-    waterBarTXT.y = by;
-    ctx.globalAlpha *= lowBarPerc ? 1.0 : 0.5;
-    waterBarTXT.draw();
+  //text settings
+  var barTxt;
+  if (animalBarType == 1) barTxt = lowBarPerc ? "LOW AIR" : "AIR";
+  else if (animalBarType == 2) barTxt = lowBarPerc ? "LOW LAVA" : "LAVA";
+  else if (animalBarType == 3) barTxt = lowBarPerc ? "LOW ICE" : "ICE";
+  else {
+    barTxt = lowBarPerc ? "LOW WATER" : "WATER";
+  }
 
-    ctx.globalAlpha = 0.35;
-    ctx.fillStyle = "#000000"; //bar bg
-    by = canvasH - barH / 2 - 5;
-    // by = by + 5 + barH;
-    barW = canvasW * 0.9;
+  waterBarTXT.setText(barTxt);
+  waterBarTXT.setFontSize(22.0 * interfS);
+  if (animalBarType == 4) waterBarTXT.setColor("black");
+  else waterBarTXT.setColor(lowBarPerc ? col_food1 : "white");
+  waterBarTXT.x = bx;
+  waterBarTXT.y = by;
+  ctx.globalAlpha *= lowBarPerc ? 1.0 : 0.5;
+  waterBarTXT.draw();
 
-    ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH); //bg
-    ctx.globalAlpha = 1.0;
-    ctx.fillStyle = "#F3C553"; //col_food2; //bar
-    ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (xpPer / 100.0), barH); //fill
-    ctx.globalAlpha = 1.0;
+  ctx.globalAlpha = 0.35;
+  ctx.fillStyle = "#000000"; //bar bg
+  by = canvasH - barH / 2 - 5;
+  // by = by + 5 + barH;
+  barW = canvasW * 0.9;
 
-    xpBarTXT.setText(
-      "" +
-        formatNumK(xp) +
-        " xp  (" +
-        formatNumK(xpNextAni) +
-        " xp Next Animal)"
-    );
-    xpBarTXT.setFontSize(22.0 * interfS);
-    xpBarTXT.x = bx;
-    xpBarTXT.y = by;
-    xpBarTXT.draw();
-   
+  ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH); //bg
+  ctx.globalAlpha = 1.0;
+  ctx.fillStyle = "#F3C553"; //col_food2; //bar
+  ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (xpPer / 100.0), barH); //fill
+  ctx.globalAlpha = 1.0;
+
+  xpBarTXT.setText(
+    "" + formatNumK(xp) + " xp  (" + formatNumK(xpNextAni) + " xp Next Animal)"
+  );
+  xpBarTXT.setFontSize(22.0 * interfS);
+  xpBarTXT.x = bx;
+  xpBarTXT.y = by;
+  xpBarTXT.draw();
+
   ctx.globalAlpha = 1.0;
   //}
 
@@ -3768,16 +3823,16 @@ function drawMinimap() {
   //draw minimap (pre-rendered)
   if (
     canvasW / pixelRat >= 500 &&
-    miniMapCanvas && 
+    miniMapCanvas &&
     miniMapCanvas.width &&
     serverCon_aliveInAGame
   ) {
     ctx.drawImage(
-      miniMapCanvas,//minimapCanvas == width & height of minimapW/H
+      miniMapCanvas, //minimapCanvas == width & height of minimapW/H
       canvasW - (10 * pixelRat + miniMapCanvas.width * interfS),
       10 * pixelRat,
       minimapW * interfS, //minimapW && h == 250;
-      minimapH * interfS  //interfS = 0.85 * pixelRat * Math.max(windowW / 1920, windowH / 1080); || maybe 1.0
+      minimapH * interfS //interfS = 0.85 * pixelRat * Math.max(windowW / 1920, windowH / 1080); || maybe 1.0
     );
 
     //draw own player on minimap
@@ -3938,7 +3993,7 @@ function create1v1Button() {
       };
 
       btn1v1.onClick = function() {
-        if (!this.clicked  ) {
+        if (!this.clicked) {
           this.isVisible = false;
           this.clicked = true;
           this.isHighLighted = false;
@@ -4303,7 +4358,6 @@ function display1v1TopperInfo() {
   }
 }
 
-
 ///////
 // file: js_src/client/masterServerClient.js
 ///////
@@ -4403,12 +4457,10 @@ function masterServer_gotReponse_getServerStats(msg) {
 
       if (gameServersList[j].ip == aServIp) {
         var theServ = gameServersList[j];
-        if (aServNumPl == 60000){
+        if (aServNumPl == 60000) {
           // 60000 players recieved = offline server
           theServ.playersCount = -1;
-
-        }else
-        theServ.playersCount = aServNumPl;
+        } else theServ.playersCount = aServNumPl;
 
         theServ.gameMode = gameMode;
         //console.log("--matched server " + theServ.ip + " gameMode " + gameMode + " "+theServ.playersCount+ "players ");
@@ -4446,7 +4498,6 @@ masterServer_getServerStats();
 
 //masterServer_getBestBRServer();
 
-
 ///////
 // file: js_src/client/gameServer.js
 ///////
@@ -4456,7 +4507,7 @@ var gameServersList = [];
 var gameRegions = [];
 var gameServersByRegion = {};
 
-var gameRegionsNoPingTest = [ "Team Mode" ,"Wild Mope"]; //these regions DONT get included in auto join (eg, game modes)
+var gameRegionsNoPingTest = ["Team Mode", "Wild Mope"]; //these regions DONT get included in auto join (eg, game modes)
 
 function addRegionDef(regName) {
   gameRegions.push(regName);
@@ -4590,11 +4641,8 @@ if (KTestingModeON) {
   //addServerWithPortDef("Battle Royal 22", "127.0.0.1", 7022, reg); // "0.0.0.0", reg); //"0.0.0.0"
 } else {
   if (KTestingBetaMode) {
-
-
-
     var reg = "Wild Mope";
-    addServerDef("Wild Mope 1", "144.202.12.79", reg); 
+    addServerDef("Wild Mope 1", "144.202.12.79", reg);
     addServerDef("Wild Mope 2", "144.202.56.145", reg);
 
     var reg = "Team Mode";
@@ -4603,7 +4651,6 @@ if (KTestingModeON) {
 
     var reg = "Normal";
     addServerDef("FFA", "45.76.11.35", reg);
-
   } else {
     // USA @@@@@@@@@@@@
     var reg = "USA-East";
@@ -4633,7 +4680,6 @@ if (KTestingModeON) {
     addServerDef("USA S 2", "107.191.55.233", reg);
     addServerDef("USA S 3", "45.32.198.173", reg);
     addServerDef("USA S 4", "104.238.147.152", reg);
-
 
     //EUROPE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     reg = "Europe"; //first server must be LONDON (+ 4core!)
@@ -4667,15 +4713,11 @@ if (KTestingModeON) {
     addServerDef("Wild Mope 4", "104.207.131.51", reg);
     addServerDef("Wild Mope 5", "80.240.28.111", reg);
 
-
     reg = "Team Mode";
     //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
     addServerDef("TEAM MODE 1", "8.12.17.70", reg);
     addServerDef("TEAM MODE 2", "209.246.143.231", reg);
     addServerDef("TEAM MODE 3", "108.61.205.88", reg);
-
-
-
   }
 }
 
@@ -4872,10 +4914,7 @@ function joinBestServerInRegion() {
       //also check if all servers are FULLY full
       allServersInRegionFull = false;
 
-    if (
-      aServ.playersCount < numIdealServerPlayers &&
-      aServ.playersCount >= 0
-    ) {
+    if (aServ.playersCount < numIdealServerPlayers && aServ.playersCount >= 0) {
       //fill servers to X players
       curServer = aServ;
       curServerIndex = gameServersByRegion[curRegion].indexOf(curServer); //serversInReg is not the same array!
@@ -5263,7 +5302,7 @@ function gmModeButtonClicked(whichButtonID) {
     //find server in teams to join
     curRegion = "Team Mode";
     joinBestServerInRegion();
-  }  else if (whichButtonID == "gmButton_WILD") {
+  } else if (whichButtonID == "gmButton_WILD") {
     //find server in teams to join
     curRegion = "Wild Mope";
     joinBestServerInRegion();
@@ -5273,7 +5312,7 @@ function gmModeButtonClicked(whichButtonID) {
 }
 
 function updateGmModeButtons() {
-/*  var theDom = document.getElementById("gmButton_FFA");
+  /*  var theDom = document.getElementById("gmButton_FFA");
   if (gameMode == 0) {
     theDom.style.opacity = 0.5;
   } else theDom.style.opacity = 1.0;
@@ -5300,149 +5339,132 @@ document.getElementById("gmButton_WILD").onclick = function() {
   gmModeButtonClicked("gmButton_WILD");
 };*/
 
-
-
 ///////
 // file: js_src/interface/PlusXpPopup.js
 ///////
 
+function PlusXPPopup(xpAm) {
+  this.animStep = 1;
+  this.animStartT = timestamp;
+  this.animDur = 3000;
+  this.timedOut = false;
 
+  //allow nice turning animation
+  this.xShift = getRandomDouble(-10, 10);
+  this.yShift = getRandomDouble(-10, 10);
+  this.anlgeShift = getRandomDouble(-10, 10);
 
+  this.text = new CachedText(16.0, "white");
+  this.text.setText((xpAm >= 0 ? "+ " : "") + abbreviate_number(xpAm) + " XP");
+  //set special params for higher xp amounts
+  this.textFontSz = 30;
+  var xpCol = "white";
+  if (xpAm > 10000) {
+    xpCol = "#c7b753"; // yellow 10K+
+    this.textFontSz = 40;
+    this.animDur += 1000;
+  }
+  if (xpAm > 100000) {
+    xpCol = "#fdca5b"; //yellow 100K+
+    this.textFontSz = 45;
+    this.animDur += 2000;
+  }
+  if (xpAm > 1000000) {
+    xpCol = "#c7b753"; //yellow 1M+
+    this.textFontSz = 51;
+    this.animDur += 2000;
+  }
 
-function PlusXPPopup(xpAm){
-    this.animStep=1;
-    this.animStartT=timestamp;
-    this.animDur=3000;
-    this.timedOut=false;
+  if (xpAm < 0) {
+    xpCol = "#c65f59"; //red -ve
+    this.animDur += 2000;
+  }
+  this.text.setColor(xpCol);
 
-    //allow nice turning animation
-    this.xShift=getRandomDouble(-10,10);
-    this.yShift=getRandomDouble(-10,10);
-    this.anlgeShift = getRandomDouble(-10, 10);
+  //console.log("popup + "+abbreviate_number(xpAm)+" XP");
 
-    this.text = new CachedText(16.0, "white");
-    this.text.setText((xpAm>=0?"+ ":"") + abbreviate_number(xpAm) + " XP");
-    //set special params for higher xp amounts
-    this.textFontSz = 30;
-    var xpCol = "white";
-    if (xpAm > 10000) {
-      xpCol = "#c7b753"; // yellow 10K+
-      this.textFontSz = 40;
-      this.animDur += 1000;
-    }
-    if (xpAm > 100000) {
-      xpCol = "#fdca5b"; //yellow 100K+
-      this.textFontSz = 45;
-      this.animDur += 2000;
-    }
-    if (xpAm > 1000000) {
-      xpCol = "#c7b753"; //yellow 1M+
-      this.textFontSz = 51;
-      this.animDur += 2000;
-    }
+  //call draw manually
+  this.draw = function() {
+    if (options_noXpPopup) return;
 
-    if (xpAm < 0) {
-      xpCol = "#c65f59"; //red -ve
-      this.animDur += 2000;
-    }
-    this.text.setColor(xpCol);
+    var anim0_1 = clamp((timestamp - this.animStartT) / this.animDur, 0, 1);
 
-    //console.log("popup + "+abbreviate_number(xpAm)+" XP");
+    ctx.save();
 
-//call draw manually
-    this.draw=function(){
-      if(options_noXpPopup)
-      return;
+    var posX = canvasW / 2;
+    var posY = canvasH - 85 * interfS + anim0_1 * (-150 * interfS);
 
-      var anim0_1=clamp( (timestamp-this.animStartT)/(this.animDur) , 0,1);
+    ctx.translate(posX, posY);
 
-      ctx.save();
+    //animate the text
 
-      var posX=(canvasW / 2);
-      var posY=(canvasH - 85 * interfS) + anim0_1 * (-150*interfS);
+    ctx.rotate(toRadians(this.anlgeShift * anim0_1));
+    //ctx.translate(this.xShift,this.yShift);
+    ctx.globalAlpha = 1.0 - anim0_1;
 
-      ctx.translate(posX,posY);
+    this.text.setFontSize(this.textFontSz * interfS);
+    this.text.x = 0;
+    this.text.y = 0;
+    this.text.draw();
+    //console.log("drawing pop!" +anim0_1);
 
-      //animate the text
+    ctx.restore();
 
-
-      ctx.rotate( toRadians( this.anlgeShift * anim0_1 ));
-      //ctx.translate(this.xShift,this.yShift);
-      ctx.globalAlpha=1.0-anim0_1;
-
-      this.text.setFontSize(this.textFontSz * interfS);
-      this.text.x= 0;
-      this.text.y= 0;
-      this.text.draw();
-      //console.log("drawing pop!" +anim0_1);
-
-      ctx.restore();
-
-      if(timestamp>=this.animStartT + this.animDur)
-        this.timedOut=true;
-    }
+    if (timestamp >= this.animStartT + this.animDur) this.timedOut = true;
+  };
 }
-
 
 ///////
 // file: js_src/interface/TextPopup.js
 ///////
 
-
-
-
 function TextPopup(text, fontSize, color, dur) {
-    this.animStep = 1;
-    this.animStartT = timestamp;
-    this.timedOut = false;
-    //allow nice turning animation
-    this.xShift = getRandomDouble(-10, 10);
-    this.yShift = getRandomDouble(-10, 10);
-    this.anlgeShift = getRandomDouble(-10, 10);
-    this.text = new CachedText(fontSize, color);
-    this.text.setText(text);
-    //set special params for higher xp amounts
-    this.textFontSz = fontSize;
-    this.animDur = dur;
-    this.text.setColor(color);
+  this.animStep = 1;
+  this.animStartT = timestamp;
+  this.timedOut = false;
+  //allow nice turning animation
+  this.xShift = getRandomDouble(-10, 10);
+  this.yShift = getRandomDouble(-10, 10);
+  this.anlgeShift = getRandomDouble(-10, 10);
+  this.text = new CachedText(fontSize, color);
+  this.text.setText(text);
+  //set special params for higher xp amounts
+  this.textFontSz = fontSize;
+  this.animDur = dur;
+  this.text.setColor(color);
 
-    //console.log("popup + "+abbreviate_number(xpAm)+" XP");
+  //console.log("popup + "+abbreviate_number(xpAm)+" XP");
 
-    //call draw manually
-    this.draw = function () {
-        if (options_noXpPopup)
-            return;
+  //call draw manually
+  this.draw = function() {
+    if (options_noXpPopup) return;
 
-        var anim0_1 = clamp((timestamp - this.animStartT) / (this.animDur), 0, 1);
+    var anim0_1 = clamp((timestamp - this.animStartT) / this.animDur, 0, 1);
 
-        ctx.save();
+    ctx.save();
 
-        var posX = (canvasW / 2);
-        var posY = (canvasH - 85 * interfS) + anim0_1 * (-150 * interfS);
+    var posX = canvasW / 2;
+    var posY = canvasH - 85 * interfS + anim0_1 * (-150 * interfS);
 
-        ctx.translate(posX, posY);
+    ctx.translate(posX, posY);
 
-        //animate the text
+    //animate the text
 
+    // ctx.rotate( toRadians( this.anlgeShift * anim0_1 ));
+    //ctx.translate(this.xShift,this.yShift);
+    ctx.globalAlpha = 1.0 - anim0_1;
 
-        // ctx.rotate( toRadians( this.anlgeShift * anim0_1 ));
-        //ctx.translate(this.xShift,this.yShift);
-        ctx.globalAlpha = 1.0 - anim0_1;
+    this.text.setFontSize(this.textFontSz * interfS);
+    this.text.x = 0;
+    this.text.y = 0;
+    this.text.draw();
+    //console.log("drawing pop!" +anim0_1);
 
-        this.text.setFontSize(this.textFontSz * interfS);
-        this.text.x = 0;
-        this.text.y = 0;
-        this.text.draw();
-        //console.log("drawing pop!" +anim0_1);
+    ctx.restore();
 
-        ctx.restore();
-
-        if (timestamp >= this.animStartT + this.animDur)
-            this.timedOut = true;
-    }
+    if (timestamp >= this.animStartT + this.animDur) this.timedOut = true;
+  };
 }
-
-
 
 ///////
 // file: js_src/gameobj/GameObj.js
@@ -6515,7 +6537,6 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
 
-
     case o_carrot:
       {
         var theImg = getLoadedImg(
@@ -6596,7 +6617,11 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       {
         var meatType = 0;
         var theImg = getLoadedImg(
-          "img/" + meatType + "meat" + (this.isEdibleOutlined() ? "_e" : "") + ".png"
+          "img/" +
+            meatType +
+            "meat" +
+            (this.isEdibleOutlined() ? "_e" : "") +
+            ".png"
         );
         if (theImg) {
           var rad = this.rad;
@@ -6774,7 +6799,6 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         );
 
         drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 12), "#5C4E28");
-      
       }
       break;
     case o_abilityGObj:
@@ -6819,8 +6843,6 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           Math.max(0, this.rad - 24.5 + yShift / 11),
           "#28829E"
         );
-
-        
       }
       break;
     case o_bigHidingHole:
@@ -6844,8 +6866,6 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           Math.max(0, this.rad - 18.5),
           "#40371D"
         );
-
-        
       }
       break;
     case o_hidingBush:
@@ -8453,8 +8473,7 @@ GameObj.prototype.drawHealthBar = function() {
   }
   ctx.restore(); //restore from fade
 
-  if(this.id == myPlayerID  )
-    this.drawInfectionBar();
+  if (this.id == myPlayerID) this.drawInfectionBar();
 };
 
 GameObj.prototype.drawInfectionBar = function() {
@@ -8473,13 +8492,13 @@ GameObj.prototype.drawBar = function(color, hpBarA, hpPer, yPoz) {
   //draw bar
   var eyeS = Math.max(1.0, this.rad / 25.0);
   var barW = 20.0 * eyeS,
-    barH = 2.5 * eyeS ;
+    barH = 2.5 * eyeS;
   var bx = 0,
     by = -this.rad - yPoz * eyeS;
   ctx.globalAlpha = 0.3;
   ctx.fillStyle = "rgba(0,0,0,0.35)";
   ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
-  
+
   //ctx.globalAlpha = this.hpBarA * f;
   ctx.globalAlpha = 0.7;
   ctx.fillStyle = color; //bar fill
@@ -8643,17 +8662,17 @@ GameObj.prototype.readCustomData_onNewlyVisible = function(msg) {
   //special vars
 
   switch (this.oType) {
-		case o_river:
-		case o_poisonBerry:
-		case o_meatLarge:
-		case o_meatMedium:
+    case o_river:
+    case o_poisonBerry:
+    case o_meatLarge:
+    case o_meatMedium:
     case o_meatSmall:
-     this.specType = msg.readUInt8();
+      this.specType = msg.readUInt8();
   }
-  
+
   if (this.oType == o_river) {
     // river flow direction
-    var riverSpecT =  this.specType; // msg.readUInt8();
+    var riverSpecT = this.specType; // msg.readUInt8();
     this.riverSpecT = riverSpecT;
     this.riverFlowSpeedX = riverSpecT == 0 ? 1.0 : -1.0;
   }
@@ -9133,7 +9152,6 @@ window.GameObj = GameObj;
 
 //module.exports= GameObj; //sets the 'return' type if this module 'kinda like a class'
 
-
 ///////
 // file: js_src/gameobj/GameObjBatchDraw.js
 ///////
@@ -9141,25 +9159,22 @@ window.GameObj = GameObj;
 //class for batch-drawing a list of GameObjs with the same z, implements gameObj-style  draw, z
 
 //SUBCLASS! inherit prototype/properties from superclass
-var subClass=GameObjBatchDraw;
-var superClass=GameObj;
-subClass.prototype = Object.create(superClass.prototype);  //properly inherit prototype of superclass
+var subClass = GameObjBatchDraw;
+var superClass = GameObj;
+subClass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 subClass.prototype.constructor = subClass;
 
-
-
 function GameObjBatchDraw() {
-  this.objs= [];
+  this.objs = [];
 
-
-  this.updateZ= function() {
+  this.updateZ = function() {
     //assumes all objs (of this type) will have same Z
     if (this.objs.length > 0) {
       this.objs[0].updateZ(); //force extra update (to be sure)
       this.z = this.objs[0].z;
     }
   };
-  this.draw= function() {
+  this.draw = function() {
     //console.log("drawing t "+this.oType+"batched os ("+this.objs.length+" objs) z="+this.z);
     //draw outline
     for (var i = 0; i < this.objs.length; i++) {
@@ -9173,9 +9188,8 @@ function GameObjBatchDraw() {
       var anObj = this.objs[i];
       anObj.draw(false);
     }
-
   };
-  this.addBatchedObj=function(newObj) {
+  this.addBatchedObj = function(newObj) {
     if (this.objs.length == 0) {
       //this.z=newObj.z; //z may not be updated
       this.oType = newObj.oType;
@@ -9183,13 +9197,10 @@ function GameObjBatchDraw() {
     }
     this.objs.push(newObj);
   };
-
 }
 
-
 //make this class globally acessible
-window.GameObjBatchDraw=GameObjBatchDraw;
-
+window.GameObjBatchDraw = GameObjBatchDraw;
 
 ///////
 // file: js_src/gameobj/animal/AnimalType.js
@@ -9271,575 +9282,661 @@ var a_mouse = 1,
   a_pigeon = 74,
   a_toucan = 75;
 
+var infoForAnimalType = function(aniT) {
+  var infoO = {};
+  switch (aniT) {
+    case a_snail:
+      infoO.aniName = "Snail";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "You're a super slow snail!";
 
-var infoForAnimalType = function (aniT) {
-    var infoO = {};
-    switch (aniT) {
-        case a_snail:
-            infoO.aniName = "Snail";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "You're a super slow snail!";
+      infoO.aniCol = "#fcc02b";
+      infoO.skinName = "snail";
+      break;
+    case a_mouse:
+      infoO.aniName = "Mouse";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "";
 
-            infoO.aniCol = "#fcc02b";
-            infoO.skinName = "snail";
-            break;
-        case a_mouse:
-            infoO.aniName = "Mouse";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "";
+      infoO.aniCol = "#9BA9B9";
+      infoO.skinName = "mouse";
+      break;
+    case a_rabbit:
+      infoO.aniName = "Rabbit";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
+      infoO.aniCol = "#AA937E";
+      infoO.skinName = "rabbit";
+      break;
+    case a_pig:
+      infoO.aniName = "Pig";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to PIG!\n Pigs move FAST through MUD! (Can use 'stink' on mud/ hiding holes!)";
+      infoO.aniCol = "#DD6BD4";
+      infoO.skinName = "pig";
+      break;
+    case a_fox:
+      infoO.aniName = "Fox";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to FOX! ,\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
+      infoO.aniCol = "#FF9D43";
+      infoO.skinName = "fox";
+      break;
+    case a_deer:
+      infoO.aniName = "Deer";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to DEER! \nPress W to dig up food! \nDig in mud for better food!\n Hint:Check water areas for new food sources!";
+      infoO.aniCol = "#C4773E";
+      infoO.skinName = "deer";
+      break;
+    case a_mole:
+      infoO.aniName = "Mole";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to MOLE!\n Hold W to dig underground!\nGo under anything, do surprise attacks!";
+      infoO.aniCol = "#4C4A45";
+      infoO.skinName = "mole";
+      break;
+    case a_zebra:
+      infoO.aniName = "Zebra";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to ZEBRA! \nPress W to kick side ways!";
+      infoO.aniCol = "#FFFFFF";
+      infoO.skinName = "zebra";
+      break;
+    case a_lion:
+      infoO.aniName = "Lion";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to LION!\n Press W to release a mighty ROAR (Rawr!)!";
+      infoO.aniCol = "#f8c923";
+      infoO.skinName = "lion";
+      break;
 
-            infoO.aniCol = "#9BA9B9";
-            infoO.skinName = "mouse";
-            break;
-        case a_rabbit:
-            infoO.aniName = "Rabbit";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
-            infoO.aniCol = "#AA937E";
-            infoO.skinName = "rabbit";
-            break;
-        case a_pig:
-            infoO.aniName = "Pig";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to PIG!\n Pigs move FAST through MUD! (Can use 'stink' on mud/ hiding holes!)";
-            infoO.aniCol = "#DD6BD4";
-            infoO.skinName = "pig";
-            break;
-        case a_fox:
-            infoO.aniName = "Fox";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to FOX! ,\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
-            infoO.aniCol = "#FF9D43";
-            infoO.skinName = "fox";
-            break;
-        case a_deer:
-            infoO.aniName = "Deer";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to DEER! \nPress W to dig up food! \nDig in mud for better food!\n Hint:Check water areas for new food sources!";
-            infoO.aniCol = "#C4773E";
-            infoO.skinName = "deer";
-            break;
-        case a_mole:
-            infoO.aniName = "Mole";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to MOLE!\n Hold W to dig underground!\nGo under anything, do surprise attacks!";
-            infoO.aniCol = "#4C4A45";
-            infoO.skinName = "mole";
-            break;
-        case a_zebra:
-            infoO.aniName = "Zebra";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to ZEBRA! \nPress W to kick side ways!";
-            infoO.aniCol = "#FFFFFF";
-            infoO.skinName = "zebra";
-            break;
-        case a_lion:
-            infoO.aniName = "Lion";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to LION!\n Press W to release a mighty ROAR (Rawr!)!";
-            infoO.aniCol = "#f8c923";
-            infoO.skinName = "lion";
-            break;
+    case a_bigCat:
+      infoO.aniName = "CHEETAH";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to CHEETAH!\n Press W to get a speed boost! (Every 8 seconds)!";
+      infoO.aniCol = "#CAC05B";
+      infoO.skinName = "bigcat/cheetah";
+      break;
+    case a_bear:
+      infoO.aniName = "Bear";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to BEAR!\n Bears climb through green hills! (Press W to use your claw!)";
+      infoO.aniCol = "#99591C";
+      infoO.skinName = "bear";
+      break;
+    case a_croc:
+      infoO.aniName = "Croc";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to CROCODILE!\n Press W to bite and drag around animals! \n+ (Now hide in water spots)+ Swim well in Mud, Lakes & Oceans!";
+      infoO.aniCol = "#30F51C";
+      infoO.skinName = "croc";
+      break;
+    case a_hippo:
+      infoO.aniName = "Hippo";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to HIPPO!\nHippos are great swimmers, dominate the Lakes/Oceans/Mud!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "hippo";
+      break;
+    case a_rhino:
+      infoO.aniName = "Rhino";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to RHINO!\n Press W to CHARGE with your mighty horn!";
+      infoO.aniCol = "#94a3a9";
+      infoO.skinName = "rhino";
+      break;
+    case a_shrimp:
+      infoO.aniName = "Shrimp";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "";
+      infoO.aniCol = "#f88e37";
+      infoO.skinName = "shrimp";
+      break;
+    case a_trout:
+      infoO.aniName = "Trout";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to TROUT!\nHint: Hold Left-click to RUN! (Uses extra water)";
+      infoO.aniCol = "#ac8686";
+      infoO.skinName = "trout";
+      break;
+    case a_crab:
+      infoO.aniName = "Crab";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to CRAB!\n Crabs can survive on dry land!\n (On land, Press W to go into your shell!)";
+      infoO.aniCol = "#bf2408";
+      infoO.skinName = "crab";
+      break;
+    case a_squid:
+      infoO.aniName = "Squid";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to SQUID!\n Squids can use INK when injured (press W!) \n+ you can hide in plankton bushes!";
+      infoO.aniCol = "#40dda4";
+      infoO.skinName = "squid";
+      break;
+    case a_shark:
+      infoO.aniName = "Shark";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to SHARK!\n A vicious predator of the oceans!";
+      infoO.aniCol = "#999fc6";
+      infoO.skinName = "shark";
+      break;
+    case a_seaHorse:
+      infoO.aniName = "Sea-horse";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to SEA HORSE!\n An agile hunter!";
+      infoO.aniCol = "#73BE2F";
+      infoO.skinName = "seahorse";
+      break;
+    case a_jellyFish:
+      infoO.aniName = "Jellyfish";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to JELLYFISH!\n A slowly-turning animal that can grow quite large!";
+      infoO.aniCol = "#FDB9BA";
+      infoO.skinName = "jellyfish";
+      break;
+    case a_turtle:
+      infoO.aniName = "Turtle";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to TURTLE!\n Lives well on land & water! (On land, Press W to go into your shell!)";
+      infoO.aniCol = "#502E1A";
+      infoO.skinName = "turtle";
+      break;
+    case a_stingray:
+      infoO.aniName = "Stringray";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to STINGRAY!\n Use electic shock (Release W key!) to shock animals! \n(Takes time to recharge)";
+      infoO.aniCol = "#164336";
+      infoO.skinName = "stingray";
+      break;
+    case a_kraken:
+      infoO.aniName = "The Kraken";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
+      infoO.aniCol = "#64a034";
+      infoO.skinName = "kraken";
+      break;
+    case a_pufferFish:
+      infoO.aniName = "Pufferfish";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to PUFFERFISH!\n (Hold W to inflate- become spiky, and dangerous to touch!)";
+      infoO.aniCol = "#6C5C2C";
+      infoO.skinName = "pufferfish";
+      break;
+    case a_killerWhale:
+      infoO.aniName = "Killer Whale";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Killer Whale! \nWhales blow out water when diving! (And sometimes other loot!)";
+      infoO.aniCol = "#141414";
+      infoO.skinName = "killerwhale";
+      break;
+    case a_swordfish:
+      infoO.aniName = "Swordfish";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n (Press W to rush with your sharp nose!)";
+      infoO.aniCol = "#689CD7";
+      infoO.skinName = "swordfish";
+      break;
+    case a_gorilla:
+      infoO.aniName = "Gorilla";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Gorillas are very fast on hills/trees!\n Press W to throw bananas! (from trees)";
+      infoO.aniCol = "#323232";
+      infoO.skinName = "gorilla";
+      break;
+    case a_octopus:
+      infoO.aniName = "Octopus";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Octopus!\nHold W to use your 'Disguise' ability!\n(Hint: wait for prey to bite you- they get stunned!)";
+      infoO.aniCol = "#ff8340";
+      infoO.skinName = "octopus";
+      break;
+    case a_dragn:
+      infoO.aniName = "Dragon";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
+      infoO.aniCol = "#22FF8A";
+      infoO.skinName = "dragon";
+      break;
+    case a_blackDragon:
+      infoO.aniName = "Black Dragon";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+      infoO.aniCol = "black";
+      infoO.skinName = "blackdragon";
+      break;
 
-        case a_bigCat:
-            infoO.aniName = "CHEETAH";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to CHEETAH!\n Press W to get a speed boost! (Every 8 seconds)!";
-            infoO.aniCol = "#CAC05B";
-            infoO.skinName = "bigcat/cheetah";
-            break;
-        case a_bear:
-            infoO.aniName = "Bear";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to BEAR!\n Bears climb through green hills! (Press W to use your claw!)";
-            infoO.aniCol = "#99591C";
-            infoO.skinName = "bear";
-            break;
-        case a_croc:
-            infoO.aniName = "Croc";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to CROCODILE!\n Press W to bite and drag around animals! \n+ (Now hide in water spots)+ Swim well in Mud, Lakes & Oceans!";
-            infoO.aniCol = "#30F51C";
-            infoO.skinName = "croc";
-            break;
-        case a_hippo:
-            infoO.aniName = "Hippo";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to HIPPO!\nHippos are great swimmers, dominate the Lakes/Oceans/Mud!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "hippo";
-            break;
-        case a_rhino:
-            infoO.aniName = "Rhino";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to RHINO!\n Press W to CHARGE with your mighty horn!";
-            infoO.aniCol = "#94a3a9";
-            infoO.skinName = "rhino";
-            break;
-        case a_shrimp:
-            infoO.aniName = "Shrimp";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "";
-            infoO.aniCol = "#f88e37";
-            infoO.skinName = "shrimp";
-            break;
-        case a_trout:
-            infoO.aniName = "Trout";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to TROUT!\nHint: Hold Left-click to RUN! (Uses extra water)";
-            infoO.aniCol = "#ac8686";
-            infoO.skinName = "trout";
-            break;
-        case a_crab:
-            infoO.aniName = "Crab";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to CRAB!\n Crabs can survive on dry land!\n (On land, Press W to go into your shell!)";
-            infoO.aniCol = "#bf2408";
-            infoO.skinName = "crab";
-            break;
-        case a_squid:
-            infoO.aniName = "Squid";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to SQUID!\n Squids can use INK when injured (press W!) \n+ you can hide in plankton bushes!";
-            infoO.aniCol = "#40dda4";
-            infoO.skinName = "squid";
-            break;
-        case a_shark:
-            infoO.aniName = "Shark";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to SHARK!\n A vicious predator of the oceans!";
-            infoO.aniCol = "#999fc6";
-            infoO.skinName = "shark";
-            break;
-        case a_seaHorse:
-            infoO.aniName = "Sea-horse";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to SEA HORSE!\n An agile hunter!";
-            infoO.aniCol = "#73BE2F";
-            infoO.skinName = "seahorse";
-            break;
-        case a_jellyFish:
-            infoO.aniName = "Jellyfish";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to JELLYFISH!\n A slowly-turning animal that can grow quite large!";
-            infoO.aniCol = "#FDB9BA";
-            infoO.skinName = "jellyfish";
-            break;
-        case a_turtle:
-            infoO.aniName = "Turtle";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to TURTLE!\n Lives well on land & water! (On land, Press W to go into your shell!)";
-            infoO.aniCol = "#502E1A";
-            infoO.skinName = "turtle";
-            break;
-        case a_stingray:
-            infoO.aniName = "Stringray";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to STINGRAY!\n Use electic shock (Release W key!) to shock animals! \n(Takes time to recharge)";
-            infoO.aniCol = "#164336";
-            infoO.skinName = "stingray";
-            break;
-        case a_kraken:
-            infoO.aniName = "The Kraken";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
-            infoO.aniCol = "#64a034";
-            infoO.skinName = "kraken";
-            break;
-        case a_pufferFish:
-            infoO.aniName = "Pufferfish";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to PUFFERFISH!\n (Hold W to inflate- become spiky, and dangerous to touch!)";
-            infoO.aniCol = "#6C5C2C";
-            infoO.skinName = "pufferfish";
-            break;
-        case a_killerWhale:
-            infoO.aniName = "Killer Whale";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Killer Whale! \nWhales blow out water when diving! (And sometimes other loot!)";
-            infoO.aniCol = "#141414";
-            infoO.skinName = "killerwhale";
-            break;
-        case a_swordfish:
-            infoO.aniName = "Swordfish";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (Press W to rush with your sharp nose!)";
-            infoO.aniCol = "#689CD7";
-            infoO.skinName = "swordfish";
-            break;
-        case a_gorilla:
-            infoO.aniName = "Gorilla";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Gorillas are very fast on hills/trees!\n Press W to throw bananas! (from trees)";
-            infoO.aniCol = "#323232";
-            infoO.skinName = "gorilla";
-            break;
-        case a_octopus:
-            infoO.aniName = "Octopus";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Octopus!\nHold W to use your 'Disguise' ability!\n(Hint: wait for prey to bite you- they get stunned!)";
-            infoO.aniCol = "#ff8340";
-            infoO.skinName = "octopus";
-            break;
-        case a_dragn:
-            infoO.aniName = "Dragon";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
-            infoO.aniCol = "#22FF8A";
-            infoO.skinName = "dragon";
-            break;
-        case a_blackDragon:
-            infoO.aniName = "Black Dragon";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
-            infoO.aniCol = "black";
-            infoO.skinName = "blackdragon";
-            break;
+    case a_giantSpider:
+      infoO.aniName = "Giant Spider";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Place web around the game to catch prey!";
+      infoO.aniCol = "black";
+      infoO.skinName = "giantSpider";
+      break;
 
-        case a_giantSpider:
-            infoO.aniName = "Giant Spider";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Place web around the game to catch prey!";
-            infoO.aniCol = "black";
-            infoO.skinName = "giantSpider";
-            break;
+    case a_cobra:
+      infoO.aniName = "Cobra";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Hold W to Spit venom, and poison animals with your bite!";
+      infoO.aniCol = "black";
+      infoO.skinName = "cobra";
+      break;
 
-        case a_cobra:
-            infoO.aniName = "Cobra";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Hold W to Spit venom, and poison animals with your bite!";
-            infoO.aniCol = "black";
-            infoO.skinName = "cobra";
-            break;
+    case a_boaConstrictor:
+      infoO.aniName = "Boa Constrictor";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Coil and suffocate other animals!";
+      infoO.aniCol = "black";
+      infoO.skinName = "boaConstrictor";
+      break;
 
-        case a_boaConstrictor:
-            infoO.aniName = "Boa Constrictor";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Coil and suffocate other animals!";
-            infoO.aniCol = "black";
-            infoO.skinName = "boaConstrictor";
-            break;
+    case a_trex:
+      infoO.aniName = "T-REX";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
+      infoO.aniCol = "#862A2A";
+      infoO.skinName = "trex";
+      break;
+    case a_tiger:
+      infoO.aniName = "Tiger";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Tiger!\n Tigers can launch an ambush attack (HOLD W to grow a bush) Release to attack!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "tiger";
+      break;
 
-        case a_trex:
-            infoO.aniName = "T-REX";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
-            infoO.aniCol = "#862A2A";
-            infoO.skinName = "trex";
-            break;
-        case a_tiger:
-            infoO.aniName = "Tiger";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Tiger!\n Tigers can launch an ambush attack (HOLD W to grow a bush) Release to attack!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "tiger";
-            break;
+    case a_giraffe:
+      infoO.aniName = "Giraffe";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Giraffe!\nGiraffe have huge legs and stomp anyone in their way!";
+      infoO.aniCol = "#E9BD23";
+      infoO.skinName = "giraffe";
+      break;
 
-        case a_giraffe:
-            infoO.aniName = "Giraffe";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Giraffe!\nGiraffe have huge legs and stomp anyone in their way!";
-            infoO.aniCol = "#E9BD23";
-            infoO.skinName = "giraffe";
-            break;
+    case a_eagle:
+      infoO.aniName = "Eagle";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Eagle!\nEagles can fly up other animals in the air! !\n";
+      infoO.aniCol = "#5b400d";
+      infoO.skinName = "eagle";
+      break;
 
+    case a_arcticFox:
+      infoO.aniName = "Arctic Fox";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
+      infoO.aniCol = "#CFCFCF";
+      infoO.skinName = "arctic/arcticfox";
+      break;
+    case a_arcticHare:
+      infoO.aniName = "Arctic Hare";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n \nPress W to burrow a hole to hide in!";
+      infoO.aniCol = "#D5D5D5";
+      infoO.skinName = "arctic/arctichare";
+      break;
+    case a_yeti:
+      infoO.aniName = "The Yeti!";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
+      infoO.aniCol = "#839eb5";
+      infoO.skinName = "arctic/yeti";
+      break;
+    case a_chipmunk:
+      infoO.aniName = "Chipmunk";
+      infoO.aniDesc = "";
+      infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
+      infoO.aniCol = "#A77C30";
+      infoO.skinName = "arctic/chipmunk";
+      break;
 
-        case a_eagle:
-            infoO.aniName = "Eagle";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Eagle!\nEagles can fly up other animals in the air! !\n";
-            infoO.aniCol = "#5b400d";
-            infoO.skinName = "eagle";
-            break;
+    case a_muskox:
+      infoO.aniName = "Muskox";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to charge with your horns! \nPlus move decently on ice!";
+      infoO.aniCol = "#231f18";
+      infoO.skinName = "arctic/muskox";
+      break;
+    case a_penguin:
+      infoO.aniName = "Penguin";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Left-click to run!\n (HOLD W to slide FAST on ice)!";
+      infoO.aniCol = "#FFFFFF";
+      infoO.skinName = "arctic/penguin";
+      break;
+    case a_polarBear:
+      infoO.aniName = "Polar Bear";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Polar bears can climb hills! \n+ They're amazing swimmers!";
+      infoO.aniCol = "#e4e4e4";
+      infoO.skinName = "arctic/polarbear";
+      break;
+    case a_seal:
+      infoO.aniName = "Seal";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Seals can slide on ice (Hold W) + can climb hills (rocks too!)";
+      infoO.aniCol = "#cfcfcf";
+      infoO.skinName = "arctic/seal";
+      break;
+    case a_snowLeopard:
+      infoO.aniName = "Snow leopard";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to get a speed boost! (Every 8 seconds)!";
+      infoO.aniCol = "#cfcfcf";
+      infoO.skinName = "arctic/snowleopard";
+      break;
+    case a_walrus:
+      infoO.aniName = "Walrus";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n You can slide on ice (Hold W) + can climb hills (rocks too!)";
+      infoO.aniCol = "#633838";
+      infoO.skinName = "arctic/walrus";
+      break;
+    case a_reindeer:
+      infoO.aniName = "Reindeer";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to dig up food! \n Your sharp hooves let you turn very well on ice!";
+      infoO.aniCol = "#a68976";
+      infoO.skinName = "arctic/reindeer";
+      break;
+    case a_wolf:
+      infoO.aniName = "Wolf";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Wolf paws turn very well on ice!\n Press W to howl!";
+      infoO.aniCol = "#6B6B6B";
+      infoO.skinName = "arctic/wolf";
+      break;
+    case a_wolverine:
+      infoO.aniName = "Wolverine";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to Let out a Powerful GROWL! (Knocks back prey!)";
+      infoO.aniCol = "#843A0F";
+      infoO.skinName = "arctic/wolverine";
+      break;
+    case a_mammoth:
+      infoO.aniName = "Mammoth";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to roll snowballs with your trunk!\n The bigger the snowball gets, the longer the freeze!";
+      infoO.aniCol = "#9d4717";
+      infoO.skinName = "arctic/mammoth";
+      break;
+    case a_donkey:
+      infoO.aniName = "Donkey";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Press W to Kick any animal behind you";
+      infoO.aniCol = "#8c7c64";
+      infoO.skinName = "donkey";
+      break;
+    /* NEW ANIMALS */
+    case a_sabertoothTiger:
+      infoO.aniName = "Sabertooth Tiger";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Sabertooth Tiger!\nSabertooth Tigers are great swimmers, dominate the Lakes/Oceans/Mud!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "sabertoothtiger";
+      break;
+    case a_elephant:
+      infoO.aniName = "Elephant";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Use your long trunk to attack and eat food!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "elephant";
+      break;
 
-        case a_arcticFox:
-            infoO.aniName = "Arctic Fox";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
-            infoO.aniCol = "#CFCFCF";
-            infoO.skinName = "arctic/arcticfox";
-            break;
-        case a_arcticHare:
-            infoO.aniName = "Arctic Hare";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n \nPress W to burrow a hole to hide in!";
-            infoO.aniCol = "#D5D5D5";
-            infoO.skinName = "arctic/arctichare";
-            break;
-        case a_yeti:
-            infoO.aniName = "The Yeti!";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
-            infoO.aniCol = "#839eb5";
-            infoO.skinName = "arctic/yeti";
-            break;
-        case a_chipmunk:
-            infoO.aniName = "Chipmunk";
-            infoO.aniDesc = "";
-            infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
-            infoO.aniCol = "#A77C30";
-            infoO.skinName = "arctic/chipmunk";
-            break;
+    case a_blueWhale:
+      infoO.aniName = "Blue Whale";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Blue Whale!\n Smash with your powerful tail!";
+      infoO.aniCol = "#945A99";
+      infoO.skinName = "bluewhale";
+      break;
 
-        case a_muskox:
-            infoO.aniName = "Muskox";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to charge with your horns! \nPlus move decently on ice!";
-            infoO.aniCol = "#231f18";
-            infoO.skinName = "arctic/muskox";
-            break;
-        case a_penguin:
-            infoO.aniName = "Penguin";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Left-click to run!\n (HOLD W to slide FAST on ice)!";
-            infoO.aniCol = "#FFFFFF";
-            infoO.skinName = "arctic/penguin";
-            break;
-        case a_polarBear:
-            infoO.aniName = "Polar Bear";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Polar bears can climb hills! \n+ They're amazing swimmers!";
-            infoO.aniCol = "#e4e4e4";
-            infoO.skinName = "arctic/polarbear";
-            break;
-        case a_seal:
-            infoO.aniName = "Seal";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Seals can slide on ice (Hold W) + can climb hills (rocks too!)";
-            infoO.aniCol = "#cfcfcf";
-            infoO.skinName = "arctic/seal";
-            break;
-        case a_snowLeopard:
-            infoO.aniName = "Snow leopard";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to get a speed boost! (Every 8 seconds)!";
-            infoO.aniCol = "#cfcfcf";
-            infoO.skinName = "arctic/snowleopard";
-            break;
-        case a_walrus:
-            infoO.aniName = "Walrus";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n You can slide on ice (Hold W) + can climb hills (rocks too!)";
-            infoO.aniCol = "#633838";
-            infoO.skinName = "arctic/walrus";
-            break;
-        case a_reindeer:
-            infoO.aniName = "Reindeer";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to dig up food! \n Your sharp hooves let you turn very well on ice!";
-            infoO.aniCol = "#a68976";
-            infoO.skinName = "arctic/reindeer";
-            break;
-        case a_wolf:
-            infoO.aniName = "Wolf";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Wolf paws turn very well on ice!\n Press W to howl!";
-            infoO.aniCol = "#6B6B6B";
-            infoO.skinName = "arctic/wolf";
-            break;
-        case a_wolverine:
-            infoO.aniName = "Wolverine";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to Let out a Powerful GROWL! (Knocks back prey!)";
-            infoO.aniCol = "#843A0F";
-            infoO.skinName = "arctic/wolverine";
-            break;
-        case a_mammoth:
-            infoO.aniName = "Mammoth";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to roll snowballs with your trunk!\n The bigger the snowball gets, the longer the freeze!";
-            infoO.aniCol = "#9d4717";
-            infoO.skinName = "arctic/mammoth";
-            break;
-        case a_donkey:
-            infoO.aniName = "Donkey";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to Kick any animal behind you";
-            infoO.aniCol = "#8c7c64";
-            infoO.skinName = "donkey";
-            break;
-            /* NEW ANIMALS */
-        case a_sabertoothTiger:
-            infoO.aniName = "Sabertooth Tiger";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Sabertooth Tiger!\nSabertooth Tigers are great swimmers, dominate the Lakes/Oceans/Mud!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "sabertoothtiger";
-            break;
-        case a_elephant:
-            infoO.aniName = "Elephant";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Use your long trunk to attack and eat food!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "elephant";
-            break;
+    // case a_duck:
+    //     infoO.aniName = "Duck";
+    //     infoO.aniDesc = "";
+    //     infoO.upgradeText = "UPGRADED to a DUCK!";
+    //     infoO.aniCol = "#FF9000";
+    //     infoO.skinName = "duck";
+    //     break;
+    case a_duckling:
+      infoO.aniName = "Duckling";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to a DUCK!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "duck/duckling";
+      break;
 
-        case a_blueWhale:
-            infoO.aniName = "Blue Whale";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Blue Whale!\n Smash with your powerful tail!";
-            infoO.aniCol = "#945A99";
-            infoO.skinName = "bluewhale";
-            break;
+    case a_hedgehog:
+      infoO.aniName = "Hedgehog";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Hedgehog!\n (Hold W to become spiky, and dangerous to touch!)";
+      infoO.aniCol = "#5b400d";
+      infoO.skinName = "hedgehog";
+      break;
 
-        // case a_duck:
-        //     infoO.aniName = "Duck";
-        //     infoO.aniDesc = "";
-        //     infoO.upgradeText = "UPGRADED to a DUCK!";
-        //     infoO.aniCol = "#FF9000";
-        //     infoO.skinName = "duck";
-        //     break;
-        case a_duckling:
-            infoO.aniName = "Duckling";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to a DUCK!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "duck/duckling";
-            break;
+    case a_kingCrab:
+      infoO.aniName = "King Crab";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to a KING CRAB!";
+      infoO.aniCol = "#971f0e";
+      infoO.skinName = "kingcrab";
+      break;
+    case a_lemming:
+      infoO.aniName = "Lemming";
+      infoO.aniDesc = "";
+      infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
+      infoO.aniCol = "#A77C30";
+      infoO.skinName = "arctic/lemming";
+      break;
 
-        case a_hedgehog:
-            infoO.aniName = "Hedgehog";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Hedgehog!\n (Hold W to become spiky, and dangerous to touch!)";
-            infoO.aniCol = "#5b400d";
-            infoO.skinName = "hedgehog";
-            break;
+    case a_frog:
+      infoO.aniName = "Frog";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to Frog!!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "frog/frog";
 
+      break;
 
-        case a_kingCrab:
-            infoO.aniName = "King Crab";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to a KING CRAB!";
-            infoO.aniCol = "#971f0e";
-            infoO.skinName = "kingcrab";
-            break;
-        case a_lemming:
-            infoO.aniName = "Lemming";
-            infoO.aniDesc = "";
-            infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
-            infoO.aniCol = "#A77C30";
-            infoO.skinName = "arctic/lemming";
-            break;
+    case a_ostrich:
+      infoO.aniName = "Ostrich";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Ostrich! Lay eggs to hatch babies! \nCommand babies by placing your crosshair (right-click/W)-\n They can attack prey!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "ostrich/ostrich";
 
-        case a_frog:
+      break;
+    case a_pelican:
+      infoO.aniName = "Pelican";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Pelican! \nPick up water (and prey!) in your mouth,\nfly, and drop water on prey! (press W again)";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "pelican/pelican";
 
-            infoO.aniName = "Frog";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Frog!!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "frog/frog";
+      break;
+    case a_falcon:
+      infoO.aniName = "Falcon";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "falcon/falcon";
 
-            break;
+      break;
 
-        case a_ostrich:
+    case a_snowyOwl:
+      infoO.aniName = "Snowy Owl";
+      infoO.aniDesc = "";
+      infoO.upgradeText =
+        "UPGRADED to Snowy Owl!\n Aim the crosshair, \n right click/W when it's on top of prey, to attack!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "snowyowl/snowyowl";
 
-            infoO.aniName = "Ostrich";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Ostrich! Lay eggs to hatch babies! \nCommand babies by placing your crosshair (right-click/W)-\n They can attack prey!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "ostrich/ostrich";
+      break;
 
-            break;
-        case a_pelican:
+    case a_ostrichBaby:
+      infoO.aniName = "Baby Ostrich";
+      infoO.aniDesc = "";
+      infoO.upgradeText = "UPGRADED to Baby Ostrich!!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "ostrich/baby-ostrich";
 
-            infoO.aniName = "Pelican";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Pelican! \nPick up water (and prey!) in your mouth,\nfly, and drop water on prey! (press W again)";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "pelican/pelican";
+      break;
+    case a_phoenix:
+      infoO.aniName = "Phoenix";
+      infoO.upgradeText =
+        "UPGRADED to Phoenix!\nCreate powerful fire tornados to burn your enemies alive!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "phoenix/phoenix";
+      break;
 
-            break;
-        case a_falcon:
+    case a_seaMonster:
+      infoO.aniName = "Sea Monster";
+      infoO.upgradeText = "UPGRADED to Sea Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "seamonster";
+      break;
+    case a_landMonster:
+      infoO.aniName = "Land Monster";
+      infoO.upgradeText = "UPGRADED to Land Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "landmonster";
+      break;
+    case a_iceMonster:
+      infoO.aniName = "Ice Monster";
+      infoO.upgradeText = "UPGRADED to Ice Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "icemonster";
+      break;
+    case a_dinoMonster:
+      infoO.aniName = "Dino Monster";
+      infoO.upgradeText = "UPGRADED to Dino Monster!";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "dinomonster";
+      break;
+    case a_pigeon:
+      infoO.aniName = "Pigeon";
+      infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "pigeon/pigeon";
+      break;
+    case a_toucan:
+      infoO.aniName = "Toucan";
+      infoO.upgradeText = "UPGRADED to Toucan!\nHold W to fly around. ";
+      infoO.aniCol = "#FF9000";
+      infoO.skinName = "toucan/toucan";
+      break;
 
-            infoO.aniName = "Falcon";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "falcon/falcon";
+    default:
+      infoO.aniName = "(Animal)";
+      infoO.aniDesc = "";
+      infoO.aniCol = "#000000";
+      infoO.upgradeText = "UPGRADED!";
+  }
 
-            break;
+  return infoO;
+};
 
-        case a_snowyOwl:
-
-            infoO.aniName = "Snowy Owl";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Snowy Owl!\n Aim the crosshair, \n right click/W when it's on top of prey, to attack!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "snowyowl/snowyowl";
-
-            break;
-
-
-        case a_ostrichBaby:
-
-            infoO.aniName = "Baby Ostrich";
-            infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to Baby Ostrich!!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "ostrich/baby-ostrich";
-
-            break;
-        case a_phoenix:
-
-            infoO.aniName = "Phoenix";
-            infoO.upgradeText = "UPGRADED to Phoenix!\nCreate powerful fire tornados to burn your enemies alive!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "phoenix/phoenix";
-            break;
-
-        case a_seaMonster:
-            infoO.aniName = "Sea Monster";
-            infoO.upgradeText = "UPGRADED to Sea Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "seamonster";
-            break;
-        case a_landMonster:
-            infoO.aniName = "Land Monster";
-            infoO.upgradeText = "UPGRADED to Land Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "landmonster";
-            break;
-        case a_iceMonster:
-            infoO.aniName = "Ice Monster";
-            infoO.upgradeText = "UPGRADED to Ice Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "icemonster";
-            break;
-        case a_dinoMonster:
-            infoO.aniName = "Dino Monster";
-            infoO.upgradeText = "UPGRADED to Dino Monster!";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "dinomonster";
-            break;
-        case a_pigeon:
-            infoO.aniName = "Pigeon";
-            infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "pigeon/pigeon";
-            break;
-        case a_toucan:
-            infoO.aniName = "Toucan";
-            infoO.upgradeText = "UPGRADED to Toucan!\nHold W to fly around. ";
-            infoO.aniCol = "#FF9000";
-            infoO.skinName = "toucan/toucan";
-            break;
-
-
-        default:
-            infoO.aniName = "(Animal)";
-            infoO.aniDesc = "";
-            infoO.aniCol = "#000000";
-            infoO.upgradeText = "UPGRADED!";
-    }
-
-    return infoO;
-}
-
-function onAniTypeSet() {
-
-}
-
-
+function onAniTypeSet() {}
 
 ///////
 // file: js_src/gameobj/ability/AbilityObj.js
@@ -10033,7 +10130,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         ctx.globalAlpha = 1.0 * oldA;
         var skinFolder = "img";
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(skinFolder + "/ability_whaleTailHit.png");
         if (theImg) {
@@ -10087,7 +10184,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         var skinFolder = "img";
 
-      //  if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        //  if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(
           skinFolder + "/ability_bearSlash" + this.specType2 + ".png"
@@ -10279,7 +10376,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.globalAlpha = 1.0 * oldA;
         var skinFolder = "img";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(
           skinFolder + "/ability_crabSmash" + this.specType + ".png"
@@ -10386,7 +10483,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.globalAlpha = 1.0 * oldA;
         var skinFolder = "img";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(skinFolder + "/ability_backkick.png");
         if (theImg) {
@@ -10483,7 +10580,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         var skinFolder = "img";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         ctx.globalAlpha = 1.0 * oldA;
         var theImg = getLoadedImg(skinFolder + "/ability_boaBite.png");
@@ -10546,7 +10643,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         var skinFolder = "skins";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie";
 
         var theImg = getLoadedImg(
           skinFolder + "/tiger/" + this.specType2 + "/ability_tigerJump.png"
@@ -10705,7 +10802,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         var skinFolder = "img";
 
-      //  if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        //  if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(skinFolder + "/ability_zebraKick.png");
         if (theImg) {
@@ -10769,7 +10866,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         var skinFolder = "img";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(skinFolder + "/ability_giraffeStompLeg.png");
         if (theImg) {
@@ -10863,7 +10960,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         var skinFolder = "img";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg("img/ability_sharkBite.png");
 
@@ -11066,7 +11163,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         }
         var skinFolder = "img";
 
-       // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+        // if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
         var theImg = getLoadedImg(skinFolder + "/trex-head.png");
         if (theImg) {
@@ -11552,7 +11649,6 @@ window.AbilityObj = AbilityObj; //make class global!
 //add this class as a thisClass for the right oType!
 GameObjType.setCustomClassForGameObjType(AbilityObj, o_abilityGObj);
 
-
 ///////
 // file: js_src/gameobj/ability/AbilityObjElephant.js
 ///////
@@ -11622,7 +11718,7 @@ AbilityObjElephant.prototype.readCustomData_onUpdate = function(msg) {
     msg
   ); //call superclass version of this method
 
- // console.log("reading ELE ONUPDATE a=" + toDegrees(this.angle));
+  // console.log("reading ELE ONUPDATE a=" + toDegrees(this.angle));
 };
 
 function AbilityObjElephant() {
@@ -11643,7 +11739,6 @@ GameObjType.setCustomClassForGameObjType(
 );
 
 //subclassed animals
-
 
 ///////
 // file: js_src/gameobj/animal/Animal.js
@@ -11682,7 +11777,6 @@ Animal.prototype.stunA = 0.0; //for fading animal under water
 Animal.prototype.frozenEffA = Animal.prototype.onFireEffA = Animal.prototype.effA_healing = Animal.prototype.effA_hot = 0.0;
 Animal.prototype.effA_poison = Animal.prototype.effA_bleeding = Animal.prototype.effA_stunk = 0.0;
 Animal.prototype.effA_constricted = Animal.prototype.effA_slimed = Animal.prototype.effA_webStuck = 0.0; //for fading animal under water
-
 
 Animal.prototype.nameA = 0.0;
 Animal.prototype.loadedSkinImg = null;
@@ -12444,7 +12538,6 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     else idealOp = 0.2;
   }
 
-
   if (this.flag_flying && this.id != myPlayerID && !this.flag_isGrabbed) {
     idealOp = 0.6;
   }
@@ -12493,7 +12586,6 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
   if (
     !(
       this.flag_flying ||
-   
       (options_lowGraphics &&
         !(outlineCol == col_edibleOutline || outlineCol == col_dangerOutline))
     )
@@ -12526,7 +12618,7 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
       ctx.fillStyle = col_dangerOutline;
     } else {
       var _thisAniType = this.animalType;
-      
+
       if (tailBiteAniTypes[_thisAniType - 1] > 0 && this.id != myPlayerID) {
         ctx.fillStyle = col_edibleOutline; //edible
       } else {
@@ -12771,7 +12863,6 @@ Animal.prototype.drawUnderSkinImgOutline = function() {
     ctx.restore();
   }
 
-
   var idealOp = this.flag_eff_hot ? 1.0 : 0.0;
   this.effA_hot += (idealOp - this.effA_hot) * 0.1;
   if (this.effA_hot > 0.01) {
@@ -12824,7 +12915,6 @@ Animal.prototype.drawUnderSkinImgOutline = function() {
 
     ctx.restore();
   }
-
 
   //BLEEDING outline 'glow'
 
@@ -13015,7 +13105,7 @@ Animal.prototype.drawWhenUnderwater = function() {
 
 Animal.prototype.skinRad = 0;
 Animal.prototype.skinScale = 0;
- 
+
 //just draw the circle, aside from all kinds of specific effects
 Animal.prototype.basicDrawSkinImg = function() {
   var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
@@ -13356,7 +13446,6 @@ Animal.prototype.drawTopEffects = function() {
     drawCircle(0, 0, Math.max(0, this.rad - this.outlineW), "#ef24ed");
     ctx.restore();
   }
- 
 
   //healing effect purple 'glow'
   if (this.effA_hot > 0.01) {
@@ -13405,7 +13494,6 @@ Animal.prototype.drawTopEffects = function() {
     drawCircle(0, 0, Math.max(0, this.rad - this.outlineW), "#9FDA00");
     ctx.restore();
   }
- 
 
   var idealOp = this.flag_eff_bleeding ? 0.8 : 0.0;
   this.effA_bleeding += (idealOp - this.effA_bleeding) * 0.1;
@@ -13540,7 +13628,7 @@ Animal.prototype.drawTopEffects = function() {
     ctx.globalAlpha *= effectN * this.effA_constricted;
 
     var skinFolder = "img";
-   
+
     var theImg = getLoadedImg(skinFolder + "/constrict.png");
     if (theImg) {
       var rad = this.rad * 1.3;
@@ -13551,7 +13639,7 @@ Animal.prototype.drawTopEffects = function() {
     ctx.restore();
   }
 };
- 
+
 //returns the name of the main skin img to draw
 Animal.prototype.getSkinName = function() {
   var skinName = this.skinImgName;
@@ -13567,7 +13655,7 @@ Animal.prototype.getSkinName = function() {
     case a_boaConstrictor:
     case a_hedgehog:
       var skinFolder = "";
-      
+
       if (this.flag_usingAbility) skinName = skinFolder + skinName + "2";
       break;
     /*
@@ -13681,8 +13769,6 @@ Animal.prototype.readCustomData_onUpdate = function(msg) {
     this.flag_isInArena = aniFlags.getBool();
     this.wins1v1 = msg.readUInt8();
 
-
-
     if (isAbility1v1Active && this.flag_can1v1) {
       var wins = "\n(wins:" + this.wins1v1 + ")";
       this.nickTXT.setText(this.nickName + wins);
@@ -13700,7 +13786,6 @@ function Animal(oType, secondaryType) {
 
   this.animalType = secondaryType; //works for manually created objs
   //console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Animal constructor run, id "+this.id);
- 
 }
 
 window.Animal = Animal; //make class global!
@@ -13708,36 +13793,29 @@ window.Animal = Animal; //make class global!
 //add this class as a thisClass for the right oType!
 GameObjType.setCustomClassForGameObjType(Animal, o_animal);
 
-
-
 ///////
 // file: js_src/gameobj/SpiderWeb.js
 ///////
 
-
 var superClass = GameObj;
 SpiderWeb.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 SpiderWeb.prototype.constructor = SpiderWeb;
-SpiderWeb.superClass=superClass; //'class' var
-
+SpiderWeb.superClass = superClass; //'class' var
 
 SpiderWeb.prototype.updateZ = function() {
-    this.z = 1002;
-}
+  this.z = 1002;
+};
 
 //custom data for this class (must be matched by server-side write of this data!)
 SpiderWeb.prototype.readCustomData_onUpdate = function(msg) {
-
   this.webTransparency = this.specType = msg.readUInt8();
-
-}
+};
 
 //override draw (things like other effects are drawn seperately)
-SpiderWeb.prototype.customDraw = function(batchDrawOutline){
+SpiderWeb.prototype.customDraw = function(batchDrawOutline) {
   ctx.save();
 
   ctx.globalAlpha *= (this.specType / 100.0) * 0.9; //web opacity param
-
 
   var theImg = getLoadedImg("img/spiderWeb.png");
   if (theImg) {
@@ -13746,33 +13824,29 @@ SpiderWeb.prototype.customDraw = function(batchDrawOutline){
     ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
   }
   ctx.restore();
-}
+};
 
 //custom data for this class (must be matched by server-side write of this data!)
 SpiderWeb.prototype.readCustomData_onNewlyVisible = function(msg) {
-
   this.webTransparency = this.specType = msg.readUInt8();
-}
+};
 
-function SpiderWeb(){
+function SpiderWeb() {
   SpiderWeb.superClass.call(this, o_spiderWeb);
 
-  this.webTransparency=0;
+  this.webTransparency = 0;
 
   //set vars for this class
-  this.doesDrawEffectScale=true;
-  this.drawEffectScale_Slow=true;
-
+  this.doesDrawEffectScale = true;
+  this.drawEffectScale_Slow = true;
 }
-window.SpiderWeb=SpiderWeb;
+window.SpiderWeb = SpiderWeb;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SpiderWeb, o_spiderWeb);
-
 
 ///////
 // file: js_src/gameobj/animal/Octopus.js
 ///////
-
 
 var superClass = Animal;
 Octopus.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
@@ -13785,161 +13859,150 @@ Octopus.superClass = superClass; //'class' var
 }*/
 
 //custom data for this class (must be matched by server-side write of this data!)
-Octopus.prototype.readCustomData_onNewlyVisible = function (msg) {
-    Octopus.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call super
-    //
-}
+Octopus.prototype.readCustomData_onNewlyVisible = function(msg) {
+  Octopus.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call super
+  //
+};
 
 //custom data for this class (must be matched by server-side write of this data!)
-Octopus.prototype.readCustomData_onUpdate = function (msg) {
-    Octopus.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call super
+Octopus.prototype.readCustomData_onUpdate = function(msg) {
+  Octopus.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call super
 
-    if (this.flag_usingAbility) {
-        var isAnim = msg.readUInt8() > 0;
-        var objOrAniT = msg.readUInt16();
-        //console.log(objOrAniT);
-        //check if it changed
-        if (this.octoIsAnimal != isAnim || this.octoDisguiseObjT != objOrAniT || this.octoDrawObj == null) {
+  if (this.flag_usingAbility) {
+    var isAnim = msg.readUInt8() > 0;
+    var objOrAniT = msg.readUInt16();
+    //console.log(objOrAniT);
+    //check if it changed
+    if (
+      this.octoIsAnimal != isAnim ||
+      this.octoDisguiseObjT != objOrAniT ||
+      this.octoDrawObj == null
+    ) {
+      //needs to update inner obj that draws the disguise animal/food item
+      var theObjT = isAnim ? o_animal : objOrAniT;
+      var theAniT = isAnim ? objOrAniT : null;
+      //console.log("octo disguised as obj T "+theObjT+" aniT "+theAniT+" isAni? "+isAnim+" tPassed "+objOrAniT);
 
-            //needs to update inner obj that draws the disguise animal/food item
-            var theObjT = isAnim ? o_animal : objOrAniT;
-            var theAniT = isAnim ? objOrAniT : null;
-            //console.log("octo disguised as obj T "+theObjT+" aniT "+theAniT+" isAni? "+isAnim+" tPassed "+objOrAniT);
+      //makes sure the correct subclass is used as well:)
+      var octoObj = GameObjType.createGameObjOfOType(theObjT, theAniT);
+      if (isAnim)
+        //animals need aniType set explicitely
+        octoObj.animalType = theAniT;
+      //this obj will stay at x/y 0,0
+      octoObj.oRad = this.oRad;
+      octoObj.nRad = this.nRad;
+      octoObj.curBiome = this.curBiome; // biome_ocean;
 
-
-            //makes sure the correct subclass is used as well:)
-            var octoObj = GameObjType.createGameObjOfOType(theObjT, theAniT);
-            if (isAnim) //animals need aniType set explicitely
-                octoObj.animalType = theAniT;
-            //this obj will stay at x/y 0,0
-            octoObj.oRad = this.oRad;
-            octoObj.nRad = this.nRad;
-            octoObj.curBiome = this.curBiome;// biome_ocean;
-
-            this.octoDrawObj = octoObj;
-        }
-        this.octoIsAnimal = isAnim;
-        this.octoDisguiseObjT = objOrAniT;
-
+      this.octoDrawObj = octoObj;
     }
-
-}
+    this.octoIsAnimal = isAnim;
+    this.octoDisguiseObjT = objOrAniT;
+  }
+};
 
 //Octopus drawing (split into methods since animals are more complex)
 
 //lowest, under the green/red outline (draw first)
-Octopus.prototype.drawUnderSkinImgOutline = function () {
-    Octopus.superClass.prototype.drawUnderSkinImgOutline.call(this);
-}
+Octopus.prototype.drawUnderSkinImgOutline = function() {
+  Octopus.superClass.prototype.drawUnderSkinImgOutline.call(this);
+};
 //drawn right before skin image
-Octopus.prototype.drawUnderSkinImg = function () {
-    Octopus.superClass.prototype.drawUnderSkinImg.call(this);
-    //eg. draw frog legs image that will be UNDER the skin
-}
-Octopus.prototype.drawOnTopOfSkinImg = function () {
-    Octopus.superClass.prototype.drawOnTopOfSkinImg.call(this); //call super to draw eg. glow effects
-    //eg. draw yeti snowball, octopus
+Octopus.prototype.drawUnderSkinImg = function() {
+  Octopus.superClass.prototype.drawUnderSkinImg.call(this);
+  //eg. draw frog legs image that will be UNDER the skin
+};
+Octopus.prototype.drawOnTopOfSkinImg = function() {
+  Octopus.superClass.prototype.drawOnTopOfSkinImg.call(this); //call super to draw eg. glow effects
+  //eg. draw yeti snowball, octopus
 
+  //octopus effect
+  if (this.flag_usingAbility) {
+    ctx.save();
+    ctx.globalAlpha = 1.0 - this.underwaterA;
 
-    //octopus effect
-    if (this.flag_usingAbility) {
+    //for certain obj types, set a fixed rad size
+    if (this.octoDisguiseObjT == o_bigMushroom) {
+      //this.octoDrawObj.type=a_shrimp;
+      this.octoDrawObj.nRad = 25.0;
+    } else if (this.octoDisguiseObjT == o_plankton) {
+      //this.octoDrawObj.type=a_shrimp;
+      this.octoDrawObj.nRad = 17.0;
+    } else if (this.octoDisguiseObjT == o_healingStone) {
+      //this.octoDrawObj.type=a_shrimp;
+      this.octoDrawObj.nRad = 15.0;
+    } else this.octoDrawObj.nRad = this.rad;
 
-        ctx.save();
-        ctx.globalAlpha = 1.0 - this.underwaterA;
-
-        //for certain obj types, set a fixed rad size
-        if (this.octoDisguiseObjT == o_bigMushroom) {
-            //this.octoDrawObj.type=a_shrimp;
-            this.octoDrawObj.nRad = 25.0;
-        } else if (this.octoDisguiseObjT == o_plankton) {
-            //this.octoDrawObj.type=a_shrimp;
-            this.octoDrawObj.nRad = 17.0;
-        } else if (this.octoDisguiseObjT == o_healingStone) {
-            //this.octoDrawObj.type=a_shrimp;
-            this.octoDrawObj.nRad = 15.0;
-        }
-        else
-            this.octoDrawObj.nRad = this.rad;
-
-        if (this.octoDisguiseObjT == o_hill) {
-            console.log("Octo is hill now!");
-        }
-
-        this.octoDrawObj.draw();
-
-        ctx.restore();
+    if (this.octoDisguiseObjT == o_hill) {
+      console.log("Octo is hill now!");
     }
-}
-Octopus.prototype.drawWhenUnderwater = function () {
-    Octopus.superClass.prototype.drawWhenUnderwater.call(this);
-    //draw shark fin, etc
 
-    //drawCircle(0, this.rad * 0.2, this.rad * 0.12, "blue");
-}
+    this.octoDrawObj.draw();
+
+    ctx.restore();
+  }
+};
+Octopus.prototype.drawWhenUnderwater = function() {
+  Octopus.superClass.prototype.drawWhenUnderwater.call(this);
+  //draw shark fin, etc
+
+  //drawCircle(0, this.rad * 0.2, this.rad * 0.12, "blue");
+};
 
 //custom class variables
 Octopus.prototype.octoDisguiseObjT = 0;
 Octopus.prototype.octoIsAnimal = false;
 //custom data for this class (must be matched by server-side write of this data!)
-Octopus.prototype.drawHealthBar = function () {
-    if (this.flag_usingAbility) {
+Octopus.prototype.drawHealthBar = function() {
+  if (this.flag_usingAbility) {
+    if (this.octoIsAnimal) {
+      Octopus.superClass.prototype.drawNickName.call(this, 1);
+      this.octoDrawObj.curBiome = this.curBiome; // biome_ocean;
+      this.hpPer_n = 2;
+      this.hpPer = 25;
+      this.hpBarA = 1;
+    } else return;
+  }
 
-        if (this.octoIsAnimal) {
-            Octopus.superClass.prototype.drawNickName.call(this, 1);
-            this.octoDrawObj.curBiome = this.curBiome;// biome_ocean;
-            this.hpPer_n = 2;
-            this.hpPer = 25;
-            this.hpBarA = 1;
-        }
-        else
-            return;
-    }
+  ctx.save();
+  //ease vars
+  var hpBarA_n = timestamp < this.hpBarTimeoutT ? 1.0 : 0.0;
+  this.hpBarA += (hpBarA_n - this.hpBarA) * 0.04;
 
-    ctx.save();
-    //ease vars
-    var hpBarA_n = (timestamp < this.hpBarTimeoutT ? 1.0 : 0.0);
-    this.hpBarA += (hpBarA_n - this.hpBarA) * 0.04;
+  if (this.hpBarA > 0.001) {
+    this.hpPer += (this.hpPer_n - this.hpPer) * 0.1;
 
+    //draw bar
+    var eyeS = Math.max(1.0, this.rad / 25.0);
+    var barW = 20.0 * eyeS,
+      barH = 5 * eyeS;
+    var bx = 0,
+      by = -this.rad - 10 * eyeS;
+    ctx.globalAlpha *= this.hpBarA; //bar bg
+    ctx.fillStyle = "rgba(0,0,0,0.35)";
+    ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
 
-    if (this.hpBarA > 0.001) {
-        this.hpPer += (this.hpPer_n - this.hpPer) * 0.1;
+    //ctx.globalAlpha = this.hpBarA * f;
+    ctx.fillStyle = "#16D729"; //bar fill
+    var width = barW * (this.hpPer / 100.0);
+    if (this.flag_usingAbility && this.octoIsAnimal)
+      width = barW * (25 / 100.0);
 
-        //draw bar
-        var eyeS = Math.max(1.0, this.rad / 25.0);
-        var barW = 20.0 * eyeS,
-          barH = 5 * eyeS;
-        var bx = 0,
-          by = -this.rad - 10 * eyeS;
-        ctx.globalAlpha *= this.hpBarA; //bar bg
-        ctx.fillStyle = "rgba(0,0,0,0.35)";
-        ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
-
-        //ctx.globalAlpha = this.hpBarA * f;
-        ctx.fillStyle = "#16D729"; //bar fill
-        var width = barW * (this.hpPer / 100.0)
-        if (this.flag_usingAbility && this.octoIsAnimal)
-            width = barW * (25 / 100.0)
-
-
-        ctx.fillRect(bx - barW / 2, by - barH / 2, width, barH);
-    }
-    ctx.restore(); //restore from fade
-}
+    ctx.fillRect(bx - barW / 2, by - barH / 2, width, barH);
+  }
+  ctx.restore(); //restore from fade
+};
 
 //set custom skin name
-Octopus.prototype.getSkinName = function () {
-    return "octopus";// without .png (/skins/ * .png)
-}
-
+Octopus.prototype.getSkinName = function() {
+  return "octopus"; // without .png (/skins/ * .png)
+};
 
 function Octopus() {
-    Octopus.superClass.call(this, o_animal);
-
+  Octopus.superClass.call(this, o_animal);
 }
 window.Octopus = Octopus;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Octopus, o_animal, a_octopus);
-
 
 ///////
 // file: js_src/gameobj/animal/Eagle.js
@@ -13949,7 +14012,7 @@ var superClass = Animal;
 Eagle.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Eagle.prototype.constructor = Eagle;
 Eagle.superClass = superClass; //'class' var
- 
+
 Eagle.prototype.animalInfo = function() {
   var infoO = {};
 
@@ -13982,7 +14045,6 @@ Eagle.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
   var skins = "skins";
-  
 
   var iScale = 500 / 340.0;
   {
@@ -14159,16 +14221,14 @@ window.Eagle = Eagle;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Eagle, o_animal, a_eagle);
 
-
 ///////
 // file: js_src/gameobj/animal/Ostrich.js
 ///////
 
-
 var superClass = Animal;
 Ostrich.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Ostrich.prototype.constructor = Ostrich;
-Ostrich.superClass=superClass; //'class' var
+Ostrich.superClass = superClass; //'class' var
 
 //example of custom Z
 /*Ostrich.prototype.updateZ = function() {
@@ -14178,26 +14238,23 @@ Ostrich.superClass=superClass; //'class' var
 //set custom skin name
 Ostrich.prototype.getSkinName = function() {
   return "ostrich/ostrich";
-}
+};
 
-function Ostrich(){
-    Ostrich.superClass.call(this, o_animal);
-
+function Ostrich() {
+  Ostrich.superClass.call(this, o_animal);
 }
-window.Ostrich=Ostrich;
+window.Ostrich = Ostrich;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Ostrich, o_animal, a_ostrich);
-
 
 ///////
 // file: js_src/gameobj/animal/OstrichBaby.js
 ///////
 
-
 var superClass = Animal;
 OstrichBaby.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 OstrichBaby.prototype.constructor = OstrichBaby;
-OstrichBaby.superClass=superClass; //'class' var
+OstrichBaby.superClass = superClass; //'class' var
 
 //example of custom Z
 /*OstrichBaby.prototype.updateZ = function() {
@@ -14207,40 +14264,40 @@ OstrichBaby.superClass=superClass; //'class' var
 //set custom skin name
 OstrichBaby.prototype.getSkinName = function() {
   return "ostrich/ostrich-baby";
-}
-
-
-OstrichBaby.prototype.isEdibleOutlined = function() {
-  if (this.mommyID == myPlayerID)
-      return false;
- 
-  var myPlayer = gameObjsByID[myPlayerID];
-  if (myPlayer) {
-      var attackerType =  myPlayer.animalType;
-      if (attackerType == a_hippo || attackerType == a_boaConstrictor || attackerType == a_killerWhale)
-          return false;
-  }
-
-
-   return  OstrichBaby.superClass.prototype.isEdibleOutlined.call(this);;
 };
 
+OstrichBaby.prototype.isEdibleOutlined = function() {
+  if (this.mommyID == myPlayerID) return false;
+
+  var myPlayer = gameObjsByID[myPlayerID];
+  if (myPlayer) {
+    var attackerType = myPlayer.animalType;
+    if (
+      attackerType == a_hippo ||
+      attackerType == a_boaConstrictor ||
+      attackerType == a_killerWhale
+    )
+      return false;
+  }
+
+  return OstrichBaby.superClass.prototype.isEdibleOutlined.call(this);
+};
 
 OstrichBaby.prototype.readCustomData_onNewlyVisible = function(msg) {
-  OstrichBaby.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call super
-	this.mommyID = msg.readUInt32();
+  OstrichBaby.superClass.prototype.readCustomData_onNewlyVisible.call(
+    this,
+    msg
+  ); //call super
+  this.mommyID = msg.readUInt32();
+};
+
+function OstrichBaby() {
+  OstrichBaby.superClass.call(this, o_animal);
 }
 
-function OstrichBaby(){
-    OstrichBaby.superClass.call(this, o_animal);
-
-}
-
-
-window.OstrichBaby=OstrichBaby;
+window.OstrichBaby = OstrichBaby;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(OstrichBaby, o_animal, a_ostrichBaby);
-
 
 ///////
 // file: js_src/gameobj/animal/Falcon.js
@@ -14268,9 +14325,8 @@ Falcon.prototype.getSkinName = function() {
 Falcon.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
-  
   var skins = "skins";
-  
+
   var iScale = 500 / 340.0;
   if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
     ctx.save();
@@ -14501,7 +14557,6 @@ window.Falcon = Falcon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Falcon, o_animal, a_falcon);
 
-
 ///////
 // file: js_src/gameobj/animal/SnowyOwl.js
 ///////
@@ -14525,7 +14580,7 @@ SnowyOwl.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
   var skins = "skins";
-  
+
   var iScale = 500 / 340.0;
   if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
     ctx.save();
@@ -14755,7 +14810,6 @@ window.SnowyOwl = SnowyOwl;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SnowyOwl, o_animal, a_snowyOwl);
 
-
 ///////
 // file: js_src/gameobj/animal/Pelican.js
 ///////
@@ -14782,9 +14836,8 @@ Pelican.prototype.drawSkinCustomization = function() {
   var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
   var rad = this.rad - this.outlineW;
 
-  
   var skins = "skins";
-   
+
   if (this.flag_flying) {
     var wingType = "";
 
@@ -14971,58 +15024,57 @@ window.Pelican = Pelican;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Pelican, o_animal, a_pelican);
 
-
 ///////
 // file: js_src/gameobj/animal/Frog.js
 ///////
 
-
 var superClass = Animal;
 Frog.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Frog.prototype.constructor = Frog;
-Frog.superClass=superClass; //'class' var
+Frog.superClass = superClass; //'class' var
 
 //example of custom Z
 Frog.prototype.updateZ = function() {
-	this.z = 1003 + this.rad;
-}
+  this.z = 1003 + this.rad;
+};
 
 //set custom skin name
 Frog.prototype.getSkinName = function() {
-	var suffix = "";
-	if (this.flag_usingAbility && !this.flag_underWater )
-          suffix = "2";
-    return "frog/frog" + suffix;
-}
+  var suffix = "";
+  if (this.flag_usingAbility && !this.flag_underWater) suffix = "2";
+  return "frog/frog" + suffix;
+};
 
 Frog.prototype.drawUnderSkinImg = function() {
-	if (this.flag_usingAbility && !this.flag_underWater) {
+  if (this.flag_usingAbility && !this.flag_underWater) {
     var rad = this.rad - this.outlineW;
     var iScale = 500 / 340.0;
     var froglegs = getLoadedImg("./skins/frog/frogLegs.png");
     if (froglegs)
-      ctx.drawImage(froglegs, -rad * iScale, (-rad - rad) * iScale, 2 * rad * iScale, 2 * rad * iScale);
-	}
-}
+      ctx.drawImage(
+        froglegs,
+        -rad * iScale,
+        (-rad - rad) * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+  }
+};
 
 Frog.prototype.drawWhenUnderwater = function() {
-
-    ctx.save();
-    ctx.globalAlpha = 0.2;
-    ctx.scale(1, 1.5);
-    drawCircle(0, 0, this.rad * 0.5, "#598b30");
-    drawCircle(0, this.rad * -0.6, this.rad * 0.3, "#64a034");
-    ctx.restore();
-
+  ctx.save();
+  ctx.globalAlpha = 0.2;
+  ctx.scale(1, 1.5);
+  drawCircle(0, 0, this.rad * 0.5, "#598b30");
+  drawCircle(0, this.rad * -0.6, this.rad * 0.3, "#64a034");
+  ctx.restore();
+};
+function Frog() {
+  Frog.superClass.call(this, o_animal);
 }
-function Frog(){
-    Frog.superClass.call(this, o_animal);
-
-}
-window.Frog=Frog;
+window.Frog = Frog;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Frog, o_animal, a_frog);
-
 
 ///////
 // file: js_src/gameobj/animal/Duck.js
@@ -15043,8 +15095,9 @@ thisClass.superClass = superClass; //'class' var
 thisClass.prototype.isAttacking = false;
 thisClass.prototype.getSkinName = function() {
   //return "duck/duck_" + this.specType;
-  
-  var skin = "duck/" + this.animalSpecies + "/duck" + (this.isAttacking? "1" : "");
+
+  var skin =
+    "duck/" + this.animalSpecies + "/duck" + (this.isAttacking ? "1" : "");
   return skin;
 };
 
@@ -15119,26 +15172,31 @@ thisClass.prototype.drawSkinCustomization = function() {
 
     var theHead = getLoadedImg("skins/duck/2/head_duck.png");
     if (theHead) {
-        ctx.save();
-        var rad = this.rad * 1;
-        var ydist = -this.rad * 0.1;
-        ctx.drawImage(theHead, -rad * iScale, (-rad) + ydist * iScale, 2 * rad * iScale, 2 * rad * iScale);
-        ctx.restore();
-
+      ctx.save();
+      var rad = this.rad * 1;
+      var ydist = -this.rad * 0.1;
+      ctx.drawImage(
+        theHead,
+        -rad * iScale,
+        -rad + ydist * iScale,
+        2 * rad * iScale,
+        2 * rad * iScale
+      );
+      ctx.restore();
     }
 
     ctx.restore();
   }
 };
-Duck.prototype.readCustomData_onNewlyVisible = function (msg) {
+Duck.prototype.readCustomData_onNewlyVisible = function(msg) {
   Duck.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call superclass version of this method
   this.isAttacking = msg.readUInt8();
-}
+};
 
-Duck.prototype.readCustomData_onUpdate = function (msg) {
+Duck.prototype.readCustomData_onUpdate = function(msg) {
   Duck.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
   this.isAttacking = msg.readUInt8();
-}
+};
 function Duck() {
   superClass.call(this, o_animal);
 }
@@ -15146,16 +15204,14 @@ window.Duck = Duck;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Duck, o_animal, a_duck);
 
-
 ///////
 // file: js_src/gameobj/animal/Duckling.js
 ///////
 
-
 var superClass = Animal;
 Duckling.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Duckling.prototype.constructor = Duckling;
-Duckling.superClass=superClass; //'class' var
+Duckling.superClass = superClass; //'class' var
 
 //example of custom Z
 /*Duckling.prototype.updateZ = function() {
@@ -15165,15 +15221,13 @@ Duckling.superClass=superClass; //'class' var
 //set custom skin name
 Duckling.prototype.getSkinName = function() {
   return "duck/duckling";
+};
+function Duckling() {
+  Duckling.superClass.call(this, o_animal);
 }
-function Duckling(){
-    Duckling.superClass.call(this, o_animal);
-
-}
-window.Duckling=Duckling;
+window.Duckling = Duckling;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Duckling, o_animal, a_duckling);
-
 
 ///////
 // file: js_src/gameobj/animal/BlackDragon.js
@@ -15225,7 +15279,7 @@ BlackDragon.prototype.drawSkinCustomization = function() {
       2 * rad * iScale,
       2 * rad * iScale
     );
- 
+
     ctx.restore();
   }
 
@@ -15251,7 +15305,7 @@ BlackDragon.prototype.drawSkinCustomization = function() {
   }
 
   if (!this.flag_usingAbility) return;
-  
+
   if (this.flag_flying && !this.flag_isGrabbed) {
     ctx.save();
     var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
@@ -15328,7 +15382,6 @@ function BlackDragon() {
 window.BlackDragon = BlackDragon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(BlackDragon, o_animal, a_blackDragon);
-
 
 ///////
 // file: js_src/gameobj/animal/Honeybee.js
@@ -15491,7 +15544,6 @@ window.Honeybee = Honeybee;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Honeybee, o_animal, a_honeyBee);
 
-
 ///////
 // file: js_src/gameobj/animal/Phoenix.js
 ///////
@@ -15501,7 +15553,6 @@ var superClass = Animal;
 Phoenix.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Phoenix.prototype.constructor = Phoenix;
 Phoenix.superClass = superClass; //'class' var
-
 
 Phoenix.prototype.updateZ = function() {
   this.z = 1007;
@@ -15517,7 +15568,6 @@ Phoenix.prototype.getSkinName = function() {
 
 //draw image for the animal skin (along with extra images on it, eg wings)
 Phoenix.prototype.drawSkinImg = function() {
-   
   if (!options_lowGraphics) {
     var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
     var rad = this.rad - this.outlineW;
@@ -15706,7 +15756,6 @@ window.Phoenix = Phoenix;
 GameObjType.setCustomClassForGameObjType(Phoenix, o_animal, a_phoenix);
 // monster update
 
-
 ///////
 // file: js_src/gameobj/animal/SeaMonster.js
 ///////
@@ -15718,57 +15767,82 @@ SeaMonster.prototype.constructor = SeaMonster;
 SeaMonster.superClass = superClass; //'class' var
 
 //set custom skin name
-SeaMonster.prototype.getSkinName = function () {
-    return "seaMonster";
-}
+SeaMonster.prototype.getSkinName = function() {
+  return "seaMonster";
+};
 
+SeaMonster.prototype.drawWhenUnderwater = function() {
+  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+  var period = 1.5;
+  var shiftAm = 1.0;
+  var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
 
-SeaMonster.prototype.drawWhenUnderwater = function () {
-    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
-    var period = 1.5;
-    var shiftAm = 1.0;
-    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
+  var diveColor = "white";
+  ctx.globalAlpha = 0.2;
+  ctx.fillStyle = diveColor;
+  var bubRad = this.flag_underWater ? this.rad * 0.15 : this.rad * 0.1;
+  ctx.beginPath(); //top left, right
+  ctx.arc(
+    this.rad * -0.35,
+    this.rad * -0.33,
+    Math.max(0, bubRad + moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(
+    this.rad * 0.35,
+    this.rad * -0.32,
+    Math.max(0, bubRad - moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
 
-    var diveColor =  "white";
-    ctx.globalAlpha = 0.2;
-    ctx.fillStyle = diveColor;
-    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
-    ctx.beginPath(); //top left, right
-    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
-    ctx.fill();
+  ctx.beginPath(); //bottom 2
+  ctx.arc(
+    this.rad * 0.35,
+    this.rad * 0.36,
+    Math.max(0, bubRad + moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(
+    this.rad * -0.35,
+    this.rad * 0.35,
+    Math.max(0, bubRad - moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
 
-    ctx.beginPath(); //bottom 2
-    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
-    ctx.fill();
+  var diveImg = getLoadedImg("img/seamonster-dive.png");
+  if (diveImg) {
+    var iScale = 500 / 340.0;
 
+    ctx.save();
+    ctx.globalAlpha = 0.4;
+    var rad = this.rad;
+    ctx.drawImage(
+      diveImg,
+      -rad * iScale,
+      (-rad + rad * 0.4) * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+    );
 
-    var diveImg = getLoadedImg("img/seamonster-dive.png");
-    if (diveImg) {
-        var iScale = 500 / 340.0;
-
-        ctx.save();
-        ctx.globalAlpha = 0.4;
-        var rad = this.rad;
-        ctx.drawImage(diveImg, -rad * iScale, (-rad + rad * 0.4) * iScale, 2 * rad * iScale, 2 * rad * iScale);
-
-        ctx.restore();
-    }
-   
-}
+    ctx.restore();
+  }
+};
 function SeaMonster() {
-    SeaMonster.superClass.call(this, o_animal);
-
+  SeaMonster.superClass.call(this, o_animal);
 }
 window.SeaMonster = SeaMonster;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SeaMonster, o_animal, a_seaMonster);
-
 
 ///////
 // file: js_src/gameobj/animal/LandMonster.js
@@ -15781,82 +15855,96 @@ LandMonster.prototype.constructor = LandMonster;
 LandMonster.superClass = superClass; //'class' var
 
 //set custom skin name
-LandMonster.prototype.getSkinName = function () {
-    return "landmonster";
-}
+LandMonster.prototype.getSkinName = function() {
+  return "landmonster";
+};
 
+LandMonster.prototype.drawWhenUnderwater = function() {
+  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+  var period = 1.5;
+  var shiftAm = 1.0;
+  var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
 
-LandMonster.prototype.drawWhenUnderwater = function () {
-    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
-    var period = 1.5;
-    var shiftAm = 1.0;
-    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
+  var diveColor = "#f9d43b";
+  ctx.globalAlpha = 0.3;
+  ctx.fillStyle = diveColor;
+  var bubRad = this.flag_underWater ? this.rad * 0.15 : this.rad * 0.1;
+  ctx.beginPath(); //top left, right
+  ctx.arc(
+    this.rad * -0.35,
+    this.rad * -0.33,
+    Math.max(0, bubRad + moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(
+    this.rad * 0.35,
+    this.rad * -0.32,
+    Math.max(0, bubRad - moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
 
-
-    var diveColor =  "#f9d43b";
-    ctx.globalAlpha = 0.3;
-    ctx.fillStyle = diveColor;
-    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
-    ctx.beginPath(); //top left, right
-    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.beginPath(); //bottom 2
-    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
-    ctx.fill();
-   
-}
+  ctx.beginPath(); //bottom 2
+  ctx.arc(
+    this.rad * 0.35,
+    this.rad * 0.36,
+    Math.max(0, bubRad + moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+  ctx.beginPath();
+  ctx.arc(
+    this.rad * -0.35,
+    this.rad * 0.35,
+    Math.max(0, bubRad - moveA),
+    0,
+    Math.PI * 2
+  );
+  ctx.fill();
+};
 function LandMonster() {
-    LandMonster.superClass.call(this, o_animal);
-
+  LandMonster.superClass.call(this, o_animal);
 }
 window.LandMonster = LandMonster;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(LandMonster, o_animal, a_landMonster);
 
-
 ///////
 // file: js_src/gameobj/SinkHole.js
 ///////
-
 
 var superClass = GameObj;
 SinkHole.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 SinkHole.prototype.constructor = SinkHole;
 SinkHole.superClass = superClass; //'class' var
 
-
-SinkHole.prototype.updateZ = function () {
-    this.z = -101;
-}
-
+SinkHole.prototype.updateZ = function() {
+  this.z = -101;
+};
 
 //override draw (things like other effects are drawn seperately)
-SinkHole.prototype.customDraw = function (batchDrawOutline) {
-    ctx.save();
-    console.log("specType: " + this.specType);
-    if (this.specType == 0) {
-        this.drawOutlinedCircle("", "#9F8641");
-        //drawCircle(0, 0, this.rad, "#9F8641");
+SinkHole.prototype.customDraw = function(batchDrawOutline) {
+  ctx.save();
+  console.log("specType: " + this.specType);
+  if (this.specType == 0) {
+    this.drawOutlinedCircle("", "#9F8641");
+    //drawCircle(0, 0, this.rad, "#9F8641");
 
-        ctx.globalAlpha = 0.6;
-        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
-        ctx.globalAlpha = 0.7;
-        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.8), "#40371D");
-        ctx.globalAlpha = 0.9;
-        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.8), "#40371D");
-        ctx.globalAlpha = 0.5;
-        drawCircle(0 - this.rPer * 3, 1, Math.max(0, this.rad * 0.5), "black");
-    }
-
-    else {
-        /*
+    ctx.globalAlpha = 0.6;
+    drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
+    ctx.globalAlpha = 0.7;
+    drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.8), "#40371D");
+    ctx.globalAlpha = 0.9;
+    drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.8), "#40371D");
+    ctx.globalAlpha = 0.5;
+    drawCircle(0 - this.rPer * 3, 1, Math.max(0, this.rad * 0.5), "black");
+  } else {
+    /*
         var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
         var period = 1.2;
         var xShift = 2.5 * Math.cos((2.0 * Math.PI) / period * (tSinceSpawn));
@@ -15869,37 +15957,41 @@ SinkHole.prototype.customDraw = function (batchDrawOutline) {
         drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 18.5 + yShift / 5), "#2B8CAA");
         drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 24.5 + yShift / 11), "#28829E");
         */
-        this.drawOutlinedCircle("", "#9F8641");
-        //drawCircle(0, 0, this.rad, "#9F8641");
+    this.drawOutlinedCircle("", "#9F8641");
+    //drawCircle(0, 0, this.rad, "#9F8641");
 
-       
-            drawCircle(0 - this.rPer, 0 - this.rPer, Math.max(0, this.rad - 7), "#7E6A35");
-       
+    drawCircle(
+      0 - this.rPer,
+      0 - this.rPer,
+      Math.max(0, this.rad - 7),
+      "#7E6A35"
+    );
 
-        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 14), "#5C4E28");
+    drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 14), "#5C4E28");
 
-        drawCircle(0 - this.rPer * 2 - 3, 1, Math.max(0, this.rad - 18.5), "#40371D");
-    }
-    ctx.restore();
-}
-
-
+    drawCircle(
+      0 - this.rPer * 2 - 3,
+      1,
+      Math.max(0, this.rad - 18.5),
+      "#40371D"
+    );
+  }
+  ctx.restore();
+};
 
 function SinkHole() {
-    SinkHole.superClass.call(this, o_spiderWeb);
+  SinkHole.superClass.call(this, o_spiderWeb);
 
-    this.webTransparency = 0;
+  this.webTransparency = 0;
 
-    //set vars for this class
-    this.doesDrawEffectScale = true;
-    this.drawEffectScale_Slow = true;
-
+  //set vars for this class
+  this.doesDrawEffectScale = true;
+  this.drawEffectScale_Slow = true;
 }
 window.SinkHole = SinkHole;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SinkHole, o_sinkHole);
 // birds update 2
-
 
 ///////
 // file: js_src/gameobj/animal/Pigeon.js
@@ -15950,7 +16042,7 @@ Pigeon.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
   var skins = "skins";
-   
+
   //if (!options_lowGraphics)
   {
     var iScale = 500 / 340.0;
@@ -16055,7 +16147,6 @@ window.Pigeon = Pigeon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Pigeon, o_animal, a_pigeon);
 
-
 ///////
 // file: js_src/gameobj/animal/Toucan.js
 ///////
@@ -16125,7 +16216,6 @@ Toucan.prototype.drawSkinCustomization = function() {
 
       var wings = this.animalSpecies == 5 ? "skins/toucan/5/" : "skins/toucan/";
 
-      
       var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
       var frame = !options_lowGraphics
         ? getAnimFrame(tSinceSpawn, 0.5, 0.3, 2)
@@ -16221,7 +16311,6 @@ window.Toucan = Toucan;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Toucan, o_animal, a_toucan);
 
-
 ///////
 // file: js_src/gameobj/animal/Tiger.js
 ///////
@@ -16232,39 +16321,43 @@ Tiger.prototype = Object.create(superClass.prototype); //properly inherit protot
 Tiger.prototype.constructor = Tiger;
 Tiger.superClass = superClass; //'class' var
 
-
-Tiger.prototype.animalInfo = function () {
-    var infoO = {};
-    switch (this.animalSpecies) {
-        case 0:
-            infoO.aniName = "Tiger";
-            break;
-        case 1:
-            infoO.aniName = "rare White Tiger";
-            break;
-   
-    }
-    infoO.aniName = "Tiger";
-    infoO.aniDesc = "";
-    infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Tigers can launch an ambush attack (HOLD W to grow a bush)!";
-    infoO.aniCol = "#FF9000";
-    infoO.skinName = "tiger/" + this.animalSpecies + "/tiger";
-    return infoO;
-}
+Tiger.prototype.animalInfo = function() {
+  var infoO = {};
+  switch (this.animalSpecies) {
+    case 0:
+      infoO.aniName = "Tiger";
+      break;
+    case 1:
+      infoO.aniName = "rare White Tiger";
+      break;
+  }
+  infoO.aniName = "Tiger";
+  infoO.aniDesc = "";
+  infoO.upgradeText =
+    "UPGRADED to " +
+    infoO.aniName +
+    "!\n Tigers can launch an ambush attack (HOLD W to grow a bush)!";
+  infoO.aniCol = "#FF9000";
+  infoO.skinName = "tiger/" + this.animalSpecies + "/tiger";
+  return infoO;
+};
 
 //set custom skin name
-Tiger.prototype.getSkinName = function () {
-    return "tiger/" + this.animalSpecies + "/tiger" + (this.specType == 0 ? "" : this.specType);
-}
+Tiger.prototype.getSkinName = function() {
+  return (
+    "tiger/" +
+    this.animalSpecies +
+    "/tiger" +
+    (this.specType == 0 ? "" : this.specType)
+  );
+};
 
 function Tiger() {
-    Tiger.superClass.call(this, o_animal);
-
+  Tiger.superClass.call(this, o_animal);
 }
 window.Tiger = Tiger;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Tiger, o_animal, a_tiger);
-
 
 ///////
 // file: js_src/gameobj/animal/BoaConstrictor.js
@@ -16317,7 +16410,6 @@ GameObjType.setCustomClassForGameObjType(
   a_boaConstrictor
 );
 
-
 ///////
 // file: js_src/gameobj/animal/Cobra.js
 ///////
@@ -16338,20 +16430,19 @@ Cobra.prototype.getSkinName = function() {
 };
 
 Cobra.prototype.drawUnderSkinImg = function() {
-   if(this.flag_usingAbility)
-   return;
+  if (this.flag_usingAbility) return;
   var rad = this.rad - this.outlineW;
   var iScale = 500 / 340.0;
   var tongue = getLoadedImg("skins/boa/tongue.png");
- 
+
   var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
   var frame = options_lowGraphics ? 0 : getAnimFrame(tSinceSpawn, 0.5, 5, 0.5);
   var yOffset = options_lowGraphics ? 0 : 5;
   if (tongue) {
     ctx.drawImage(
-        tongue,
+      tongue,
       -rad * iScale,
-      -((rad+yOffset) + frame ) * iScale,
+      -(rad + yOffset + frame) * iScale,
       2 * rad * iScale,
       2 * rad * iScale
     );
@@ -16363,13 +16454,8 @@ function Cobra() {
 }
 window.Cobra = Cobra;
 //add this file as a class! (make sure to call require!)
-GameObjType.setCustomClassForGameObjType(
-  Cobra,
-  o_animal,
-  a_cobra
-);
+GameObjType.setCustomClassForGameObjType(Cobra, o_animal, a_cobra);
 // custom objects
-
 
 ///////
 // file: js_src/gameobj/Fire.js
@@ -16487,7 +16573,6 @@ function Fire() {
 window.Fire = Fire;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Fire, o_fire);
-
 
 ///////
 // file: js_src/gameobj/FireBall.js
@@ -16608,12 +16693,9 @@ GameObjType.setCustomClassForGameObjType(FireBall, o_fireBall);
 
 //battle royal update
 
-
-
 ///////
 // file: js_src/gameobj/AnimalCarcass.js
 ///////
-
 
 var superClass = GameObj;
 AnimalCarcass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
@@ -16623,142 +16705,137 @@ AnimalCarcass.prototype.nickName = "mope.io";
 AnimalCarcass.prototype.fadeAway = false;
 AnimalCarcass.prototype.webTransparency = 100;
 AnimalCarcass.prototype.carcassType = 0;
-// if an object has to be manually drawn by the interface then set this to true 
+// if an object has to be manually drawn by the interface then set this to true
 //AnimalCarcass.prototype.customInterfaceDraw = false;
 // do not animate radius on spawning
-AnimalCarcass.prototype.updateZ = function () {
-    this.z = -153 + this.rad;
-}
-
-AnimalCarcass.prototype.getNameSize = function () {
-    return 6.0; //Math.max(~~(.3 * this.size), 24)
+AnimalCarcass.prototype.updateZ = function() {
+  this.z = -153 + this.rad;
 };
 
-AnimalCarcass.prototype.setNick = function (a) {
-    //if (this.nickName = a) {
-    this.nickName = a;
-    if (null == this.nickTXT) {
-
-        this.nickTXT = new CachedText(this.getNameSize(), "#FFFFFF"); //"#043400");
-        this.nickTXT.strokeW = 1.5;
-
-        this.nickTXT.renderScale = 5.0; //render larger to undo 'zoom of 3x'
-        this.nickTXT.setText(this.nickName);
-    } else {
-        this.nickTXT.setFontSize(this.getNameSize());
-        this.nickTXT.setText(this.nickName);
-    }
-    //}
+AnimalCarcass.prototype.getNameSize = function() {
+  return 6.0; //Math.max(~~(.3 * this.size), 24)
 };
 
+AnimalCarcass.prototype.setNick = function(a) {
+  //if (this.nickName = a) {
+  this.nickName = a;
+  if (null == this.nickTXT) {
+    this.nickTXT = new CachedText(this.getNameSize(), "#FFFFFF"); //"#043400");
+    this.nickTXT.strokeW = 1.5;
 
+    this.nickTXT.renderScale = 5.0; //render larger to undo 'zoom of 3x'
+    this.nickTXT.setText(this.nickName);
+  } else {
+    this.nickTXT.setFontSize(this.getNameSize());
+    this.nickTXT.setText(this.nickName);
+  }
+  //}
+};
 
-AnimalCarcass.prototype.customDraw = function (batchDrawOutline) {
+AnimalCarcass.prototype.customDraw = function(batchDrawOutline) {
+  ctx.save();
+
+  var nameIdealOp = 0.3;
+  if (this.fadeAway) {
+    var opacity = this.webTransparency / 100;
+    ctx.globalAlpha = opacity;
+    nameIdealOp = Math.min(nameIdealOp, opacity);
+  } else ctx.globalAlpha = 0.8;
+
+  var theImg = getLoadedImg("img/carcass/" + this.carcassType + ".png");
+  if (theImg) {
+    var rad = this.rad;
+    ctx.rotate(this.angle);
+
+    //ctx.shadowOffsetX = 2;
+    //ctx.shadowOffsetY = 2;
+    //ctx.shadowColor = "black";
+    //ctx.shadowBlur = 10;
+    ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+  }
+
+  ctx.restore();
+  this.drawNickName(nameIdealOp);
+};
+
+AnimalCarcass.prototype.drawNickName = function(idealOp) {
+  if (this.nickName && this.nickTXT && !options_noNames) {
     ctx.save();
-
-
-    var nameIdealOp = 0.3;
-    if (this.fadeAway) {
-        var opacity = this.webTransparency / 100;
-        ctx.globalAlpha = opacity;
-        nameIdealOp = Math.min(nameIdealOp, opacity);
-    }
-    else
-        ctx.globalAlpha = 0.8;
-
-    var theImg = getLoadedImg("img/carcass/" + this.carcassType + ".png");
-    if (theImg) {
-        var rad = this.rad;
-        ctx.rotate(this.angle);
-
-        //ctx.shadowOffsetX = 2;
-        //ctx.shadowOffsetY = 2;
-        //ctx.shadowColor = "black";
-        //ctx.shadowBlur = 10;
-        ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
-    }
+    ctx.globalAlpha = idealOp; //name alpha
+    //draw cached name
+    this.nickTXT.x = 0;
+    this.nickTXT.y = this.rad;
+    this.nickTXT.draw();
 
     ctx.restore();
-    this.drawNickName(nameIdealOp);
-}
+  }
+};
 
-AnimalCarcass.prototype.drawNickName = function (idealOp) {
-    if (this.nickName && this.nickTXT && !options_noNames) {
-        ctx.save();
-        ctx.globalAlpha = idealOp; //name alpha
-        //draw cached name
-        this.nickTXT.x = 0;
-        this.nickTXT.y = this.rad;
-        this.nickTXT.draw();
-
-        ctx.restore();
-    }
-}
-
-AnimalCarcass.prototype.readCustomData_onNewlyVisible = function (msg) {
-    var nickName = msg.readString();
-    this.carcassType = msg.readUInt8();
-    this.fadeAway = msg.readUInt8() == 1;
-    if (this.fadeAway)
-        this.webTransparency = msg.readUInt16();
-    this.setNick((nickName) ? nickName : "mope.io");
-}
+AnimalCarcass.prototype.readCustomData_onNewlyVisible = function(msg) {
+  var nickName = msg.readString();
+  this.carcassType = msg.readUInt8();
+  this.fadeAway = msg.readUInt8() == 1;
+  if (this.fadeAway) this.webTransparency = msg.readUInt16();
+  this.setNick(nickName ? nickName : "mope.io");
+};
 //custom data for this class (must be matched by server-side write of this data!)
-AnimalCarcass.prototype.readCustomData_onUpdate = function (msg) {
-    if (this.fadeAway)
-        this.webTransparency = msg.readUInt16();
-}
+AnimalCarcass.prototype.readCustomData_onUpdate = function(msg) {
+  if (this.fadeAway) this.webTransparency = msg.readUInt16();
+};
 
 function AnimalCarcass() {
-    AnimalCarcass.superClass.call(this, o_animalCarcass);
+  AnimalCarcass.superClass.call(this, o_animalCarcass);
 
-    this.shrinkedRad = 0;
-    //this.n_shrinkedRad=0; //smooth animation- set this var
+  this.shrinkedRad = 0;
+  //this.n_shrinkedRad=0; //smooth animation- set this var
 
-    //console.log("class was spawned!");
+  //console.log("class was spawned!");
 }
 window.AnimalCarcass = AnimalCarcass;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(AnimalCarcass, o_animalCarcass);
 
-
 ///////
 // file: js_src/gameobj/Chilli.js
 ///////
 
-
 var superClass = GameObj;
 Chilli.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Chilli.prototype.constructor = Chilli;
-Chilli.superClass = superClass; 
+Chilli.superClass = superClass;
 Chilli.prototype.chilliType = 0;
-Chilli.prototype.updateZ = function () {
-    this.z = -153;
-}
+Chilli.prototype.updateZ = function() {
+  this.z = -153;
+};
 
-Chilli.prototype.customDraw = function (batchDrawOutline) {
-    ctx.save();
-    var theImg = getLoadedImg("img/chilli/" + this.chilliType + "/chilli" + (this.isEdibleOutlined() ? "_e" : "") + ".png");
-    if (theImg) {
-        var rad = this.rad;
-        ctx.rotate(this.angle);
-        ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
-    }
-    ctx.restore();
-}
+Chilli.prototype.customDraw = function(batchDrawOutline) {
+  ctx.save();
+  var theImg = getLoadedImg(
+    "img/chilli/" +
+      this.chilliType +
+      "/chilli" +
+      (this.isEdibleOutlined() ? "_e" : "") +
+      ".png"
+  );
+  if (theImg) {
+    var rad = this.rad;
+    ctx.rotate(this.angle);
+    ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+  }
+  ctx.restore();
+};
 
-Chilli.prototype.readCustomData_onNewlyVisible = function (msg) {
-    this.chilliType = msg.readUInt8();
-}
+Chilli.prototype.readCustomData_onNewlyVisible = function(msg) {
+  this.chilliType = msg.readUInt8();
+};
 
 function Chilli() {
-    Chilli.superClass.call(this, o_chilli);
-    this.doesDrawEffectScale = true;
+  Chilli.superClass.call(this, o_chilli);
+  this.doesDrawEffectScale = true;
 }
 window.Chilli = Chilli;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Chilli, o_chilli);
-
 
 ///////
 // file: js_src/gameobj/animal/BigCat.js
@@ -16774,50 +16851,49 @@ BigCat.superClass = superClass; //'class' var
 //set custom skin name
 
 BigCat.prototype.objSkinSpotsCanvas = null;
-BigCat.prototype.getSkinName = function () {
-    return this.animalInfo().skinName;
-}
+BigCat.prototype.getSkinName = function() {
+  return this.animalInfo().skinName;
+};
 
-BigCat.prototype.animalInfo = function () {
-    var infoO = {};
+BigCat.prototype.animalInfo = function() {
+  var infoO = {};
 
-    var skin = "";
-    switch (this.animalSpecies) {
-        case 0:
-            infoO.aniName = "Cheetah";
-            infoO.upgradeText = "UPGRADED to Cheetah!\n Press W to get a speed boost!";
-            skin = "cheetah";
-            break;
-        case 1:
-            infoO.aniName = "Jaguar";
-            infoO.upgradeText = "UPGRADED to JAGUAR!\n Press W to get a speed boost!\n(Jaguars can climb hills!)";
-            skin = "jaguar";
-            break;
-        case 2:
-            infoO.aniName = "Leopard";
-            infoO.upgradeText = "UPGRADED to LEOPARD!\n Press W to get a speed boost!\n(Leopards can dive longer)";
-            skin = "leopard";
-            break;
-        case 3:
-            infoO.aniName = "Black Panther";
-            infoO.upgradeText = "UPGRADED to BigCat!\n Press W to get a speed boost!\n(Black Panthers are fast on mud)";
-            skin = "blackpanther";
-            break;
-    }
+  var skin = "";
+  switch (this.animalSpecies) {
+    case 0:
+      infoO.aniName = "Cheetah";
+      infoO.upgradeText =
+        "UPGRADED to Cheetah!\n Press W to get a speed boost!";
+      skin = "cheetah";
+      break;
+    case 1:
+      infoO.aniName = "Jaguar";
+      infoO.upgradeText =
+        "UPGRADED to JAGUAR!\n Press W to get a speed boost!\n(Jaguars can climb hills!)";
+      skin = "jaguar";
+      break;
+    case 2:
+      infoO.aniName = "Leopard";
+      infoO.upgradeText =
+        "UPGRADED to LEOPARD!\n Press W to get a speed boost!\n(Leopards can dive longer)";
+      skin = "leopard";
+      break;
+    case 3:
+      infoO.aniName = "Black Panther";
+      infoO.upgradeText =
+        "UPGRADED to BigCat!\n Press W to get a speed boost!\n(Black Panthers are fast on mud)";
+      skin = "blackpanther";
+      break;
+  }
 
-
-    infoO.aniCol = "#CAC05B";
-    infoO.skinName = "bigcat/" + skin;
-    return infoO;
-}
-
+  infoO.aniCol = "#CAC05B";
+  infoO.skinName = "bigcat/" + skin;
+  return infoO;
+};
 
 function BigCat() {
-    BigCat.superClass.call(this, o_animal);
-  
+  BigCat.superClass.call(this, o_animal);
 }
-
-
 
 window.BigCat = BigCat;
 //add this file as a class! (make sure to call require!)
@@ -16825,11 +16901,9 @@ GameObjType.setCustomClassForGameObjType(BigCat, o_animal, a_bigCat);
 
 //interface controls
 
-
 ///////
 // file: js_src/interface/InterfaceButton.js
 ///////
-
 
 //button that appears in animal choice interface
 function InterfaceButton(x, y, w, h, txt, fontSize) {
@@ -17022,62 +17096,44 @@ function InterfaceButton(x, y, w, h, txt, fontSize) {
 }
 window.InterfaceButton = InterfaceButton;
 
-
 ///////
 // file: js_src/interface/GameMode.js
 ///////
 
 GameMode.prototype = {
-    mode: 0,
-    state: 0,
-    myPlayer: null,
-}
+  mode: 0,
+  state: 0,
+  myPlayer: null
+};
 GameMode.prototype.chatAllowed = true;
 GameMode.prototype.isHalloween = false;
 GameMode.prototype.stamp = 0;
 
-GameMode.prototype.interface = function () {
+GameMode.prototype.interface = function() {};
+GameMode.prototype.drawMap = function() {};
+GameMode.prototype.interfaceReset = function() {};
+GameMode.prototype.main = function(msg) {
+  // read all messages related to this new game mode
+};
 
-}
-GameMode.prototype.drawMap = function () {
+GameMode.prototype.onInit = function(msg) {};
+GameMode.prototype.drawCustomObjs = function(customInterfaceObjList) {};
 
-}
-GameMode.prototype.interfaceReset = function () {
+GameMode.prototype.worldUpdate = function(msg) {};
 
-}
-GameMode.prototype.main = function (msg) {
-    // read all messages related to this new game mode
-}
+GameMode.prototype.setPlayer = function() {
+  this.myPlayer = gameObjsByID[myPlayerID];
+};
 
-GameMode.prototype.onInit = function (msg) {
-
-}
-GameMode.prototype.drawCustomObjs = function (customInterfaceObjList) {
-
-}
-
-GameMode.prototype.worldUpdate = function (msg) {
-
-}
-
-GameMode.prototype.setPlayer = function () {
-
-    this.myPlayer = gameObjsByID[myPlayerID];
-}
-
-
-function GameMode() {
-
-}
+function GameMode() {}
 
 window.GameMode = GameMode;
-
 
 ///////
 // file: js_src/interface/GameMode_FreeForAll.js
 ///////
 
-﻿var superClass = GameMode;
+var superClass = GameMode;
 FreeForAll.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 FreeForAll.prototype.constructor = FreeForAll;
 FreeForAll.superClass = superClass;
@@ -17087,7 +17143,7 @@ function FreeForAll(_mode) {
   this.mode = _mode;
   this.stamp = +new Date();
   this.chatAllowed = true;
-  
+
   this.createInterfaceButtons();
 }
 
@@ -17337,20 +17393,14 @@ FreeForAll.prototype.playerInfo = function(msg) {
   }
 };
 
-FreeForAll.prototype.worldUpdate = function(msg) {
- 
-};
- 
+FreeForAll.prototype.worldUpdate = function(msg) {};
 
-FreeForAll.prototype.drawMap = function() {
-   
-};
+FreeForAll.prototype.drawMap = function() {};
 FreeForAll.prototype.pieChartCanvas = null;
 FreeForAll.prototype.teamColors = {
   0: "white",
   1: "#B6CF40"
 };
- 
 
 FreeForAll.prototype.endScreenDisplayed = false;
 FreeForAll.prototype.buildEndScreenHTML = function(data) {
@@ -17505,12 +17555,11 @@ window.FreeForAll = FreeForAll;
 
 ////////// util function
 
-
 ///////
 // file: js_src/interface/GameMode_TeamMode.js
 ///////
 
-﻿var superClass = GameMode;
+var superClass = GameMode;
 TeamMode.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 TeamMode.prototype.constructor = TeamMode;
 TeamMode.superClass = superClass;
@@ -17554,7 +17603,6 @@ TeamMode.prototype.main = function(msg) {
     //     this.buildTopperInfo();
     //   }
     //   break;
-
   }
 };
 TeamMode.prototype.canvasYouWon = null;
@@ -17913,7 +17961,7 @@ TeamMode.prototype.createInterfaceButtons = function() {
 
 TeamMode.prototype.drawInterfaceButtons = function() {
   // this.btnPlayAgain.isVisible = isGhost;
-/*
+  /*
   this.removeExpiredRequestButtons();
   this.btn1v1.isVisible = !isGhost && show1v1Button;
   if (this.btn1v1.isVisible) {
@@ -17977,7 +18025,6 @@ TeamMode.prototype.readPlayerStats = function(msg) {
 TeamMode.prototype.playerInfo = function(msg) {
   if (isGhost && !serverCon_spectatingInAGame) {
     var stats = this.readPlayerStats(msg);
-    ;
     //    this.buildEndScreen(null, stats);
     this.buildEndScreenHTML(stats);
   } else if (!isGhost) {
@@ -18130,7 +18177,6 @@ TeamMode.prototype.buildEndScreenHTML = function(data) {
   if (!serverCon_aliveInAGame) {
     setSiteMenuVisible(true);
     //document.getElementById("startMenuWrapper").style.display = "block";
-
   }
 };
 
@@ -18608,29 +18654,24 @@ TeamMode.prototype.drawTeamPlayers = function() {
 
 window.TeamMode = TeamMode;
 
-
 ///////
 // file: js_src/gameobj/TeamStone.js
 ///////
 
-
 var superClass = GameObj;
 TeamStone.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 TeamStone.prototype.constructor = TeamStone;
-TeamStone.superClass=superClass; //'class' var
-
+TeamStone.superClass = superClass; //'class' var
 
 TeamStone.prototype.updateZ = function() {
-    this.z = 1002;
-}
-
+  this.z = 1002;
+};
 
 //override draw (things like other effects are drawn seperately)
-TeamStone.prototype.customDraw = function(batchDrawOutline){
+TeamStone.prototype.customDraw = function(batchDrawOutline) {
   ctx.save();
 
   ctx.globalAlpha = 1;
-
 
   var theImg = getLoadedImg("img/teamStone/stone" + this.teamID + ".png");
   if (theImg) {
@@ -18639,31 +18680,29 @@ TeamStone.prototype.customDraw = function(batchDrawOutline){
     ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
   }
   ctx.restore();
-}
+};
 //custom data for this class (must be matched by server-side write of this data!)
 TeamStone.prototype.readCustomData_onUpdate = function(msg) {
   this.teamID = msg.readUInt8();
-}
+};
 
 //custom data for this class (must be matched by server-side write of this data!)
 TeamStone.prototype.readCustomData_onNewlyVisible = function(msg) {
   this.teamID = msg.readUInt8();
-}
+};
 
-function TeamStone(){
+function TeamStone() {
   TeamStone.superClass.call(this, o_teamStone);
 
-  this.teamID =0;
+  this.teamID = 0;
 
   //set vars for this class
-  this.doesDrawEffectScale=true;
-  this.drawEffectScale_Slow=true;
-
+  this.doesDrawEffectScale = true;
+  this.drawEffectScale_Slow = true;
 }
-window.TeamStone=TeamStone;
+window.TeamStone = TeamStone;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(TeamStone, o_teamStone);
-
 
 ///////
 // file: js_src/gameobj/ability/AbilityObj1v1Arena.js
@@ -19035,7 +19074,6 @@ GameObjType.setCustomClassForGameObjType(
   ability_1v1Arena
 );
 
-
 ///////
 // file: js_src/gameobj/ability/AbilityObjGoalScored.js
 ///////
@@ -19371,7 +19409,7 @@ function handleWsMessage(msgArrBuf) {
             //alert(
             //  "mope.io has been updated! You need to refresh to get the latest version of the game! (If this keeps appearing, hold SHIFT when pressing refresh!)"
             //);
-         //   window.location.reload(true); //true causes HARD refresh
+            //   window.location.reload(true); //true causes HARD refresh
           }, 1500);
           return;
         }
@@ -19993,7 +20031,7 @@ function handleWsMessage(msgArrBuf) {
 
         if (top1v1_isHistoric) top1v1_since = msg.readString();
 
-          buildTopperInfo();
+        buildTopperInfo();
       }
       break;
     case 58: // Msg_customScreenTextFont
@@ -20261,63 +20299,59 @@ function worldUpd_readPlayerInfoMessage(msg) {
       }
     }
 
+    // && gameMode == gameMode_teamMode)
+    var aniFlags = msg.readBitGroup();
+    can1v1 = aniFlags.getBool();
 
+    isAbility1v1Active = aniFlags.getBool();
+    if (can1v1) {
+      show1v1Button = aniFlags.getBool();
+      isInArena = aniFlags.getBool();
 
+      //show1v1Button = msg.readUInt8() == 1;
+    }
 
-      // && gameMode == gameMode_teamMode)
-      var aniFlags = msg.readBitGroup();
-      can1v1 = aniFlags.getBool();
-
-      isAbility1v1Active = aniFlags.getBool();
-      if (can1v1) {
-        show1v1Button = aniFlags.getBool();
-        isInArena = aniFlags.getBool();
-
-        //show1v1Button = msg.readUInt8() == 1;
-      }
-
-      if (can1v1)
-        if (isInArena) {
-          aniChoice_isOpen = false;
-          player1v1Requests = [];
-        } else {
-          player1v1ArenaWins = msg.readUInt8();
-          var count1v1 = msg.readUInt8();
-          player1v1Requests = [];
-          if (count1v1 > 0) {
-            for (i = 0; i < count1v1; i++) {
-              var id = msg.readUInt8();
-              var fromPlayer = msg.readString();
-              var aniType = msg.readUInt8();
-              var totalWins = msg.readUInt8();
-              var _teamID = msg.readUInt8();
-              var rank = msg.readUInt8();
-              var kills = msg.readUInt8();
-              var reqDur = msg.readUInt16() / 100;
-              var new1v1Req = {
-                id: id,
-                requestee: fromPlayer,
-                aniType: aniType,
-                wins: totalWins,
-                teamID: _teamID,
-                rank: rank,
-                kills: kills,
-                dur: reqDur
-              };
-              player1v1Requests.push(new1v1Req);
-            }
+    if (can1v1)
+      if (isInArena) {
+        aniChoice_isOpen = false;
+        player1v1Requests = [];
+      } else {
+        player1v1ArenaWins = msg.readUInt8();
+        var count1v1 = msg.readUInt8();
+        player1v1Requests = [];
+        if (count1v1 > 0) {
+          for (i = 0; i < count1v1; i++) {
+            var id = msg.readUInt8();
+            var fromPlayer = msg.readString();
+            var aniType = msg.readUInt8();
+            var totalWins = msg.readUInt8();
+            var _teamID = msg.readUInt8();
+            var rank = msg.readUInt8();
+            var kills = msg.readUInt8();
+            var reqDur = msg.readUInt16() / 100;
+            var new1v1Req = {
+              id: id,
+              requestee: fromPlayer,
+              aniType: aniType,
+              wins: totalWins,
+              teamID: _teamID,
+              rank: rank,
+              kills: kills,
+              dur: reqDur
+            };
+            player1v1Requests.push(new1v1Req);
           }
         }
+      }
 
-      waterBarPerc_n = msg.readUInt8(); //water/air/lava bar %
-      animalBarType = msg.readUInt8(); // new bar type
+    waterBarPerc_n = msg.readUInt8(); //water/air/lava bar %
+    animalBarType = msg.readUInt8(); // new bar type
 
-      var newXP = msg.readUInt32();
-      interface_onXPAmountUpdate(newXP, xp); //for XP popup
-      xp = newXP;
+    var newXP = msg.readUInt32();
+    interface_onXPAmountUpdate(newXP, xp); //for XP popup
+    xp = newXP;
 
-      xpPer_n = msg.readUInt8();
-
+    xpPer_n = msg.readUInt8();
   }
 }
 
@@ -21751,8 +21785,6 @@ function gameReset() {
   lastPopupXPAm = 0;
   lastPopupT = 0;
 
-
-
   isInArena = false;
   isAbility1v1Active = false;
   player1v1ArenaWins = 0;
@@ -21835,10 +21867,7 @@ function setGameMode() {
   if (_gameMode != null) _gameMode.interfaceReset();
 
   _gameMode = null;
-  if (
-    gameMode == gameMode_FFA ||
-    gameMode == gameMode_troll
-  ) {
+  if (gameMode == gameMode_FFA || gameMode == gameMode_troll) {
     _gameMode = new FreeForAll(gameMode);
     _gameMode.state = gameState;
   } else if (gameMode == gameMode_teamMode) {
