@@ -5097,7 +5097,7 @@ if (KTestingModeON) {
   if (ACTIVATEOURGAMEMODE) {
     addServerDef("FFA", "127.0.0.1", reg, "80");
   } else {
-    addServerDef("Sandbox1", "5e67-203-96-129-111.ap.ngrok.io", reg, "80 ");
+    addServerDef("Sandbox1", "1700-190-215-158-88.ap.ngrok.io", reg, "80 ");
     //addServerDef("Sandbox2", "e352-203-96-129-111.ngrok.io", reg,"80");
 
     //reg = "FFA";
