@@ -1,4 +1,4 @@
-
+gg
 var gamever = 99;
 var KTestingModeON = true;
 var KTestingBetaMode = true && !KTestingModeON;
