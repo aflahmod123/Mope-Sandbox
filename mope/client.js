@@ -12871,7 +12871,7 @@ Animal.prototype.loadAnimalSkinImg = function() {
   //grab/load skin
   this.loadedSkinImg = null;
   if (skinName && !options_noImages) {
-    this.loadedSkinImg = getLoadedImg("./skins/" + skinName + ".png");
+    this.loadedSkinImg = getLoadedImg("./skins/" + skinName + ".png"||".gif");
   }
 };
 //override GameObj method (in prototype!)
@@ -16507,7 +16507,7 @@ Falcon.prototype.drawSkinCustomization = function() {
   }
 };
 
-function Falcon() {
+function falcon() {
   Falcon.superClass.call(this, o_animal);
 }
 window.Falcon = Falcon;
