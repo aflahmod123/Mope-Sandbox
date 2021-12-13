@@ -938,7 +938,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.aniName = "Dino Monster";
             infoO.upgradeText = "UPGRADED to Dino Monster!";
             infoO.aniCol = "#FF9000";
-            infoO.skinName = "dinomonster";
+            infoO.skinName = "monsters/dinomonster/dinomonster3";
             break;
         case a_pigeon:
             infoO.aniName = "Pigeon";
@@ -12714,9 +12714,9 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
     case a_dinoMonster:
       infoO.aniName = "Dino Monster";
-      infoO.upgradeText = "UPGRADED to Dino Monster!";
+      infoO.upgradeText = "UPGRADED to Dino Monster these OP pushes everyone to the end of the map!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "dinomonster";
+      infoO.skinName = "monsters/dinomonster/dinomonster3";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
