@@ -1,4 +1,4 @@
-gg
+
 var gamever = 99;
 var KTestingModeON = true;
 var KTestingBetaMode = true && !KTestingModeON;
@@ -367,9 +367,9 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.skinName = "pterodactyl";
             break;
               case a_lochness:
-            infoO.aniName = "Megalodaon";
+            infoO.aniName = "Loch Ness";
             infoO.aniDesc = "";
-               infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nbite and drag prey.';
+               infoO.upgradeText =
         "UPGRADED to " +
         infoO.aniName +
         "!\n Tear Apart your preys with your mouth!";
@@ -803,13 +803,13 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.skinName = "bluewhale";
             break;
 
-        case a_duck:
-             infoO.aniName = "Duck";
-             infoO.aniDesc = "";
-             infoO.upgradeText = "UPGRADED to a DUCK!";
-             infoO.aniCol = "#FF9000";
-             infoO.skinName = "duck";
-            break;
+        // case a_duck:
+        //     infoO.aniName = "Duck";
+        //     infoO.aniDesc = "";
+        //     infoO.upgradeText = "UPGRADED to a DUCK!";
+        //     infoO.aniCol = "#FF9000";
+        //     infoO.skinName = "duck";
+        //     break;
         case a_duckling:
             infoO.aniName = "Duckling";
             infoO.aniDesc = "";
@@ -881,9 +881,9 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             break;
         case a_thunderbird:
 
-            infoO.aniName = "The Storm Rider";
+            infoO.aniName = "The Thunderbird!";
             infoO.aniDesc = "";
-            infoO.upgradeText = "UPGRADED to The Storm Rider \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
+            infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
@@ -2373,11 +2373,11 @@ var teamID = 0;
 //
 var isInArena = true;
 var isAbility1v1Active = true;
-var isSoccerEnabled = true;
+var isSoccerEnabled = false;
 var show1v1Button = true;
 var can1v1 = true;
 var btn1v1 = null;
-var player1v1ArenaWins = 0;
+var player1v1ArenaWins = 5;
 var playerGoalsScore = 0;
 var serverAllTimeGoals = 0;
 var playersInfected = 0;
@@ -2388,7 +2388,7 @@ var bonusRoundDur = 0;
 var homeButton = null;
 var isSpectateMode = false;
 var eggID = 0;
-var isDevMode = true;
+var isDevMode = false;
 //canvases
 var canvas = document.getElementById("gCanvas");
 var lbCanvas = null;
@@ -4394,7 +4394,7 @@ function create1v1Button() {
       };
 
       btn1v1.onInterfaceReset = function() {
-        this.isVisible = false;  
+        this.isVisible = false;
         btn1v1 = null;
       };
 
@@ -4976,15 +4976,14 @@ if (KTestingModeON) {
 
     
 
-    reg = "SANDBOX";  
+    reg = "Local Test";
   
-  if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "127.0.0.1", reg,"80")}else{
-addServerDef("SANDBOX1", "0725-203-96-129-111.ap.ngrok.io", reg,"80"); 
-//addServerDef("SANDBOX 2", "b737-2405-201-c024-91fd-b04e-4903-bbb0-c02a.ap.ngrok.io", reg,"80"); 
+  if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
+addServerDef("Sandbox", "127.0.0.1", reg,"80"); 
+addServerDef("FFA", "35.246.216.142", reg,"80"); 
 
 //reg = "FFA";
- //  addServerDef("FFA", "146.148.81.224", reg);  
-    
+ //  addServerDef("FFA", "146.148.81.224", reg);
   //   reg = "Team Mode";
   //  addServerDef("Team Mode 1", "144.202.60.26", reg);
   //  addServerDef("Team Mode 2", "149.28.48.20", reg);
@@ -12061,7 +12060,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
             infoO.skinName = "pterodactyl";
             break;
          case a_lochness:
-            infoO.aniName = "Megaladon";
+            infoO.aniName = "Loch Ness";
             infoO.aniDesc = "";
                infoO.upgradeText =
         "UPGRADED to " +
@@ -12662,9 +12661,9 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
   case a_thunderbird:
 
-            infoO.aniName = "monster bird";
+            infoO.aniName = "The Thunderbird!";
             infoO.aniDesc = "";
-       infoO.upgradeText = "UPGRADED to monster bird \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
+       infoO.upgradeText = "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
@@ -12717,7 +12716,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/dinomonster/dinomonster3";
+      infoO.skinName = "dinomonster";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
@@ -12736,7 +12735,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
 
     default:
-      infoO.aniName = "(undefined)";
+      infoO.aniName = "(Animal)";
       infoO.aniDesc = "";
       infoO.aniCol = "#000000";
       infoO.upgradeText = "UPGRADED!";
@@ -14421,7 +14420,7 @@ KingDragon.prototype.animalInfo = function () {
             infoO.aniName = 'Queen Celeste';
             break;
                              case 69:
-            infoO.aniName = 'King Flame';
+            infoO.aniName = 'King Crimson';
             break;
                                case 200:
             infoO.aniName = 'Queen Flame';
@@ -24080,9 +24079,9 @@ function gameReset() {
   lastPopupC = 0;
 
 
-  isInArena = false;
-  isAbility1v1Active = false;
-  player1v1ArenaWins = 0;
+  isInArena = true;
+  isAbility1v1Active = true;
+  player1v1ArenaWins = 5;
   player1v1Requests = [];
   //if (btn1v1 != null) btn1v1.isVisible = false;
 
@@ -24090,7 +24089,7 @@ function gameReset() {
   isInBonusRound = false;
   bonusRoundDur = 0;
   eggID = 0;
-  isDevMode = true;
+  isDevMode = false;
   endScreenCanvas = null;
 
   // call interface reset for any game mode if defined
