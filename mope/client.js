@@ -4979,7 +4979,7 @@ if (KTestingModeON) {
     reg = "SANDBOX";  
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "127.0.0.1", reg,"80")}else{
-addServerDef("SANDBOX 1", "0725-203-96-129-111.ap.ngrok.io", reg,"80"); 
+addServerDef("SANDBOX1", "0725-203-96-129-111.ap.ngrok.io", reg,"80"); 
 //addServerDef("SANDBOX 2", "b737-2405-201-c024-91fd-b04e-4903-bbb0-c02a.ap.ngrok.io", reg,"80"); 
 
 //reg = "FFA";
@@ -12662,9 +12662,9 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
   case a_thunderbird:
 
-            infoO.aniName = "The Storm Rider";
+            infoO.aniName = "monster bird";
             infoO.aniDesc = "";
-       infoO.upgradeText = "UPGRADED to The Storm Rider \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
+       infoO.upgradeText = "UPGRADED to monster bird \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
             infoO.aniCol = "#FF9000";
             infoO.skinName = "thunderbird/thunderbird";
 
@@ -12717,7 +12717,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "dinomonster";
+      infoO.skinName = "monsters/dinomonster/dinomonster3";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
