@@ -1,26 +1,16 @@
+
 var gamever = 99;
 var KTestingModeON = true;
 var KTestingBetaMode = true && !KTestingModeON;
-var ACTIVATEOURGAMEMODE = false;
+var ACTIVATEOURGAMEMODE = false
 var url = new URL(window.location.href);
 var secr = url.searchParams.get("ModeActivate");
 
 if (secr === "true") {
-  ACTIVATEOURGAMEMODE = true;
+
+ACTIVATEOURGAMEMODE = true
 }
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log("Hi I hope you enjoy my server");
-console.log(
-  "CLIENT BY MOPE.IO , I DO NOT OWN ANY OF THIS , ADDICTINGGAMES OWN MOPE.IO THIS IS JUST A PRIVATE SERVER MADE WITH MOPE CLIENT.."
-);
+console.log("CLIENT BY MOPE.IO , I DO NOT OWN ANY OF THIS , ADDICTINGGAMES OWN MOPE.IO THIS IS JUST A PRIVATE SERVER MADE WITH MOPE CLIENT..");
 
 console.log("\n\n\n");
 console.log("--------------------------------------------");
@@ -40,11 +30,9 @@ console.log(
     " ----------------"
 );
 console.log("\n\n\n");
-console.log(
-  "CLIENT BY MOPE.IO , I DO NOT OWN ANY OF THIS , ADDICTINGGAMES OWN MOPE.IO THIS IS JUST A PRIVATE SERVER MADE WITH MOPE CLIENT.."
-);
-console.log("Hi :)");
+console.log("CLIENT BY MOPE.IO , I DO NOT OWN ANY OF THIS , ADDICTINGGAMES OWN MOPE.IO THIS IS JUST A PRIVATE SERVER MADE WITH MOPE CLIENT..");
 //import all js files (correct order matters if using global, lower lvl files first! Eg. GameObj before GameObjBerry)
+
 
 ///////
 // file: js_src/gameobj/GameObjType.js
@@ -129,15 +117,15 @@ var o_biome_land = 1,
   o_safeArea = 76,
   o_spawnEgg = 77,
   o_teamStone = 78,
-  o_biome_desert = 79,
-  o_turkishflag = 80,
-  o_infectionDrop = 81,
-  o_dragonfruit = 82,
-  o_raspberrynew = 83,
-  o_firerange = 84,
-  o_gift = 85,
-  o_particles = 86,
-  o_firewood = 87;
+    o_biome_desert = 79,
+o_turkishflag = 80,
+o_infectionDrop = 81,
+o_dragonfruit = 82,
+o_raspberrynew = 83,
+o_firerange = 84,
+o_gift = 85,
+o_particles = 86,
+o_firewood = 87;
 //o_hat = 99;
 var GameObjType = {
   //makes it easy to add new subclasses- each class will add itself!
@@ -213,16 +201,16 @@ var GameObjType = {
   //creates gameobj of correct GameObj subclass for newlyVisible Msg
   newlyVis_createGameObjFromMsg: function(msg) {
     var oType = msg.readUInt8();
-
+	
     var secondaryType = null;
 
-    if (oType == o_animal || oType == o_abilityGObj || oType == o_particles) {
+    if (oType == o_animal || oType == o_abilityGObj|| oType == o_particles) {
       //read secondary type for certain object types
-
+   
       secondaryType = msg.readUInt8();
-      if (oType == o_particles) console.log(secondaryType);
+      if(oType == o_particles)console.log(secondaryType)
     }
-    //	console.log("oType: " + oType + " 2: " + secondaryType);
+//	console.log("oType: " + oType + " 2: " + secondaryType);
     //create the GameObj
     var newObj = GameObjType.createGameObjOfOType(oType, secondaryType);
     //setup from msg
@@ -243,6 +231,7 @@ var GameObjType = {
 };
 
 //window.GameObjType=GameObjType;
+
 
 ///////
 // file: js_src/gameobj/animal/AnimalType.js
@@ -322,759 +311,663 @@ var a_mouse = 1,
   a_dinoMonster = 73,
   a_pigeon = 74,
   a_toucan = 75,
-  a_thunderbird = 76,
-  a_pterodactyl = 77,
-  a_scorpion = 78,
-  a_kingdragon = 79,
-  a_bigfoot = 80,
-  a_lochness = 83,
-  a_griffin = 84,
-  a_santa = 85,
-  a_finaldragon = 86;
-var infoForAnimalType = function(aniT) {
-  var infoO = {};
-  switch (aniT) {
-    case a_snail:
-      infoO.aniName = "Snail";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "You're a super slow snail!";
+a_thunderbird = 76,
+a_pterodactyl = 77,
+a_scorpion = 78,
+    a_kingdragon = 79,
+    a_bigfoot = 80,
+a_lochness = 83,
+a_griffin = 84,
+a_santa = 85,
+a_finaldragon = 86;
+var infoForAnimalType = function (aniT) {
+    var infoO = {};
+    switch (aniT) {
+        case a_snail:
+            infoO.aniName = "Snail";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "You're a super slow snail!";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "snail";
-      break;
-    case a_bigfoot:
-      infoO.aniName = "The BigFoot";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        `! So it really exists... \n
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "snail";
+            break;
+      case a_bigfoot:
+            infoO.aniName = "The BigFoot";
+            infoO.aniDesc = "";
+            infoO.upgradeText= 'UPGRADED to ' + infoO.aniName + `! So it really exists... \n
  Right click/W to throw Spears. \n
 Hold to make a fire (every 30s)`;
-      infoO.aniCol = "#839eb5";
-      infoO.skinName = "bigfoot/thebigfoot";
-      break;
-    case a_kingdragon:
-      infoO.aniName = "King Dragon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "!\
+            infoO.aniCol = "#839eb5";
+            infoO.skinName = "bigfoot/thebigfoot";
+        break;
+        case a_kingdragon:
+            infoO.aniName = "King Dragon";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "!\
 You got firestream that burns your victim alive! Watch your tail and slap them hard.";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "kingdragon/kingdragon";
-      break;
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "kingdragon/kingdragon";
+            break;
+     
+         case a_scorpion:
+            infoO.aniName = "Giant Scorpion";
+            infoO.aniDesc = "";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
-    case a_scorpion:
-      infoO.aniName = "Giant Scorpion";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "giantscorpion";
+            break;
+         case a_pterodactyl:
+            infoO.aniName = "Pterodactyl";
+            infoO.aniDesc = "";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "giantscorpion";
-      break;
-    case a_pterodactyl:
-      infoO.aniName = "Pterodactyl";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "\nFly and dive onto prey to pick it up.";
-
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "pterodactyl";
-      break;
-    case a_lochness:
-      infoO.aniName = "Loch Ness";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "pterodactyl";
+            break;
+              case a_lochness:
+            infoO.aniName = "Megalodaon";
+            infoO.aniDesc = "";
+               infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nbite and drag prey.';
         "UPGRADED to " +
         infoO.aniName +
         "!\n Tear Apart your preys with your mouth!";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "lochness/lochness";
-      break;
-    case a_finaldragon:
-      infoO.aniName = "Final Dragon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "lochness/lochness";
+            break;
+                    case a_finaldragon:
+            infoO.aniName = "Final Dragon";
+            infoO.aniDesc = "";
+               infoO.upgradeText =
         "UPGRADED to " +
         infoO.aniName +
         "!\n Fly Tail Slap and fire stream! you're powerful!";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "lochness/lochness";
-      break;
-
-    case a_griffin:
-      infoO.aniName = "Griffin";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "lochness/lochness";
+            break;
+         
+      case a_griffin:
+            infoO.aniName = "Griffin";
+            infoO.aniDesc = "";
+          infoO.upgradeText =
         "UPGRADED to " +
         infoO.aniName +
         "!\n Catch Animals with your strong claws!";
 
-      infoO.aniCol = "#22FF8A";
-      infoO.skinName = "griffin";
-      break;
+            infoO.aniCol = "#22FF8A";
+            infoO.skinName = "griffin";
+            break;
+        
+    
+           case a_santa:
+            infoO.aniName = "Santa";
+            infoO.aniDesc = "";
+            infoO.upgradeText ="Drop Gifts with S (random loots!)"
+            infoO.aniCol = "#22FF8A";
+            infoO.skinName = "santa/eagle";
+            break;
+       
+        
+              case a_mouse:
+            infoO.aniName = "Mouse";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "";
 
-    case a_santa:
-      infoO.aniName = "Santa";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "Drop Gifts with S (random loots!)";
-      infoO.aniCol = "#22FF8A";
-      infoO.skinName = "santa/eagle";
-      break;
+            infoO.aniCol = "#9BA9B9";
+            infoO.skinName = "mouse";
+            break;
+       case a_rabbit:
+            infoO.aniName = "Rabbit";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
+            infoO.aniCol = "#AA937E";
+            infoO.skinName = "rabbit";
+            break;
+        case a_fox:
+            infoO.aniName = "Fox";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to FOX! ,\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
+            infoO.aniCol = "#FF9D43";
+            infoO.skinName = "fox";
+            break;
+        case a_deer:
+            infoO.aniName = "Deer";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to DEER! \nPress W to dig up food! \nDig in mud for better food!\n Hint:Check water areas for new food sources!";
+            infoO.aniCol = "#C4773E";
+            infoO.skinName = "deer";
+            break;
+        case a_mole:
+            infoO.aniName = "Mole";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to MOLE!\n Hold W to dig underground!\nGo under anything, do surprise attacks!";
+            infoO.aniCol = "#4C4A45";
+            infoO.skinName = "mole";
+            break;
+        case a_zebra:
+            infoO.aniName = "Zebra";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to ZEBRA! \nPress W to kick side ways!";
+            infoO.aniCol = "#FFFFFF";
+            infoO.skinName = "zebra";
+            break;
+        case a_lion:
+            infoO.aniName = "Lion";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to LION!\n Press W to release a mighty ROAR (Rawr!)!";
+            infoO.aniCol = "#f8c923";
+            infoO.skinName = "lion";
+            break;
 
-    case a_mouse:
-      infoO.aniName = "Mouse";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "";
+        case a_bigCat:
+            infoO.aniName = "CHEETAH";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to CHEETAH!\n Press W to get a speed boost! (Every 8 seconds)!";
+            infoO.aniCol = "#CAC05B";
+            infoO.skinName = "bigcat/cheetah";
+            break;
+        case a_bear:
+            infoO.aniName = "Bear";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to BEAR!\n Bears climb through green hills! (Press W to use your claw!)";
+            infoO.aniCol = "#99591C";
+            infoO.skinName = "bear";
+            break;
+        case a_croc:
+            infoO.aniName = "Croc";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to CROCODILE!\n Press W to bite and drag around animals! \n+ (Now hide in water spots)+ Swim well in Mud, Lakes & Oceans!";
+            infoO.aniCol = "#30F51C";
+            infoO.skinName = "croc";
+            break;
+        case a_hippo:
+            infoO.aniName = "Hippo";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to HIPPO!\nHippos are great swimmers, dominate the Lakes/Oceans/Mud!";
+            infoO.aniCol = "#945A99";
+            infoO.skinName = "hippo";
+            break;
+        case a_rhino:
+            infoO.aniName = "Rhino";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to RHINO!\n Press W to CHARGE with your mighty horn!";
+            infoO.aniCol = "#94a3a9";
+            infoO.skinName = "rhino";
+            break;
+        case a_shrimp:
+            infoO.aniName = "Shrimp";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "";
+            infoO.aniCol = "#f88e37";
+            infoO.skinName = "shrimp";
+            break;
+        case a_trout:
+            infoO.aniName = "Trout";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to TROUT!\nHint: Hold Left-click to RUN! (Uses extra water)";
+            infoO.aniCol = "#ac8686";
+            infoO.skinName = "trout";
+            break;
+        case a_crab:
+            infoO.aniName = "Crab";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to CRAB!\n Crabs can survive on dry land!\n (On land, Press W to go into your shell!)";
+            infoO.aniCol = "#bf2408";
+            infoO.skinName = "crab";
+            break;
+        case a_squid:
+            infoO.aniName = "Squid";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to SQUID!\n Squids can use INK when injured (press W!) \n+ you can hide in plankton bushes!";
+            infoO.aniCol = "#40dda4";
+            infoO.skinName = "squid";
+            break;
+        case a_shark:
+            infoO.aniName = "Shark";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to SHARK!\n A vicious predator of the oceans!";
+            infoO.aniCol = "#999fc6";
+            infoO.skinName = "shark";
+            break;
+        case a_seaHorse:
+            infoO.aniName = "Sea-horse";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to SEA HORSE!\n An agile hunter!";
+            infoO.aniCol = "#73BE2F";
+            infoO.skinName = "seahorse";
+            break;
+        case a_jellyFish:
+            infoO.aniName = "Jellyfish";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to JELLYFISH!\n A slowly-turning animal that can grow quite large!";
+            infoO.aniCol = "#FDB9BA";
+            infoO.skinName = "jellyfish";
+            break;
+        case a_turtle:
+            infoO.aniName = "Turtle";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to TURTLE!\n Lives well on land & water! (On land, Press W to go into your shell!)";
+            infoO.aniCol = "#502E1A";
+            infoO.skinName = "turtle";
+            break;
+        case a_stingray:
+            infoO.aniName = "Stringray";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to STINGRAY!\n Use electic shock (Release W key!) to shock animals! \n(Takes time to recharge)";
+            infoO.aniCol = "#164336";
+            infoO.skinName = "stingray";
+            break;
+        case a_kraken:
+            infoO.aniName = "The Kraken";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
+            infoO.aniCol = "#64a034";
+            infoO.skinName = "kraken";
+            break;
+        case a_pufferFish:
+            infoO.aniName = "Pufferfish";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to PUFFERFISH!\n (Hold W to inflate- become spiky, and dangerous to touch!)";
+            infoO.aniCol = "#6C5C2C";
+            infoO.skinName = "pufferfish";
+            break;
+        case a_killerWhale:
+            infoO.aniName = "Killer Whale";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Killer Whale! \nWhales blow out water when diving! (And sometimes other loot!)";
+            infoO.aniCol = "#141414";
+            infoO.skinName = "killerwhale";
+            break;
+        case a_swordfish:
+            infoO.aniName = "Swordfish";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (Press W to rush with your sharp nose!)";
+            infoO.aniCol = "#689CD7";
+            infoO.skinName = "swordfish";
+            break;
+        case a_gorilla:
+            infoO.aniName = "Gorilla";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Gorillas are very fast on hills/trees!\n Press W to throw bananas! (from trees)";
+            infoO.aniCol = "#323232";
+            infoO.skinName = "gorilla";
+            break;
+        case a_octopus:
+            infoO.aniName = "Octopus";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Octopus!\nHold W to use your 'Disguise' ability!\n(Hint: wait for prey to bite you- they get stunned!)";
+            infoO.aniCol = "#ff8340";
+            infoO.skinName = "octopus";
+            break;
+        case a_dragn:
+            infoO.aniName = "Dragon";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
+            infoO.aniCol = "#22FF8A";
+            infoO.skinName = "dragon/0/dragon";
+            break;
+        case a_blackDragon:
+            infoO.aniName = "Black Dragon";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+            infoO.aniCol = "black";
+            infoO.skinName = "blackdragon/blackdragon";
+            break;
 
-      infoO.aniCol = "#9BA9B9";
-      infoO.skinName = "mouse";
-      break;
-    case a_rabbit:
-      infoO.aniName = "Rabbit";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
-      infoO.aniCol = "#AA937E";
-      infoO.skinName = "rabbit";
-      break;
-    case a_fox:
-      infoO.aniName = "Fox";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to FOX! ,\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
-      infoO.aniCol = "#FF9D43";
-      infoO.skinName = "fox";
-      break;
-    case a_deer:
-      infoO.aniName = "Deer";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to DEER! \nPress W to dig up food! \nDig in mud for better food!\n Hint:Check water areas for new food sources!";
-      infoO.aniCol = "#C4773E";
-      infoO.skinName = "deer";
-      break;
-    case a_mole:
-      infoO.aniName = "Mole";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to MOLE!\n Hold W to dig underground!\nGo under anything, do surprise attacks!";
-      infoO.aniCol = "#4C4A45";
-      infoO.skinName = "mole";
-      break;
-    case a_zebra:
-      infoO.aniName = "Zebra";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "UPGRADED to ZEBRA! \nPress W to kick side ways!";
-      infoO.aniCol = "#FFFFFF";
-      infoO.skinName = "zebra";
-      break;
-    case a_lion:
-      infoO.aniName = "Lion";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to LION!\n Press W to release a mighty ROAR (Rawr!)!";
-      infoO.aniCol = "#f8c923";
-      infoO.skinName = "lion";
-      break;
+        case a_giantSpider:
+            infoO.aniName = "Giant Spider";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Place web around the game to catch prey!";
+            infoO.aniCol = "black";
+            infoO.skinName = "giantSpider";
+            break;
 
-    case a_bigCat:
-      infoO.aniName = "CHEETAH";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to CHEETAH!\n Press W to get a speed boost! (Every 8 seconds)!";
-      infoO.aniCol = "#CAC05B";
-      infoO.skinName = "bigcat/cheetah";
-      break;
-    case a_bear:
-      infoO.aniName = "Bear";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to BEAR!\n Bears climb through green hills! (Press W to use your claw!)";
-      infoO.aniCol = "#99591C";
-      infoO.skinName = "bear";
-      break;
-    case a_croc:
-      infoO.aniName = "Croc";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to CROCODILE!\n Press W to bite and drag around animals! \n+ (Now hide in water spots)+ Swim well in Mud, Lakes & Oceans!";
-      infoO.aniCol = "#30F51C";
-      infoO.skinName = "croc";
-      break;
-    case a_hippo:
-      infoO.aniName = "Hippo";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to HIPPO!\nHippos are great swimmers, dominate the Lakes/Oceans/Mud!";
-      infoO.aniCol = "#945A99";
-      infoO.skinName = "hippo";
-      break;
-    case a_rhino:
-      infoO.aniName = "Rhino";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to RHINO!\n Press W to CHARGE with your mighty horn!";
-      infoO.aniCol = "#94a3a9";
-      infoO.skinName = "rhino";
-      break;
-    case a_shrimp:
-      infoO.aniName = "Shrimp";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "";
-      infoO.aniCol = "#f88e37";
-      infoO.skinName = "shrimp";
-      break;
-    case a_trout:
-      infoO.aniName = "Trout";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to TROUT!\nHint: Hold Left-click to RUN! (Uses extra water)";
-      infoO.aniCol = "#ac8686";
-      infoO.skinName = "trout";
-      break;
-    case a_crab:
-      infoO.aniName = "Crab";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to CRAB!\n Crabs can survive on dry land!\n (On land, Press W to go into your shell!)";
-      infoO.aniCol = "#bf2408";
-      infoO.skinName = "crab";
-      break;
-    case a_squid:
-      infoO.aniName = "Squid";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to SQUID!\n Squids can use INK when injured (press W!) \n+ you can hide in plankton bushes!";
-      infoO.aniCol = "#40dda4";
-      infoO.skinName = "squid";
-      break;
-    case a_shark:
-      infoO.aniName = "Shark";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to SHARK!\n A vicious predator of the oceans!";
-      infoO.aniCol = "#999fc6";
-      infoO.skinName = "shark";
-      break;
-    case a_seaHorse:
-      infoO.aniName = "Sea-horse";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "UPGRADED to SEA HORSE!\n An agile hunter!";
-      infoO.aniCol = "#73BE2F";
-      infoO.skinName = "seahorse";
-      break;
-    case a_jellyFish:
-      infoO.aniName = "Jellyfish";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to JELLYFISH!\n A slowly-turning animal that can grow quite large!";
-      infoO.aniCol = "#FDB9BA";
-      infoO.skinName = "jellyfish";
-      break;
-    case a_turtle:
-      infoO.aniName = "Turtle";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to TURTLE!\n Lives well on land & water! (On land, Press W to go into your shell!)";
-      infoO.aniCol = "#502E1A";
-      infoO.skinName = "turtle";
-      break;
-    case a_stingray:
-      infoO.aniName = "Stringray";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to STINGRAY!\n Use electic shock (Release W key!) to shock animals! \n(Takes time to recharge)";
-      infoO.aniCol = "#164336";
-      infoO.skinName = "stingray";
-      break;
-    case a_kraken:
-      infoO.aniName = "The Kraken";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
-      infoO.aniCol = "#64a034";
-      infoO.skinName = "kraken/3/kraken";
-      break;
-    case a_pufferFish:
-      infoO.aniName = "Pufferfish";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to PUFFERFISH!\n (Hold W to inflate- become spiky, and dangerous to touch!)";
-      infoO.aniCol = "#6C5C2C";
-      infoO.skinName = "pufferfish";
-      break;
-    case a_killerWhale:
-      infoO.aniName = "Killer Whale";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Killer Whale! \nWhales blow out water when diving! (And sometimes other loot!)";
-      infoO.aniCol = "#141414";
-      infoO.skinName = "killerwhale";
-      break;
-    case a_swordfish:
-      infoO.aniName = "Swordfish";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n (Press W to rush with your sharp nose!)";
-      infoO.aniCol = "#689CD7";
-      infoO.skinName = "swordfish";
-      break;
-    case a_gorilla:
-      infoO.aniName = "Gorilla";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Gorillas are very fast on hills/trees!\n Press W to throw bananas! (from trees)";
-      infoO.aniCol = "#323232";
-      infoO.skinName = "gorilla";
-      break;
-    case a_octopus:
-      infoO.aniName = "Octopus";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Octopus!\nHold W to use your 'Disguise' ability!\n(Hint: wait for prey to bite you- they get stunned!)";
-      infoO.aniCol = "#ff8340";
-      infoO.skinName = "octopus";
-      break;
-    case a_dragn:
-      infoO.aniName = "Dragon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n (You're amazing!) \nFly over everything, Hold W to shoot fire!";
-      infoO.aniCol = "#22FF8A";
-      infoO.skinName = "dragon/0/dragon";
-      break;
-    case a_blackDragon:
-      infoO.aniName = "Black Dragon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
-      infoO.aniCol = "black";
-      infoO.skinName =
-        "baby_black_dragon_skin_for_mope_io_by_wabbamadness-dbqgh95.png";
-      break;
+        case a_cobra:
+            infoO.aniName = "Cobra";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Hold W to Spit venom, and poison animals with your bite!";
+            infoO.aniCol = "black";
+            infoO.skinName = "cobra";
+            break;
 
-    case a_giantSpider:
-      infoO.aniName = "Giant Spider";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Place web around the game to catch prey!";
-      infoO.aniCol = "black";
-      infoO.skinName = "giantSpider";
-      break;
+        case a_boaConstrictor:
+            infoO.aniName = "Boa Constrictor";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Coil and suffocate other animals!";
+            infoO.aniCol = "black";
+            infoO.skinName = "boaConstrictor";
+            break;
 
-    case a_cobra:
-      infoO.aniName = "Cobra";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Hold W to Spit venom, and poison animals with your bite!";
-      infoO.aniCol = "black";
-      infoO.skinName = "cobra";
-      break;
+        case a_trex:
+            infoO.aniName = "T-REX";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
+            infoO.aniCol = "#862A2A";
+            infoO.skinName = "trex";
+            break;
+        case a_tiger:
+            infoO.aniName = "Tiger";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Tiger!\n Tigers can launch an ambush attack (HOLD W to grow a bush) Release to attack!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "tiger";
+            break;
 
-    case a_boaConstrictor:
-      infoO.aniName = "Boa Constrictor";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Coil and suffocate other animals!";
-      infoO.aniCol = "black";
-      infoO.skinName = "boaConstrictor";
-      break;
+        case a_giraffe:
+            infoO.aniName = "Giraffe";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Giraffe!\nGiraffe have huge legs and stomp anyone in their way!";
+            infoO.aniCol = "#E9BD23";
+            infoO.skinName = "giraffe";
+            break;
 
-    case a_trex:
-      infoO.aniName = "T-REX";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
-      infoO.aniCol = "#862A2A";
-      infoO.skinName = "trex";
-      break;
-    case a_tiger:
-      infoO.aniName = "Tiger";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Tiger!\n Tigers can launch an ambush attack (HOLD W to grow a bush) Release to attack!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "tiger";
-      break;
 
-    case a_giraffe:
-      infoO.aniName = "Giraffe";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Giraffe!\nGiraffe have huge legs and stomp anyone in their way!";
-      infoO.aniCol = "#E9BD23";
-      infoO.skinName = "giraffe";
-      break;
+        case a_eagle:
+            infoO.aniName = "Eagle";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Eagle!\nEagles can fly up other animals in the air! !\n";
+            infoO.aniCol = "#5b400d";
+            infoO.skinName = "eagle";
+            break;
 
-    case a_eagle:
-      infoO.aniName = "Eagle";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Eagle!\nEagles can fly up other animals in the air! !\n";
-      infoO.aniCol = "#5b400d";
-      infoO.skinName = "eagle";
-      break;
+        case a_arcticFox:
+            infoO.aniName = "Arctic Fox";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
+            infoO.aniCol = "#CFCFCF";
+            infoO.skinName = "arctic/arcticfox";
+            break;
+        case a_arcticHare:
+            infoO.aniName = "Arctic Hare";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n \nPress W to burrow a hole to hide in!";
+            infoO.aniCol = "#D5D5D5";
+            infoO.skinName = "arctic/arctichare";
+            break;
+        case a_yeti:
+            infoO.aniName = "The Yeti!";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
+            infoO.aniCol = "#839eb5";
+            infoO.skinName = "arctic/yeti";
+            break;
+        case a_chipmunk:
+            infoO.aniName = "Chipmunk";
+            infoO.aniDesc = "";
+            infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
+            infoO.aniCol = "#A77C30";
+            infoO.skinName = "arctic/chipmunk";
+            break;
 
-    case a_arcticFox:
-      infoO.aniName = "Arctic Fox";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n You can kick players out of hiding holes! (Press W when in one!)\n+ Hide in red berry bushes!";
-      infoO.aniCol = "#CFCFCF";
-      infoO.skinName = "arctic/arcticfox";
-      break;
-    case a_arcticHare:
-      infoO.aniName = "Arctic Hare";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n \nPress W to burrow a hole to hide in!";
-      infoO.aniCol = "#D5D5D5";
-      infoO.skinName = "arctic/arctichare";
-      break;
-    case a_yeti:
-      infoO.aniName = "The Yeti!";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n So it really exists... \n Hold W to turn into snow, release W to freeeeeze!";
-      infoO.aniCol = "#839eb5";
-      infoO.skinName = "arctic/yeti";
-      break;
-    case a_chipmunk:
-      infoO.aniName = "Chipmunk";
-      infoO.aniDesc = "";
-      infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
-      infoO.aniCol = "#A77C30";
-      infoO.skinName = "arctic/chipmunk";
-      break;
+        case a_muskox:
+            infoO.aniName = "Muskox";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to charge with your horns! \nPlus move decently on ice!";
+            infoO.aniCol = "#231f18";
+            infoO.skinName = "arctic/muskox";
+            break;
+        case a_penguin:
+            infoO.aniName = "Penguin";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Left-click to run!\n (HOLD W to slide FAST on ice)!";
+            infoO.aniCol = "#FFFFFF";
+            infoO.skinName = "arctic/penguin";
+            break;
+        case a_polarBear:
+            infoO.aniName = "Polar Bear";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Polar bears can climb hills! \n+ They're amazing swimmers!";
+            infoO.aniCol = "#e4e4e4";
+            infoO.skinName = "arctic/polarbear";
+            break;
+        case a_seal:
+            infoO.aniName = "Seal";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Seals can slide on ice (Hold W) + can climb hills (rocks too!)";
+            infoO.aniCol = "#cfcfcf";
+            infoO.skinName = "arctic/seal";
+            break;
+        case a_snowLeopard:
+            infoO.aniName = "Snow leopard";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to get a speed boost! (Every 8 seconds)!";
+            infoO.aniCol = "#cfcfcf";
+            infoO.skinName = "arctic/snowleopard";
+            break;
+        case a_walrus:
+            infoO.aniName = "Walrus";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n You can slide on ice (Hold W) + can climb hills (rocks too!)";
+            infoO.aniCol = "#633838";
+            infoO.skinName = "arctic/walrus";
+            break;
+        case a_reindeer:
+            infoO.aniName = "Reindeer";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to dig up food! \n Your sharp hooves let you turn very well on ice!";
+            infoO.aniCol = "#a68976";
+            infoO.skinName = "arctic/reindeer";
+            break;
+        case a_wolf:
+            infoO.aniName = "Wolf";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Wolf paws turn very well on ice!\n Press W to howl!";
+            infoO.aniCol = "#6B6B6B";
+            infoO.skinName = "arctic/wolf";
+            break;
+        case a_wolverine:
+            infoO.aniName = "Wolverine";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to Let out a Powerful GROWL! (Knocks back prey!)";
+            infoO.aniCol = "#843A0F";
+            infoO.skinName = "arctic/wolverine";
+            break;
+        case a_mammoth:
+            infoO.aniName = "Mammoth";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to roll snowballs with your trunk!\n The bigger the snowball gets, the longer the freeze!";
+            infoO.aniCol = "#9d4717";
+            infoO.skinName = "arctic/mammoth";
+            break;
+        case a_donkey:
+            infoO.aniName = "Donkey";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Press W to Kick any animal behind you";
+            infoO.aniCol = "#8c7c64";
+            infoO.skinName = "donkey";
+            break;
+            /* NEW ANIMALS */
+        case a_sabertoothTiger:
+            infoO.aniName = "Sabertooth Tiger";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Sabertooth Tiger!\nSabertooth Tigers are great swimmers, dominate the Lakes/Oceans/Mud!";
+            infoO.aniCol = "#945A99";
+            infoO.skinName = "sabertoothtiger";
+            break;
+        case a_elephant:
+            infoO.aniName = "Elephant";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Use your long trunk to attack and eat food!";
+            infoO.aniCol = "#945A99";
+            infoO.skinName = "elephant";
+            break;
 
-    case a_muskox:
-      infoO.aniName = "Muskox";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Press W to charge with your horns! \nPlus move decently on ice!";
-      infoO.aniCol = "#231f18";
-      infoO.skinName = "arctic/muskox";
-      break;
-    case a_penguin:
-      infoO.aniName = "Penguin";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Left-click to run!\n (HOLD W to slide FAST on ice)!";
-      infoO.aniCol = "#FFFFFF";
-      infoO.skinName = "arctic/penguin";
-      break;
-    case a_polarBear:
-      infoO.aniName = "Polar Bear";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Polar bears can climb hills! \n+ They're amazing swimmers!";
-      infoO.aniCol = "#e4e4e4";
-      infoO.skinName = "arctic/polarbear";
-      break;
-    case a_seal:
-      infoO.aniName = "Seal";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Seals can slide on ice (Hold W) + can climb hills (rocks too!)";
-      infoO.aniCol = "#cfcfcf";
-      infoO.skinName = "arctic/seal";
-      break;
-    case a_snowLeopard:
-      infoO.aniName = "Snow leopard";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Press W to get a speed boost! (Every 8 seconds)!";
-      infoO.aniCol = "#cfcfcf";
-      infoO.skinName = "arctic/snowleopard";
-      break;
-    case a_walrus:
-      infoO.aniName = "Walrus";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n You can slide on ice (Hold W) + can climb hills (rocks too!)";
-      infoO.aniCol = "#633838";
-      infoO.skinName = "arctic/walrus";
-      break;
-    case a_reindeer:
-      infoO.aniName = "Reindeer";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Press W to dig up food! \n Your sharp hooves let you turn very well on ice!";
-      infoO.aniCol = "#a68976";
-      infoO.skinName = "arctic/reindeer";
-      break;
-    case a_wolf:
-      infoO.aniName = "Wolf";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Wolf paws turn very well on ice!\n Press W to howl!";
-      infoO.aniCol = "#6B6B6B";
-      infoO.skinName = "arctic/wolf";
-      break;
-    case a_wolverine:
-      infoO.aniName = "Wolverine";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Press W to Let out a Powerful GROWL! (Knocks back prey!)";
-      infoO.aniCol = "#843A0F";
-      infoO.skinName = "arctic/wolverine";
-      break;
-    case a_mammoth:
-      infoO.aniName = "Mammoth";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Press W to roll snowballs with your trunk!\n The bigger the snowball gets, the longer the freeze!";
-      infoO.aniCol = "#9d4717";
-      infoO.skinName = "arctic/mammoth";
-      break;
-    case a_donkey:
-      infoO.aniName = "Donkey";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Press W to Kick any animal behind you";
-      infoO.aniCol = "#8c7c64";
-      infoO.skinName = "donkey";
-      break;
-    /* NEW ANIMALS */
-    case a_sabertoothTiger:
-      infoO.aniName = "Sabertooth Tiger";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Sabertooth Tiger!\nSabertooth Tigers are great swimmers, dominate the Lakes/Oceans/Mud!";
-      infoO.aniCol = "#945A99";
-      infoO.skinName = "sabertoothtiger";
-      break;
-    case a_elephant:
-      infoO.aniName = "Elephant";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Use your long trunk to attack and eat food!";
-      infoO.aniCol = "#945A99";
-      infoO.skinName = "elephant";
-      break;
+        case a_blueWhale:
+            infoO.aniName = "Blue Whale";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Blue Whale!\n Smash with your powerful tail!";
+            infoO.aniCol = "#945A99";
+            infoO.skinName = "bluewhale";
+            break;
 
-    case a_blueWhale:
-      infoO.aniName = "Blue Whale";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Blue Whale!\n Smash with your powerful tail!";
-      infoO.aniCol = "#945A99";
-      infoO.skinName = "bluewhale";
-      break;
+        case a_duck:
+             infoO.aniName = "Duck";
+             infoO.aniDesc = "";
+             infoO.upgradeText = "UPGRADED to a DUCK!";
+             infoO.aniCol = "#FF9000";
+             infoO.skinName = "duck";
+            break;
+        case a_duckling:
+            infoO.aniName = "Duckling";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to a DUCK!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "duck/duckling";
+            break;
 
-    // case a_duck:
-    //     infoO.aniName = "Duck";
-    //     infoO.aniDesc = "";
-    //     infoO.upgradeText = "UPGRADED to a DUCK!";
-    //     infoO.aniCol = "#FF9000";
-    //     infoO.skinName = "duck";
-    //     break;
-    case a_duckling:
-      infoO.aniName = "Duckling";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "UPGRADED to a DUCK!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "duck/duckling";
-      break;
+        case a_hedgehog:
+            infoO.aniName = "Hedgehog";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Hedgehog!\n (Hold W to become spiky, and dangerous to touch!)";
+            infoO.aniCol = "#5b400d";
+            infoO.skinName = "hedgehog";
+            break;
 
-    case a_hedgehog:
-      infoO.aniName = "Hedgehog";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Hedgehog!\n (Hold W to become spiky, and dangerous to touch!)";
-      infoO.aniCol = "#5b400d";
-      infoO.skinName = "hedgehog";
-      break;
 
-    case a_kingCrab:
-      infoO.aniName = "King Crab";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "UPGRADED to a KING CRAB!";
-      infoO.aniCol = "#971f0e";
-      infoO.skinName = "kingcrab";
-      break;
-    case a_lemming:
-      infoO.aniName = "Lemming";
-      infoO.aniDesc = "";
-      infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
-      infoO.aniCol = "#A77C30";
-      infoO.skinName = "arctic/lemming";
-      break;
+        case a_kingCrab:
+            infoO.aniName = "King Crab";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to a KING CRAB!";
+            infoO.aniCol = "#971f0e";
+            infoO.skinName = "kingcrab";
+            break;
+        case a_lemming:
+            infoO.aniName = "Lemming";
+            infoO.aniDesc = "";
+            infoO.upgradeText = ""; //A little "+infoO.aniName+"...";
+            infoO.aniCol = "#A77C30";
+            infoO.skinName = "arctic/lemming";
+            break;
 
-    case a_frog:
-      infoO.aniName = "Frog";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "UPGRADED to Frog!!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "frog/frog";
+        case a_frog:
 
-      break;
+            infoO.aniName = "Frog";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Frog!!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "frog/frog";
 
-    case a_ostrich:
-      infoO.aniName = "Ostrich";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Ostrich! Lay eggs to hatch babies! \nCommand babies by placing your crosshair (right-click/W)-\n They can attack prey!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "ostrich/ostrich";
+            break;
 
-      break;
-    case a_pelican:
-      infoO.aniName = "Pelican";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Pelican! \nPick up water (and prey!) in your mouth,\nfly, and drop water on prey! (press W again)";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "pelican/pelican";
+        case a_ostrich:
 
-      break;
-    case a_falcon:
-      infoO.aniName = "Falcon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "falcon/falcon";
+            infoO.aniName = "Ostrich";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Ostrich! Lay eggs to hatch babies! \nCommand babies by placing your crosshair (right-click/W)-\n They can attack prey!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "ostrich/ostrich";
 
-      break;
-    case a_thunderbird:
-      infoO.aniName = "The Thunderbird!";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "thunderbird/thunderbird";
+            break;
+        case a_pelican:
 
-      break;
-    case a_snowyOwl:
-      infoO.aniName = "Snowy Owl";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Snowy Owl!\n Aim the crosshair, \n right click/W when it's on top of prey, to attack!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "snowyowl/snowyowl";
+            infoO.aniName = "Pelican";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Pelican! \nPick up water (and prey!) in your mouth,\nfly, and drop water on prey! (press W again)";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "pelican/pelican";
 
-      break;
+            break;
+        case a_falcon:
 
-    case a_ostrichBaby:
-      infoO.aniName = "Baby Ostrich";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "UPGRADED to Baby Ostrich!!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "ostrich/baby-ostrich";
+            infoO.aniName = "Falcon";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Falcon! \nFly, and do a powerful dive attack! Aim it well.";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "falcon/falcon";
 
-      break;
-    case a_phoenix:
-      infoO.aniName = "Phoenix";
-      infoO.upgradeText =
-        "UPGRADED to Phoenix!\nCreate powerful fire tornados to burn your enemies alive!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "phoenix/phoenix";
-      break;
+            break;
+        case a_thunderbird:
 
-    case a_seaMonster:
-      infoO.aniName = "Sea Monster";
-      infoO.upgradeText = "UPGRADED to Sea Monster!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "seamonster";
-      break;
-    case a_landMonster:
-      infoO.aniName = "Land Monster";
-      infoO.upgradeText = "UPGRADED to Land Monster!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/landmonster/0/landmonster";
-      break;
-    case a_iceMonster:
-      infoO.aniName = "Ice Monster";
-      infoO.upgradeText = "UPGRADED to Ice Monster!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/icemonster/icemonster";
-      break;
-    case a_dinoMonster:
-      infoO.aniName = "Dino Monster";
-      infoO.upgradeText = "UPGRADED to Dino Monster!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/dinomonster/dinomonster4";
-      break;
-    case a_pigeon:
-      infoO.aniName = "Pigeon";
-      infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "pigeon/1/pigeon";
-      break;
-    case a_toucan:
-      infoO.aniName = "Toucan";
-      infoO.upgradeText = "UPGRADED to Toucan!\nHold W to fly around. ";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "toucan/toucan";
-      break;
+            infoO.aniName = "The Storm Rider";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to The Storm Rider \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "thunderbird/thunderbird";
 
-    default:
-      infoO.aniName = "(Animal)";
-      infoO.aniDesc = "";
-      infoO.aniCol = "#000000";
-      infoO.upgradeText = "UPGRADED!";
-  }
+            break;
+        case a_snowyOwl:
 
-  return infoO;
-};
+            infoO.aniName = "Snowy Owl";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Snowy Owl!\n Aim the crosshair, \n right click/W when it's on top of prey, to attack!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "snowyowl/snowyowl";
 
-function onAniTypeSet() {}
+            break;
+
+
+        case a_ostrichBaby:
+
+            infoO.aniName = "Baby Ostrich";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to Baby Ostrich!!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "ostrich/baby-ostrich";
+
+            break;
+        case a_phoenix:
+
+            infoO.aniName = "Phoenix";
+            infoO.upgradeText = "UPGRADED to Phoenix!\nCreate powerful fire tornados to burn your enemies alive!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "phoenix/phoenix";
+            break;
+
+        case a_seaMonster:
+            infoO.aniName = "Sea Monster";
+            infoO.upgradeText = "UPGRADED to Sea Monster!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "seamonster";
+            break;
+        case a_landMonster:
+            infoO.aniName = "Land Monster";
+            infoO.upgradeText = "UPGRADED to Land Monster!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "landmonster";
+            break;
+        case a_iceMonster:
+            infoO.aniName = "Ice Monster";
+            infoO.upgradeText = "UPGRADED to Ice Monster!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "monsters/icemonster/icemonster";
+            break;
+        case a_dinoMonster:
+            infoO.aniName = "Dino Monster";
+            infoO.upgradeText = "UPGRADED to Dino Monster!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "dinomonster";
+            break;
+        case a_pigeon:
+            infoO.aniName = "Pigeon";
+            infoO.upgradeText = "UPGRADED to Pigeon!\nHold W to fly around. ";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "pigeon/pigeon";
+            break;
+        case a_toucan:
+            infoO.aniName = "Toucan";
+            infoO.upgradeText = "UPGRADED to Toucan!\nHold W to fly around. ";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "toucan/toucan";
+            break;
+
+
+        default:
+            infoO.aniName = "(Animal)";
+            infoO.aniDesc = "";
+            infoO.aniCol = "#000000";
+            infoO.upgradeText = "UPGRADED!";
+    }
+
+    return infoO;
+}
+
+function onAniTypeSet() {
+
+}
+
 
 ///////
 // file: js_src/gameobj/ability/AbilityType.js
@@ -1158,41 +1051,43 @@ var ability_dive = 100,
   ability_freezeprey = 76,
   ability_kickinair = 77,
   ability_thunderbirdAttack = 78,
-  ability_stingscorp = 79,
-  ability_pterodactyl = 80,
-  ability_spear = 81;
+   ability_stingscorp= 79,
+   ability_pterodactyl= 80,
+    ability_spear = 81;
 var infoForAbilityT = function(abilT) {
   var infoO = {};
   var zombieFolder = "";
 
   var myPlayer = gameObjsByID[myPlayerID];
 
+  
+
   switch (abilT) {
-    case ability_pterodactyl:
-      infoO.abilName = "Dive Attack\n(Fly with Prey)";
-      if (myPlayer) {
-        infoO.abilImg =
-          "skins/desert/" +
-          zombieFolder +
-          infoForAnimalType(myPlayerLastAniT).skinName +
-          "/" +
-          myPlayer.animalSpecies +
-          "/" +
-          "pterodactyl_ability.png";
+      
+         case ability_pterodactyl:
+        infoO.abilName = "Dive Attack\n(Fly with Prey)";
+      if(myPlayer){
+      infoO.abilImg =
+        "skins/desert/" +
+        zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName +"/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "pterodactyl_ability.png";
       }
       break;
     case ability_stingscorp:
-      infoO.abilName = "Sting!\n(Shivers Prey)";
-      if (myPlayer) {
-        infoO.abilImg =
-          "skins/desert/" +
-          zombieFolder +
-          infoForAnimalType(myPlayerLastAniT).skinName +
-          "/" +
-          myPlayer.animalSpecies +
-          "/" +
-          "scorpion_ability.png";
-      }
+      
+        infoO.abilName = "Sting!\n(Shivers Prey)";
+       if(myPlayer){
+      infoO.abilImg =
+        "skins/desert/" +
+        zombieFolder +
+        infoForAnimalType(myPlayerLastAniT).skinName + "/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "scorpion_ability.png";
+              }
       break;
 
     case ability_whaleTailHit:
@@ -1203,18 +1098,17 @@ var infoForAbilityT = function(abilT) {
         infoForAnimalType(myPlayerLastAniT).skinName +
         ".png";
       break;
-    case ability_finalhit:
-      if (myPlayer) {
-        infoO.abilName = "Tail Slap";
-        infoO.abilImg =
-          "skins/" +
+        case ability_finalhit:
+   if(myPlayer){
+      infoO.abilName = "Tail Slap";
+      infoO.abilImg =
+         "skins/" +
           zombieFolder +
-          infoForAnimalType(myPlayerLastAniT).skinName +
-          "/" +
-          myPlayer.animalSpecies +
-          "/" +
-          "tail.png";
-      }
+        infoForAnimalType(myPlayerLastAniT).skinName + "/" +
+        myPlayer.animalSpecies + "/"
+        +
+        "tail.png";
+     }
       break;
     case ability_elephantTrunkSmack:
       infoO.abilName = "Trunk Hit";
@@ -1246,8 +1140,8 @@ var infoForAbilityT = function(abilT) {
       break;
     case ability_crocWaterGrab:
       infoO.abilName = "Bite Drag";
-      infoO.abilImg = crocBite;
-      "skins/" +
+      infoO.abilImg =
+        "skins/" +
         zombieFolder +
         infoForAnimalType(myPlayerLastAniT).skinName +
         ".png";
@@ -1291,7 +1185,8 @@ var infoForAbilityT = function(abilT) {
         ".png";
       break;
     case ability_kickinair:
-      infoO.abilName = "Kick in air";
+      
+       infoO.abilName = "Kick in air";
       infoO.abilImg =
         "skins/" +
         zombieFolder +
@@ -1440,14 +1335,13 @@ var infoForAbilityT = function(abilT) {
       infoO.abilImg = "img/fire.png";
       break;
     case ability_yetiTransform:
-      infoO.abilName = "Yeti Roar!";
+       infoO.abilName = "Yeti Roar!";
       infoO.abilImg =
         "skins/" +
         zombieFolder +
-        infoForAnimalType(myPlayerLastAniT).skinName +
-        "/" +
-        myPlayer.animalSpecies +
-        "/" +
+        infoForAnimalType(myPlayerLastAniT).skinName + "/" +
+        myPlayer.animalSpecies + "/"
+        +
         "ability.png";
       break;
     case ability_fireShoot2:
@@ -1500,7 +1394,7 @@ var infoForAbilityT = function(abilT) {
         infoForAnimalType(myPlayerLastAniT).skinName +
         ".png";
       break;
-    case ability_thunderbirdAttack:
+   case ability_thunderbirdAttack:
       infoO.abilName = "Thunderous\nDive";
       infoO.abilImg =
         "skins/" +
@@ -1533,13 +1427,7 @@ var infoForAbilityT = function(abilT) {
       if (myPlayer) {
         var aniInfoO = myPlayer.animalInfo();
 
-        infoO.abilImg =
-          "skins/" +
-          zombieFolder +
-          "eagle/" +
-          myPlayer.animalSpecies +
-          "/eagle" +
-          ".png";
+        infoO.abilImg = "skins/" + zombieFolder + "eagle/" + myPlayer.animalSpecies + "/eagle" + ".png";
       }
       /*
       infoO.abilImg =
@@ -1565,7 +1453,7 @@ var infoForAbilityT = function(abilT) {
         infoO.abilImg = "skins/" + zombieFolder + aniInfoO.skinName + ".png";
       }
       break;
-    case ability_flyhigh:
+   case ability_flyhigh:
       infoO.abilName = "Fly High";
 
       var myPlayer = gameObjsByID[myPlayerID];
@@ -1575,15 +1463,14 @@ var infoForAbilityT = function(abilT) {
         infoO.abilImg = "skins/" + zombieFolder + aniInfoO.skinName + ".png";
       }
       break;
-    case ability_freezeprey:
+       case ability_freezeprey:
       infoO.abilName = "Freeze Prey!";
 
       var myPlayer = gameObjsByID[myPlayerID];
 
       if (myPlayer) {
         var aniInfoO = myPlayer.animalInfo();
-        infoO.abilImg =
-          "skins/" + infoForAnimalType(myPlayerLastAniT).skinName + ".png";
+        infoO.abilImg = "skins/" + infoForAnimalType(myPlayerLastAniT).skinName + ".png";
       }
       break;
     case ability_phoenix:
@@ -1626,48 +1513,55 @@ var infoForAbilityT = function(abilT) {
 // file: js_src/game/particle.js
 ///////
 
+
 var p_confetti = 1;
+
 
 ///////
 // file: js_src/game/utils.js
 ///////
 
+
+
 //UTILITIES
 //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+
 var getRandomDouble = function(min, max) {
   return Math.random() * (max - min) + min;
-};
+}
 
 var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
 
 var angle_1to360 = function(angle) {
-  var angle = (Math.trunc(angle) % 360) + (angle - Math.trunc(angle)); //converts angle to range -360 + 360
-  if (angle > 0.0) return angle;
-  else return angle + 360.0;
-};
+var angle = (Math.trunc(angle) % 360) + (angle - Math.trunc(angle)); //converts angle to range -360 + 360
+  if (angle > 0.0)
+    return angle;
+  else
+    return angle + 360.0;
+}
 //convert ip string to int32
 var dot2numIP = function(dot) {
-  var d = dot.split(".");
-  return ((+d[0] * 256 + +d[1]) * 256 + +d[2]) * 256 + +d[3];
-};
+  var d = dot.split('.');
+  return ((((((+d[0]) * 256) + (+d[1])) * 256) + (+d[2])) * 256) + (+d[3]);
+}
 //convert int32 num to ip string
 var num2dotIP = function(num) {
   var d = num % 256;
   for (var i = 3; i > 0; i--) {
     num = Math.floor(num / 256);
-    d = (num % 256) + "." + d;
+    d = num % 256 + '.' + d;
   }
   return d;
-};
+}
 //replace part of url
 var removeParam = function(key, sourceURL) {
   var rtn = sourceURL.split("?")[0],
     param,
     params_arr = [],
-    queryString = sourceURL.indexOf("?") !== -1 ? sourceURL.split("?")[1] : "";
+    queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
   if (queryString !== "") {
     params_arr = queryString.split("&");
     for (var i = params_arr.length - 1; i >= 0; i -= 1) {
@@ -1679,53 +1573,53 @@ var removeParam = function(key, sourceURL) {
     rtn = rtn + "?" + params_arr.join("&");
   }
   return rtn;
-};
+}
 
 var toDegrees = function(angle) {
   return angle * (180 / Math.PI);
-};
+}
 
 var toRadians = function(angle) {
   return angle * (Math.PI / 180);
-};
+}
 
 //returns angle in rad
 var angleAimingBetweenPoints = function(x1, y1, x2, y2) {
   return Math.atan2(y2 - y1, x2 - x1);
-};
+}
 
 var bit_get = function(num, bit) {
-  return (num >> bit) % 2 != 0;
-};
+  return ((num >> bit) % 2 != 0);
+}
 
 var bit_set = function(num, bit, setTo1) {
-  if (setTo1) return num | (1 << bit);
-  //set 1
-  else return num & ~(1 << bit); //set 0
-};
+  if (setTo1)
+    return num | 1 << bit; //set 1
+  else
+    return num & ~(1 << bit); //set 0
+}
 
 /** gives shortest angle dist between two angles, (dist negative or positive!)*/
 //accepts/returns RADIANS
 var distBetweenAngles = function(fromAngle, toAngle) {
   var rawDiff = toAngle - fromAngle;
   var d = angle_1to360(toDegrees(rawDiff));
-  if (d > 180.0)
-    //going backwards is shorter
+  if (d > 180.0) //going backwards is shorter
     d = d - 360; //gives negative angle
   return toRadians(d);
-};
+}
 
 var clamp = function(n, min, max) {
   return Math.min(max, Math.max(min, n));
-};
+}
 
 var encode_utf8 = function(s) {
   return unescape(encodeURIComponent(s));
-};
+}
 
 var decode_utf8 = function(s) {
   return decodeURIComponent(escape(s));
-};
+}
 
 var fillTextMultiLine = function(text, x, y) {
   var lineHeight = ctx.measureText("M").width * 1.2;
@@ -1734,23 +1628,23 @@ var fillTextMultiLine = function(text, x, y) {
     ctx.fillText(lines[i], x, y);
     y += lineHeight;
   }
-};
+}
 
 var formatTimeSecs = function(theT) {
   var sec_num = parseInt(theT, 10); // don't forget the second param
   var hours = Math.floor(sec_num / 3600);
-  var minutes = Math.floor((sec_num - hours * 3600) / 60);
-  var seconds = sec_num - hours * 3600 - minutes * 60;
+  var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+  var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
   if (seconds < 10) {
     seconds = "0" + seconds;
   }
   return minutes + ":" + seconds;
-};
+}
 
-var numberWithCommas = function(x) {
+var numberWithCommas=function(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
+}
 
 var formatNumK = function(num) {
   return abbreviate_number(num);
@@ -1760,63 +1654,75 @@ var formatNumK = function(num) {
       return (Math.trunc(10 * (num / 1000)) / 10.0) + "k";
   else
       return (Math.trunc(100 * (num / 1000000)) / 100.0) + "m";*/
-};
+}
 var abbreviate_number = function(num, fixed) {
   if (num === null) {
     return null;
   } // terminate early
   if (num === 0) {
-    return "0";
+    return '0';
   } // terminate early
-  fixed = !fixed || fixed < 0 ? 0 : fixed; // number of decimal places to show
-  var b = num.toPrecision(2).split("e"), // get power
+  fixed = (!fixed || fixed < 0) ? 0 : fixed; // number of decimal places to show
+  var b = (num).toPrecision(2).split("e"), // get power
     k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
     c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3)).toFixed(2), // divide by power
     d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
-    e = d + ["", "K", "M", "B", "T"][k]; // append power
+    e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
   return e;
-};
+}
 
-var drawCircle = function(x, y, rad, col) {
+
+
+var drawCircle= function (x, y, rad, col) {
   ctx.fillStyle = col;
   ctx.beginPath();
   ctx.arc(x, y, Math.max(0, rad), 0, Math.PI * 2);
   ctx.fill();
-};
+}
 
-var drawStroke = function(x, y, rad, lineWidth, col) {
-  ctx.strokeStyle = col;
-  ctx.lineWidth = lineWidth;
-  ctx.beginPath();
-  ctx.arc(x, y, Math.max(0, rad), 0, Math.PI * 2);
-  ctx.stroke();
-};
+var drawStroke = function (x, y, rad, lineWidth, col) {
+    ctx.strokeStyle = col;
+    ctx.lineWidth = lineWidth;
+    ctx.beginPath();
+    ctx.arc(x, y, Math.max(0, rad), 0, Math.PI * 2);
+    ctx.stroke();
+}
+  
 
-var getAnimFrame = function(tSinceSpawn, period, shiftAm, sinF) {
-  var moveA = shiftAm * Math.sin(((sinF * Math.PI) / period) * tSinceSpawn);
+
+
+var getAnimFrame= function(tSinceSpawn, period, shiftAm, sinF) {
+
+  var moveA = shiftAm * Math.sin((sinF * Math.PI) / period * tSinceSpawn);
   return moveA;
-};
+
+}
 
 var log = function(txt, showLog) {
-  if (KTestingModeON || showLog) {
+	if(KTestingModeON || showLog) {
     //if(txt=="Stats.onInterfaceReset")
-    // throw new Error();
-    console.log(txt);
-  }
+	  // throw new Error();
+		console.log(txt);
+	}
 };
 
+
 function secToTime(sec) {
-  var date = new Date(null);
-  date.setSeconds(sec); // specify value for SECONDS here
-  var mm = date.getMinutes();
-  var ss = date.getSeconds();
+    var date = new Date(null);
+    date.setSeconds(sec); // specify value for SECONDS here
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
 
-  var result = "";
-  if (mm > 0) result = mm + "m ";
-  if (ss > 0) result += ss + "s";
+    var result = "";
+    if (mm > 0)
+        result = mm + "m ";
+    if (ss > 0)
+        result += ss + "s";
 
-  return result;
+    return result;
 }
+
+
 
 ///////
 // file: js_src/interface/CachedText.js
@@ -1824,12 +1730,13 @@ function secToTime(sec) {
 
 //a node that can cache text, call draw() to draw it, set pos with .x, .y
 CachedText.prototype = {
+
   //can edit stroke vars, before first render!
   strokeW: 1.0, //0 to turn off stroke
   strokeColor: "#000000",
   multiLine: false,
   playername: false,
-  choicetxt: false,
+  choicetxt:false,
   _text: "",
   _color: "#000000",
   x: 0,
@@ -1846,6 +1753,7 @@ CachedText.prototype = {
   //read-ony vars
   width: 0,
   height: 0, //canvas w/h (fast)
+  
 
   /*setScale: function(a) {
       if (this._scale != a) {
@@ -1866,7 +1774,7 @@ CachedText.prototype = {
       this._dirty = true;
     }
   },
-  rotate: function(a) {
+ rotate: function(a) {
     if (a != this._text) {
       this._angle = a;
       this._dirty = true;
@@ -1891,12 +1799,12 @@ CachedText.prototype = {
         _ctx = this._ctx,
         text = this._text,
         _angle = this._angle,
-        scale = this._scale,
+          scale = this._scale,
         fontsize = this._fntSize * this.renderScale,
-        font = fontsize + "px Arial";
+        font = (fontsize) + 'px Arial';
 
       _ctx.font = font;
-      var h = ~~(0.2 * fontsize);
+      var h = ~~(.2 * fontsize);
       _ctx.font = font; //set font before measureText
 
       //_ctx.scale(scale, scale);
@@ -1905,7 +1813,7 @@ CachedText.prototype = {
         //basic multi-line fill!
         var lineHeight = _ctx.measureText("M").width * 1.2;
         var lines = text.split("\n");
-
+      
         //re-size the canvas for mutiple lines...
         var maxW = 0;
         for (var i = 0; i < lines.length; ++i) {
@@ -1918,7 +1826,7 @@ CachedText.prototype = {
         //fix size for renderScale
         this.width /= this.renderScale;
         this.height /= this.renderScale;
-
+   
         _ctx.globalAlpha = 1;
         _ctx.font = font;
         //_ctx.lineWidth = 6;
@@ -1938,7 +1846,8 @@ CachedText.prototype = {
           y += lineHeight;
         }
       } else {
-        this.width = (_ctx.measureText(text).width + 6) * scale;
+        this.width = (_ctx.measureText(text).width +
+          6) * scale;
         this.height = (fontsize + h) * scale;
         _canvas.width = this.width;
         _canvas.height = this.height;
@@ -1950,21 +1859,22 @@ CachedText.prototype = {
         _ctx.globalAlpha = 1;
         _ctx.font = font;
         //_ctx.lineWidth = 6;
-        if (this.strokeW > 0.0) {
+        if (this.strokeW > 0.0 ) {
           _ctx.shadowOffsetX = this.strokeW; //0.3333 *this.renderScale;
           _ctx.shadowOffsetY = this.strokeW; //0.3333 * this.renderScale;
           _ctx.shadowColor = this.strokeColor; //"black";
         }
         _ctx.fillStyle = this._color;
 
+
         _ctx.fillText(text, 3, fontsize - h / 2);
       }
-
+      
       if (this.choicetxt) {
         //basic multi-line fill!
         var lineHeight = _ctx.measureText("M").width * 1.2;
         var lines = text.split(" ");
-
+      
         //re-size the canvas for mutiple lines...
         var maxW = 0;
         for (var i = 0; i < lines.length; ++i) {
@@ -1977,7 +1887,7 @@ CachedText.prototype = {
         //fix size for renderScale
         this.width /= this.renderScale;
         this.height /= this.renderScale;
-
+   
         _ctx.globalAlpha = 1;
         _ctx.font = font;
         //_ctx.lineWidth = 6;
@@ -1999,7 +1909,7 @@ CachedText.prototype = {
       }
       //console.log("cached name : "+text);
     }
-    return this._canvas;
+    return this._canvas
   },
 
   //convinience method to draw pre-rendered canvas at x/y pos
@@ -2013,19 +1923,24 @@ CachedText.prototype = {
       ctx.drawImage(rnchache, this.x - nw / 2.0, this.y - nh / 2.0, nw, nh);
     }
   },
-  setPos: function(w, h) {}
+  setPos: function(w,h) {
+    
+  }
 };
 
 function CachedText(uFntSize, ucolor) {
   uFntSize && (this._fntSize = uFntSize);
   ucolor && (this._color = ucolor);
+
 }
 
-window.CachedText = CachedText;
+window.CachedText=CachedText;
+
 
 ///////
 // file: js_src/interface/InterfaceButtons.js
 ///////
+
 
 //button that appears in animal choice interface
 function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
@@ -2035,24 +1950,20 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
   this.w = w; //width of pressable region
   this.h = h;
   this.aniT = aniT;
-  //  this.col = animalcol;
+//  this.col = animalcol;
   this.species = spec;
   this.teamID = 0;
-  this.btnHotkey = "0";
+  this.btnHotkey = '0';
 
   //this.text = infoForAnimalType(aniT).aniName;//isOcean ? "Ocean Animal" : "Land Animal";
   this.buttonTXT = new CachedText(10.0, "white");
   this.buttonTXT.renderScale = 1.5;
-  this.buttonTXT.choicetxt = true;
+  this.buttonTXT.choicetxt = true
   this.buttonTXT.setText(infoForAnimalType(aniT).aniName);
-  this.setHotKey = function(_0xb26fc2) {
-    _0xb26fc2 &&
-      ((this.btnHotkey = _0xb26fc2),
-      (this.hotkey = new CachedText(10, "white")),
-      (this.hotkey.renderScale = 1.5),
-      (this.hotkey.multiLine = false),
-      this.hotkey.setText(this.btnHotkey.toUpperCase()));
-  };
+  this.setHotKey = function (_0xb26fc2) {
+        _0xb26fc2 && (this.btnHotkey = _0xb26fc2, this.hotkey = new CachedText(10, 'white'), this.hotkey.renderScale = 1.5, this.hotkey.multiLine = false, this.hotkey.setText(this.btnHotkey.toUpperCase()));
+
+    };
   this.isHighLighted = false; //highlight if mouse goes on it
   this.biomeNum = biomeNum; //draw ocean or land background
   //drawn animal img
@@ -2061,37 +1972,39 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
   anO.animalType = aniT;
   anO.animalSpecies = spec;
   anO.lava = 100;
-  anO.alwaysPlainOutline = true;
+ anO.alwaysPlainOutline = true;
   this.buttonTXT.setText(anO.animalInfo().aniName);
 
   anO.x = anO.ox = anO.nx = 0;
   anO.y = anO.oy = anO.ny = 0;
-  anO.rad = anO.oRad = anO.nRad = 30;
-
+  anO.rad=anO.oRad=anO.nRad= 30;
+  
   this.drawnAniObj = anO;
-
+  
   this.buttonScaleF = 0; //scale primary button
   //this.touchMarginEx=20.0;
-
+ 
   //used to check clicks
   this.testPosHitsButton = function(posX, posY) {
+
     if (posX < this.x - this.w / 2 || posX > this.x + this.w / 2)
       //outside x bounds
       return false;
     if (posY < this.y - this.w / 2 || posY > this.y + this.w / 2) {
       //outside y bounds
       return false;
-    } else return true;
+    } else
+      return true;
   };
-  (this.setPosAndSize = function(newX, newY, newW, newH, anchorX, anchorY) {
-    this.w = newW;
-    this.h = newH;
-    //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
-    this.x = newX + newW * (0.5 - anchorX);
-    this.y = newY + newH * (0.5 - anchorY);
-  }),
-    (this.draw = function() {
-      //ani draw mod
+  this.setPosAndSize = function(newX, newY, newW, newH, anchorX, anchorY) {
+      this.w = newW;
+      this.h = newH;
+      //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
+      this.x = newX + (newW) * (0.5 - anchorX);
+      this.y = newY + (newH) * (0.5 - anchorY);
+    },
+
+    this.draw = function() { //ani draw mod
       //draw button bg square
       ctx.save();
       ctx.translate(this.x, this.y);
@@ -2100,37 +2013,42 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
       //console.log("drawing button at "+this.x,this.y);
 
+
       //bg square
-      ctx.globalAlpha = origA * 0.5;
+      ctx.globalAlpha = origA * 0.50;
       switch (this.biomeNum) {
+      
         case 0:
-          this.drawnAniObj.curBiome = 0;
+            this.drawnAniObj.curBiome = 0
           ctx.fillStyle = "#26A73A";
           break; //land
         case 1:
-          this.drawnAniObj.curBiome = 1;
+         this.drawnAniObj.curBiome = 1
           ctx.fillStyle = "#1C91B8";
-          break; //ocean
+          break;  //ocean
         case 2:
-          this.drawnAniObj.curBiome = 2;
+         this.drawnAniObj.curBiome = 2
           ctx.fillStyle = "#B2B2B2";
+      
 
           break; //arctic
 
-        case 3:
-          this.drawnAniObj.curBiome = 3;
+          case 3:
+         this.drawnAniObj.curBiome = 3
           ctx.fillStyle = "#ff6000";
+      
 
           break; //arctic
-
-        case 4:
-          ctx.fillStyle = "#9F8641";
-          break;
-        case 5:
-          ctx.fillStyle = "#00db22";
-          break;
-      }
-
+                  
+            case 4:
+                ctx.fillStyle = "#9F8641";
+                break;
+            case 5:
+                ctx.fillStyle = "#00db22";
+                break;
+            }
+      
+      
       ctx.fillRect(0 - this.w / 2, 0 - this.h / 2, this.w, this.h);
       //draw highlight
       if (this.isHighLighted) {
@@ -2141,10 +2059,10 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
 
       //draw animal
       ctx.globalAlpha = origA;
-      var _0x224eeb = this.w * 0.22500000000036;
-      this.drawnAniObj.nRad = this.drawnAniObj.rad = _0x224eeb;
+var _0x224eeb = this.w * (0.22500000000036);
+        this.drawnAniObj.nRad = this.drawnAniObj.rad = _0x224eeb;
       ctx.save();
-      ctx.scale(2, 2);
+      ctx.scale(2,2);
       this.drawnAniObj.teamID = teamID;
       this.drawnAniObj.draw();
       ctx.restore();
@@ -2158,10 +2076,11 @@ function AniChoiceButton(x, y, w, h, aniT, biomeNum, spec) {
       //ctx.fillText(this.text, 0, -this.h *0.5 * 0.75);
       //}
       ctx.restore();
-    });
-}
+    };
+};
 
-window.AniChoiceButton = AniChoiceButton;
+
+window.AniChoiceButton=AniChoiceButton;
 
 //button for touch controls (and abilities display)
 TouchButton.prototype = {
@@ -2185,15 +2104,16 @@ TouchButton.prototype = {
     if (posY < this.y - this.w / 2 || posY > this.y + this.w / 2) {
       //outside y bounds
       return false;
-    } else return true;
+    } else
+      return true;
   },
   //set x/y, set to an anchorpoint (0)=0.5
   setPosAndSize: function(newX, newY, newW, newH, anchorX, anchorY) {
     this.w = newW;
     this.h = newH;
     //set middle x/y based on anchorX/anchorY -(0,0) is top-left corner
-    this.x = newX + newW * (0.5 - anchorX);
-    this.y = newY + newH * (0.5 - anchorY);
+    this.x = newX + (newW) * (0.5 - anchorX);
+    this.y = newY + (newH) * (0.5 - anchorY);
   },
   //set this for each button
   onButtonTouchStart: function() {
@@ -2205,17 +2125,19 @@ TouchButton.prototype = {
 };
 
 function TouchButton(text) {
+
   this.buttonTXT = new CachedText(10.0, "white");
   this.buttonTXT.renderScale = 1.5;
   this.buttonTXT.setText(text);
 
   this.draw = function() {
-    if (!this.visible) return;
+    if (!this.visible)
+      return;
 
     //draw button square
     ctx.save();
     ctx.globalAlpha = 0.2;
-    ctx.fillStyle = this.pressed ? "white" : "#000000";
+    ctx.fillStyle = (this.pressed) ? "white" : "#000000";
     ctx.fillRect(this.x - this.w / 2, this.y - this.h / 2, this.w, this.h);
 
     //draw button text
@@ -2227,11 +2149,12 @@ function TouchButton(text) {
     this.buttonTXT.draw();
 
     ctx.restore();
+
   };
 }
-window.TouchButton = TouchButton;
+window.TouchButton=TouchButton;
 
-var AbilityButton = function() {
+var AbilityButton = function () {
   this.buttonTXT = new CachedText(10.0, "white");
   this.buttonTXT.renderScale = 1.5;
   //this.buttonTXT.setText("");
@@ -2240,18 +2163,15 @@ var AbilityButton = function() {
   this.isMiniRechargeBut = false; //shows above W button, when dive is available
   this.abil_Type = 0;
   this.abil_possible = this.abil_usable = this.abil_recharging = this.abil_active = false;
-  (this.abil_rechargeEndT = 0), (this.abil_rechargeTotalT = 0);
-  (this.abil_rechargeBarA = 0), (this.abil_avilableA = 0);
+  this.abil_rechargeEndT = 0, this.abil_rechargeTotalT = 0;
+  this.abil_rechargeBarA = 0, this.abil_avilableA = 0;
 
-  this.draw = function() {
-    if (!this.visible) return;
+  this.draw = function () {
+    if (!this.visible)
+      return;
 
-    this.abil_rechargeBarA +=
-      ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
-    this.abil_avilableA +=
-      ((this.abil_usable || this.abil_active ? 1.0 : 0.2) -
-        this.abil_avilableA) *
-      0.1;
+    this.abil_rechargeBarA += ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
+    this.abil_avilableA += (((this.abil_usable || this.abil_active) ? 1.0 : 0.2) - this.abil_avilableA) * 0.1;
     if (this.isMiniRechargeBut) {
       this.h = this.w * 0.6;
     }
@@ -2264,12 +2184,12 @@ var AbilityButton = function() {
         this.h = this.w * 0.8;
         ctx.translate(this.x, this.y + this.h * 0.36);
         ctx.scale(0.65, 0.65);
-      } else ctx.translate(this.x, this.y);
+      } else
+        ctx.translate(this.x, this.y);
 
       //draw button square
       var fillOp = 0.2 * this.abil_avilableA;
-      var fillCol =
-        this.pressed || controls_rightClicked ? "#CECECE" : "#000000";
+      var fillCol = (this.pressed || controls_rightClicked) ? "#CECECE" : "#000000";
       if (this.abil_active) {
         fillCol = col_edibleOutline;
         fillOp = 0.7;
@@ -2281,49 +2201,32 @@ var AbilityButton = function() {
       //ability img
       var abilityInfo = infoForAbilityT(this.abil_Type);
 
-      if (
-        this.abil_Type == ability_fireShoot ||
-        this.abil_Type == ability_fireShoot2
-      ) {
+      if (this.abil_Type == ability_fireShoot || this.abil_Type == ability_fireShoot2) {
+
         var imNum = Math.trunc(timestamp / 120) % 5;
         //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-        if (gameObjsByID[myPlayerID]) {
-          var theImg = getLoadedImg(
-            "img/fireball/" +
-              gameObjsByID[myPlayerID].specType2 +
-              "/" +
-              imNum +
-              ".png"
-          );
-        }
+         if (gameObjsByID[myPlayerID]) {
+        var theImg = getLoadedImg("img/fireball/" + gameObjsByID[myPlayerID].specType2 + "/" +imNum + ".png");
+         }
         if (theImg) {
           var rad = this.w * 0.4;
           var frame = 0;
           if (gameObjsByID[myPlayerID]) {
             var tSpawn = gameObjsByID[myPlayerID].spawnTime;
 
-            var tSinceSpawn = (timestamp - tSpawn) / 1000.0;
-            frame = getAnimFrame(tSinceSpawn, 1, 10, 2);
+            var tSinceSpawn = (timestamp - tSpawn) / 1000.0
+            frame = (getAnimFrame(tSinceSpawn, 1, 10, 2));
           }
           ctx.globalAlpha = oAlpha * this.abil_avilableA;
-          ctx.drawImage(
-            theImg,
-            -rad,
-            -rad * 0.85 - frame,
-            2 * rad,
-            2 * rad + frame
-          );
+          ctx.drawImage(theImg, -rad, -rad * 0.85 - frame, 2 * rad, 2 * rad + frame);
         }
+
       } else {
         var abilImg = abilityInfo.abilImg;
         //  console.log("abilImg: " + abilImg)
 
         var myPlayer = gameObjsByID[myPlayerID];
-        if (
-          myPlayer &&
-          myPlayer.animalType == a_phoenix &&
-          this.abil_Type == ability_dive
-        )
+        if (myPlayer && myPlayer.animalType == a_phoenix && this.abil_Type == ability_dive)
           abilImg = "img/ability_dive_lava.png";
 
         var theImg = getLoadedImg(abilImg);
@@ -2334,8 +2237,8 @@ var AbilityButton = function() {
           ctx.drawImage(theImg, -rad, -rad * 0.85, 2 * rad, 2 * rad);
         }
       }
-      this.buttonTXT.multiLine = true;
-
+      this.buttonTXT.multiLine = true
+      
       this.buttonTXT.setText(abilityInfo.abilName);
       this.buttonTXT.setFontSize(25 * interfS);
       this.buttonTXT.x = 0;
@@ -2345,36 +2248,38 @@ var AbilityButton = function() {
       //rercharging bar (fade based on updated recharing var, as more accurte)
       var tTillRecharged = Math.max(0, this.abil_rechargeEndT - timestamp);
       //console.log("recharged in "+tTillRecharged);
-      this.abil_rechargeBarA +=
-        ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
+      this.abil_rechargeBarA += ((this.abil_recharging ? 1.0 : 0.0) - this.abil_rechargeBarA) * 0.1;
 
       if (this.abil_rechargeBarA > 0.01) {
+
+
+
         //recharge bar
-        ctx.globalAlpha = oAlpha * this.abil_rechargeBarA * 0.35;
+        ctx.globalAlpha = (oAlpha * this.abil_rechargeBarA) * 0.35;
         ctx.fillStyle = "#000000"; //bar bg
         var bx = 0,
           by = 0;
         var barW = this.w * 0.8;
         var barH = this.h * 0.5;
 
+
         ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH); //bg
-        ctx.globalAlpha = oAlpha * this.abil_rechargeBarA * 1.0;
+        ctx.globalAlpha = (oAlpha * this.abil_rechargeBarA) * 1.0;
         ctx.fillStyle = "#F3C553";
-        ctx.fillRect(
-          bx - barW / 2,
-          by - barH / 2,
-          barW * (tTillRecharged / this.abil_rechargeTotalT),
-          barH
-        ); //fill
+        ctx.fillRect(bx - barW / 2, by - barH / 2, barW * (tTillRecharged / this.abil_rechargeTotalT), barH); //fill
+
       }
+
 
       ctx.restore();
     }
-  };
-};
+  }
+}
 AbilityButton.prototype = Object.create(TouchButton.prototype); //inherit from TouchButton
 
-window.AbilityButton = AbilityButton;
+window.AbilityButton=AbilityButton;
+
+
 
 ///////
 // file: js_src/game/typedefs.js
@@ -2407,39 +2312,41 @@ var lerpI = 0.175; //@10fps; // 0.12 for 20fps;  //ag@r is 0.125
 
 //common game colors
 var col_invisborder = "#2A2A2A60",
-  col_gameBg1 = "#3FBA54", //light-green background color of mope.io
-  col_gameBg = "#3FBA54", //light-green background color of mope.io
-  col_snowcolor = "#f7f7f7",
-  col_outline_land = "#09992F",
-  col_outline_ocean = "#007ec0",
-  col_outline_arctic = "grey",
-  col_bg3 = "#09992F", //"#3D7447";
-  col_wat1 = "#4E66E4",
-  col_lava = "#ff6000",
-  col_lava2 = "#bf4f0b",
-  col_wat2 = "#4651a6", //#4651a6 - non snow color
-  col_ocean = col_wat2, // "#1898bd";// (old oc)
-  col_ocean_sand = "#c8b745",
-  col_outline_desert = "#a59215",
-  col_desert_hill = "#d6c348",
-  col_food1 = "#F35F53",
-  col_food2 = "#CF6259",
-  col_plankton1 = "#FF911E",
-  col_plankton2 = "#C67019",
-  col_dangerOutline = "#EF3C31",
-  col_edibleOutline = "#4AE05E",
-  col_rockHill = "#8C9688",
-  col_rockHill_desert = "#878053";
+    col_gameBg1 = "#3FBA54", //light-green background color of mope.io
+    col_gameBg = "#3FBA54", //light-green background color of mope.io
+    col_snowcolor = "#f7f7f7",
+    col_outline_land = "#09992F",
+    col_outline_ocean = "#007ec0",
+    col_outline_arctic = "grey",
+    col_bg3 = "#09992F", //"#3D7447";
+    col_wat1 = "#4E66E4",
+    col_lava = "#ff6000",
+    col_lava2 = "#bf4f0b",
+    col_wat2 = "#4651a6", //#4651a6 - non snow color
+    col_ocean = col_wat2, // "#1898bd";// (old oc)
+    col_ocean_sand = "#c8b745",
+    col_outline_desert = "#a59215",
+    col_desert_hill = "#d6c348",
+
+    col_food1 = "#F35F53",
+    col_food2 = "#CF6259",
+    col_plankton1 = "#FF911E",
+    col_plankton2 = "#C67019",
+
+    col_dangerOutline = "#EF3C31",
+    col_edibleOutline = "#4AE05E",
+    col_rockHill = "#8C9688", 
+    col_rockHill_desert = "#878053";
 
 var outlineColForBiome = function(biomeN) {
   switch (biomeN) {
     case biome_ocean:
       return col_outline_ocean;
-    case biome_arctic:
+      case biome_arctic:
       return col_outline_arctic;
-    case biome_desert:
+      case biome_desert:
       return col_outline_desert;
-    case biome_volcano:
+      case biome_volcano:
       return col_lava2;
     default:
     case biome_land:
@@ -2460,17 +2367,17 @@ var timestamp = +new Date();
 var lastUpdT = +new Date();
 
 // Team Mode vars start
-var teamID = 1;
+var teamID = 0;
 // team mode vars end
 
 //
 var isInArena = true;
 var isAbility1v1Active = true;
-var isSoccerEnabled = false;
+var isSoccerEnabled = true;
 var show1v1Button = true;
 var can1v1 = true;
 var btn1v1 = null;
-var player1v1ArenaWins = 50;
+var player1v1ArenaWins = 0;
 var playerGoalsScore = 0;
 var serverAllTimeGoals = 0;
 var playersInfected = 0;
@@ -2481,7 +2388,7 @@ var bonusRoundDur = 0;
 var homeButton = null;
 var isSpectateMode = false;
 var eggID = 0;
-var isDevMode = false;
+var isDevMode = true;
 //canvases
 var canvas = document.getElementById("gCanvas");
 var lbCanvas = null;
@@ -2588,8 +2495,8 @@ var rawMouseX = 0, //in CANVAS coordinates (multiplied by pix ratio)
 //game controls (for use with multiple buttons)
 var controls_leftClicked = false,
   controls_rightClicked = false,
-  cNum_keyEused = false,
-  cNum_keyDused = false;
+    cNum_keyEused = false,
+cNum_keyDused = false;
 //game size, vars, get set on game join
 var canvasW = 0;
 var canvasH = 0;
@@ -2604,7 +2511,7 @@ var gameMode_troll = 4;
 var gameMode_zombie = 5;
 var gameMode = gameMode_FFA; //NOT USED ATM
 
-var gameState = 1;
+var gameState = 0;
 
 //varsa
 
@@ -2906,12 +2813,15 @@ var serverConnected = false;
 var serverFirstConnected = false;
 var afkTimeStart = +new Date();
 var dcedFromAfk = false;
-(_0x8b4348 = !1), (_0x55dda5 = !1), (_0x33bbe8 = !1), (_0x573fdc = !1);
+_0x8b4348 = !1,
+    _0x55dda5 = !1,
+    _0x33bbe8 = !1,
+    _0x573fdc = !1
 var isAirBar = false;
 var animalBarType = 0;
 var waterBarPerc = (waterBarPerc_n = 100);
 var xpPer_n = (xp = xpPer = 0);
-var infectionBarPerc = (infectionBarPerc_n = 100);
+var infectionBarPerc = infectionBarPerc_n = 100;
 //interface/animation vars
 var waterBarTXT = new CachedText(16.0, "white");
 var player1v1TXT = new CachedText(16.0, "white");
@@ -2932,10 +2842,10 @@ var respawnMsgText = "";
 //create touch buttons
 var allTouchButtons = []; //all drawn/active buttons
 var button_w = new AbilityButton();
-button_w.onButtonTouchStart = function() {
+button_w.onButtonTouchStart = function () {
   controlsPressEvent(cNum_rightClick, true);
 };
-button_w.onButtonTouchEnd = function() {
+button_w.onButtonTouchEnd = function () {
   controlsPressEvent(cNum_rightClick, false);
 
   //unselect run (if pressed through sliding down finger)
@@ -2954,13 +2864,14 @@ button_w_mini.touchEnabled = false;
 allTouchButtons.push(button_w_mini);
 
 var button_run = new TouchButton("HOLD TO RUN");
-button_run.onButtonTouchStart = function() {
+button_run.onButtonTouchStart = function () {
   controlsPressEvent(cNum_leftClick, true);
 };
-button_run.onButtonTouchEnd = function() {
+button_run.onButtonTouchEnd = function () {
   controlsPressEvent(cNum_leftClick, false);
 };
 allTouchButtons.push(button_run);
+
 
 var button_chat = new TouchButton("CHAT");
 button_chat.onButtonTouchStart = function() {
@@ -3013,148 +2924,124 @@ _0x1abe2b.elastic = 7;
 _0x1abe2b.bounceEaseOut = 8;
 _0x1abe2b.bounceEaseInOut = 9;
 
-function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622, workafter) {
-  this.forObj = _0x4b9ad5;
-  this.duration = _0x148a85;
-  this.animation = _0x2b7224;
-  this.startTime = null;
-  this.frame = 0;
-  this.frameRate = 1000;
-  this.timePassed = 0;
-  this.stopWhenDurationPassed = this.generate = true;
-  this.accelerateEnd = this.state = 0;
-  this.hasStopped = false;
-  this.img = null;
-  this.vars = _0x59b622;
-  this.loop = this.keepLastFrame = true;
-  this.setImage = function(_0x1f9afa) {
-    this.img = _0x510f5a(_0x1f9afa);
-  };
-  this.run = function() {
-    if (
-      !workafter &&
-      this.timePassed >= this.duration &&
-      this.stopWhenDurationPassed
-    ) {
-      this.hasStopped = true;
+function _0x1abe2b(_0x4b9ad5, _0x148a85, _0x2b7224, _0x59b622,workafter) {
+    this.forObj = _0x4b9ad5;
+    this.duration = _0x148a85;
+    this.animation = _0x2b7224;
+    this.startTime = null;
+    this.frame = 0;
+    this.frameRate = 1000;
+    this.timePassed = 0;
+    this.stopWhenDurationPassed = this.generate = true;
+    this.accelerateEnd = this.state = 0;
+    this.hasStopped = false;
+    this.img = null;
+    this.vars = _0x59b622;
+    this.loop = this.keepLastFrame = true;
+    this.setImage = function (_0x1f9afa) {
+        this.img = _0x510f5a(_0x1f9afa);
+    };
+    this.run = function () {
+    if(!workafter && this.timePassed >= this.duration && this.stopWhenDurationPassed){
+      this.hasStopped = true
     }
-
-    null == this.startTime && (this.startTime = timestamp);
-    if (
-      null != this.startTime &&
-      (2 != this.state ||
-        this.hasStopped ||
-        ((this.hasStopped = true), this.onStop()),
-      this.hasStopped ||
-        (this.calcTimePassed(),
-        this.generateFrame(),
-        this.onFrameEntered(this.frame),
-        !workafter &&
-          this.timePassed >= this.duration &&
-          this.stopWhenDurationPassed &&
-          (this.state = 2)),
-      this.hasStopped)
-    ) {
-      if (this.keepLastFrame) this.onFrameEntered(this.frame);
-      this.loop && this.reset();
-    }
-  };
-  this.reset = function() {
-    this.timestamp = null;
-    this.hasStopped = true;
-    this.state = 0;
-  };
-  this.timing = function(_0x1868f0) {
-    return _0x1868f0;
-  };
-  this.halfWave = function(_0x5b1e15) {
-    return 1 * Math.sin(((0.5 * Math.PI) / this.duration) * _0x5b1e15);
-  };
-  this.wave = function(_0x5052b4) {
-    return 1 * Math.sin(((1 * Math.PI) / this.duration) * _0x5052b4);
-  };
-  this.arc = function(_0x109adf) {
-    return 0x1 - Math.sin(Math.acos(_0x109adf));
-  };
-  this.quad = function(_0x5c29f0) {
-    return Math.pow(_0x5c29f0, 2);
-  };
-  this.bow = function(_0x5ac2d4) {
-    var _0x148a85 = this.vars.v1;
-    return Math.pow(_0x5ac2d4, 2) * ((_0x148a85 + 1) * _0x5ac2d4 - _0x148a85);
-  };
-  this.bounce = function(_0x2000e8) {
-    for (
-      var _0x148a85 = 0, _0x2b7224 = 1;
-      ;
-      _0x148a85 += _0x2b7224, _0x2b7224 /= 2
-    )
-      if (_0x2000e8 >= (3 * _0x148a85) / 11)
-        return (
-          -Math.pow((5 * _0x148a85 - 11 * _0x2000e8) / 4, 2) +
-          Math.pow(_0x2b7224, 2)
-        );
-  };
-  this.elastic = function(_0x1acff4) {
-    return (
-      Math.pow(2, 10 * (_0x1acff4 - 1)) *
-      Math.cos(((20 * Math.PI * this.vars.v1) / 3) * _0x1acff4)
-    );
-  };
-  this.bounceEaseOut = function(_0x5c10ac) {
-    return 0x1 - this.bounce(1 - _0x5c10ac);
-  };
-  this.bounceEaseInOut = function(_0x5c1fb1) {
-    return 0.5 > _0x5c1fb1
-      ? this.bounce(2 * _0x5c1fb1) / 2
-      : (2 - this.bounce(2 * (1 - _0x5c1fb1))) / 2;
-  };
-  this.calcTimePassed = function() {
-    this.timePassed = (timestamp - this.startTime) / this.frameRate;
-  };
-  this.onFrameEntered = function(_0x3b867c) {};
-  this.onStop = function() {};
-  this.generateFrame = function() {
-    if (this.generate)
-      switch (((this.state = 1), this.animation)) {
+    
+        null == this.startTime && (this.startTime = timestamp);
+        if (null != this.startTime && (2 != this.state || this.hasStopped || 
+                                       (this.hasStopped = true, this.onStop()),
+                                       this.hasStopped || (this.calcTimePassed(),
+                                                           this.generateFrame(), 
+                                                           this.onFrameEntered(this.frame),
+                                                           
+                                                         !workafter&&this.timePassed >= this.duration && this.stopWhenDurationPassed && (this.state = 2)),
+                                       this.hasStopped)) {
+            if (this.keepLastFrame) this.onFrameEntered(this.frame);
+            this.loop && this.reset();
+        }
+    };
+    this.reset = function () {
+        this.timestamp = null;
+        this.hasStopped = true;
+        this.state = 0;
+    };
+      this.timing = function (_0x1868f0) {
+        return _0x1868f0;
+    };
+    this.halfWave = function (_0x5b1e15) {
+        return 1 * Math.sin(0.5 * Math.PI / this.duration * _0x5b1e15);
+    };
+    this.wave = function (_0x5052b4) {
+        return 1 * Math.sin(1 * Math.PI / this.duration * _0x5052b4);
+    };
+    this.arc = function (_0x109adf) {
+        return 0x1 - Math.sin(Math.acos(_0x109adf));
+    };
+    this.quad = function (_0x5c29f0) {
+        return Math.pow(_0x5c29f0, 2);
+    };
+    this.bow = function (_0x5ac2d4) {
+        var _0x148a85 = this.vars.v1;
+        return Math.pow(_0x5ac2d4, 2) * ((_0x148a85 + 1) * _0x5ac2d4 - _0x148a85);
+    };
+    this.bounce = function (_0x2000e8) {
+        for (var _0x148a85 = 0, _0x2b7224 = 1;; _0x148a85 += _0x2b7224, _0x2b7224 /= 2)
+            if (_0x2000e8 >= (3 * _0x148a85) / 11) return -Math.pow((5 * _0x148a85 - 11 * _0x2000e8) / 4, 2) + Math.pow(_0x2b7224, 2);
+    };
+    this.elastic = function (_0x1acff4) {
+        return Math.pow(2, 10 * (_0x1acff4 - 1)) * Math.cos(20 * Math.PI * this.vars.v1 / 3 * _0x1acff4);
+    };
+    this.bounceEaseOut = function (_0x5c10ac) {
+        return 0x1 - this.bounce(1 - _0x5c10ac);
+    };
+    this.bounceEaseInOut = function (_0x5c1fb1) {
+        return 0.5 > _0x5c1fb1 ? this.bounce(2 * _0x5c1fb1) / 2 : (2 - this.bounce(2 * (1 - _0x5c1fb1))) / 2;
+    };
+    this.calcTimePassed = function () {
+        this.timePassed = (timestamp - this.startTime) / this.frameRate;
+    };
+    this.onFrameEntered = function (_0x3b867c) {};
+    this.onStop = function () {};
+    this.generateFrame = function () {
+   
+        if (this.generate) switch (this.state = 1, this.animation) {
         case _0x1abe2b.wave:
-          this.frame = this.wave(this.timePassed);
-
-          break;
+            this.frame = this.wave(this.timePassed);
+          
+            break;
         case _0x1abe2b.halfWave:
-          this.frame = this.halfWave(this.timePassed);
-          break;
+            this.frame = this.halfWave(this.timePassed);
+            break;
         case _0x1abe2b.arc:
-          this.frame = this.arc(this.timePassed);
-
-          break;
+            this.frame = this.arc(this.timePassed);
+            
+            break;
         case _0x1abe2b.quad:
-          this.frame = this.quad(this.timePassed);
-          break;
+            this.frame = this.quad(this.timePassed);
+            break;
         case _0x1abe2b.bow:
-          void 0x0 == this.vars &&
-            (this.vars = {
-              v1: 0x1
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
             });
-          this.frame = this.bow(this.timePassed);
-          break;
+            this.frame = this.bow(this.timePassed);
+            break;
         case _0x1abe2b.bounce:
-          this.frame = this.bounce(this.timePassed);
-          break;
+            this.frame = this.bounce(this.timePassed);
+            break;
         case _0x1abe2b.elastic:
-          void 0x0 == this.vars &&
-            (this.vars = {
-              v1: 0x1
+            void 0x0 == this.vars && (this.vars = {
+                'v1': 0x1
             });
-          this.frame = this.elastic(this.timePassed);
-          break;
+            this.frame = this.elastic(this.timePassed);
+            break;
         case _0x1abe2b.bounceEaseOut:
-          this.frame = this.bounceEaseOut(this.timePassed);
-          break;
+            this.frame = this.bounceEaseOut(this.timePassed);
+            break;
         case _0x1abe2b.bounceEaseInOut:
-          this.frame = this.bounceEaseInOut(this.timePassed);
-      }
-  };
+            this.frame = this.bounceEaseInOut(this.timePassed);
+         
+        }
+    };
+
 }
 ///////
 // file: js_src/client/login.js
@@ -3167,12 +3054,17 @@ var $_GET = getQueryParams(document.location.search);
 var token = $_GET["token"];
 
 function parseJwt(token) {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace("-", "+").replace("_", "/");
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace('-', '+').replace('_', '/');
   return JSON.parse(window.atob(base64));
+};
+
+
+
+function loginWithFB(){
+
 }
 
-function loginWithFB() {}
 
 ///////
 // file: js_src/client/desktopAds.js
@@ -3333,17 +3225,18 @@ function refreshBannerAds() {
   try {
     console.log("refreshing banner ads...");
 
-    console.log("CALLED FROM: " + new Error().stack);
+    console.log("CALLED FROM: "+new Error().stack);
 
-    //CURSE
-    //curse refresh banners
+      //CURSE
+      //curse refresh banners
 
-    factorem.refreshAds([1, 2], true);
+      factorem.refreshAds([1, 2], true);
 
-    //setTimeout(factorem.refreshAds.bind(factorem, null, true), 800);
+      //setTimeout(factorem.refreshAds.bind(factorem, null, true), 800);
 
-    //adinplay
-    //googletag.pubads().refresh();
+      //adinplay
+      //googletag.pubads().refresh();
+    
   } catch (ex) {
     //factorem/ads dont exist
     console.log("error refreshing ad: " + ex);
@@ -3487,8 +3380,7 @@ var playPVAd = function(firstLoad) {
   //start loading ad
   try {
     script = document.createElement("script");
-    script.src =
-      "http://web.archive.org/web/20201010193727/http://cdn.playwire.com/bolt/js/zeus/embed.js";
+    script.src = "http://web.archive.org/web/20201010193727/http://cdn.playwire.com/bolt/js/zeus/embed.js";
     script.type = "text/javascript";
     script.id = "script";
     script.setAttribute("charset", "utf-8");
@@ -3543,11 +3435,13 @@ window["onBoltLoaded"] = function(playerName) {
 });*/
 };
 
+
 ///////
 // file: js_src/client/mobileApp.js
 ///////
 
 //detelct mobile app/ mobile browser @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 
 //console.log("is mobile? " + isMobileAppIOS);
 
@@ -3562,9 +3456,9 @@ function setupWebViewJavascriptBridge(callback) {
     return window.WVJBCallbacks.push(callback);
   }
   window.WVJBCallbacks = [callback];
-  var WVJBIframe = document.createElement("iframe");
-  WVJBIframe.style.display = "none";
-  WVJBIframe.src = "wvjbscheme://__BRIDGE_LOADED__";
+  var WVJBIframe = document.createElement('iframe');
+  WVJBIframe.style.display = 'none';
+  WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
   document.documentElement.appendChild(WVJBIframe);
   setTimeout(function() {
     document.documentElement.removeChild(WVJBIframe);
@@ -3581,29 +3475,26 @@ if (isMobileAppIOS) {
 var showAdMobileIOS = function() {
   if (jsObjcBridge && isMobileAppIOS) {
     console.log("Showing ad IOS...");
-    jsObjcBridge.callHandler(
-      "adShowCallBack",
-      {
-        foo: "bar"
-      },
-      function(response) {
-        console.log("JS got response " + response);
-      }
-    );
+    jsObjcBridge.callHandler('adShowCallBack', {
+      'foo': 'bar'
+    }, function(response) {
+      console.log('JS got response ' + response);
+    });
   }
-};
+}
 
 //android app ads calling
 var showAdMobileAndroid = function() {
   console.log("Showing ad android...");
   window.location = "myscheme://showAdmob";
-};
+}
 
-function showMobileAd() {
+function showMobileAd(){
   console.log("showing mobile ad......");
   if (isMobileAppIOS) showAdMobileIOS();
   if (isMobileAppAndroid) showAdMobileAndroid();
 }
+
 
 //@@@@@@@@@@@@@@@@@@@@  SETUP MOBILE @@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -3621,27 +3512,32 @@ if ((isiOS || isAndroid) && !isMobileApp) {
       oldVisitor = true;
     } //no localStorage= no redirects
   }
+
 }
+
+
+
 
 ///////
 
 var animalcol = {
-  if(animalcol = 0) {
+
+    if (animalcol = 0) {
     ctx.fillStyle = col_land;
-  },
-
-  if(animalcol = 1) {
+    },
+  
+   if (animalcol = 1) {
     ctx.fillStyle = col_water;
-  },
+    },
 
-  if(animalcol = 2) {
+   if (animalcol = 2) {
     ctx.fillStyle = col_arctic;
-  },
-
-  if(animalcol = 3) {
+    },
+  
+   if (animalcol = 3) {
     ctx.fillStyle = col_lava;
-  }
-};
+    },
+}
 
 ///////
 // file: js_src/interface/interface.js
@@ -3688,8 +3584,9 @@ function drawGameInterface() {
   ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
 
   ctx.globalAlpha = waterBarA;
-  if (animalBarType == 3) ctx.fillStyle = "#ff894b";
-  else if (animalBarType == 2)
+  if (animalBarType == 3)
+    ctx.fillStyle = '#ff894b';
+    else if (animalBarType == 2)
     // myPlayerLastAniT == a_blackDragon || myPlayerLastAniT == a_phoenix)
     ctx.fillStyle = col_lava;
   else ctx.fillStyle = isAirBar || animalBarType == 1 ? "#8CCEF4" : col_wat1; //bar fill
@@ -3706,8 +3603,8 @@ function drawGameInterface() {
       ? col_food1
       : "orange"
     : lowBarPerc
-    ? col_food1
-    : "white";
+      ? col_food1
+      : "white";
   ctx.globalAlpha = 1.0 * waterBarA;
 
   //text settings
@@ -3741,7 +3638,11 @@ function drawGameInterface() {
   ctx.globalAlpha = 1.0;
 
   xpBarTXT.setText(
-    "" + formatNumK(xp) + " xp  (" + formatNumK(xpNextAni) + " xp Next Animal)"
+    "" +
+    formatNumK(xp) +
+    " xp  (" +
+    formatNumK(xpNextAni) +
+    " xp Next Animal)"
   );
   xpBarTXT.setFontSize(22.0 * interfS);
   xpBarTXT.x = bx;
@@ -3869,62 +3770,55 @@ function showScreenTextWithDur(newText, newDur) {
   screenText = newText;
   screenTextEndT = +new Date() + newDur;
 }
-function drawGamePlay() {
-  //draw instructions if needed
-  var fadeDur = 0.1;
+function drawGamePlay(){
+ //draw instructions if needed
+   var fadeDur = 0.1;
   var a = (screenIns_EndT - timestamp) / 1000.0 / fadeDur;
   a = 0 > a ? 0 : 1 < a ? 1 : a; //clamp from 0-1
 
   var idealA = screenIns_EndT - timestamp > 0 ? 1.0 : 0.0;
-  screenIns_A += 0.1 * (a - screenIns_A);
+  screenIns_A +=.1 * (a - screenIns_A)
   //var fadeDur = 1.0;
   //var a = (screenIns_EndT - timestamp) / 1000.0 / fadeDur;
   //a = 0 > a ? 0 : 1 < a ? 1 : a; //clamp from 0-1
   //screenIns_A=a;
 
-  if (screenIns_A > 0.01 && !options_lowGraphics) {
-    ma = 40 + 10 / screenIns_scaleF;
-    if (0 < screenIns_objsEdible.length) {
-      ctx.save();
-      ctx.translate(canvasW / 2, canvasH * (0.7 + 0.5 * (1 - screenIns_A)));
-      ctx.scale(screenIns_scaleF * interfS, screenIns_scaleF * interfS);
-      ctx.globalAlpha = 0.2 * screenIns_A;
-      ctx.fillStyle = "black";
-      var t = (70 * screenIns_objsEdible.length) / screenIns_scaleF;
-
-      ctx.fillRect(-t / 2, -30 / 2, t, 30);
-      ctx.globalAlpha = screenIns_A;
-      for (e = 0; e < screenIns_objsEdible.length; e++) {
-        var anO = screenIns_objsEdible[e];
-
-        anO.draw();
-      }
-    }
-    if ((e = getLoadedImg("./img/instr_eatsymbol.png")))
-      (i = (ma / e.height) * screenIns_A),
-        ctx.drawImage(
-          e,
-          -t / 2 - e.width * i - 15,
-          -ma / 2,
-          e.width * i,
-          e.height * i
-        );
-    screenIns_drawNewPlayerIns &&
-      (ctx.save(),
-      (ctx.fillStyle = "#52EB59"),
-      (ctx.font = 16 * interfS + "px Arial"),
-      (ctx.textAlign = "center"),
-      (ctx.textBaseline = "middle"),
-      options_lowGraphics ||
-        ((ctx.shadowOffsetX = 1),
-        (ctx.shadowOffsetY = 1),
-        (ctx.shadowColor = "black")),
-      ctx.fillText("HINT: Edible food is outlined LIGHT-GREEN!", 0, -45),
-      ctx.restore());
-    ctx.restore();
+   if (screenIns_A > 0.01 && !options_lowGraphics) {
+          ma = 40 + 10 / screenIns_scaleF;
+            if (0 < screenIns_objsEdible.length) {
+                ctx.save();
+                ctx.translate(canvasW / 2, canvasH * (.7 + .5 * (1 - screenIns_A)));
+                ctx.scale(screenIns_scaleF * interfS, screenIns_scaleF * interfS);
+                ctx.globalAlpha = .2 * screenIns_A;
+                ctx.fillStyle = "black";
+                var t = 70 * (screenIns_objsEdible.length) / screenIns_scaleF
+                   
+                ctx.fillRect(-t / 2, -30 / 2, t, 30);
+                ctx.globalAlpha = screenIns_A;
+                for (e = 0; e < screenIns_objsEdible.length; e++) {
+                    
+                   var anO = screenIns_objsEdible[e];
+    
+                    anO.draw();
+                }
+            }
+            if (e = getLoadedImg("./img/instr_eatsymbol.png")) i = ma  / e.height * screenIns_A
+            , ctx.drawImage(e, -t / 2 - e.width * i - 15, -ma  / 2, e.width * i, e.height * i);
+            screenIns_drawNewPlayerIns && (ctx.save()
+            , ctx.fillStyle = "#52EB59"
+            , ctx.font = 16 * interfS + "px Arial"
+            ,
+             ctx.textAlign = "center", ctx.textBaseline = "middle", 
+             options_lowGraphics || (ctx.shadowOffsetX = 1, ctx.shadowOffsetY = 1, ctx.shadowColor = "black"), 
+             ctx.fillText("HINT: Edible food is outlined LIGHT-GREEN!", 0, -45), 
+             ctx.restore());
+             ctx.restore()
+        
   }
+
 }
 function drawScreenText() {
+ 
   //draw screen text
   var fadeDur = 1.0;
   var a = (screenTextEndT - timestamp) / 1000.0 / fadeDur;
@@ -3948,7 +3842,7 @@ function drawScreenText() {
         fillTextMultiLine(screenText, canvasW / 2, canvasH * 0.3); 
 */
     screenTXT.setText(screenText);
-    screenTXT.setColor(screenTextCol);
+    screenTXT.setColor(screenTextCol)
     screenTXT.setFontSize(screenTextFontSize * interfS);
     screenTXT.x = canvasW / 2;
     screenTXT.y = canvasH * 0.3;
@@ -3957,102 +3851,74 @@ function drawScreenText() {
     ctx.restore();
   }
 
+ 
   //draw animal choice interface
   //draw instructions if needed
   var idealA = aniChoice_isOpen ? 1.0 : 0.0;
   aniChoice_A += (idealA - aniChoice_A) * 0.1;
-
-  var _0x1ac04e = 3;
+  
+  var _0x1ac04e = 3
   var hotkeys = [];
-  hotkeys.push("1234567".split(""));
-  hotkeys.push("qertyui".split(""));
-  hotkeys.push("adfghjk".split(""));
-  hotkeys.push("zxcvbnm".split(""));
+hotkeys.push('1234567'.split(''));
+hotkeys.push('qertyui'.split(''));
+hotkeys.push('adfghjk'.split(''));
+hotkeys.push('zxcvbnm'.split(''));
   if (0.01 < aniChoice_A) {
-    if (0 < aniChoice_choiceButtons.length) {
-      ctx.save();
-      _0x2f1044 = +new Date();
-      idealA = 150;
-      ispopup = !1;
-      window.matchMedia("(orientation: portrait)").matches && (ispopup = !1);
-      window.matchMedia("(orientation: landscape)").matches && (ispopup = !0);
-      ispopup
-        ? 15 <= aniChoice_choiceButtons.length
-          ? (idealA = 120)
-          : 10 <= aniChoice_choiceButtons.length
-          ? (idealA = 130)
-          : 5 <= aniChoice_choiceButtons.length && (idealA = 140)
-        : (idealA = Math.max(80, window.innerWidth / 2 / 4));
-      var idealA = (idealA * interfS) / 1.2,
-        totalW = Math.max(0, aniChoice_choiceButtons.length);
-      7 < aniChoice_choiceButtons.length && (totalW = Math.min(6, totalW));
-      var _0x469399,
-        ispopup = 0.25 * canvasH,
-        _0x4d5d9e = 1.15 * idealA;
-      _0x469399 = canvasW / 2 - (totalW * _0x4d5d9e) / 2 + _0x4d5d9e / 2;
-      var _0x1b8a84 = 1,
-        choicelen = aniChoice_choiceButtons.length,
-        idk = 0.5 + Math.floor(choicelen / totalW) / 10,
-        idk = Math.max(0.5, idk),
-        idk = Math.min(0.9, idk);
-      ctx.translate(0, canvasH * -idk * (1 - aniChoice_A));
-      for (var J = (idk = 0); J < choicelen; J++) {
-        var anO = aniChoice_choiceButtons[J];
-        0 < J &&
-          7 < choicelen &&
-          0 == J % 6 &&
-          (_0x1b8a84++,
-          (idk = 0),
-          (ispopup += 1.15 * _0x4d5d9e),
-          (_0x469399 = choicelen - J),
-          (totalW = 6 > _0x469399 ? _0x469399 : 6),
-          (_0x469399 = totalW * _0x4d5d9e),
-          (_0x469399 = canvasW / 2 - _0x469399 / 2 + _0x4d5d9e / 2));
-        anO.buttonScaleF = 0 == J ? 1.2 : 1;
-        anO.w = idealA;
-        anO.h = idealA;
-        anO.x = _0x469399;
-        anO.y = ispopup;
-        _0x469399 += (_0x4d5d9e / 2) * anO.buttonScaleF + _0x4d5d9e / 2;
-        _0x1b8a84 < hotkeys.length &&
-          anO.setHotKey(hotkeys[_0x1b8a84 - 1][idk].toUpperCase());
-        idk++;
-      }
-      ctx.globalAlpha = aniChoice_A;
-      for (J = 0; J < aniChoice_choiceButtons.length; J++)
-        (anO = aniChoice_choiceButtons[J]), (anO.imgSizeF = 0.5), anO.draw();
+        if (0 < aniChoice_choiceButtons.length) {
+            ctx.save();
+            _0x2f1044 = +new Date();
+            idealA = 150;
+            ispopup = !1;
+            window.matchMedia('(orientation: portrait)').matches && (ispopup = !1);
+            window.matchMedia('(orientation: landscape)').matches && (ispopup = !0);
+            ispopup ? 15 <= aniChoice_choiceButtons.length ? idealA = 120 : 10 <= aniChoice_choiceButtons.length ? idealA = 130 : 5 <= aniChoice_choiceButtons.length && (idealA = 140) : idealA = Math.max(80, window.innerWidth / 2 / 4);
+            var idealA = (idealA * interfS) / 1.2,
+                totalW = Math.max(0, aniChoice_choiceButtons.length);
+            7 < aniChoice_choiceButtons.length && (totalW = Math.min(6, totalW));
+            var _0x469399, ispopup = 0.25 * canvasH,
+                _0x4d5d9e = 1.15 * idealA;
+            _0x469399 = canvasW / 2 - totalW * _0x4d5d9e / 2 + _0x4d5d9e / 2;
+            var _0x1b8a84 = 1,
+                choicelen = aniChoice_choiceButtons.length,
+                idk = 0.5 + Math.floor(choicelen / totalW) / 10,
+                idk = Math.max(0.5, idk),
+                idk = Math.min(0.9, idk);
+            ctx.translate(0, canvasH * -idk * (1 - aniChoice_A));
+            for (var J = idk = 0; J < choicelen; J++) {
+                var anO = aniChoice_choiceButtons[J];
+                0 < J && 7 < choicelen && 0 == J % 6 && (_0x1b8a84++, idk = 0, ispopup += 1.15 * _0x4d5d9e, _0x469399 = choicelen - J, totalW = 6 > _0x469399 ? _0x469399 : 6, _0x469399 = totalW * _0x4d5d9e, _0x469399 = canvasW / 2 - _0x469399 / 2 + _0x4d5d9e / 2);
+                anO.buttonScaleF = 0 == J ? 1.2 : 1;
+                anO.w = idealA;
+                anO.h = idealA;
+                anO.x = _0x469399;
+                anO.y = ispopup;
+                _0x469399 += _0x4d5d9e / 2 * anO.buttonScaleF + _0x4d5d9e / 2;
+                _0x1b8a84 < hotkeys.length && anO.setHotKey(hotkeys[_0x1b8a84 - 1][idk].toUpperCase());
+                idk++;
+            }
+            ctx.globalAlpha = aniChoice_A;
+            for (J = 0; J < aniChoice_choiceButtons.length; J++) anO = aniChoice_choiceButtons[J], anO.imgSizeF = 0.5, anO.draw();
+        }
+    
+        idealA = Math.max(0, _0x2af9ee - _0x2f1044) / 1000;
+        ispopup = 1;
+        0 != idealA && 8 > idealA && (ispopup = 0.7 + 0.3 * Math.sin(2 * Math.PI / 1.2 * (_0x2f1044 / 1000)));
+        ctx.save();
+        ctx.globalAlpha = aniChoice_A * ispopup;
+        ctx.fillStyle = 0 != idealA && 8 > idealA ? 'red' : 'white';
+        ctx.font = 25 * interfS + 'px Arial';
+        ctx.lineWidth = 1;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowOffsetX = 1
+    ctx.shadowOffsetY = 1
+    ctx.shadowColor = 'black'
+        idealA = 0 < idealA ? ' (auto in ' + Math.trunc(idealA) + 's)' : '';
+        _0x4cd58d = Math.min(window.devicePixelRatio, 2),
+        ctx.fillText(aniChoice_joinGameAfter ? 'Choose which animal to spawn as:' : 'Choose an upgrade:' + idealA, canvasW / 2, aniChoice_choiceButtons[0].y - aniChoice_choiceButtons[0].w / 2 - 25 * _0x4cd58d);
+        ctx.restore();
+        ctx.restore();
     }
-
-    idealA = Math.max(0, _0x2af9ee - _0x2f1044) / 1000;
-    ispopup = 1;
-    0 != idealA &&
-      8 > idealA &&
-      (ispopup =
-        0.7 + 0.3 * Math.sin(((2 * Math.PI) / 1.2) * (_0x2f1044 / 1000)));
-    ctx.save();
-    ctx.globalAlpha = aniChoice_A * ispopup;
-    ctx.fillStyle = 0 != idealA && 8 > idealA ? "red" : "white";
-    ctx.font = 25 * interfS + "px Arial";
-    ctx.lineWidth = 1;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.shadowOffsetX = 1;
-    ctx.shadowOffsetY = 1;
-    ctx.shadowColor = "black";
-    idealA = 0 < idealA ? " (auto in " + Math.trunc(idealA) + "s)" : "";
-    (_0x4cd58d = Math.min(window.devicePixelRatio, 2)),
-      ctx.fillText(
-        aniChoice_joinGameAfter
-          ? "Choose which animal to spawn as:"
-          : "Choose an upgrade:" + idealA,
-        canvasW / 2,
-        aniChoice_choiceButtons[0].y -
-          aniChoice_choiceButtons[0].w / 2 -
-          25 * _0x4cd58d
-      );
-    ctx.restore();
-    ctx.restore();
-  }
 
   // we need an anchor here to inject custom interface methods
   /// battle royal messages:
@@ -4090,7 +3956,7 @@ function gameModeDrawInterfaceButtons() {
     }
 }
 var minimapW = 250.0,
-  minimapH = 250.0; //width of the canvas (used during draw)
+   minimapH = 250.0; //width of the canvas (used during draw)
 
 var oceanWid = 0;
 var arcticW = 0;
@@ -4113,8 +3979,8 @@ function generateMinimap(msg) {
   //parse msg, draw data on miniMap
   var minimapScaleF_x = minimapW / 200.0; // / size scaled to for msg send
   var minimapScaleF_y = minimapH / 200.0;
-
-  console.log(minimapScaleF_x, minimapScaleF_y);
+  
+console.log(minimapScaleF_x,minimapScaleF_y)
   //oceans: just send width (oceans are always at left/right sides)
   oceanWid = msg.readUInt16();
   arcticW = msg.readUInt16();
@@ -4293,12 +4159,13 @@ function generateMinimap(msg) {
 
 //XP popups
 
-var plusXpPopups = [];
+var  plusXpPopups = [];
 
-var lastPopupXPAm = 0;
+var  lastPopupXPAm = 0;
 
-var lastPopupT = 0;
-var lastPopupC = 0;
+var  lastPopupT = 0;
+var  lastPopupC = 0;
+
 
 function interface_onXPAmountUpdate(newAmount, oldAmount) {
   var xpGained = newAmount - lastPopupXPAm;
@@ -4319,17 +4186,17 @@ function interface_onXPAmountUpdate(newAmount, oldAmount) {
 }
 
 function drawLeaderboard() {
-  if (gameMode != gameMode_teamMode)
-    if (lbCanvas && serverCon_aliveInAGame) {
-      lbCanvas.width &&
-        ctx.drawImage(
-          lbCanvas,
-          10 * pixelRat,
-          28 * pixelRat,
-          lbCanvas.width * interfS,
-          lbCanvas.height * interfS
-        );
-    }
+  // if (gameMode != gameMode_teamMode)
+  //   if (lbCanvas && serverCon_aliveInAGame) {
+  //     lbCanvas.width &&
+  //       ctx.drawImage(
+  //         lbCanvas,
+  //         10 * pixelRat,
+  //         28 * pixelRat,
+  //         lbCanvas.width * interfS,
+  //         lbCanvas.height * interfS
+  //       );
+  //   }
 
   if (_gameMode != null) _gameMode.drawLeaderboard();
 }
@@ -4338,16 +4205,16 @@ function drawMinimap() {
   //draw minimap (pre-rendered)
   if (
     canvasW / pixelRat >= 500 &&
-    miniMapCanvas &&
+    miniMapCanvas && 
     miniMapCanvas.width &&
     serverCon_aliveInAGame
   ) {
     ctx.drawImage(
-      miniMapCanvas, //minimapCanvas == width & height of minimapW/H
+      miniMapCanvas,//minimapCanvas == width & height of minimapW/H
       canvasW - (10 * pixelRat + miniMapCanvas.width * interfS),
       10 * pixelRat,
       minimapW * interfS, //minimapW && h == 250;
-      minimapH * interfS //interfS = 0.85 * pixelRat * Math.max(windowW / 1920, windowH / 1080); || maybe 1.0
+      minimapH * interfS  //interfS = 0.85 * pixelRat * Math.max(windowW / 1920, windowH / 1080); || maybe 1.0
     );
 
     //draw own player on minimap
@@ -4364,15 +4231,16 @@ function drawPlayerOnMiniMap(myPlayerObj, color, radF) {
       pixelRat * Math.max(3, myPlayerObj.rad * (miniMapCanvas.width / gameW));
     ctx.arc(
       canvasW -
-        (10 * pixelRat + miniMapCanvas.width * interfS) +
-        (myPlayerObj.x * (miniMapCanvas.width * interfS)) / gameW,
+      (10 * pixelRat + miniMapCanvas.width * interfS) +
+      (myPlayerObj.x * (miniMapCanvas.width * interfS)) / gameW,
       10 * pixelRat +
-        (myPlayerObj.y * (miniMapCanvas.height * interfS)) / gameH,
+      (myPlayerObj.y * (miniMapCanvas.height * interfS)) / gameH,
       plR * radF,
       0,
       2 * Math.PI
     );
     ctx.fill();
+   
   }
 }
 
@@ -4500,7 +4368,7 @@ var drawLabelValueOn = function(c, label, value, x, y) {
 function create1v1Button() {
   if (can1v1) {
     if (btn1v1 == null) {
-      btn1v1 = new InterfaceButton(0, 0, 60, 60, "It No Work :Facetroll:", 30);
+      btn1v1 = new InterfaceButton(0, 0, 60, 60, "Click to 1v1", 30);
       btn1v1.showLabeleOnHover = true;
       btn1v1.textShadow = true;
       btn1v1.drawTextOnHowever = function() {
@@ -4508,13 +4376,12 @@ function create1v1Button() {
       };
 
       btn1v1.onClick = function() {
-        if (!this.clicked) {
+        if (!this.clicked  ) {
           this.isVisible = false;
           this.clicked = true;
           this.isHighLighted = false;
           var mes = new MsgWriter(2);
-          mes.writeUInt8(52);
-          Msg_1v1Mode_invitePlayer;
+          mes.writeUInt8(52); // Msg_1v1Mode_invitePlayer;
           mes.writeUInt8(0); //1=down, 0=up
           wsSendMsg(mes);
         }
@@ -4527,7 +4394,7 @@ function create1v1Button() {
       };
 
       btn1v1.onInterfaceReset = function() {
-        this.isVisible = false;
+        this.isVisible = false;  
         btn1v1 = null;
       };
 
@@ -4546,7 +4413,7 @@ function create1v1Button() {
     } else {
       if (btn1v1 != null) {
         btn1v1.isVisible = show1v1Button;
-        if (btn1v1.isVisible) btn1v1.clicked = true;
+        if (btn1v1.isVisible) btn1v1.clicked = false;
         btn1v1.draw();
       }
     }
@@ -4590,12 +4457,14 @@ function displayPlayerStats() {
   }
 }
 
+
+  
+
 var displayWinsGoals = 0;
 var inviteScreenCanvas = null;
 var inviteScreenPos = 0;
 function buildInviteScreen() {
-  /*
-  layer1v1Requests = [];
+  /* player1v1Requests = [];
   for (i = 0; i < 1; i++) {
     var id = i;
     var fromPlayer = "test " + (i + 1);
@@ -4633,7 +4502,7 @@ function buildInviteScreen() {
   boardLength = borad_height + pad * 2;
   inviteScreenCanvas.width = borad_width + pad * 2;
   inviteScreenCanvas.height = boardLength;
-  var screenPos = 300;
+  var screenPos =300
   inviteScreenPos = screenPos;
   ctx_.globalAlpha = 0.2;
   ctx_.fillStyle = "#000000";
@@ -4660,8 +4529,8 @@ function buildInviteScreen() {
     y
   );
 
-  screenPos -= boardLength / 2;
-  screenPos += 40;
+  //screenPos -= boardLength / 2;
+  // screenPos += 40;
   screenPos = 100;
   var btnY = 0;
   for (r = 0; r < player1v1Requests.length; r++) {
@@ -4696,7 +4565,7 @@ function buildInviteScreen() {
     x = pad + 15;
     var teamLabel = gameMode == gameMode_teamMode ? "Team" : "Kills";
     var teamVal = gameMode == gameMode_teamMode ? "" : req.kills;
-    drawLabelValueOn(ctx_, teamLabel, "1", x, y);
+    drawLabelValueOn(ctx_, teamLabel, "", x, y);
 
     if (gameMode == gameMode_teamMode) {
       ctx_.save();
@@ -4723,9 +4592,11 @@ function buildInviteScreen() {
     var btnReject = create1v1RequestButton(req, "Reject");
     btnReject.yPos = screenPos;
     btnReject.update = function() {
-      this.x = canvasW / 2 + 60;
+       this.x = canvasW / 2 + 60;
       this.y = inviteScreenPos + this.yPos + 10;
     };
+
+
 
     screenPos += 80;
   }
@@ -4738,7 +4609,7 @@ function removeExpiredRequestButtons() {
 
     if (aBut.reqID !== undefined) {
       var activeRequest = true;
-      var found = true;
+      var found = false;
       for (r = 0; r < player1v1Requests.length; r++) {
         var req = player1v1Requests[r];
         if (req.id == aBut.reqID) {
@@ -4782,12 +4653,14 @@ function create1v1RequestButton(req, label) {
       case "Reject":
         actionType = 0;
         break;
+      
     }
     var mes = new MsgWriter(3);
     mes.writeUInt8(53); // Msg_1v1Mode_RequestAction;
     mes.writeUInt8(actionType); //1=accept, 0=reject,2=ignore
     mes.writeUInt8(this.reqID);
     wsSendMsg(mes);
+    
   };
   btn.onInterfaceReset = function() {
     this.isVisible = true;
@@ -4799,9 +4672,10 @@ function create1v1RequestButton(req, label) {
   return btn;
 }
 
+
 var topperInfoX = 10 * pixelRat;
 var topperInfoY = 15 * pixelRat;
-var top1v1_isHistoric = true;
+var top1v1_isHistoric = false;
 var top1v1_wins = "";
 var top1v1_name = "";
 var topperInfoTxt = null;
@@ -4824,7 +4698,7 @@ function buildTopperInfo() {
     achievType +
     ": " +
     top1v1_wins +
-    ") ";
+    ") "
   if (null == topperInfoTxt) {
     topperInfoTxt = new CachedText(20, "#FFFFFF"); //"#043400");
     topperInfoTxt.strokeW = 2;
@@ -4850,6 +4724,7 @@ function display1v1TopperInfo() {
     topperInfoTxt.draw();
   }
 }
+
 
 ///////
 // file: js_src/client/masterServerClient.js
@@ -4937,7 +4812,7 @@ function masterServer_gotReponse_getServerStats(msg) {
     var aServNumPl = msg.readUInt16();
     var gameMode = msg.readUInt8();
     var BR_waitingForPlayers = msg.readUInt8();
-    console.log(aServIp, aServNumPl, gameMode);
+    console.log(aServIp,aServNumPl,gameMode);
     //console.log("info for server "+aServIp);
 
     //find matching gameServer info-obj in list
@@ -4950,10 +4825,12 @@ function masterServer_gotReponse_getServerStats(msg) {
 
       if (gameServersList[j].ip == aServIp) {
         var theServ = gameServersList[j];
-        if (aServNumPl == 60000) {
+        if (aServNumPl == 60000){
           // 60000 players recieved = offline server
           theServ.playersCount = -1;
-        } else theServ.playersCount = aServNumPl;
+
+        }else
+        theServ.playersCount = aServNumPl;
 
         theServ.gameMode = gameMode;
         //console.log("--matched server " + theServ.ip + " gameMode " + gameMode + " "+theServ.playersCount+ "players ");
@@ -4991,6 +4868,7 @@ masterServer_getServerStats();
 
 //masterServer_getBestBRServer();
 
+
 ///////
 // file: js_src/client/gameServer.js
 ///////
@@ -5000,7 +4878,7 @@ var gameServersList = [];
 var gameRegions = [];
 var gameServersByRegion = {};
 
-var gameRegionsNoPingTest = ["Team Mode", "Wild Mope"]; //these regions DONT get included in auto join (eg, game modes)
+var gameRegionsNoPingTest = [ "Team Mode" ,"Wild Mope"]; //these regions DONT get included in auto join (eg, game modes)
 
 function addRegionDef(regName) {
   gameRegions.push(regName);
@@ -5040,16 +4918,19 @@ GameServer.prototype = {
     return theStr;
   }
 };
-function GameServer(nm, ip, theReg, port) {
+function GameServer(nm, ip, theReg,port) {
   this.name = nm;
   this.ip = ip;
-  this.port = port;
+  this.port = port
   this.serverConnURL = ip;
   this.region = theReg;
 }
 
-function addServerDef(nm, ip, theReg, port) {
-  var newDef = new GameServer(nm, ip, theReg, port);
+
+
+
+function addServerDef(nm, ip, theReg,port) {
+  var newDef = new GameServer(nm, ip, theReg,port);
   //auto-change IP to URL (for ssl wildcard certificate to work)
   //if (!KTestingModeON && !isNaN(parseInt((newDef.ip).substring(0, 1), 10)))
   //    newDef.serverConnURL = "gameserv-" + ((newDef.ip + "").replace(/\./g, '-')) + ".mope.io";
@@ -5092,53 +4973,58 @@ function addServerDef(nm, ip, theReg, port) {
 }*/
 
 if (KTestingModeON) {
-  reg = "Local Test";
 
-  if (ACTIVATEOURGAMEMODE) {
-    addServerDef("FFA", "127.0.0.1", reg, "80");
-  } else {
-    addServerDef("Sandbox1", "405c-190-215-158-88.ap.ngrok.io", reg, "80 ");
-    //addServerDef("Sandbox2", "e352-203-96-129-111.ngrok.io", reg,"80");
+    
 
-    //reg = "FFA";
-    //  addServerDef("FFA", "146.148.81.224", reg);
-    //reg = "1v1";
-    //addServerDef("1v1", "4bc8-190-215-158-88.eu.ngrok.io", reg,"80");
-    //addServerDef("Team Mode 2", "2002-190-215-158-88.ap.ngrok.io", reg,"80");
-    //  reg = "Battle Royale";
-    //  addServerDef("Battle Royale 1", "144.202.12.79", reg);
-    //  addServerDef("Battle Royale 2", "144.202.56.145", reg);
-    //  addServerDef("Battle Royale 3", "144.202.117.100", reg);
+    reg = "SANDBOX";  
+  
+  if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "127.0.0.1", reg,"80")}else{
+addServerDef("SANDBOX 1", "0725-203-96-129-111.ap.ngrok.io", reg,"80"); 
+//addServerDef("SANDBOX 2", "b737-2405-201-c024-91fd-b04e-4903-bbb0-c02a.ap.ngrok.io", reg,"80"); 
 
-    //addServerDef("LOCAL", "0.0.0.0", reg); //linode_mopeio
+//reg = "FFA";
+ //  addServerDef("FFA", "146.148.81.224", reg);  
+    
+  //   reg = "Team Mode";
+  //  addServerDef("Team Mode 1", "144.202.60.26", reg);
+  //  addServerDef("Team Mode 2", "149.28.48.20", reg);
+  //  reg = "Battle Royale";
+  //  addServerDef("Battle Royale 1", "144.202.12.79", reg);
+  //  addServerDef("Battle Royale 2", "144.202.56.145", reg);
+  //  addServerDef("Battle Royale 3", "144.202.117.100", reg);
 
-    //addServerDef("TESTSERVER", "testserver.mope.io", reg); //"0.0.0.0"
-    //addServerDef("LOCAL TEST", "45.76.2.164", reg);
+  //addServerDef("LOCAL", "0.0.0.0", reg); //linode_mopeio
 
-    //reg = "Team Mode";
-    // //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
-    // addServerDef("TEAM MODE 1", "2002-190-215-158-88.ap.ngrok.io", reg,"80");
-    // addServerDef("TEAM MODE 2", "209.246.143.231", reg);
-    // addServerDef("TEAM MODE 3", "149.28.229.26", reg);
-    // addServerDef("TEAM MODE 4", "108.61.158.209", reg);
-    // addServerDef("TEAM MODE 5", "149.28.37.161", reg);
+  //addServerDef("TESTSERVER", "testserver.mope.io", reg); //"0.0.0.0"
+  //addServerDef("LOCAL TEST", "45.76.2.164", reg);
 
-    // reg = "Battle Royale Mode";
-    // //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
-    // addServerDef("Battle Royale 1", "104.238.159.157", reg);
-    // addServerDef("Battle Royale 2", "140.82.37.229", reg);
-    // addServerDef("Battle Royale 3", "95.179.169.179", reg);
-    // addServerDef("Battle Royale 4", "104.207.131.51", reg);
-    // addServerDef("Battle Royale 5", "80.240.28.111", reg);
+  // reg = "Team Mode";
+  // //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
+  // addServerDef("TEAM MODE 1", "8.12.17.70", reg);
+  // addServerDef("TEAM MODE 2", "209.246.143.231", reg);
+  // addServerDef("TEAM MODE 3", "149.28.229.26", reg);
+  // addServerDef("TEAM MODE 4", "108.61.158.209", reg);
+  // addServerDef("TEAM MODE 5", "149.28.37.161", reg);
 
-    //  addServerDef("Battle Royal 2", "173.199.118.126", reg);
-    //  addServerDef("Battle Royal 3", "8.9.6.115", reg);
-    //addServerWithPortDef("Battle Royal 22", "127.0.0.1", 7022, reg); // "0.0.0.0", reg); //"0.0.0.0"
-  }
+  // reg = "Battle Royale Mode";
+  // //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
+  // addServerDef("Battle Royale 1", "104.238.159.157", reg);
+  // addServerDef("Battle Royale 2", "140.82.37.229", reg);
+  // addServerDef("Battle Royale 3", "95.179.169.179", reg);
+  // addServerDef("Battle Royale 4", "104.207.131.51", reg);
+  // addServerDef("Battle Royale 5", "80.240.28.111", reg);
+
+  //  addServerDef("Battle Royal 2", "173.199.118.126", reg);
+  //  addServerDef("Battle Royal 3", "8.9.6.115", reg);
+  //addServerWithPortDef("Battle Royal 22", "127.0.0.1", 7022, reg); // "0.0.0.0", reg); //"0.0.0.0"
+  } 
 } else {
   if (KTestingBetaMode) {
+
+
+
     var reg = "Wild Mope";
-    addServerDef("Wild Mope 1", "144.202.12.79", reg);
+    addServerDef("Wild Mope 1", "144.202.12.79", reg); 
     addServerDef("Wild Mope 2", "144.202.56.145", reg);
 
     var reg = "Team Mode";
@@ -5147,6 +5033,7 @@ if (KTestingModeON) {
 
     var reg = "Normal";
     addServerDef("FFA", "45.76.11.35", reg);
+
   } else {
     // USA @@@@@@@@@@@@
     var reg = "USA-East";
@@ -5176,6 +5063,7 @@ if (KTestingModeON) {
     addServerDef("USA S 2", "107.191.55.233", reg);
     addServerDef("USA S 3", "45.32.198.173", reg);
     addServerDef("USA S 4", "104.238.147.152", reg);
+
 
     //EUROPE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     reg = "Europe"; //first server must be LONDON (+ 4core!)
@@ -5209,11 +5097,15 @@ if (KTestingModeON) {
     addServerDef("Wild Mope 4", "104.207.131.51", reg);
     addServerDef("Wild Mope 5", "80.240.28.111", reg);
 
+
     reg = "Team Mode";
     //  //addServerDef("LCOAL", "127.0.0.1", reg); // "0.0.0.0", reg); //"0.0.0.0"
     addServerDef("TEAM MODE 1", "8.12.17.70", reg);
     addServerDef("TEAM MODE 2", "209.246.143.231", reg);
     addServerDef("TEAM MODE 3", "108.61.205.88", reg);
+
+
+
   }
 }
 
@@ -5410,7 +5302,10 @@ function joinBestServerInRegion() {
       //also check if all servers are FULLY full
       allServersInRegionFull = false;
 
-    if (aServ.playersCount < numIdealServerPlayers && aServ.playersCount >= 0) {
+    if (
+      aServ.playersCount < numIdealServerPlayers &&
+      aServ.playersCount >= 0
+    ) {
       //fill servers to X players
       curServer = aServ;
       curServerIndex = gameServersByRegion[curRegion].indexOf(curServer); //serversInReg is not the same array!
@@ -5537,9 +5432,10 @@ function gameServerConnect(newGameServer, autoClickPlay = false) {
   dcedFromAfk = false; //reset on connect
 
   document.getElementById("connecting").style.visibility = "visible";
+ 
 
   var wsProtocol = window.location.protocol === "https:" ? "wss://" : "ws://";
-  var wsPort = wsProtocol == "wss://" ? 80 : 80;
+  var wsPort = wsProtocol == "wss://" ? 80: 80;
 
   var conUrl = wsProtocol + curServer.serverConnURL + ":" + curServer.port;
 
@@ -5559,9 +5455,12 @@ function gameServerConnect(newGameServer, autoClickPlay = false) {
             clearTimeout(retryTimeout);
             retryTimeout = null;
         }*/
-    document.getElementById("onconnectDiv").style.visibility = "visible";
+ document.getElementById("onconnectDiv").style.visibility = "visible";
     document.getElementById("startMenu").style.visibility = "visible";
     document.getElementById("connecting").style.visibility = "hidden";
+
+    
+    
   };
   ws.onmessage = function(msg) {
     //console.log("socket message! " + msg.data);
@@ -5581,8 +5480,8 @@ function gameServerConnect(newGameServer, autoClickPlay = false) {
           gameServerConnect(newGameServer);
         }, 2000);
         //show connecting label
-        document.getElementById("startMenu").style.visibility = "hidden";
-        document.getElementById("onconnectDiv").style.visibility = "hidden";
+              document.getElementById("startMenu").style.visibility = "hidden";
+       document.getElementById("onconnectDiv").style.visibility = "hidden";
         document.getElementById("connecting").style.visibility = "visible";
       } else {
         //dced, show dom?
@@ -5799,7 +5698,7 @@ function gmModeButtonClicked(whichButtonID) {
     //find server in teams to join
     curRegion = "Team Mode";
     joinBestServerInRegion();
-  } else if (whichButtonID == "gmButton_WILD") {
+  }  else if (whichButtonID == "gmButton_WILD") {
     //find server in teams to join
     curRegion = "Wild Mope";
     joinBestServerInRegion();
@@ -5809,7 +5708,7 @@ function gmModeButtonClicked(whichButtonID) {
 }
 
 function updateGmModeButtons() {
-  /* var theDom = document.getElementById("gmButton_FFA");
+ /* var theDom = document.getElementById("gmButton_FFA");
   if (gameMode == 0) {
   //  theDom.style.opacity = 0.5;
   } else theDom.style.opacity = 1.0;
@@ -5823,134 +5722,151 @@ function updateGmModeButtons() {
   if (gameMode == 4) {
     theDom.style.opacity = 0.5;
   } else theDom.style.opacity = 1.0;*/
+
 }
+
+
+
 
 ///////
 // file: js_src/interface/PlusXpPopup.js
 ///////
 
-function PlusXPPopup(xpAm) {
-  this.animStep = 1;
-  this.animStartT = timestamp;
-  this.animDur = 3000;
-  this.timedOut = false;
 
-  //allow nice turning animation
-  this.xShift = getRandomDouble(-10, 10);
-  this.yShift = getRandomDouble(-10, 10);
-  this.anlgeShift = getRandomDouble(-10, 10);
+function PlusXPPopup(xpAm){
+    this.animStep=1;
+    this.animStartT=timestamp;
+    this.animDur=3000;
+    this.timedOut=false;
 
-  this.text = new CachedText(16.0, "white");
-  this.text.setText((xpAm >= 0 ? "+ " : "") + abbreviate_number(xpAm) + " XP");
-  //set special params for higher xp amounts
-  this.textFontSz = 30;
-  var xpCol = "white";
-  if (xpAm > 10000) {
-    xpCol = "#c7b753"; // yellow 10K+
-    this.textFontSz = 40;
-    this.animDur += 1000;
-  }
-  if (xpAm > 100000) {
-    xpCol = "#fdca5b"; //yellow 100K+
-    this.textFontSz = 45;
-    this.animDur += 2000;
-  }
-  if (xpAm > 1000000) {
-    xpCol = "#c7b753"; //yellow 1M+
-    this.textFontSz = 51;
-    this.animDur += 2000;
-  }
+    //allow nice turning animation
+    this.xShift=getRandomDouble(-10,10);
+    this.yShift=getRandomDouble(-10,10);
+    this.anlgeShift = getRandomDouble(-10, 10);
 
-  if (xpAm < 0) {
-    xpCol = "#c65f59"; //red -ve
-    this.animDur += 2000;
-  }
-  this.text.setColor(xpCol);
+    this.text = new CachedText(16.0, "white");
+    this.text.setText((xpAm>=0?"+ ":"") + abbreviate_number(xpAm) + " XP");
+    //set special params for higher xp amounts
+    this.textFontSz = 30;
+    var xpCol = "white";
+    if (xpAm > 10000) {
+      xpCol = "#c7b753"; // yellow 10K+
+      this.textFontSz = 40;
+      this.animDur += 1000;
+    }
+    if (xpAm > 100000) {
+      xpCol = "#fdca5b"; //yellow 100K+
+      this.textFontSz = 45;
+      this.animDur += 2000;
+    }
+    if (xpAm > 1000000) {
+      xpCol = "#c7b753"; //yellow 1M+
+      this.textFontSz = 51;
+      this.animDur += 2000;
+    }
 
-  //console.log("popup + "+abbreviate_number(xpAm)+" XP");
+    if (xpAm < 0) {
+      xpCol = "#c65f59"; //red -ve
+      this.animDur += 2000;
+    }
+    this.text.setColor(xpCol);
 
-  //call draw manually
-  this.draw = function() {
-    if (options_noXpPopup) return;
+    //console.log("popup + "+abbreviate_number(xpAm)+" XP");
 
-    var anim0_1 = clamp((timestamp - this.animStartT) / this.animDur, 0, 1);
+//call draw manually
+    this.draw=function(){
+      if(options_noXpPopup)
+      return;
 
-    ctx.save();
+      var anim0_1=clamp( (timestamp-this.animStartT)/(this.animDur) , 0,1);
 
-    var posX = canvasW / 2;
-    var posY = canvasH - 85 * interfS + anim0_1 * (-150 * interfS);
+      ctx.save();
 
-    ctx.translate(posX, posY);
+      var posX=(canvasW / 2);
+      var posY=(canvasH - 85 * interfS) + anim0_1 * (-150*interfS);
 
-    //animate the text
+      ctx.translate(posX,posY);
 
-    ctx.rotate(toRadians(this.anlgeShift * anim0_1));
-    //ctx.translate(this.xShift,this.yShift);
-    ctx.globalAlpha = 1.0 - anim0_1;
+      //animate the text
 
-    this.text.setFontSize(this.textFontSz * interfS);
-    this.text.x = 0;
-    this.text.y = 0;
-    this.text.draw();
-    //console.log("drawing pop!" +anim0_1);
 
-    ctx.restore();
+      ctx.rotate( toRadians( this.anlgeShift * anim0_1 ));
+      //ctx.translate(this.xShift,this.yShift);
+      ctx.globalAlpha=1.0-anim0_1;
 
-    if (timestamp >= this.animStartT + this.animDur) this.timedOut = true;
-  };
+      this.text.setFontSize(this.textFontSz * interfS);
+      this.text.x= 0;
+      this.text.y= 0;
+      this.text.draw();
+      //console.log("drawing pop!" +anim0_1);
+
+      ctx.restore();
+
+      if(timestamp>=this.animStartT + this.animDur)
+        this.timedOut=true;
+    }
 }
+
 
 ///////
 // file: js_src/interface/TextPopup.js
 ///////
 
+
+
+
 function TextPopup(text, fontSize, color, dur) {
-  this.animStep = 1;
-  this.animStartT = timestamp;
-  this.timedOut = false;
-  //allow nice turning animation
-  this.xShift = getRandomDouble(-10, 10);
-  this.yShift = getRandomDouble(-10, 10);
-  this.anlgeShift = getRandomDouble(-10, 10);
-  this.text = new CachedText(fontSize, color);
-  this.text.setText(text);
-  //set special params for higher xp amounts
-  this.textFontSz = fontSize;
-  this.animDur = dur;
-  this.text.setColor(color);
+    this.animStep = 1;
+    this.animStartT = timestamp;
+    this.timedOut = false;
+    //allow nice turning animation
+    this.xShift = getRandomDouble(-10, 10);
+    this.yShift = getRandomDouble(-10, 10);
+    this.anlgeShift = getRandomDouble(-10, 10);
+    this.text = new CachedText(fontSize, color);
+    this.text.setText(text);
+    //set special params for higher xp amounts
+    this.textFontSz = fontSize;
+    this.animDur = dur;
+    this.text.setColor(color);
 
-  //console.log("popup + "+abbreviate_number(xpAm)+" XP");
+    //console.log("popup + "+abbreviate_number(xpAm)+" XP");
 
-  //call draw manually
-  this.draw = function() {
-    if (options_noXpPopup) return;
+    //call draw manually
+    this.draw = function () {
+        if (options_noXpPopup)
+            return;
 
-    var anim0_1 = clamp((timestamp - this.animStartT) / this.animDur, 0, 1);
+        var anim0_1 = clamp((timestamp - this.animStartT) / (this.animDur), 0, 1);
 
-    ctx.save();
+        ctx.save();
 
-    var posX = canvasW / 2;
-    var posY = canvasH - 85 * interfS + anim0_1 * (-150 * interfS);
+        var posX = (canvasW / 2);
+        var posY = (canvasH - 85 * interfS) + anim0_1 * (-150 * interfS);
 
-    ctx.translate(posX, posY);
+        ctx.translate(posX, posY);
 
-    //animate the text
+        //animate the text
 
-    // ctx.rotate( toRadians( this.anlgeShift * anim0_1 ));
-    //ctx.translate(this.xShift,this.yShift);
-    ctx.globalAlpha = 1.0 - anim0_1;
 
-    this.text.setFontSize(this.textFontSz * interfS);
-    this.text.x = 0;
-    this.text.y = 0;
-    this.text.draw();
-    //console.log("drawing pop!" +anim0_1);
+        // ctx.rotate( toRadians( this.anlgeShift * anim0_1 ));
+        //ctx.translate(this.xShift,this.yShift);
+        ctx.globalAlpha = 1.0 - anim0_1;
 
-    ctx.restore();
+        this.text.setFontSize(this.textFontSz * interfS);
+        this.text.x = 0;
+        this.text.y = 0;
+        this.text.draw();
+        //console.log("drawing pop!" +anim0_1);
 
-    if (timestamp >= this.animStartT + this.animDur) this.timedOut = true;
-  };
+        ctx.restore();
+
+        if (timestamp >= this.animStartT + this.animDur)
+            this.timedOut = true;
+    }
 }
+
+
 
 ///////
 // file: js_src/gameobj/GameObj.js
@@ -6011,17 +5927,10 @@ GameObj.prototype.customInterfaceDraw = false;
 // obj spawn with radius animation
 // some objects dont need this animation so set this to false in their subclasses
 GameObj.prototype.animateRadOnSpawn = true;
-GameObj.prototype.drawImage = function(
-  _0x5c79c3,
-  _0x16e8d0,
-  _0x45e376,
-  _0x2482d0,
-  _0x4b23e3,
-  _0x43c8a8
-) {
-  if (_0x43c8a8 !== undefined) ctx.rotate(_0x43c8a8);
-  ctx.drawImage(_0x5c79c3, _0x16e8d0, _0x45e376, _0x2482d0, _0x4b23e3);
-};
+GameObj.prototype.drawImage = function (_0x5c79c3, _0x16e8d0, _0x45e376, _0x2482d0, _0x4b23e3, _0x43c8a8) {
+    if (_0x43c8a8 !== undefined) ctx.rotate(_0x43c8a8);
+    ctx.drawImage(_0x5c79c3, _0x16e8d0, _0x45e376, _0x2482d0, _0x4b23e3);
+}
 //subclassable
 GameObj.prototype.customDraw = function(batchDrawOutline) {
   // switch(this.oType ) {
@@ -6047,7 +5956,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
   //     console.log("this.oType: " + this.oType);
   // }
   switch (this.oType) {
-    case o_hill:
+       case o_hill:
       {
         switch (this.curBiome) {
           case biome_desert:
@@ -6100,8 +6009,8 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         }
       }
       break;
-
-    /* case o_lochnessbite:
+      
+      /* case o_lochnessbite:
       {
         ctx.save();
         var oldA = ctx.globalAlpha;
@@ -6157,11 +6066,11 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
          ctx.restore(); 
       }
       break;*/
-    case o_firerange:
+       case o_firerange:
       {
-        bushBgCol = "";
+            bushBgCol = "";
 
-        switch (this.curBiome) {
+                    switch (this.curBiome) {
           case biome_ocean:
             bushBgCol = "#786810";
             break;
@@ -6173,34 +6082,22 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
             bushBgCol = "#45D157";
             break;
         }
-        //this.drawOutlinedCircle("",bushBgCol)
-        this.drawfireCircle("#FF7000");
-        e = 0.15;
-        i = 0.5 * (0.8 - e);
-        e = e + i + i * Math.sin(((2 * Math.PI) / 1) * (timestamp / 1000));
-        ctx.save();
-        ctx.globalAlpha *= e;
-
-        //       drawCircle(0, 0, Math.max(0, this.rad), "#FF6100");
-        ctx.restore();
-        e = 0.5;
-        i = 0.5 * (1 - e);
-        e = e + i + i * Math.sin(((2 * Math.PI) / 1) * (timestamp / 1000));
-        if (
-          (i = getLoadedImg(
-            1 == Math.trunc(timestamp / 300) % 2
-              ? "img/fire.png"
-              : "img/fire2.png"
-          ))
-        )
-          (s = 0.3 * this.rad),
-            (n = (2 * this.rad * (2 + 2 * e)) / 3),
-            (r = 2 * this.rad * e),
-            ctx.save(),
-            i &&
-              ((ctx.globalAlpha = ctx.globalAlpha * this.onFireEffA * e),
-              ctx.drawImage(i, 0 + -0.5 * n, s + -0.95 * r, n, r)),
-            ctx.restore();
+            //this.drawOutlinedCircle("",bushBgCol)
+                    this.drawfireCircle("#FF7000");
+                    e = .15;
+                    i = .5 * (.8 - e);
+                    e = e + i + i * Math.sin(2 * Math.PI / 1 * (timestamp / 1000));
+                    ctx.save();
+                    ctx.globalAlpha *= e;
+      
+      
+             //       drawCircle(0, 0, Math.max(0, this.rad), "#FF6100");
+                    ctx.restore();
+                    e = .5;
+                    i = .5 * (1 - e);
+                    e = e + i + i * Math.sin(2 * Math.PI / 1 * (timestamp / 1000));
+                    if (i = getLoadedImg(1 == Math.trunc(timestamp / 300) % 2 ? "img/fire.png" : "img/fire2.png")) s = .3 * this.rad, n = 2 * this.rad * (2 + 2 * e) / 3, r = 2 * this.rad * e, ctx.save(), i && (ctx.globalAlpha = ctx.globalAlpha * this.onFireEffA * e, ctx.drawImage(i, 0 + -.5 * n, s + -.95 * r, n, r)), 
+                    ctx.restore();
       }
       break;
     case ability_extraBoost:
@@ -6583,7 +6480,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         }
       }
       break;
-
+    
     case o_conchShell:
       {
         //draw banana img
@@ -6616,17 +6513,16 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
     case o_flockspot:
-    case o_flock:
-      {
-        //drawCircle(0,0, this.rad, "black");
-        break;
-      }
-
+    case o_flock: {
+      //drawCircle(0,0, this.rad, "black");
+      break;
+    }
+   
       break;
     case o_sleigh:
       {
         //draw banana img
-
+      
         var theImg = getLoadedImg("img/santa/sleig.png");
         if (theImg) {
           var rad = this.rad;
@@ -6636,6 +6532,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           ctx.restore();
           //console.log("drawing banana");
         }
+        
       }
       break;
     case o_ostrichEgg:
@@ -6652,13 +6549,10 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         }
       }
       break;
-    case o_raspberrynew:
+        case o_raspberrynew:
       {
         var theImg = getLoadedImg(
-          "img/raspberry" +
-            this.specType +
-            (this.isEdibleOutlined() ? "_e" : "") +
-            ".png"
+          "img/raspberry"+ this.specType + (this.isEdibleOutlined() ? "_e" : "") + ".png"
         );
         if (theImg) {
           var rad = this.rad;
@@ -6669,7 +6563,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         }
       }
       break;
-    case o_dragonfruit:
+          case o_dragonfruit:
       {
         var theImg = getLoadedImg(
           "img/dragonfruit" + (this.isEdibleOutlined() ? "_e" : "") + ".png"
@@ -6683,18 +6577,24 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         }
       }
       break;
-    case o_turkishflag:
+   case o_turkishflag:
       {
-        var theImg = getLoadedImg("img/turkishflag" + ".png");
+        var theImg = getLoadedImg(
+          "img/turkishflag" + ".png"
+        );
         if (theImg) {
           var rad = this.rad;
           ctx.save();
-          ctx.rotate(0);
+        ctx.rotate(0);
           ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2.5 * rad);
           ctx.restore();
         }
       }
       break;
+   
+
+   
+      
 
     case o_egg:
       {
@@ -7194,6 +7094,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
 
+
     case o_carrot:
       {
         var theImg = getLoadedImg(
@@ -7227,25 +7128,20 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
     case o_poisonBerry:
       {
         ctx.save();
-
-        drawCircle(
-          0,
-          0,
-          Math.max(0, this.rad - this.rad / 5),
-          col_edibleOutline
-        );
+      
+        drawCircle(0, 0, Math.max(0, this.rad - this.rad / 5), col_edibleOutline);
 
         ctx.restore();
 
-        var theImg = getLoadedImg("img/poisonBerry" + this.specType + ".png"); // + (this.isEdibleOutlined() ? "_e" : "") + ".png");
-        if (theImg) {
-          var rad = this.rad;
-          ctx.save();
-          ctx.rotate(this.rPer * Math.PI * 2.0);
-          ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+        var theImg = getLoadedImg("img/poisonBerry" + this.specType + ".png");// + (this.isEdibleOutlined() ? "_e" : "") + ".png");
+                            if (theImg) {
+                                var rad = this.rad;
+                                ctx.save();
+                                ctx.rotate(this.rPer * Math.PI * 2.0);
+                                ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
 
-          ctx.restore();
-        }
+                                ctx.restore();
+                            }
       }
 
       break;
@@ -7271,11 +7167,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       {
         var meatType = 0;
         var theImg = getLoadedImg(
-          "img/" +
-            meatType +
-            "meat" +
-            (this.isEdibleOutlined() ? "_e" : "") +
-            ".png"
+          "img/" + meatType + "meat" + (this.isEdibleOutlined() ? "_e" : "") + ".png"
         );
         if (theImg) {
           var rad = this.rad;
@@ -7453,6 +7345,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         );
 
         drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 12), "#5C4E28");
+      
       }
       break;
     case o_abilityGObj:
@@ -7463,7 +7356,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         //drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 12), "#5C4E28");
       }
       break;
-
+      
     case o_hidingHoleOcean:
       {
         var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
@@ -7499,9 +7392,11 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           Math.max(0, this.rad - 24.5 + yShift / 11),
           "#28829E"
         );
+
+        
       }
       break;
-    case o_bigHidingHole:
+     case o_bigHidingHole:
       {
         this.drawOutlinedCircle("", "#9F8641");
         //drawCircle(0, 0, this.rad, "#9F8641");
@@ -7522,6 +7417,8 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           Math.max(0, this.rad - 18.5),
           "#40371D"
         );
+
+
       }
       break;
     case o_hidingBush:
@@ -8684,12 +8581,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
           }
         }
 
-        fillGrid(
-          -this.rectW / 2 + minusForEdge,
-          -this.rectH / 2 + minusForEdge,
-          this.rectW / 2 - minusForEdge,
-          this.rectH / 2 - minusForEdge
-        );
+         fillGrid(-this.rectW / 2 + minusForEdge, -this.rectH / 2 + minusForEdge, this.rectW / 2 - minusForEdge, this.rectH / 2 - minusForEdge);
       }
       break;
     case o_biome_land:
@@ -8802,20 +8694,22 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
 
-    case o_gift:
-      {
-        var theImg = getLoadedImg("img/santa/gifts/" + this.specType + ".png");
-        if (theImg) {
-          ctx.save();
-          var rad = this.rad;
-          ctx.rotate(this.rPer * Math.PI * 2.0);
-          ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
-          ctx.restore();
-          //console.log("drawing banana");
-        }
-      }
 
-      break;
+case o_gift:
+    {
+                 var theImg = getLoadedImg("img/santa/gifts/" + this.specType + ".png");
+                  if (theImg) {
+                    ctx.save();
+                    var rad = this.rad;
+                  ctx.rotate(this.rPer * Math.PI * 2.0);
+          ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+                    ctx.restore();
+                    //console.log("drawing banana");
+                  }
+                }
+            
+    
+    break;
     case o_snowBall:
       {
         //DEBUG
@@ -8927,6 +8821,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
 
+   
     case o_fireTornado:
       {
         ctx.save();
@@ -8973,7 +8868,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.restore();
       }
       break;
-
+  
     /*      this.drawOutlinedCircle("", "orange"); 
 
         //on fire glow
@@ -9024,7 +8919,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
         }
       }
       */
-    case o_fireBall:
+  case o_fireBall:
       {
         //DEBUG
 
@@ -9111,14 +9006,14 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
 };
 
 //main draw method (NOT subclassable)
-GameObj.prototype.beforeCustomDraw = function() {};
+GameObj.prototype.beforeCustomDraw = function () {};
 GameObj.prototype.draw = function(batchDrawOutline) {
   //console.log("drawing obj "+this.id);
 
   //");
   //apply interpolation (before translate)
   this.moveUpdF = this.moveUpdate();
-  this.beforeCustomDraw();
+this.beforeCustomDraw();
   ctx.save();
   ctx.translate(this.x, this.y);
 
@@ -9200,7 +9095,8 @@ GameObj.prototype.drawHealthBar = function() {
   }
   ctx.restore(); //restore from fade
 
-  if (this.id == myPlayerID) this.drawInfectionBar();
+  if(this.id == myPlayerID)
+    this.drawInfectionBar();
 };
 
 GameObj.prototype.drawInfectionBar = function() {
@@ -9219,13 +9115,13 @@ GameObj.prototype.drawBar = function(color, hpBarA, hpPer, yPoz) {
   //draw bar
   var eyeS = Math.max(1.0, this.rad / 25.0);
   var barW = 20.0 * eyeS,
-    barH = 2.5 * eyeS;
+    barH = 2.5 * eyeS ;
   var bx = 0,
     by = -this.rad - yPoz * eyeS;
   ctx.globalAlpha = 0.3;
   ctx.fillStyle = "rgba(0,0,0,0.35)";
   ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
-
+  
   //ctx.globalAlpha = this.hpBarA * f;
   ctx.globalAlpha = 0.7;
   ctx.fillStyle = color; //bar fill
@@ -9291,10 +9187,11 @@ GameObj.prototype.drawChat = function() {
 };
 
 GameObj.prototype.getOutlineColor = function() {
+
   if (this.isEdibleOutlined()) {
-    if (!this.alwaysPlainOutline) {
-      return col_edibleOutline;
-    }
+      if (!this.alwaysPlainOutline) {
+    return col_edibleOutline;
+      }
   }
   //red outline for dangerous animals
   if (
@@ -9302,9 +9199,9 @@ GameObj.prototype.getOutlineColor = function() {
     dangerAniTypes[this.animalType - 1] > 0 &&
     this.id != myPlayerID
   ) {
-    if (!this.alwaysPlainOutline) {
-      return col_dangerOutline;
-    }
+         if (!this.alwaysPlainOutline) {
+    return col_dangerOutline;
+         }
   }
   //plain outline (based on biome)
   var biome = this.curBiome;
@@ -9312,10 +9209,13 @@ GameObj.prototype.getOutlineColor = function() {
   if (this.flag_inWater) biome = biome_ocean;
   else if (this.flag_inLava) return "#c64a00";
   else if (biome == 3) return "#c64a00";
-  else if (this.flag_inDesert) return "#a59215";
-
+else if (this.flag_inDesert) return "#a59215"
+  
+  
   return outlineColForBiome(biome);
 };
+
+
 
 GameObj.prototype.isEdibleOutlined = function() {
   if (this.oType == o_animal)
@@ -9345,11 +9245,13 @@ GameObj.prototype.drawOutlinedCircle = function(nm, col) {
   drawCircle(0, 0, Math.max(0, this.rad - strokeW), col);
 };
 GameObj.prototype.drawfireCircle = function(col) {
+ 
+
   //green outline (without stroke- optimized)
   var strokeW = 1.5;
-  //dont draw plain outlines!
+    //dont draw plain outlines!
 
-  drawCircle(0, 0, Math.max(0, this.rad - this.rad / 8), col);
+  drawCircle(0, 0, Math.max(0, (this.rad) - this.rad / 8), col);
 };
 //moves the obj,  interpolating between udpates
 GameObj.prototype.moveUpdate = function() {
@@ -9397,23 +9299,23 @@ GameObj.prototype.readCustomData_onNewlyVisible = function(msg) {
   //special vars
 
   switch (this.oType) {
-    case o_river:
+       case o_river:
     case o_poisonBerry:
     case o_meatLarge:
     case o_meatMedium:
     case o_meatSmall:
     case o_raspberrynew:
-    case o_gift:
-    case o_bigHidingHole:
-    case o_fireBall:
-    case o_sinkHole:
-      this.specType = msg.readUInt8();
+     case o_gift:
+     case o_bigHidingHole:
+     case o_fireBall:
+     case o_sinkHole:
+     this.specType = msg.readUInt8();
   }
-
+  
   if (this.oType == o_river) {
     // river flow direction
     var riverSpecT = this.specType; // msg.readUInt8();
-
+    
     this.riverSpecT = riverSpecT;
     this.riverFlowSpeedX = riverSpecT ? 1.0 : -1.0;
   }
@@ -9442,7 +9344,7 @@ GameObj.prototype.worldUpd_readMsgNewlyVisible = function(
 ) {
   //thisClasses eg. Aniaml have a seconary type 'animalType' that affects class
   this.setObjTypes(oType, secondaryType);
-  //console.log(msg.data.getUint32(19, false))
+//console.log(msg.data.getUint32(19, false))
 
   var nw_id = msg.readUInt32();
   var nw_rad = msg.readUInt16() / 4.0;
@@ -9453,7 +9355,7 @@ GameObj.prototype.worldUpd_readMsgNewlyVisible = function(
   this.ox = this.x = this.nx = nw_x; //set initial vars here
   this.oy = this.y = this.ny = nw_y; //'new' vars will be set after create
   this.nRad = nw_rad;
-  this.oRad = this.rad = 0; //default: objs animate in from 0 rad (on spawn)
+  this.oRad =this.rad = 0; //default: objs animate in from 0 rad (on spawn)
 
   //these objs start at full rad (no anim)
   if (
@@ -9476,16 +9378,16 @@ GameObj.prototype.worldUpd_readMsgNewlyVisible = function(
   // cur biome of the obj (since we have more biomes so they dont fit in 0-3 bits)
   var f_curBiome = msg.readUInt8();
   //read flags
-  /* var oFlags = msg.readBitGroup();
+ /* var oFlags = msg.readBitGroup();
   var f_spawnedFromID = oFlags.getBool(); //bit_get(flags, 0) > 0;
   var f_rectObj = oFlags.getBool();
   var f_sendsAngle = oFlags.getBool();*/
-  //var oFlags = msg.readBitGroup();
+   //var oFlags = msg.readBitGroup();
   var f_spawnedFromID = msg.readUInt8() == 1;
   var f_rectObj = msg.readUInt8() == 1;
   var f_sendsAngle = msg.readUInt8() == 1;
   //var f_curBiome = oFlags.getInt0to3(); //2 * bit_get(flags, 3) + 1 * bit_get(flags, 2); //encoded 2-bit num
-
+  
   this.curBiome = f_curBiome;
   this.objGetsAngleUpdate = f_sendsAngle;
 
@@ -9509,19 +9411,21 @@ GameObj.prototype.worldUpd_readMsgNewlyVisible = function(
     this.isRectangle = true;
     this.rectW = msg.readUInt16();
     this.rectH = msg.readUInt16();
+
   }
 
   //this.objGetsAngleUpdate = msg.readUInt8() == 1;
   if (this.objGetsAngleUpdate) {
+ 
     var angleDeg = msg.readUInt8() * 3.0;
-    //console.log("angle: " + angleDeg/3)  //heree
+	//console.log("angle: " + angleDeg/3)  //heree
     var angleCorrection = this.oType == o_abilityGObj ? 180 : 90;
     this.angle = toRadians(angleDeg + angleCorrection);
     //this.specType = msg.readUInt8();
   }
 
   //now, read custom data!
-
+ 
   this.readCustomData_onNewlyVisible(msg);
 };
 
@@ -9531,16 +9435,16 @@ GameObj.prototype.worldUpd_readMsgUpdate = function(msg) {
   var rad = msg.readUInt16() / 10.0;
 
   this.specType = msg.readUInt8();
-  /* //universal obj 'flags'
+ /* //universal obj 'flags'
   var objFlags = msg.readBitGroup();
   var flag_sendHp = objFlags.getBool();
   var flag_flashHurt = objFlags.getBool();
 */
-
+  
   //var objFlags = msg.readUInt8();
   var flag_sendHp = msg.readUInt8() == 1;
   var flag_flashHurt = msg.readUInt8() == 1;
-
+  
   this.updateTime = timestamp; //only set timestamp for moving items
   this.ox = this.x;
   this.oy = this.y;
@@ -9570,10 +9474,11 @@ GameObj.prototype.worldUpd_readMsgUpdate = function(msg) {
 
   if (this.objGetsAngleUpdate) {
     var angleDeg = msg.readUInt8() * 3.0;
-
+       
+    
     var angleCorrection = this.oType == o_abilityGObj ? 180 : 90;
     this.angle = toRadians(angleDeg + angleCorrection);
-    //console.log("angle1: " + angleDeg)
+	//console.log("angle1: " + angleDeg)
     // this.specType = msg.readUInt8();
   }
 
@@ -9585,22 +9490,22 @@ GameObj.prototype.worldUpd_readMsgUpdate = function(msg) {
 
 GameObj.prototype.worldUpd_readMsgRemovedObj = function(msg) {
   var killerId = msg.readUInt32();
-  var killerObj = gameObjsByID[killerId];
+  var killerObj = gameObjsByID[killerId] 
 
   this.dead = true;
   this.updateTime = timestamp; //count as update, kill on next upd
 
-  if (this.oType == o_abilityGObj || this.oType == o_particles) {
+  if (this.oType == o_abilityGObj||this.oType == o_particles) {
     //no radius animation
     this.ox = this.x;
     this.oy = this.y;
     //this.oRad = this.rad;
-
+    
     this.nx = this.x;
     this.ny = this.y;
-    if (this.abilityType == ability_freezeprey) {
-      this.nx = killerObj.nx; //move to future pos
-      this.ny = killerObj.ny;
+    if(this.abilityType == ability_freezeprey){
+    this.nx = killerObj.nx; //move to future pos
+    this.ny = killerObj.ny;
     }
   } else if (killerObj) {
     //kill with animation
@@ -9614,14 +9519,15 @@ GameObj.prototype.worldUpd_readMsgRemovedObj = function(msg) {
     //fade possible hp bar
     this.hp_n = 0;
   } else {
+   
     //kill with animation
-
+ 
     this.ox = this.x;
     this.oy = this.y;
     this.oRad = this.rad;
     this.nx = this.x;
     this.ny = this.y;
-    this.nRad = 0;
+     this.nRad = 0
   }
 };
 
@@ -9636,7 +9542,7 @@ GameObj.prototype.updateZ = function() {
       this.z = -210;
       break;
     case o_biome_volcano:
-      this.z = -200;
+       this.z = -200
       break;
     case o_biome_poison:
       this.z = 20;
@@ -9648,12 +9554,13 @@ GameObj.prototype.updateZ = function() {
       this.z = -201;
       break;
 
+
     case o_river:
     case o_lake:
 
     case o_lavaLake:
-      this.z = -157;
-      break;
+ this.z = -157
+      break;    
     case o_bog:
       this.z = 21;
       break;
@@ -9664,7 +9571,7 @@ GameObj.prototype.updateZ = function() {
 
     //on top of volcano biome, under everything else
     case o_volcano:
-      this.z = -158;
+        this.z = -158;
       break;
     case o_arcticIce:
       this.z = -156;
@@ -9680,7 +9587,7 @@ GameObj.prototype.updateZ = function() {
       if (
         this.type == ability_eagleAttack ||
         this.type == ability_falconAttack ||
-        this.type == ability_thunderbirdAttack ||
+          this.type == ability_thunderbirdAttack ||
         this.type == ability_owlAttack ||
         this.type == ability_targetCircle ||
         this.type == ability_bearSlash
@@ -9702,6 +9609,7 @@ GameObj.prototype.updateZ = function() {
         this.type == ability_boaSuffocate ||
         this.type == ability_sabertoothJawAttack ||
         this.type == ability_trexShake ||
+       
         this.type == ability_tigerSlash ||
         this.type == ability_pounce ||
         //this.type == ability_tigerJump ||
@@ -9729,8 +9637,9 @@ GameObj.prototype.updateZ = function() {
       break;
 
     case o_bigHidingHole:
+    
       this.z = -101;
-
+        
       break;
     case o_hidingHole:
       this.z = -100;
@@ -9741,23 +9650,23 @@ GameObj.prototype.updateZ = function() {
 
     case o_hill:
       this.z = 999;
-
+      
       break;
-    case o_sleigh:
-      this.z = -1;
-      break;
-
+      case o_sleigh:
+          this.z = -1 
+          break;
+      
     case o_poisonBerry:
     case o_arcticNut:
     case o_cloudBerry:
     case o_pear:
     case o_kelp:
     case o_seaweed:
-      this.z = 999.5;
-      break;
-    case o_gift:
-      this.z = 999.6;
-      break;
+        this.z = 999.5
+        break;
+           case o_gift:
+        this.z = 999.6 
+        break;
     case o_quill:
     case o_fruitTree:
       this.z = 1000; //above hill
@@ -9767,13 +9676,13 @@ GameObj.prototype.updateZ = function() {
       break;
     case o_beeHive:
     case o_rockHill:
-      this.z = 999.4;
+      this.z = 999.4; 
       break;
-
-    case o_turkishflag:
-      this.z = -1;
+       
+       case o_turkishflag:
+      this.z = -1; 
       break;
-
+    
     case o_spiderWeb:
       this.z = 1003;
       break;
@@ -9796,14 +9705,14 @@ GameObj.prototype.updateZ = function() {
       this.z = 1006;
       break;
     case o_fireTornado:
-      this.z = 1002;
+      this.z = 1002; 
       break;
-    case o_firerange:
-      this.z = 1005; //fireball just under dragon
-      break;
-
+   case o_firerange:
+   this.z = 1005; //fireball just under dragon
+   break;  
+         
     case o_fireBall:
-      this.z = 1005; //fireball just under dragon
+this.z = 1005; //fireball just under dragon
     case o_poisonBall:
       this.z = 1006; //fireball just under dragon
       break;
@@ -9852,18 +9761,22 @@ GameObj.prototype.updateZ = function() {
             this.animalType == a_giantSpider
           )
             this.z = 1000 + this.rad;
+
+       
           else if (this.animalType == a_blackDragon) this.z = 1015 + this.rad;
-          //flies above hill, water/food also
-          else if (this.animalType == a_dinoMonster) this.z = 1002 + this.rad;
+          //flies above hill, water/food also 
+    else if (this.animalType == a_dinoMonster) this.z = 1002 + this.rad;
           else if (this.animalType == a_iceMonster) this.z = 1003 + this.rad;
-          else if (this.animalType == a_seaMonster) this.z = 1004 + this.rad;
-          else if (this.animalType == a_landMonster) this.z = 1005 + this.rad;
+          
+           else if (this.animalType == a_seaMonster) this.z = 1004 + this.rad;
+             else if (this.animalType == a_landMonster) this.z = 1005 + this.rad;
+    
           //flies above hill, water/food also
           else if (this.animalType == a_trex)
             this.z = 1008 + (this.flag_usingAbility ? 1 : 0) + this.rad;
           else if (this.animalType == a_dragn) this.z = 1007;
-          else if (this.animalType == a_griffin) this.z = 1005;
-          else if (this.animalType == a_kingCrab) this.z = 1006;
+                   else if (this.animalType == a_griffin) this.z = 1005;
+          else if (this.animalType ==  a_kingCrab) this.z = 1006;
           //flies above hill, water/food also
           else this.z = this.rad;
         }
@@ -9953,6 +9866,7 @@ window.GameObj = GameObj;
 
 //module.exports= GameObj; //sets the 'return' type if this module 'kinda like a class'
 
+
 ///////
 // file: js_src/gameobj/GameObjBatchDraw.js
 ///////
@@ -9960,22 +9874,25 @@ window.GameObj = GameObj;
 //class for batch-drawing a list of GameObjs with the same z, implements gameObj-style  draw, z
 
 //SUBCLASS! inherit prototype/properties from superclass
-var subClass = GameObjBatchDraw;
-var superClass = GameObj;
-subClass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
+var subClass=GameObjBatchDraw;
+var superClass=GameObj;
+subClass.prototype = Object.create(superClass.prototype);  //properly inherit prototype of superclass
 subClass.prototype.constructor = subClass;
 
-function GameObjBatchDraw() {
-  this.objs = [];
 
-  this.updateZ = function() {
+
+function GameObjBatchDraw() {
+  this.objs= [];
+
+
+  this.updateZ= function() {
     //assumes all objs (of this type) will have same Z
     if (this.objs.length > 0) {
       this.objs[0].updateZ(); //force extra update (to be sure)
       this.z = this.objs[0].z;
     }
   };
-  this.draw = function() {
+  this.draw= function() {
     //console.log("drawing t "+this.oType+"batched os ("+this.objs.length+" objs) z="+this.z);
     //draw outline
     for (var i = 0; i < this.objs.length; i++) {
@@ -9989,8 +9906,9 @@ function GameObjBatchDraw() {
       var anObj = this.objs[i];
       anObj.draw(false);
     }
+
   };
-  this.addBatchedObj = function(newObj) {
+  this.addBatchedObj=function(newObj) {
     if (this.objs.length == 0) {
       //this.z=newObj.z; //z may not be updated
       this.oType = newObj.oType;
@@ -9998,10 +9916,12 @@ function GameObjBatchDraw() {
     }
     this.objs.push(newObj);
   };
+
 }
 
+
 //make this class globally acessible
-window.GameObjBatchDraw = GameObjBatchDraw;
+window.GameObjBatchDraw=GameObjBatchDraw;
 
 ///////
 // file: js_src/gameobj/ability/AbilityObj.js
@@ -10010,19 +9930,20 @@ window.GameObjBatchDraw = GameObjBatchDraw;
 //thisClass! inherit prototype/properties from superclass
 //global AbilityObj;
 var thisClass = Particle;
-var superClass = GameObj;
+var superClass = GameObj
 thisClass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 thisClass.prototype.constructor = thisClass;
 thisClass.superClass = superClass; //'class' var
 Particle.prototype.particleType = p_confetti;
 Particle.prototype.updateZ = function() {
   this.z = 100002;
-};
-Particle.prototype.customDraw = function(batchDrawOutline) {
+ }
+ Particle.prototype.customDraw = function(batchDrawOutline) {
   switch (this.particleType) {
+     
     case p_confetti:
       {
-        console.log("hi");
+          console.log('hi')
         ctx.save();
         var oldA = ctx.globalAlpha;
         //ctx.globalAlpha = 0.1 * oldA;
@@ -10055,12 +9976,12 @@ Particle.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
   }
-};
-Particle.prototype.setObjTypes = function(oType, secondaryType) {
+ }
+ Particle.prototype.setObjTypes = function(oType, secondaryType) {
   this.oType = oType;
   this.particleType = secondaryType; //secondaryType can be different for eg.
 };
-
+ 
 function Particle() {
   Particle.superClass.call(this, o_particles); //call superclass init method (if needed, or write a new one below)
   //  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@AbilityObj constructor run");
@@ -10101,10 +10022,11 @@ AbilityObj.prototype.updateZ = function() {
     this.abilityType == ability_clawSlash ||
     this.abilityType == ability_backLegKick ||
     this.abilityType == ability_whaleTailHit ||
-    this.abilityType == ability_finalhit ||
-    this.abilityType == ability_freezeprey ||
+    this.abilityType == ability_finalhit||
+     this.abilityType == ability_freezeprey||
     this.abilityType == ability_elephantTrunkSmack ||
     this.abilityType == ability_crabSmash ||
+   
     this.abilityType == ability_crocWaterGrab ||
     this.abilityType == ability_boaSuffocate ||
     this.abilityType == ability_sabertoothJawAttack ||
@@ -10251,8 +10173,8 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
     case ability_finalhit:
-      {
-        console.log(this.specType);
+    {
+        console.log(this.specType)
         ctx.save();
         var oldA = ctx.globalAlpha;
 
@@ -10260,10 +10182,10 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         drawCircle(0, 0, this.rad, "#475AD4");
 
         ctx.globalAlpha = 1.0 * oldA;
-
-        var theImg = getLoadedImg(
-          "skins/kingdragon/" + this.specType + "/tail.png"
-        );
+    
+ 
+        var theImg = getLoadedImg("skins/kingdragon/" + this.specType +
+        "/tail.png");
         if (theImg) {
           var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 200.0);
 
@@ -10290,7 +10212,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         ctx.restore();
       }
-      break;
+    break;
     case ability_whaleTailHit:
       {
         ctx.save();
@@ -10331,21 +10253,22 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.restore();
       }
       break;
-    case ability_freezeprey:
-      {
-        var theImg = getLoadedImg("skins/monsters/icemonster/crystalfire.png");
-        if (theImg) {
-          ctx.save();
-          var rad = this.rad;
-          ctx.rotate(this.angle);
+          case ability_freezeprey:
+    {
+                 var theImg = getLoadedImg("skins/monsters/icemonster/crystalfire.png");
+                  if (theImg) {
+                    ctx.save();
+                    var rad = this.rad;
+                  ctx.rotate(this.angle);
           ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2.5 * rad);
-          ctx.restore();
-
-          //console.log("drawing banana");
-        }
-      }
-
-      break;
+                    ctx.restore();
+            
+                    //console.log("drawing banana");
+                  }
+                }
+            
+    
+    break;
     case ability_bearSlash:
       {
         var oldA = ctx.globalAlpha;
@@ -10371,7 +10294,9 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
-        var theImg = getLoadedImg("/img/ability_bearSlash0.png");
+        var theImg = getLoadedImg(
+        "/img/ability_bearSlash0.png"
+        );
         if (theImg) {
           var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 200.0);
           var rotfac0to1 = clamp(
@@ -10488,7 +10413,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         //drawCircle(0, 0, this.rad, "red");
       }
       break;
-    case ability_thunderbirdAttack:
+case ability_thunderbirdAttack:
       {
         // do nothing.
         //ctx.globalAlpha = 0.2;
@@ -10569,7 +10494,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         if (_gameMode.isHalloween) skinFolder = "img/";
 
         var theImg = getLoadedImg(
-          "img/ability_crabSmash" + this.specType + ".png"
+          "img/ability_crabSmash" + this.specType+".png"
         );
         if (theImg) {
           //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -10625,7 +10550,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
 
         if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
 
-        var theImg = getLoadedImg(
+         var theImg = getLoadedImg(
           skinFolder + "/ability_elephantTrunkSmack.png"
         );
         if (theImg) {
@@ -10662,7 +10587,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.restore();
       }
       break;
-
+  
     case ability_backLegKick:
       {
         ctx.save();
@@ -11298,7 +11223,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
       }
       break;
     }
-    case ability_trexShake:
+      case ability_trexShake:
       {
         ctx.save();
         var oldA = ctx.globalAlpha;
@@ -11384,6 +11309,7 @@ AbilityObj.prototype.customDraw = function(batchDrawOutline) {
         ctx.restore();
       }
       break;
+
 
     // trex update end
     case ability_wolfHowl:
@@ -11849,94 +11775,53 @@ thisClass.prototype = Object.create(superClass.prototype);
 thisClass.prototype.constructor = thisClass;
 thisClass.superClass = superClass;
 AbilityObj.prototype.victimID = 0;
-AbilityObjSpear.prototype.updateZ = function() {
-  this.effect_flying
-    ? (this.z = 100000)
-    : 0 == this.victimID && (this.z = 1100);
+AbilityObjSpear.prototype.updateZ = function () {
+    this.effect_flying ? this.z = 100000 : 0 == this.victimID && (this.z = 1100);
 };
-AbilityObjSpear.prototype.customDraw = function(_0x423c5e) {
-  ctx.save();
-  if (0 == this.specType) {
-    if ((_0x423c5e = getLoadedImg("skins/bigfoot/spear.png"))) {
-      ctx.save();
-      var _0xd67ac0 = 2 * this.rad;
-      ctx.rotate(this.angle + toRadians(90));
-      ctx.drawImage(
-        _0x423c5e,
-        -_0xd67ac0 / 2,
-        -_0xd67ac0 / 2,
-        _0xd67ac0,
-        4 * _0xd67ac0
-      );
-      ctx.restore();
-    }
-  } else if (3 == this.specType) {
+AbilityObjSpear.prototype.customDraw = function (_0x423c5e) {
     ctx.save();
-    if ((_0x423c5e = getLoadedImg("skins/bigfoot/spear2.png")))
-      (_0xd67ac0 = 2 * this.rad),
-        ctx.rotate(this.angle + toRadians(90)),
-        ctx.drawImage(
-          _0x423c5e,
-          -_0xd67ac0 / 2,
-          -_0xd67ac0 / 2,
-          _0xd67ac0,
-          4 * _0xd67ac0
-        );
+    if (0 == this.specType) {
+        if (_0x423c5e = getLoadedImg('skins/bigfoot/spear.png')) {
+            ctx.save();
+            var _0xd67ac0 = 2 * this.rad;
+            ctx.rotate(this.angle + toRadians(90));
+            ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
+            ctx.restore();
+        }
+    } else if (3 == this.specType) {
+        ctx.save();
+        if (_0x423c5e = getLoadedImg('skins/bigfoot/spear2.png')) _0xd67ac0 = 2 * this.rad, ctx.rotate(this.angle + toRadians(90)), ctx.drawImage(_0x423c5e, -_0xd67ac0 / 2, -_0xd67ac0 / 2, _0xd67ac0, 4 * _0xd67ac0);
+        ctx.restore();
+    } else if (_0x423c5e = getLoadedImg('skins/bigfoot/arm' + (this.specType + (1 == this.specType2 ? '1' : '')) + '.png')) {
+  
+      var _0x24150b = Math.min(1, (timestamp - this.spawnTime) / 200),
+            _0xd67ac0 = -clamp((timestamp - this.spawnTime) / 300, 0, 1) * toRadians(90);
+        ctx.rotate(this.angle + _0xd67ac0 * (1 == this.specType ? 1 : -1));
+      var ae_0xd67ac0 = 2 * this.rad;  
+      var _0xd67ac0 = 1.5 * -this.rad,
+            _0x41fc4a = 2 * _0xd67ac0,
+            _0x24150b = 2 * _0xd67ac0 * _0x24150b;
+        ctx.drawImage(_0x423c5e, ae_0xd67ac0/2, ae_0xd67ac0 /2, _0x41fc4a, _0x24150b);
+    }
     ctx.restore();
-  } else if (
-    (_0x423c5e = getLoadedImg(
-      "skins/bigfoot/arm" +
-        (this.specType + (1 == this.specType2 ? "1" : "")) +
-        ".png"
-    ))
-  ) {
-    var _0x24150b = Math.min(1, (timestamp - this.spawnTime) / 200),
-      _0xd67ac0 =
-        -clamp((timestamp - this.spawnTime) / 300, 0, 1) * toRadians(90);
-    ctx.rotate(this.angle + _0xd67ac0 * (1 == this.specType ? 1 : -1));
-    var ae_0xd67ac0 = 2 * this.rad;
-    var _0xd67ac0 = 1.5 * -this.rad,
-      _0x41fc4a = 2 * _0xd67ac0,
-      _0x24150b = 2 * _0xd67ac0 * _0x24150b;
-    ctx.drawImage(
-      _0x423c5e,
-      ae_0xd67ac0 / 2,
-      ae_0xd67ac0 / 2,
-      _0x41fc4a,
-      _0x24150b
-    );
-  }
-  ctx.restore();
 };
 AbilityObjSpear.prototype.effect_flying = true;
-AbilityObjSpear.prototype.readCustomData_onNewlyVisible = function(_0x4e70ff) {
-  AbilityObjSpear.superClass.prototype.readCustomData_onNewlyVisible.call(
-    this,
-    _0x4e70ff
-  );
+AbilityObjSpear.prototype.readCustomData_onNewlyVisible = function (_0x4e70ff) {
+    AbilityObjSpear.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x4e70ff);
 };
-AbilityObjSpear.prototype.readCustomData_onUpdate = function(_0x304c65) {
-  AbilityObjSpear.superClass.prototype.readCustomData_onUpdate.call(
-    this,
-    _0x304c65
-  );
-  this.victimID = _0x304c65.readUInt32();
-  this.effect_flying = 1 == _0x304c65.readUInt8();
-  0x0 != this.victimID &&
-    gameObjsByID[this.victimID] &&
-    (this.z = gameObjsByID[this.victimID].z + 1);
+AbilityObjSpear.prototype.readCustomData_onUpdate = function (_0x304c65) {
+    AbilityObjSpear.superClass.prototype.readCustomData_onUpdate.call(this, _0x304c65);
+    this.victimID = _0x304c65.readUInt32();
+    this.effect_flying = 1 == _0x304c65.readUInt8();
+    0x0 != this.victimID && gameObjsByID[this.victimID] && (this.z = gameObjsByID[this.victimID].z + 1);
 };
 
 function AbilityObjSpear() {
-  AbilityObjSpear.superClass.call(this);
-  AbilityObjSpear.prototype.easeAngleChanges = true;
+    AbilityObjSpear.superClass.call(this);
+    AbilityObjSpear.prototype.easeAngleChanges = true;
 }
 window.AbilityObjSpear = AbilityObjSpear;
-GameObjType.setCustomClassForGameObjType(
-  AbilityObjSpear,
-  o_abilityGObj,
-  ability_spear
-);
+GameObjType.setCustomClassForGameObjType(AbilityObjSpear, o_abilityGObj, ability_spear);
 ///////
 // file: js_src/gameobj/ability/AbilityObjElephant.js
 ///////
@@ -11958,6 +11843,7 @@ AbilityObjElephant.prototype.customDraw = function(batchDrawOutline) {
   ctx.globalAlpha = 1.0 * oldA;
   var skinFolder = "img";
   if (_gameMode.isHalloween) skinFolder = "skins/zombie/ability_skins";
+
 
   var theImg = getLoadedImg(skinFolder + "/ability_elephantTrunkSmack.png");
   if (theImg) {
@@ -12006,7 +11892,7 @@ AbilityObjElephant.prototype.readCustomData_onUpdate = function(msg) {
     msg
   ); //call superclass version of this method
 
-  // console.log("reading ELE ONUPDATE a=" + toDegrees(this.angle));
+ // console.log("reading ELE ONUPDATE a=" + toDegrees(this.angle));
 };
 
 function AbilityObjElephant() {
@@ -12027,6 +11913,7 @@ GameObjType.setCustomClassForGameObjType(
 );
 
 //subclassed animals
+
 
 ///////
 // file: js_src/gameobj/animal/Animal.js
@@ -12076,9 +11963,9 @@ Animal.prototype.teamID = 0;
 Animal.prototype.wins1v1 = 0;
 Animal.prototype.birdNoAnimationFlyWingAngle = -0.2;
 //name font size
-Animal.prototype.setSkinScale = function() {
-  this.skinRad = this.rad - this.outlineW;
-  this.skinScale = 1.4705882352941;
+Animal.prototype.setSkinScale = function () {
+    this.skinRad = this.rad - this.outlineW;
+    this.skinScale = 1.4705882352941;
 };
 Animal.prototype.getNameSize = function() {
   return 10.0; //Math.max(~~(.3 * this.size), 24)
@@ -12087,20 +11974,24 @@ Animal.prototype.getNameSize = function() {
 Animal.prototype.setNick = function(a) {
   //if (this.nickName = a) {
   this.nickName = a;
-
+ 
   if (null == this.nickTXT) {
-    this.nickTXT = new CachedText(this.getNameSize(), this.nickTXTcolor); //"#043400");
+   
+    
+    this.nickTXT = new CachedText(this.getNameSize(),  this.nickTXTcolor); //"#043400");
     this.nickTXT.strokeW = 1.5;
     this.nickTXT.multiLine = false;
-    this.nickTXT.playername = true;
+    this.nickTXT.playername = true
 
     this.nickTXT.renderScale = 5.0; //render larger to undo 'zoom of 3x'
     this.nickTXT.setText(this.nickName);
   } else {
     this.nickTXT.setFontSize(this.getNameSize());
     this.nickTXT.setText(this.nickName);
-  }
+ 
 
+  }
+    
   //}
 };
 
@@ -12135,112 +12026,103 @@ Animal.prototype.animalInfo = function() {
       infoO.aniCol = "#fcc02b";
       infoO.skinName = "snail";
       break;
-    case a_bigfoot:
-      infoO.aniName = "The BigFoot";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        `! So it really exists... \n
+          case a_bigfoot:
+            infoO.aniName = "The BigFoot";
+            infoO.aniDesc = "";
+            infoO.upgradeText= 'UPGRADED to ' + infoO.aniName + `! So it really exists... \n
  Right click/W to throw Spears. \n
 Hold to make a fire (every 30s)`;
-      infoO.aniCol = "#839eb5";
-      infoO.skinName = "bigfoot/thebigfoot";
-      break;
-    case a_kingdragon:
-      infoO.aniName = "King Dragon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "!\
+            infoO.aniCol = "#839eb5";
+            infoO.skinName = "bigfoot/thebigfoot";
+        break;
+        case a_kingdragon:
+            infoO.aniName = "King Dragon";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "!\
 You got firestream that burns your victim alive! Watch your tail and slap them hard.";
 
-      infoO.aniCol = "black";
-      infoO.skinName = "kingdragon/kingdragon";
-      break;
-    case a_scorpion:
-      infoO.aniName = "Giant Scorpion";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+            infoO.aniCol = "black";
+            infoO.skinName = "kingdragon/kingdragon";
+            break;
+          case a_scorpion:
+            infoO.aniName = "Giant Scorpion";
+            infoO.aniDesc = "";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "giantscorpion";
-      break;
-    case a_pterodactyl:
-      infoO.aniName = "Pterodactyl";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "\nFly and dive onto prey to pick it up.";
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "giantscorpion";
+            break;
+       case a_pterodactyl:
+            infoO.aniName = "Pterodactyl";
+            infoO.aniDesc = "";
+            infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "pterodactyl";
-      break;
-    case a_lochness:
-      infoO.aniName = "Loch Ness";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "pterodactyl";
+            break;
+         case a_lochness:
+            infoO.aniName = "Megaladon";
+            infoO.aniDesc = "";
+               infoO.upgradeText =
         "UPGRADED to " +
         infoO.aniName +
         "!\n Tear Apart your preys with your mouth!";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "lochness/lochness";
-      break;
-    case a_griffin:
-      infoO.aniName = "Griffin";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "lochness/lochness";
+            break;
+        case a_griffin:
+            infoO.aniName = "Griffin";
+            infoO.aniDesc = "";
+          infoO.upgradeText =
         "UPGRADED to " +
         infoO.aniName +
         "!\n Catch Animals with your strong claws!";
 
-      infoO.aniCol = "#22FF8A";
-      infoO.skinName = "griffin";
-      break;
-
-    case a_finaldragon:
-      infoO.aniName = "Final Dragon";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
+            infoO.aniCol = "#22FF8A";
+            infoO.skinName = "griffin";
+            break;
+        
+                case a_finaldragon:
+            infoO.aniName = "Final Dragon";
+            infoO.aniDesc = "";
+               infoO.upgradeText =
         "UPGRADED to " +
         infoO.aniName +
         "!\n Fly Tail Slap and fire stream! you're powerful!";
 
-      infoO.aniCol = "#fcc02b";
-      infoO.skinName = "lochness/lochness";
-      break;
-    case a_santa:
-      infoO.aniName = "Santa";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to " +
-        infoO.aniName +
-        "!\n Drop Gifts with S (random loots!)";
+            infoO.aniCol = "#fcc02b";
+            infoO.skinName = "lochness/lochness";
+            break;
+             case a_santa:
+            infoO.aniName = "Santa";
+            infoO.aniDesc = "";
+                  infoO.upgradeText =
+                "UPGRADED to " +
+              infoO.aniName +
+            "!\n Drop Gifts with S (random loots!)"
+   
+            infoO.aniCol = "#22FF8A";
+            infoO.skinName = "santa/eagle";
+            break;
+       
+    
+         
+       case a_mouse:
+            infoO.aniName = "Mouse";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "";
 
-      infoO.aniCol = "#22FF8A";
-      infoO.skinName = "santa/eagle";
-      break;
-
-    case a_mouse:
-      infoO.aniName = "Mouse";
-      infoO.aniDesc = "";
-      infoO.upgradeText = "";
-
-      infoO.aniCol = "#9BA9B9";
-      infoO.skinName = "mouse";
-      break;
+            infoO.aniCol = "#9BA9B9";
+            infoO.skinName = "mouse";
+            break;
     case a_rabbit:
-      infoO.aniName = "Rabbit";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
-      infoO.aniCol = "#AA937E";
-      infoO.skinName = "rabbit";
-      break;
+            infoO.aniName = "Rabbit";
+            infoO.aniDesc = "";
+            infoO.upgradeText = "UPGRADED to RABBIT! \nPress W to burrow a hole to hide in!";
+            infoO.aniCol = "#AA937E";
+            infoO.skinName = "rabbit";
+            break;
 
     case a_fox:
       infoO.aniName = "Fox";
@@ -12397,7 +12279,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.upgradeText =
         "UPGRADED to THE KRAKEN!\n Terrorize the oceans, and be feared by all!\n (Release W to use whirlpool ability!)";
       infoO.aniCol = "#64a034";
-      infoO.skinName = "kraken/3/kraken";
+      infoO.skinName = "kraken";
       break;
     case a_pufferFish:
       infoO.aniName = "Pufferfish";
@@ -12547,7 +12429,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.skinName = "arctic/arctichare";
       break;
     case a_yeti:
-      infoO.aniName = "The lemming!";
+      infoO.aniName = "The Yeti!";
       infoO.aniDesc = "";
       infoO.upgradeText =
         "UPGRADED to " +
@@ -12732,7 +12614,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniDesc = "";
       infoO.upgradeText = "UPGRADED to a KING CRAB!";
       infoO.aniCol = "#971f0e";
-      infoO.skinName = "kingcrab/0/kingcrab";
+      infoO.skinName = "kingcrab";
       break;
     case a_lemming:
       infoO.aniName = "Lemming";
@@ -12747,7 +12629,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniDesc = "";
       infoO.upgradeText = "UPGRADED to Frog!!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "frog/frog2";
+      infoO.skinName = "frog/frog";
 
       break;
 
@@ -12778,15 +12660,15 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.skinName = "falcon/0/falcon";
 
       break;
-    case a_thunderbird:
-      infoO.aniName = "The Thunderbird!";
-      infoO.aniDesc = "";
-      infoO.upgradeText =
-        "UPGRADED to Thunderbird! \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
-      infoO.aniCol = "#FF9000";
-      infoO.skinName = "thunderbird/thunderbird";
+  case a_thunderbird:
 
-      break;
+            infoO.aniName = "The Storm Rider";
+            infoO.aniDesc = "";
+       infoO.upgradeText = "UPGRADED to The Storm Rider \nFly, and do a powerful thunderous dive attack!\nWhen flying stay still to blend with the sky!";
+            infoO.aniCol = "#FF9000";
+            infoO.skinName = "thunderbird/thunderbird";
+
+            break;
     case a_snowyOwl:
       infoO.aniName = "Snowy Owl";
       infoO.aniDesc = "";
@@ -12823,7 +12705,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Land Monster";
       infoO.upgradeText = "UPGRADED to Land Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/superland";
+      infoO.skinName = "landmonster";
       break;
     case a_iceMonster:
       infoO.aniName = "Ice Monster";
@@ -12835,7 +12717,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       infoO.aniName = "Dino Monster";
       infoO.upgradeText = "UPGRADED to Dino Monster!";
       infoO.aniCol = "#FF9000";
-      infoO.skinName = "monsters/dinomonster/dinomonster3";
+      infoO.skinName = "dinomonster";
       break;
     case a_pigeon:
       infoO.aniName = "Pigeon";
@@ -12854,10 +12736,10 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
       break;
 
     default:
-      infoO.aniName = "(Animal)";
+      infoO.aniName = "(undefined)";
       infoO.aniDesc = "";
       infoO.aniCol = "#000000";
-      infoO.upgradeText = "if you read this you will give me robux or money!";
+      infoO.upgradeText = "UPGRADED!";
   }
 
   return infoO;
@@ -12876,11 +12758,12 @@ Animal.prototype.loadAnimalSkinImg = function() {
 };
 //override GameObj method (in prototype!)
 
-Animal.prototype.preLoad = function() {};
-Animal.prototype.shakeOffsetX = 0;
-Animal.prototype.shakeOffsetY = 0;
+Animal.prototype.preLoad = function () {};
+     Animal.prototype.shakeOffsetX = 0;
+    Animal.prototype.shakeOffsetY = 0;
 Animal.prototype.shiverF = 0.02;
 Animal.prototype.customDraw = function(batchDrawOutline) {
+  
   this.preLoad();
 
   var infoO = this.animalInfo(); //infoForAnimalType(this.animalType);
@@ -12916,13 +12799,14 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     this.rad += wobble;
   }
 
+ 
   //apply opacity from underwater effect
   var idealOp =
     this.flag_underWater ||
     (this.flag_usingAbility &&
       (this.animalType == a_mole ||
         this.animalType == a_octopus ||
-        (this.isTransforming && this.animalType == a_yeti)))
+        this.isTransforming&& this.animalType == a_yeti))
       ? 0.0
       : 1.0;
 
@@ -12933,14 +12817,16 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     else idealOp = 0.2;
   }
 
-  if (this.flag_flying && this.id != myPlayerID) {
+   
+  if (this.flag_flying && this.id != myPlayerID ) {
     idealOp = 0.6;
   }
 
-  if (this.animalType == a_thunderbird) {
-    if (this.flag_flying && idealOp > this.transparancy / 100)
-      idealOp = this.transparancy / 100;
-  }
+ if(this.animalType == a_thunderbird){
+ 
+   if(this.flag_flying&&idealOp > this.transparancy / 100)
+idealOp = this.transparancy / 100;
+}   
   this.underwaterA += (idealOp - this.underwaterA) * 0.1;
   ctx.globalAlpha *= this.underwaterA;
 
@@ -12971,11 +12857,11 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
   )
     if (gameMode == gameMode_teamMode && this.teamID != 0) {
       var teamColor = _gameMode.teamColors[this.teamID];
-
-      if (this.teamID == 1) teamColor = "#ff0000";
-      else if (this.teamID == 2) teamColor = "#00ff00";
-      else if (this.teamID == 3) teamColor = "#0000ff";
-
+      /*
+    if (this.teamID == 1) teamColor = "#ff0000";
+    else if (this.teamID == 2) teamColor = "#00ff00";
+    else if (this.teamID == 3) teamColor = "#0000ff";
+    */
       ctx.save();
       ctx.globalAlpha = idealOp;
       drawCircle(0, 0, this.rad + 2, teamColor);
@@ -12984,8 +12870,9 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
   var outlineCol = this.getOutlineColor();
   if (
     !(
-      this.flag_flying ||
-      this.flag_isGrabbed ||
+    this.flag_flying || this.flag_isGrabbed||
+ 
+   
       (options_lowGraphics &&
         !(outlineCol == col_edibleOutline || outlineCol == col_dangerOutline))
     )
@@ -13015,21 +12902,20 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
 
     //tail background (stroke)
 
-    if (this.flag_eff_shivering) {
-      var _0x333d1a = (timestamp - this.spawnTime) / 1000,
-        _0x2b42c6 = this.rad * this.shiverF;
-      this.shakeOffsetX =
-        _0x2b42c6 * Math.sin(((2 * Math.PI) / 0.1) * _0x333d1a);
-      _0x2b42c6 = this.rad * this.shiverF;
-      this.shakeOffsetY =
-        _0x2b42c6 * Math.sin(((2 * Math.PI) / 0.05) * _0x333d1a);
-      ctx.translate(-this.shakeOffsetX, -this.shakeOffsetY);
-    }
+
+        if (this.flag_eff_shivering) {
+            var _0x333d1a = (timestamp - this.spawnTime) / 1000,
+                _0x2b42c6 = this.rad * this.shiverF;
+            this.shakeOffsetX = _0x2b42c6 * Math.sin(2 * Math.PI / 0.1 * _0x333d1a);
+            _0x2b42c6 = this.rad * this.shiverF;
+            this.shakeOffsetY = _0x2b42c6 * Math.sin(2 * Math.PI / 0.05 * _0x333d1a);
+            ctx.translate(-this.shakeOffsetX, -this.shakeOffsetY);
+        }
     if (this.flag_tailBitten) {
       ctx.fillStyle = col_dangerOutline;
     } else {
       var _thisAniType = this.animalType;
-
+      
       if (tailBiteAniTypes[_thisAniType - 1] > 0 && this.id != myPlayerID) {
         ctx.fillStyle = col_edibleOutline; //edible
       } else {
@@ -13115,15 +13001,12 @@ Animal.prototype.customDraw = function(batchDrawOutline) {
     ctx.save();
     ctx.globalAlpha = flashA;
     ctx.fillStyle =
-      this.animalType == a_blackDragon ||
-      this.animalType == a_phoenix ||
-      this.animalType == a_landMonster ||
-      this.animalType == a_kingdragon
+      this.animalType == a_blackDragon || this.animalType == a_phoenix|| this.animalType == a_landMonster|| this.animalType == a_kingdragon
         ? col_lava
         : col_wat1;
-    if (this.animalType == a_pterodactyl) {
-      ctx.fillStyle = "#ff894b";
-    }
+ if(this.animalType == a_pterodactyl){
+   ctx.fillStyle = "#ff894b"
+ }
     ctx.beginPath();
     //sweat bottom
     ctx.arc(0, this.rad + 5, 5, 0, Math.PI * 2);
@@ -13279,6 +13162,7 @@ Animal.prototype.drawUnderSkinImgOutline = function() {
     ctx.restore();
   }
 
+
   var idealOp = this.flag_eff_hot ? 1.0 : 0.0;
   this.effA_hot += (idealOp - this.effA_hot) * 0.1;
   if (this.effA_hot > 0.01) {
@@ -13331,6 +13215,7 @@ Animal.prototype.drawUnderSkinImgOutline = function() {
 
     ctx.restore();
   }
+
 
   //BLEEDING outline 'glow'
 
@@ -13502,34 +13387,34 @@ Animal.prototype.drawWhenUnderwater = function() {
     drawCircle(this.rad * -1, this.rad * 0.2, this.rad * 0.15, "#B32E10");
     ctx.restore();
   } else if (this.animalType == a_kraken) {
-    if (this.animalSpecies == 0) {
-      ctx.globalAlpha = 1.0 - this.underwaterA;
-      drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#598b30");
-      drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#64a034");
-      drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#64a034");
-      drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#598b30");
-    }
-    if (this.animalSpecies == 1) {
-      ctx.globalAlpha = 1.0 - this.underwaterA;
-      drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#45DFC7");
-      drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#36DAD2");
-      drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#36DAD2");
-      drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#45DFC7");
-    }
-    if (this.animalSpecies == 2) {
-      ctx.globalAlpha = 1.0 - this.underwaterA;
-      drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#FFBD25");
-      drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#F9C438");
-      drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#F9C438");
-      drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#FFBD25");
-    }
-    if (this.animalSpecies == 3) {
-      ctx.globalAlpha = 1.0 - this.underwaterA;
-      drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#838383");
-      drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#555555");
-      drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#555555");
-      drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#838383");
-    }
+      if( this.animalSpecies == 0){
+    ctx.globalAlpha = 1.0 - this.underwaterA;
+    drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#598b30");
+    drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#64a034");
+    drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#64a034");
+    drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#598b30");
+      }
+        if( this.animalSpecies == 1){
+    ctx.globalAlpha = 1.0 - this.underwaterA;
+    drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#45DFC7");
+    drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#36DAD2");
+    drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#36DAD2");
+    drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#45DFC7");
+      }
+        if( this.animalSpecies == 2){
+    ctx.globalAlpha = 1.0 - this.underwaterA;
+    drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#FFBD25");
+    drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#F9C438");
+    drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#F9C438");
+    drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#FFBD25");
+      }
+           if( this.animalSpecies == 3){
+    ctx.globalAlpha = 1.0 - this.underwaterA;
+    drawCircle(this.rad * 0.4, this.rad * 0.75, this.rad * 0.12, "#838383");
+    drawCircle(this.rad * 0.65, this.rad * 0.55, this.rad * 0.1, "#555555");
+    drawCircle(this.rad * -0.4, this.rad * 0.75, this.rad * 0.12, "#555555");
+    drawCircle(this.rad * -0.65, this.rad * 0.55, this.rad * 0.1, "#838383");
+      }
   } else if (this.animalType == a_trex) {
     ctx.save();
     ctx.globalAlpha = 0.2;
@@ -13544,7 +13429,7 @@ Animal.prototype.drawWhenUnderwater = function() {
 
 Animal.prototype.skinRad = 0;
 Animal.prototype.skinScale = 0;
-
+ 
 //just draw the circle, aside from all kinds of specific effects
 Animal.prototype.basicDrawSkinImg = function() {
   var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
@@ -13628,22 +13513,23 @@ Animal.prototype.drawOnTopOfSkinImg = function() {
     ctx.closePath();
     ctx.fill();
   }
+
 };
 
 //top layer, NOT ROTATED
 Animal.prototype.drawTopEffects = function() {
   //stun effect
-  if (this.animalType == a_giantSpider) {
+    if (this.animalType == a_giantSpider) {
     ctx.save();
 
-    var fac0to1 = ((timestamp - this.spawnTime) % 1000.0) / 1000.0;
+    var fac0to1 = (timestamp - this.spawnTime) % 1000.0/1000.0;
     var period = 0.75;
     var shiftAm = 1.0;
     var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
-    var x = 100;
-    var waveMoveTms = 1.0 * 1000; //ms to one full movement
-    var fac0to1 = ((timestamp - this.spawnTime) % waveMoveTms) / waveMoveTms;
-    var waveX = x + this.rad * 2 * fac0to1;
+    var x = 100
+    var waveMoveTms=1.0*1000; //ms to one full movement
+        var fac0to1 = (timestamp - this.spawnTime) % waveMoveTms /waveMoveTms;
+        var waveX= x + this.rad * 2  * (fac0to1);
 
     var theA = 1;
     ctx.globalAlpha *= 0.8 - 0.2 * moveA;
@@ -13838,6 +13724,7 @@ Animal.prototype.drawTopEffects = function() {
 
   /// alkdjflkdjfsd
 
+
   //frozen effect 2 (circles)
   if (this.frozenEffA > 0.01 && this.flag_eff_frozen) {
     ctx.save();
@@ -13898,6 +13785,7 @@ Animal.prototype.drawTopEffects = function() {
     drawCircle(0, 0, Math.max(0, this.rad - this.outlineW), "#ef24ed");
     ctx.restore();
   }
+ 
 
   //healing effect purple 'glow'
   if (this.effA_hot > 0.01) {
@@ -13946,6 +13834,7 @@ Animal.prototype.drawTopEffects = function() {
     drawCircle(0, 0, Math.max(0, this.rad - this.outlineW), "#9FDA00");
     ctx.restore();
   }
+ 
 
   var idealOp = this.flag_eff_bleeding ? 0.8 : 0.0;
   this.effA_bleeding += (idealOp - this.effA_bleeding) * 0.1;
@@ -14024,6 +13913,7 @@ Animal.prototype.drawTopEffects = function() {
 
   //ice sliding effect
 
+
   //web stuck
   var idealOp = this.flag_webStuck ? 1.0 : 0.0;
   this.effA_webStuck += (idealOp - this.effA_webStuck) * 0.02;
@@ -14053,7 +13943,7 @@ Animal.prototype.drawTopEffects = function() {
     ctx.globalAlpha *= effectN * this.effA_constricted;
 
     var skinFolder = "img";
-
+   
     var theImg = getLoadedImg(skinFolder + "/constrict.png");
     if (theImg) {
       var rad = this.rad * 1.3;
@@ -14064,7 +13954,7 @@ Animal.prototype.drawTopEffects = function() {
     ctx.restore();
   }
 };
-
+ 
 //returns the name of the main skin img to draw
 Animal.prototype.getSkinName = function() {
   var skinName = this.skinImgName;
@@ -14080,11 +13970,12 @@ Animal.prototype.getSkinName = function() {
     case a_boaConstrictor:
     case a_hedgehog:
       var skinFolder = "";
-
+      
       if (this.flag_usingAbility) skinName = skinFolder + skinName + "2";
       break;
-
-    /*
+ 
+      
+      /*
           case a_pelican:
             skinName = skinName + (this.specType == 0 ? "" : this.specType);
             break;
@@ -14112,9 +14003,12 @@ Animal.prototype.getSkinName = function() {
     if (this.animalType == a_duck || this.animalType == a_blackDragon)
       skinName = "flying_" + skinName;
   }
+              
+            
 
   return skinName;
 };
+  
 
 Animal.prototype.setObjTypes = function(oType, secondaryType) {
   this.oType = oType;
@@ -14128,77 +14022,89 @@ Animal.prototype.readCustomData_onNewlyVisible = function(msg) {
   //read custom data here!
   //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
   //var animtype = msg.readUInt8();
-  //  console.log(msg)
+//  console.log(msg)
   var nickName = msg.readString();
   // read which speices is this animal
   this.animalSpecies = msg.readUInt8();
   if (gameMode == gameMode_teamMode) this.teamID = msg.readUInt8();
-  var nw_colorname = msg.readUInt8();
-  switch (nw_colorname) {
-    case 1:
+   var nw_colorname = msg.readUInt8();
+  switch(nw_colorname) {
+   case 1:
       {
-        this.nickTXTcolor = "#FFFFFF";
+        this.nickTXTcolor = '#FFFFFF'
+        
       }
       break;
     case 2:
       {
-        this.nickTXTcolor = "#FB3900";
+        this.nickTXTcolor = '#FB3900'
+        
       }
       break;
-    case 3:
+       case 3:
       {
-        this.nickTXTcolor = "#7D00CF";
+        this.nickTXTcolor = '#7D00CF'
+        
+      }
+       break;
+       case 4:
+      {
+        this.nickTXTcolor = '#00FFF0'
+        
+      }
+       break;
+        case 5:
+      {
+        this.nickTXTcolor = '#11ff00'
+        
       }
       break;
-    case 4:
+      case 6:
       {
-        this.nickTXTcolor = "#00FFF0";
-      }
-      break;
-    case 5:
-      {
-        this.nickTXTcolor = "#11ff00";
-      }
-      break;
-    case 6:
-      {
-        this.nickTXTcolor = "#ffec00";
+        this.nickTXTcolor = '#ffec00'
+
       }
 
       break;
-    case 7:
+        case 7:
       {
-        this.nickTXTcolor = "#9300ff";
+        this.nickTXTcolor = '#9300ff'
+
       }
 
       break;
-    case 8:
+        case 8:
       {
-        this.nickTXTcolor = "#ff00fb";
+        this.nickTXTcolor = '#ff00fb'
+
       }
 
       break;
-    case 9:
+        case 9:
       {
-        this.nickTXTcolor = "#00ff93";
+        this.nickTXTcolor = '#00ff93'
+
       }
 
       break;
-    case 10:
+        case 10:
       {
-        this.nickTXTcolor = "#ff003a";
+        this.nickTXTcolor = '#ff003a'
+
       }
 
       break;
-    case 11:
+        case 11:
       {
-        this.nickTXTcolor = "#000000";
+        this.nickTXTcolor = '#000000'
+
       }
 
+      
       break;
   }
   //this.animalType = animtype; //animal type
-  this.setNick(nickName ? nickName : "mopesandbox1.glitch.me/mope/");
+  this.setNick(nickName ? nickName : "mope2.io/1v1");
 
   //console.log("Animal custom data read, id "+this.id+", animalType "+animtype);
 };
@@ -14215,11 +14121,12 @@ Animal.prototype.readCustomData_onUpdate = function(msg) {
 
   var lookAng = msg.readUInt8() * 2.0;
   this.currentangle = lookAng;
-  // console.log("angle2: " + lookAng);
+ // console.log("angle2: " + lookAng);
   var goalAngle = toRadians(lookAng + 90); //90 offset due to client drawing setup  heree
 
-  var myangle = toDegrees(this.angle) - 90;
-
+  var myangle = toDegrees(this.angle ) - 90
+  
+  
   this.angleDelta = distBetweenAngles(this.angle, goalAngle);
   this.oAngle = this.angle;
   if (this.firstPosUpd) {
@@ -14228,68 +14135,70 @@ Animal.prototype.readCustomData_onUpdate = function(msg) {
     this.angleDelta = 0;
   }
   //console.log(this.specType, this.specType2, lookAng)
-  var aniFlags = [];
+  var aniFlags = []
   //console.log(this.specType, this.specType2, lookAng)
-  aniFlags = Array.apply(null, new Array(50)).map(Number.prototype.valueOf, 0);
-  var cnt = msg.readUInt8();
+    aniFlags= Array.apply(null, new Array(50)).map(
+            Number.prototype.valueOf,
+            0
+          );
+        var cnt = msg.readUInt8() 
 
-  for (var J = 0; J < cnt; J++) {
-    var newflag = msg.readUInt8();
-    aniFlags.push(newflag); //mark as true (dangerous)
-  }
+for (var J = 0; J < cnt; J++) {
+  var newflag = msg.readUInt8()  
+  aniFlags.push(newflag) //mark as true (dangerous)
 
+}
+ 
   this.curBiome = 0;
-  if (aniFlags.includes(1)) {
-    this.curBiome = 1;
-  } else if (aniFlags.includes(2)) {
-    this.curBiome = 2;
-  } else if (aniFlags.includes(25)) {
-    this.curBiome = 3;
-  }
-  this.flag_lowWat = aniFlags.includes(3);
-  this.flag_inHomeBiome = aniFlags.includes(4);
-  this.flag_underWater = aniFlags.includes(5);
-  this.flag_eff_invincible = aniFlags.includes(6);
-  this.flag_usingAbility = aniFlags.includes(7);
-  this.flag_tailBitten = aniFlags.includes(8);
-  this.flag_eff_stunned = aniFlags.includes(9);
-  this.flag_iceSliding = aniFlags.includes(10);
-  this.flag_eff_frozen = aniFlags.includes(11);
-  this.flag_eff_onFire = aniFlags.includes(12);
-  this.flag_eff_healing = aniFlags.includes(13);
-  this.flag_eff_poison = aniFlags.includes(14);
-  this.flag_constricted = aniFlags.includes(15);
-  this.flag_webStuck = aniFlags.includes(16);
-  this.flag_stealth = aniFlags.includes(17);
-  this.flag_eff_bleeding = aniFlags.includes(18);
-  this.flag_flying = aniFlags.includes(19);
-  this.flag_isGrabbed = aniFlags.includes(20);
-  this.flag_eff_aniInClaws = aniFlags.includes(21);
-  this.flag_eff_stunk = aniFlags.includes(22);
-  this.flag_cold = aniFlags.includes(23);
-  this.flag_inWater = aniFlags.includes(24);
-  this.flag_inLava = aniFlags.includes(25);
-  this.flag_canClimbHill = aniFlags.includes(26);
-  this.flag_isDevMode = aniFlags.includes(27);
-  this.flag_eff_slimed = aniFlags.includes(28);
-  this.flag_eff_wobbling = aniFlags.includes(29);
-  this.flag_eff_hot = aniFlags.includes(30);
-  this.flag_inDesert = aniFlags.includes(31);
+  if(aniFlags.includes(1)){this.curBiome = 1} else if(aniFlags.includes(2)){this.curBiome = 2}else if(aniFlags.includes(25)){this.curBiome = 3}
+  this.flag_lowWat = aniFlags.includes(3)
+  this.flag_inHomeBiome = aniFlags.includes(4)
+  this.flag_underWater = aniFlags.includes(5)
+  this.flag_eff_invincible = aniFlags.includes(6)
+  this.flag_usingAbility = aniFlags.includes(7)
+  this.flag_tailBitten = aniFlags.includes(8)
+  this.flag_eff_stunned = aniFlags.includes(9)
+  this.flag_iceSliding = aniFlags.includes(10)
+  this.flag_eff_frozen = aniFlags.includes(11)
+  this.flag_eff_onFire = aniFlags.includes(12)
+  this.flag_eff_healing = aniFlags.includes(13)
+  this.flag_eff_poison = aniFlags.includes(14)
+  this.flag_constricted = aniFlags.includes(15)
+  this.flag_webStuck = aniFlags.includes(16)
+  this.flag_stealth = aniFlags.includes(17)
+  this.flag_eff_bleeding = aniFlags.includes(18)
+  this.flag_flying = aniFlags.includes(19)
+  this.flag_isGrabbed = aniFlags.includes(20)
+  this.flag_eff_aniInClaws = aniFlags.includes(21)
+  this.flag_eff_stunk = aniFlags.includes(22)
+  this.flag_cold = aniFlags.includes(23)
+  this.flag_inWater = aniFlags.includes(24)
+  this.flag_inLava = aniFlags.includes(25)
+  this.flag_canClimbHill = aniFlags.includes(26)
+  this.flag_isDevMode = aniFlags.includes(27)
+  this.flag_eff_slimed = aniFlags.includes(28)
+  this.flag_eff_wobbling = aniFlags.includes(29)
+  this.flag_eff_hot = aniFlags.includes(30)
+ this.flag_inDesert = aniFlags.includes(31)
+  
+   
+    this.flag_can1v1 =  aniFlags.includes(32)
+ 
+    this.flag_isInArena = aniFlags.includes(33)
+     this.isAbility1v1Active = aniFlags.includes(34)
+  this.flag_eff_shivering = aniFlags.includes(35)
+    this.wins1v1 = msg.readUInt8();
 
-  this.flag_can1v1 = aniFlags.includes(32);
 
-  this.flag_isInArena = aniFlags.includes(33);
-  this.isAbility1v1Active = aniFlags.includes(34);
-  this.flag_eff_shivering = aniFlags.includes(35);
-  this.wins1v1 = msg.readUInt8();
 
-  if (this.isAbility1v1Active && this.flag_can1v1) {
-    var wins = "\n(wins:" + this.wins1v1 + ")";
-    this.nickTXT.setText(this.nickName + wins);
-    this.winsAddedInNick = true;
-  } else if (this.winsAddedInNick) {
-    this.winsAddedInNick = true;
-    this.nickTXT.setText(this.nickName);
+    if (this.isAbility1v1Active && this.flag_can1v1) {
+      var wins = "\n(wins:" + this.wins1v1 + ")";
+      this.nickTXT.setText(this.nickName + wins);
+      this.winsAddedInNick = true;
+    } else if (this.winsAddedInNick) {
+      this.winsAddedInNick = false;
+      this.nickTXT.setText(this.nickName);
+    
   }
   //}
 };
@@ -14300,36 +14209,45 @@ function Animal(oType, secondaryType) {
 
   this.animalType = secondaryType; //works for manually created objs
   //console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Animal constructor run, id "+this.id);
+ 
 }
 
 window.Animal = Animal; //make class global!
 
+
 //add this class as a thisClass for the right oType!
 GameObjType.setCustomClassForGameObjType(Animal, o_animal);
+
+
 
 ///////
 // file: js_src/gameobj/SpiderWeb.js
 ///////
 
+
 var superClass = GameObj;
 SpiderWeb.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 SpiderWeb.prototype.constructor = SpiderWeb;
-SpiderWeb.superClass = superClass; //'class' var
+SpiderWeb.superClass=superClass; //'class' var
+
 
 SpiderWeb.prototype.updateZ = function() {
-  this.z = 1002;
-};
+    this.z = 1002;
+}
 
 //custom data for this class (must be matched by server-side write of this data!)
 SpiderWeb.prototype.readCustomData_onUpdate = function(msg) {
+
   this.webTransparency = this.specType = msg.readUInt8();
-};
+
+}
 
 //override draw (things like other effects are drawn seperately)
-SpiderWeb.prototype.customDraw = function(batchDrawOutline) {
+SpiderWeb.prototype.customDraw = function(batchDrawOutline){
   ctx.save();
 
   ctx.globalAlpha *= (this.specType / 100.0) * 0.9; //web opacity param
+
 
   var theImg = getLoadedImg("img/spiderWeb.png");
   if (theImg) {
@@ -14338,25 +14256,28 @@ SpiderWeb.prototype.customDraw = function(batchDrawOutline) {
     ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
   }
   ctx.restore();
-};
+}
 
 //custom data for this class (must be matched by server-side write of this data!)
 SpiderWeb.prototype.readCustomData_onNewlyVisible = function(msg) {
-  this.webTransparency = this.specType = msg.readUInt8();
-};
 
-function SpiderWeb() {
+  this.webTransparency = this.specType = msg.readUInt8();
+}
+
+function SpiderWeb(){
   SpiderWeb.superClass.call(this, o_spiderWeb);
 
-  this.webTransparency = 0;
+  this.webTransparency=0;
 
   //set vars for this class
-  this.doesDrawEffectScale = true;
-  this.drawEffectScale_Slow = true;
+  this.doesDrawEffectScale=true;
+  this.drawEffectScale_Slow=true;
+
 }
-window.SpiderWeb = SpiderWeb;
+window.SpiderWeb=SpiderWeb;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SpiderWeb, o_spiderWeb);
+
 
 ///////
 // file: js_src/gameobj/animal/Kingdragon.js
@@ -14365,29 +14286,27 @@ var superClass = Animal;
 KingDragon.prototype = Object.create(superClass.prototype);
 KingDragon.prototype.constructor = KingDragon;
 KingDragon.superClass = superClass;
-KingDragon.prototype.updateZ = function() {
-  this.z = 10000;
+KingDragon.prototype.updateZ = function () {
+    this.z = 10000;
 };
 KingDragon.prototype.canUseTailslap = true;
 KingDragon.prototype.tailState = 0;
-KingDragon.prototype.getSkinName = function() {
-  return "kingdragon/" + this.animalSpecies + "/kingdragon_body";
+KingDragon.prototype.getSkinName = function () {
+  
+    return 'kingdragon/'+this.animalSpecies +'/kingdragon_body';
 };
-KingDragon.prototype.readCustomData_onNewlyVisible = function(_0x103094) {
-  KingDragon.superClass.prototype.readCustomData_onNewlyVisible.call(
-    this,
-    _0x103094
-  );
-  this.readInfo(_0x103094);
+KingDragon.prototype.readCustomData_onNewlyVisible = function (_0x103094) {
+    KingDragon.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x103094);
+    this.readInfo(_0x103094);
 };
-KingDragon.prototype.readInfo = function(msg) {
-  this.lava = msg.readUInt8();
-  this.canUseTailslap = msg.readUInt8();
-  this.tailState = msg.readUInt16() / 100;
+KingDragon.prototype.readInfo = function (msg) {
+    this.lava = msg.readUInt8();
+    this.canUseTailslap = msg.readUInt8();
+    this.tailState = msg.readUInt16() / 100;
 };
-KingDragon.prototype.readCustomData_onUpdate = function(msg) {
-  KingDragon.superClass.prototype.readCustomData_onUpdate.call(this, msg);
-  this.readInfo(msg);
+KingDragon.prototype.readCustomData_onUpdate = function (msg) {
+    KingDragon.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+    this.readInfo(msg);
 };
 KingDragon.prototype.leftWingAnim = null;
 KingDragon.prototype.flapAngleDiff = 3;
@@ -14395,282 +14314,130 @@ KingDragon.prototype.flapAngle = 3;
 KingDragon.prototype.flapF = 0.1;
 KingDragon.prototype.flapDur = 2;
 KingDragon.prototype.sF = 0.02;
-KingDragon.prototype.drawWings = function() {
-  null == this.leftWingAnim &&
-    ((this.leftWingAnim = new _0x1abe2b(
-      this,
-      this.flapDur,
-      _0x1abe2b.wave,
-      {
-        v1: 0x5
-      },
-      true
-    )),
-    (this.leftWingAnim.keepLastFrame = true),
-    (this.leftWingAnim.loop = true),
-    (this.leftWingAnim.onFrameEntered = function(_0x1596df) {
-      this.forObj.frame1 = _0x1596df;
-    }));
-  null != this.leftWingAnim && this.leftWingAnim.run();
-  var _0x1b9acd = this.rad - this.outlineW,
-    _0x2103bb = this.frame1 * this.sF * _0x1b9acd,
-    _0x57c54 = -(-this.flapF + this.frame1) * toRadians(this.flapAngle),
-    _0x5051cd = 1.4705882352941,
-    _0x303fb8 = getLoadedImg(
-      "skins/kingdragon/" + this.animalSpecies + "/left_wing.png"
-    ),
-    _0x13450c = getLoadedImg(
-      "skins/kingdragon/" + this.animalSpecies + "/right_wing.png"
-    );
-  _0x303fb8 &&
-    _0x13450c &&
-    (ctx.save(),
-    ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
-    ctx.drawImage(
-      _0x303fb8,
-      -_0x1b9acd * _0x5051cd,
-      -_0x1b9acd * _0x5051cd + _0x2103bb,
-      2 * _0x1b9acd * _0x5051cd,
-      2 * _0x1b9acd * _0x5051cd + 1.5 * _0x2103bb
-    ),
-    ctx.restore(),
-    ctx.save(),
-    ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
-    ctx.drawImage(
-      _0x13450c,
-      -_0x1b9acd * _0x5051cd,
-      -_0x1b9acd * _0x5051cd + _0x2103bb,
-      2 * _0x1b9acd * _0x5051cd,
-      2 * _0x1b9acd * _0x5051cd + 1.5 * _0x2103bb
-    ),
-    ctx.restore(),
-    4 == this.animalSpecies &&
-      ((_0x303fb8 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1)),
-      ctx.save(),
-      (ctx.globalAlpha = Math.max(0, _0x303fb8)),
-      (_0x303fb8 = getLoadedImg(
-        "skins/kingdragon/" + this.animalSpecies + "/left_wing_tips.png"
-      )),
-      (_0x13450c = getLoadedImg(
-        "skins/kingdragon/" + this.animalSpecies + "/right_wing_tips.png"
-      )),
-      _0x303fb8 &&
-        _0x13450c &&
-        (ctx.save(),
-        ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
-        ctx.drawImage(
-          _0x303fb8,
-          -_0x1b9acd * _0x5051cd,
-          -_0x1b9acd * _0x5051cd + _0x2103bb,
-          2 * _0x1b9acd * _0x5051cd,
-          2 * _0x1b9acd * _0x5051cd + 1.5 * _0x2103bb
-        ),
-        ctx.restore(),
-        ctx.save(),
-        ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
-        ctx.drawImage(
-          _0x13450c,
-          -_0x1b9acd * _0x5051cd,
-          -_0x1b9acd * _0x5051cd + _0x2103bb,
-          2 * _0x1b9acd * _0x5051cd,
-          2 * _0x1b9acd * _0x5051cd + 1.5 * _0x2103bb
-        ),
-        ctx.restore()),
-      ctx.restore()));
-  _0x303fb8 = this.lava;
-  if (50 > _0x303fb8) {
-    var _0x303fb8 = _0x303fb8 / 50,
-      _0x13450c = getLoadedImg(
-        "skins/kingdragon/" + this.animalSpecies + "/left_wing1.png"
-      ),
-      _0x67aef9 = getLoadedImg(
-        "skins/kingdragon/" + this.animalSpecies + "/right_wing2.png"
-      );
-    _0x13450c &&
-      _0x67aef9 &&
-      (ctx.save(),
-      (ctx.globalAlpha = 1 - _0x303fb8),
-      ctx.save(),
-      ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
-      ctx.drawImage(
-        _0x13450c,
-        -_0x1b9acd * _0x5051cd,
-        -_0x1b9acd * _0x5051cd + _0x2103bb,
-        2 * _0x1b9acd * _0x5051cd,
-        2 * _0x1b9acd * _0x5051cd + 1.5 * _0x2103bb
-      ),
-      ctx.restore(),
-      ctx.save(),
-      ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
-      ctx.drawImage(
-        _0x67aef9,
-        -_0x1b9acd * _0x5051cd,
-        -_0x1b9acd * _0x5051cd + _0x2103bb,
-        2 * _0x1b9acd * _0x5051cd,
-        2 * _0x1b9acd * _0x5051cd + 1.5 * _0x2103bb
-      ),
-      ctx.restore(),
-      ctx.restore());
-  }
+KingDragon.prototype.drawWings = function () {
+    null == this.leftWingAnim && (this.leftWingAnim = new _0x1abe2b(this, this.flapDur, _0x1abe2b.wave,{
+            'v1': 0x5
+        },true), this.leftWingAnim.keepLastFrame = true, this.leftWingAnim.loop = true, this.leftWingAnim.onFrameEntered = function (_0x1596df) {
+        this.forObj.frame1 = _0x1596df;
+    });
+    null != this.leftWingAnim && this.leftWingAnim.run();
+    var _0x1b9acd = this.rad - this.outlineW,
+        _0x2103bb = this.frame1 * this.sF * _0x1b9acd,
+        _0x57c54 = -(-this.flapF + this.frame1) * toRadians(this.flapAngle),
+        _0x5051cd = 1.4705882352941,
+        _0x303fb8 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing.png'),
+        _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing.png');
+    _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
+              ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 *_0x2103bb),
+                               ctx.restore(),
+                               ctx.save(),
+                               ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)),
+                               ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), 
+                               ctx.restore(), 
+                               4 == this.animalSpecies && (_0x303fb8 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1), 
+                                                           ctx.save(), 
+                                                           ctx.globalAlpha = Math.max(0, _0x303fb8),
+                                                           _0x303fb8 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing_tips.png'),
+                                                           _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing_tips.png'),
+                                                           _0x303fb8 && _0x13450c && (ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54),
+                                                            ctx.drawImage(_0x303fb8, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd +1.5 * _0x2103bb),
+                                                                                      ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), ctx.restore()), ctx.restore()));
+    _0x303fb8 = this.lava;
+    if (50 > _0x303fb8) {
+        var _0x303fb8 = _0x303fb8 / 50,
+            _0x13450c = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/left_wing1.png'),
+            _0x67aef9 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/right_wing2.png');
+        _0x13450c && _0x67aef9 && (ctx.save(), ctx.globalAlpha = 1 - _0x303fb8, ctx.save(), ctx.rotate(toRadians(this.flapAngleDiff) + _0x57c54)
+                                   , ctx.drawImage(_0x13450c, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb)
+                                   , ctx.restore(), ctx.save(), ctx.rotate(-(toRadians(this.flapAngleDiff) + _0x57c54)), 
+                                   ctx.drawImage(_0x67aef9, -_0x1b9acd * _0x5051cd, -_0x1b9acd * _0x5051cd + _0x2103bb, 2 * _0x1b9acd * _0x5051cd, 2 * _0x1b9acd * _0x5051cd+ 1.5 * _0x2103bb), 
+                                   ctx.restore(), ctx.restore());
+    }
 };
-KingDragon.prototype.drawSkinCustomization = function() {
-  var _0x3659ec = 1.4705882352941,
-    _0x10a292 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1),
-    _0x3fb426 = getLoadedImg(
-      "skins/kingdragon/" + this.animalSpecies + "/nostrils.png"
-    );
-  if (_0x3fb426) {
-    ctx.save();
-    ctx.globalAlpha = (this.lava / 100) * Math.max(0, _0x10a292);
-    var _0x445d4d = this.rad - this.outlineW;
-    ctx.drawImage(
-      _0x3fb426,
-      -_0x445d4d * _0x3659ec,
-      -_0x445d4d * _0x3659ec,
-      2 * _0x445d4d * _0x3659ec,
-      2 * _0x445d4d * _0x3659ec
-    );
-    ctx.restore();
-  }
-  if (this.canUseTailslap) {
-    if (
-      (_0x3fb426 = getLoadedImg(
-        "skins/kingdragon/" + this.animalSpecies + "/bone2.png"
-      ))
-    )
-      ctx.save(),
-        (ctx.globalAlpha = Math.max(0.3, _0x10a292)),
-        (_0x445d4d = this.rad - this.outlineW),
-        ctx.drawImage(
-          _0x3fb426,
-          -_0x445d4d * _0x3659ec,
-          -_0x445d4d * _0x3659ec,
-          2 * _0x445d4d * _0x3659ec,
-          2 * _0x445d4d * _0x3659ec
-        ),
+KingDragon.prototype.drawSkinCustomization = function () {
+    var _0x3659ec = 1.4705882352941,
+        _0x10a292 = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1),
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/nostrils.png');
+    if (_0x3fb426) {
+        ctx.save();
+        ctx.globalAlpha = this.lava / 100 * Math.max(0, _0x10a292);
+        var _0x445d4d = this.rad - this.outlineW;
+        ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec);
         ctx.restore();
-  } else {
-    if (
-      (_0x10a292 = getLoadedImg(
-        "skins/kingdragon/" + this.animalSpecies + "/bone1.png"
-      ))
-    )
-      ctx.save(),
-        (ctx.globalAlpha = 1),
-        (_0x445d4d = this.rad - this.outlineW),
-        ctx.drawImage(
-          _0x10a292,
-          -_0x445d4d * _0x3659ec,
-          -_0x445d4d * _0x3659ec,
-          2 * _0x445d4d * _0x3659ec,
-          2 * _0x445d4d * _0x3659ec
-        ),
+    }
+    if (this.canUseTailslap) {
+        if (_0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone2.png')) ctx.save(), ctx.globalAlpha = Math.max(0.3, _0x10a292), _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
+    } else {
+        if (_0x10a292 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone1.png')) ctx.save(), ctx.globalAlpha = 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x10a292, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore();
+        _0x10a292 = 0;
+        0xb > this.tailState && 5 < this.tailState ? _0x10a292 = (this.tailState - 5) / 6 : 3 >= this.tailState && (_0x10a292 = this.tailState / 3);
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone3.png');
+        0xb > this.tailState && _0x3fb426 && (ctx.save(), ctx.globalAlpha = 5 < this.tailState ? 1 - _0x10a292 : 1, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore());
+        _0x3fb426 = getLoadedImg('skins/kingdragon/'+this.animalSpecies +'/bone2.png');
+        0x3 > this.tailState && _0x3fb426 && (ctx.save(), ctx.globalAlpha = 1 - _0x10a292, _0x445d4d = this.rad - this.outlineW, ctx.drawImage(_0x3fb426, -_0x445d4d * _0x3659ec, -_0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec, 2 * _0x445d4d * _0x3659ec), ctx.restore());
+    }
+    this.drawWings();
+};
+KingDragon.prototype.getSkinName = function () {
+        return './kingdragon/' + this.animalSpecies + '/kingdragon_body';
+    };
+KingDragon.prototype.drawLowWaterDrop = function () {
+    if (this.flag_lowWat) {
+        var _0x27f437 = 0.5 * (0.6),
+            _0x27f437 = 0.2 + _0x27f437 + _0x27f437 * Math.sin(2 * Math.PI / 1.2 * (timestamp / 1000));
+        ctx.save();
+        ctx.globalAlpha = _0x27f437;
+        ctx.fillStyle = _0x5a9265;
+        ctx.beginPath();
+        ctx.arc(0, this.rad + 5, 5, 0, 2 * Math.PI);
+        ctx.fill();
         ctx.restore();
-    _0x10a292 = 0;
-    0xb > this.tailState && 5 < this.tailState
-      ? (_0x10a292 = (this.tailState - 5) / 6)
-      : 3 >= this.tailState && (_0x10a292 = this.tailState / 3);
-    _0x3fb426 = getLoadedImg(
-      "skins/kingdragon/" + this.animalSpecies + "/bone3.png"
-    );
-    0xb > this.tailState &&
-      _0x3fb426 &&
-      (ctx.save(),
-      (ctx.globalAlpha = 5 < this.tailState ? 1 - _0x10a292 : 1),
-      (_0x445d4d = this.rad - this.outlineW),
-      ctx.drawImage(
-        _0x3fb426,
-        -_0x445d4d * _0x3659ec,
-        -_0x445d4d * _0x3659ec,
-        2 * _0x445d4d * _0x3659ec,
-        2 * _0x445d4d * _0x3659ec
-      ),
-      ctx.restore());
-    _0x3fb426 = getLoadedImg(
-      "skins/kingdragon/" + this.animalSpecies + "/bone2.png"
-    );
-    0x3 > this.tailState &&
-      _0x3fb426 &&
-      (ctx.save(),
-      (ctx.globalAlpha = 1 - _0x10a292),
-      (_0x445d4d = this.rad - this.outlineW),
-      ctx.drawImage(
-        _0x3fb426,
-        -_0x445d4d * _0x3659ec,
-        -_0x445d4d * _0x3659ec,
-        2 * _0x445d4d * _0x3659ec,
-        2 * _0x445d4d * _0x3659ec
-      ),
-      ctx.restore());
-  }
-  this.drawWings();
-};
-KingDragon.prototype.getSkinName = function() {
-  return "./kingdragon/" + this.animalSpecies + "/kingdragon_body";
-};
-KingDragon.prototype.drawLowWaterDrop = function() {
-  if (this.flag_lowWat) {
-    var _0x27f437 = 0.5 * 0.6,
-      _0x27f437 =
-        0.2 +
-        _0x27f437 +
-        _0x27f437 * Math.sin(((2 * Math.PI) / 1.2) * (timestamp / 1000));
-    ctx.save();
-    ctx.globalAlpha = _0x27f437;
-    ctx.fillStyle = _0x5a9265;
-    ctx.beginPath();
-    ctx.arc(0, this.rad + 5, 5, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.restore();
-  }
+    }
 };
 
-KingDragon.prototype.animalInfo = function() {
-  infoO = {};
-
-  switch (this.animalSpecies) {
-    case 0:
-      infoO.aniName = "King Dragon";
-      break;
-    case 1:
-      infoO.aniName = "Golden King Dragon";
-      break;
-    case 2:
-      infoO.aniName = "King Ripper";
-      break;
-    case 3:
-      infoO.aniName = "King Stan";
-      break;
-    case 4:
-      infoO.aniName = "King Shah";
-      break;
-    case 5:
-      infoO.aniName = "Queen Scarlet";
-      break;
-    case 6:
-      infoO.aniName = "Queen Celeste";
-      break;
-    case 69:
-      infoO.aniName = "King Crimson";
-      break;
-    case 200:
-      infoO.aniName = "Queen Flame";
-      break;
-  }
-  infoO.aniDesc = "";
-  infoO.upgradeText =
-    "UPGRADED to " +
-    infoO.aniName +
-    "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
-  infoO.aniCol = "black";
-  infoO.skinName = this.getSkinName();
-
-  return infoO;
+KingDragon.prototype.animalInfo = function () {
+     infoO = {};
+  
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'King Dragon';
+            break;
+        case 1:
+            infoO.aniName = 'Golden King Dragon';
+            break;
+        case 2:
+            infoO.aniName = 'King Ripper';
+            break;
+        case 3:
+            infoO.aniName = 'King Stan';
+            break;
+        case 4:
+            infoO.aniName = 'King Shah';
+            break;
+                  case 5:
+            infoO.aniName = 'Queen Scarlet';
+            break;
+                         case 6:
+            infoO.aniName = 'Queen Celeste';
+            break;
+                             case 69:
+            infoO.aniName = 'King Flame';
+            break;
+                               case 200:
+            infoO.aniName = 'Queen Flame';
+            break;
+        }
+            infoO.aniDesc = "";
+            infoO.upgradeText ='UPGRADED to ' + infoO.aniName +  "\nYou got firestream that burns your victim alive! Watch your tail and slap them hard.";
+            infoO.aniCol = "black";
+            infoO.skinName = this.getSkinName();
+          
+    return infoO;
 };
 
 function KingDragon() {
-  this.lava = 0;
-  KingDragon.superClass.call(this, o_animal);
+    this.lava = 0;
+    KingDragon.superClass.call(this, o_animal);
 }
 window.KingDragon = KingDragon;
 GameObjType.setCustomClassForGameObjType(KingDragon, o_animal, a_kingdragon);
@@ -14688,146 +14455,156 @@ Octopus.superClass = superClass; //'class' var
 }*/
 
 //custom data for this class (must be matched by server-side write of this data!)
-Octopus.prototype.readCustomData_onNewlyVisible = function(msg) {
-  Octopus.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call super
-  //
-};
+Octopus.prototype.readCustomData_onNewlyVisible = function (msg) {
+    Octopus.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg); //call super
+    //
+}
 
 //custom data for this class (must be matched by server-side write of this data!)
-Octopus.prototype.readCustomData_onUpdate = function(msg) {
-  Octopus.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call super
+Octopus.prototype.readCustomData_onUpdate = function (msg) {
+    Octopus.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call super
 
-  if (this.flag_usingAbility) {
-    var isAnim = msg.readUInt8() > 0;
-    var objOrAniT = msg.readUInt16();
-    //console.log(objOrAniT);
-    //check if it changed
-    if (
-      this.octoIsAnimal != isAnim ||
-      this.octoDisguiseObjT != objOrAniT ||
-      this.octoDrawObj == null
-    ) {
-      //needs to update inner obj that draws the disguise animal/food item
-      var theObjT = isAnim ? o_animal : objOrAniT;
-      var theAniT = isAnim ? objOrAniT : null;
-      //console.log("octo disguised as obj T "+theObjT+" aniT "+theAniT+" isAni? "+isAnim+" tPassed "+objOrAniT);
+    if (this.flag_usingAbility) {
+        var isAnim = msg.readUInt8() > 0;
+        var objOrAniT = msg.readUInt16();
+        //console.log(objOrAniT);
+        //check if it changed
+        if (this.octoIsAnimal != isAnim || this.octoDisguiseObjT != objOrAniT || this.octoDrawObj == null) {
 
-      //makes sure the correct subclass is used as well:)
-      var octoObj = GameObjType.createGameObjOfOType(theObjT, theAniT);
-      if (isAnim)
-        //animals need aniType set explicitely
-        octoObj.animalType = theAniT;
-      //this obj will stay at x/y 0,0
-      octoObj.oRad = this.oRad;
-      octoObj.nRad = this.nRad;
-      octoObj.curBiome = this.curBiome; // biome_ocean;
+            //needs to update inner obj that draws the disguise animal/food item
+            var theObjT = isAnim ? o_animal : objOrAniT;
+            var theAniT = isAnim ? objOrAniT : null;
+            //console.log("octo disguised as obj T "+theObjT+" aniT "+theAniT+" isAni? "+isAnim+" tPassed "+objOrAniT);
 
-      this.octoDrawObj = octoObj;
+
+            //makes sure the correct subclass is used as well:)
+            var octoObj = GameObjType.createGameObjOfOType(theObjT, theAniT);
+            if (isAnim) //animals need aniType set explicitely
+                octoObj.animalType = theAniT;
+            //this obj will stay at x/y 0,0
+            octoObj.oRad = this.oRad;
+            octoObj.nRad = this.nRad;
+            octoObj.curBiome = this.curBiome;// biome_ocean;
+
+            this.octoDrawObj = octoObj;
+        }
+        this.octoIsAnimal = isAnim;
+        this.octoDisguiseObjT = objOrAniT;
+
     }
-    this.octoIsAnimal = isAnim;
-    this.octoDisguiseObjT = objOrAniT;
-  }
-};
+
+}
 
 //Octopus drawing (split into methods since animals are more complex)
 
 //lowest, under the green/red outline (draw first)
-Octopus.prototype.drawUnderSkinImgOutline = function() {
-  Octopus.superClass.prototype.drawUnderSkinImgOutline.call(this);
-};
+Octopus.prototype.drawUnderSkinImgOutline = function () {
+    Octopus.superClass.prototype.drawUnderSkinImgOutline.call(this);
+}
 //drawn right before skin image
-Octopus.prototype.drawUnderSkinImg = function() {
-  Octopus.superClass.prototype.drawUnderSkinImg.call(this);
-  //eg. draw frog legs image that will be UNDER the skin
-};
-Octopus.prototype.drawOnTopOfSkinImg = function() {
-  Octopus.superClass.prototype.drawOnTopOfSkinImg.call(this); //call super to draw eg. glow effects
-  //eg. draw yeti snowball, octopus
+Octopus.prototype.drawUnderSkinImg = function () {
+    Octopus.superClass.prototype.drawUnderSkinImg.call(this);
+    //eg. draw frog legs image that will be UNDER the skin
+}
+Octopus.prototype.drawOnTopOfSkinImg = function () {
+    Octopus.superClass.prototype.drawOnTopOfSkinImg.call(this); //call super to draw eg. glow effects
+    //eg. draw yeti snowball, octopus
 
-  //octopus effect
-  if (this.flag_usingAbility) {
-    ctx.save();
-    ctx.globalAlpha = 1.0 - this.underwaterA;
 
-    //for certain obj types, set a fixed rad size
-    if (this.octoDisguiseObjT == o_bigMushroom) {
-      //this.octoDrawObj.type=a_shrimp;
-      this.octoDrawObj.nRad = 25.0;
-    } else if (this.octoDisguiseObjT == o_plankton) {
-      //this.octoDrawObj.type=a_shrimp;
-      this.octoDrawObj.nRad = 17.0;
-    } else if (this.octoDisguiseObjT == o_healingStone) {
-      //this.octoDrawObj.type=a_shrimp;
-      this.octoDrawObj.nRad = 15.0;
-    } else this.octoDrawObj.nRad = this.rad;
+    //octopus effect
+    if (this.flag_usingAbility) {
 
-    if (this.octoDisguiseObjT == o_hill) {
-      console.log("Octo is hill now!");
+        ctx.save();
+        ctx.globalAlpha = 1.0 - this.underwaterA;
+
+        //for certain obj types, set a fixed rad size
+        if (this.octoDisguiseObjT == o_bigMushroom) {
+            //this.octoDrawObj.type=a_shrimp;
+            this.octoDrawObj.nRad = 25.0;
+        } else if (this.octoDisguiseObjT == o_plankton) {
+            //this.octoDrawObj.type=a_shrimp;
+            this.octoDrawObj.nRad = 17.0;
+        } else if (this.octoDisguiseObjT == o_healingStone) {
+            //this.octoDrawObj.type=a_shrimp;
+            this.octoDrawObj.nRad = 15.0;
+        }
+        else
+            this.octoDrawObj.nRad = this.rad;
+
+        if (this.octoDisguiseObjT == o_hill) {
+            console.log("Octo is hill now!");
+        }
+
+        this.octoDrawObj.draw();
+
+        ctx.restore();
     }
+}
+Octopus.prototype.drawWhenUnderwater = function () {
+    Octopus.superClass.prototype.drawWhenUnderwater.call(this);
+    //draw shark fin, etc
 
-    this.octoDrawObj.draw();
-
-    ctx.restore();
-  }
-};
-Octopus.prototype.drawWhenUnderwater = function() {
-  Octopus.superClass.prototype.drawWhenUnderwater.call(this);
-  //draw shark fin, etc
-
-  //drawCircle(0, this.rad * 0.2, this.rad * 0.12, "blue");
-};
+    //drawCircle(0, this.rad * 0.2, this.rad * 0.12, "blue");
+}
 
 //custom class variables
 Octopus.prototype.octoDisguiseObjT = 0;
 Octopus.prototype.octoIsAnimal = false;
 //custom data for this class (must be matched by server-side write of this data!)
-Octopus.prototype.drawHealthBar = function() {
-  if (this.flag_usingAbility) {
-    if (this.octoIsAnimal) {
-      Octopus.superClass.prototype.drawNickName.call(this, 1);
-      this.octoDrawObj.curBiome = this.curBiome; // biome_ocean;
-      this.hpPer_n = 2;
-      this.hpPer = 25;
-      this.hpBarA = 1;
-    } else return;
-  }
+Octopus.prototype.drawHealthBar = function () {
+    if (this.flag_usingAbility) {
 
-  ctx.save();
-  //ease vars
-  var hpBarA_n = timestamp < this.hpBarTimeoutT ? 1.0 : 0.0;
-  this.hpBarA += (hpBarA_n - this.hpBarA) * 0.04;
+        if (this.octoIsAnimal) {
+            Octopus.superClass.prototype.drawNickName.call(this, 1);
+            this.octoDrawObj.curBiome = this.curBiome;// biome_ocean;
+            this.hpPer_n = 2;
+            this.hpPer = 25;
+            this.hpBarA = 1;
+        }
+        else
+            return;
+    }
 
-  if (this.hpBarA > 0.001) {
-    this.hpPer += (this.hpPer_n - this.hpPer) * 0.1;
+    ctx.save();
+    //ease vars
+    var hpBarA_n = (timestamp < this.hpBarTimeoutT ? 1.0 : 0.0);
+    this.hpBarA += (hpBarA_n - this.hpBarA) * 0.04;
 
-    //draw bar
-    var eyeS = Math.max(1.0, this.rad / 25.0);
-    var barW = 20.0 * eyeS,
-      barH = 5 * eyeS;
-    var bx = 0,
-      by = -this.rad - 10 * eyeS;
-    ctx.globalAlpha *= this.hpBarA; //bar bg
-    ctx.fillStyle = "rgba(0,0,0,0.35)";
-    ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
 
-    //ctx.globalAlpha = this.hpBarA * f;
-    ctx.fillStyle = "#16D729"; //bar fill
-    var width = barW * (this.hpPer / 100.0);
-    if (this.flag_usingAbility && this.octoIsAnimal)
-      width = barW * (25 / 100.0);
+    if (this.hpBarA > 0.001) {
+        this.hpPer += (this.hpPer_n - this.hpPer) * 0.1;
 
-    ctx.fillRect(bx - barW / 2, by - barH / 2, width, barH);
-  }
-  ctx.restore(); //restore from fade
-};
+        //draw bar
+        var eyeS = Math.max(1.0, this.rad / 25.0);
+        var barW = 20.0 * eyeS,
+          barH = 5 * eyeS;
+        var bx = 0,
+          by = -this.rad - 10 * eyeS;
+        ctx.globalAlpha *= this.hpBarA; //bar bg
+        ctx.fillStyle = "rgba(0,0,0,0.35)";
+        ctx.fillRect(bx - barW / 2, by - barH / 2, barW, barH);
+
+        //ctx.globalAlpha = this.hpBarA * f;
+        ctx.fillStyle = "#16D729"; //bar fill
+        var width = barW * (this.hpPer / 100.0)
+        if (this.flag_usingAbility && this.octoIsAnimal)
+            width = barW * (25 / 100.0)
+
+
+        ctx.fillRect(bx - barW / 2, by - barH / 2, width, barH);
+    }
+    ctx.restore(); //restore from fade
+}
 
 //set custom skin name
-Octopus.prototype.getSkinName = function() {
-  return "octopus"; // without .png (/skins/ * .png)
-};
+Octopus.prototype.getSkinName = function () {
+    return "octopus";// without .png (/skins/ * .png)
+}
+
 
 function Octopus() {
-  Octopus.superClass.call(this, o_animal);
+    Octopus.superClass.call(this, o_animal);
+
 }
 window.Octopus = Octopus;
 //add this file as a class! (make sure to call require!)
@@ -14839,372 +14616,188 @@ var superClass = Animal;
 GiantScorpion.prototype = Object.create(superClass.prototype);
 GiantScorpion.prototype.constructor = GiantScorpion;
 GiantScorpion.superClass = superClass;
-GiantScorpion.prototype.updateZ = function() {
-  this.z = this.flag_underWater
-    ? -100
-    : this.flag_isInArena
-    ? (this.z = 1000)
-    : (this.z = 1500 + this.rad);
+GiantScorpion.prototype.updateZ = function () {
+    this.z = this.flag_underWater ? -100 : this.flag_isInArena ? this.z = 1000 :  this.z =(1500 + this.rad);
 };
-GiantScorpion.prototype.animalInfo = function() {
-  var InfoO = {};
-  switch (this.animalSpecies) {
-    case 0:
-      InfoO.aniName = "Giant Scorpion";
-      break;
-    case 1:
-      InfoO.aniName = "Golden Scorpion";
-      break;
-    case 2:
-      InfoO.aniName = "Carnelian Scorpion";
-  }
-
-  InfoO.aniCol = "#FF9000";
-  InfoO.skinName = "desert/" + this.animalSpecies + "/scorpion";
-  InfoO.upgradeText =
-    "UPGRADED to " +
-    InfoO.aniName +
-    "\nSting and Shiver your prey to death.\n(Press W to Sting)";
-  return InfoO;
-};
-
-GiantScorpion.prototype.getSkinName = function() {
-  var _0x403b22 = "/desert/giantscorpion/" + this.animalSpecies + "/scorpion";
-  return (_0x403b22 += 0 == this.specType ? "" : this.specType);
-};
-GiantScorpion.prototype.stingerScaleF = 0.7;
-GiantScorpion.prototype.stingerOffsetY = -0.6;
-GiantScorpion.prototype.poison = 50;
-GiantScorpion.prototype.clawAnimation = null;
-GiantScorpion.prototype.stingAnimation = null;
-GiantScorpion.prototype.stingerTailNormal = null;
-GiantScorpion.prototype.stingerTail = null;
-GiantScorpion.prototype.stingerAttack = null;
-GiantScorpion.prototype.stingerAttackFull = null;
-GiantScorpion.prototype.stingerNormal = null;
-GiantScorpion.prototype.stingerNormalFull = null;
-GiantScorpion.prototype.isUsingAbility = true;
-GiantScorpion.prototype.drawSkinCustomization = function() {
-  if (
-    this.specType2 != 1 &&
-    !this.flag_underWater &&
-    null != this.stingerTailNormal &&
-    null != this.stingerNormalFull
-  ) {
-    var _0x58c1e0 = this.skinScale * this.stingerScaleF,
-      _0x24402d = this.skinRad,
-      _0x2a5db0 = (timestamp - this.spawnTime) / 1000,
-      _0x1946d3 = getAnimFrame(_0x2a5db0, 1.5, 3, 2),
-      _0x2f7996 = getAnimFrame(_0x2a5db0, 1.5, 1, 2);
-    ctx.save();
-    _0x24402d = this.rad - 0.5 * _0x1946d3;
-    ctx.drawImage(
-      this.stingerTailNormal,
-      -_0x24402d * _0x58c1e0,
-      (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 +
-        _0x1946d3 * -_0x2f7996,
-      2 * _0x24402d * _0x58c1e0,
-      2 * _0x24402d * _0x58c1e0
-    );
-    _0x2a5db0 = (timestamp - this.spawnTime) / 1000;
-    _0x2a5db0 = getAnimFrame(_0x2a5db0, 5, 1, 1);
-    ctx.globalAlpha = Math.max(0, _0x2a5db0) * Math.max(0, this.poison / 100);
-    ctx.drawImage(
-      this.stingerNormalFull,
-      -_0x24402d * _0x58c1e0,
-      (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 +
-        _0x1946d3 * -_0x2f7996,
-      2 * _0x24402d * _0x58c1e0,
-      2 * _0x24402d * _0x58c1e0
-    );
-    ctx.restore();
-  }
-  this.flag_usingAbility ||
-    ((this.stingAnimation = this.clawAnimation = null),
-    (this.isUsingAbility = true));
-  !this.isUsingAbility &&
-    ((this.isUsingAbility = true), (this.stingAnimation = null));
-  this.isUsingAbility &&
-    this.specType2 == 1 &&
-    (null == this.stingAnimation &&
-      ((this.stingAnimation = new _0x1abe2b(
-        this,
-        1,
-        _0x1abe2b.bow,
-        {
-          v1: 0x5
-        },
-        false
-      )),
-      (this.stingAnimation.onFrameEntered = function(_0x8bc96b) {
-        if (this.forObj.flag_usingAbility) {
-          ctx.save();
-          var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF,
-            _0x38dd8a = this.forObj.rad;
-
-          ctx.drawImage(
-            this.forObj.stingerTailAttack,
-            -_0x38dd8a * _0x1a77d1,
-            (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1,
-            2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1
-          );
-          ctx.drawImage(
-            this.forObj.stingerTail,
-            -_0x38dd8a * _0x1a77d1,
-            (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1
-          );
-          ctx.drawImage(
-            this.forObj.stingerAttack,
-            -_0x38dd8a * _0x1a77d1,
-            (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1
-          );
-          var _0x41a28e = getAnimFrame(
-            (timestamp - this.spawnTime) / 1000,
-            5,
-            1,
-            1
-          );
-          ctx.globalAlpha =
-            Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
-          ctx.drawImage(
-            this.forObj.stingerAttackFull,
-            -_0x38dd8a * _0x1a77d1,
-            (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1,
-            2 * _0x38dd8a * _0x1a77d1
-          );
-
-          ctx.restore();
+GiantScorpion.prototype.animalInfo = function () {
+        var InfoO = {};
+        switch (this.animalSpecies) {
+        case 0:
+            InfoO.aniName = 'Giant Scorpion';
+            break;
+        case 1:
+            InfoO.aniName = 'Golden Scorpion';
+            break;
+        case 2:
+            InfoO.aniName = 'Carnelian Scorpion';
         }
-      })),
-    this.stingAnimation && this.stingAnimation.run());
-};
-GiantScorpion.prototype.tailOffsetY = -0.25;
-GiantScorpion.prototype.tailScaleF = 1.2;
-var _0x3043fd = 4,
-  _0x12842c = 0.1;
-GiantScorpion.prototype.drawUnderSkinImg = function() {
-  var _0x42919b = getLoadedImg(
-    "skins/desert/giantscorpion/" + this.animalSpecies + "/tail_back.png"
-  );
-  if (_0x42919b) {
-    var _0x3f3c13 = 0;
-    this.stingAnimation &&
-      0.5 > this.stingAnimation.frame &&
-      (_0x3f3c13 = 0.3 * -this.stingAnimation.frame);
-    var _0x5ce8b1 = this.skinScale * this.tailScaleF,
-      _0x3ba07b = this.skinRad;
-    ctx.drawImage(
-      _0x42919b,
-      -_0x3ba07b * _0x5ce8b1,
-      (-_0x3ba07b + _0x3ba07b * this.tailOffsetY) * _0x5ce8b1,
-      2 * _0x3ba07b * _0x5ce8b1,
-      2 * (_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1
-    );
-  }
-  this.flag_usingAbility &&
-    !this.flag_underWater &&
-    (null == this.clawAnimation &&
-      ((this.clawAnimation = new _0x1abe2b(
-        this,
-        0.9,
-        _0x1abe2b.bow,
-        {
-          v1: _0x3043fd
-        },
-        false
-      )),
-      (this.clawAnimation.keepLastFrame = true),
-      (this.clawAnimation.onFrameEntered = function(_0x1dd836) {
-        var _0x3f3c13 = 0;
-        0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
-        _0x1dd836 =
-          "skins/desert/giantscorpion/" +
-          this.forObj.animalSpecies +
-          "/arms.png";
-        if (this.forObj.flag_eff_aniInClaws)
-          _0x1dd836 =
-            "skins/desert/giantscorpion/" +
-            this.forObj.animalSpecies +
-            "/arms-grabbed.png";
-        if ((_0x1dd836 = getLoadedImg(_0x1dd836))) {
-          var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
-            _0x3ba07b = this.forObj.skinRad;
-          !this.hasStopped && 0.75 > this.timePassed
-            ? ((_0x12842c = _0x3f3c13),
-              ctx.drawImage(
-                _0x1dd836,
-                -_0x3ba07b * _0x5ce8b1,
-                (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1,
-                2 * _0x3ba07b * _0x5ce8b1,
-                2 * _0x3ba07b * _0x5ce8b1
-              ))
-            : ctx.drawImage(
-                _0x1dd836,
-                -_0x3ba07b * _0x5ce8b1,
-                (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1,
-                2 * _0x3ba07b * _0x5ce8b1,
-                2 * _0x3ba07b * _0x5ce8b1
-              );
-        }
-      })),
-    null != this.clawAnimation && this.clawAnimation.run());
-};
-GiantScorpion.prototype.readCustomData_onNewlyVisible = function(_0x3bc81a) {
-  GiantScorpion.superClass.prototype.readCustomData_onNewlyVisible.call(
-    this,
-    _0x3bc81a
-  );
-  this.readInfo(_0x3bc81a);
-};
-GiantScorpion.prototype.readCustomData_onUpdate = function(_0x3417c5) {
-  GiantScorpion.superClass.prototype.readCustomData_onUpdate.call(
-    this,
-    _0x3417c5
-  );
-  this.readInfo(_0x3417c5);
-};
-GiantScorpion.prototype.readInfo = function(_0x1edc87) {
-  this.poison = _0x1edc87.readUInt8();
-};
-GiantScorpion.prototype.preLoad = function() {
-  getLoadedImg(
-    "skins/desert/giantscorpion/" + this.animalSpecies + "/scorpion1.png"
-  );
-  this.stingerTailNormal = getLoadedImg(
-    "skins/desert/giantscorpion/" + this.animalSpecies + "/stinger_normal.png"
-  );
-  this.stingerTail = getLoadedImg(
-    "skins/desert/giantscorpion/" + this.animalSpecies + "/stinger_tail.png"
-  );
-  this.stingerTailAttack = getLoadedImg(
-    "skins/desert/giantscorpion/" + this.animalSpecies + "/attack_tail.png"
-  );
-  this.stingerAttack = getLoadedImg(
-    "skins/desert/giantscorpion/" +
-      this.animalSpecies +
-      "/attack_stinger_dull.png"
-  );
-  this.stingerAttackFull = getLoadedImg(
-    "skins/desert/giantscorpion/" +
-      this.animalSpecies +
-      "/attack_stinger_full.png"
-  );
-  this.stingerNormal = getLoadedImg(
-    "skins/desert/giantscorpion/" +
-      this.animalSpecies +
-      "/normal_stinger_dull.png"
-  );
-  this.stingerNormalFull = getLoadedImg(
-    "skins/desert/giantscorpion/" +
-      this.animalSpecies +
-      "/normal_stinger_full.png"
-  );
-};
-function GiantScorpion() {
-  GiantScorpion.superClass.call(this, o_animal);
-}
+      
+    
+        InfoO.aniCol = '#FF9000';
+        InfoO.skinName = 'desert/' + this.animalSpecies+ '/scorpion';
+        InfoO.upgradeText = 'UPGRADED to ' + InfoO.aniName + "\nSting and Shiver your prey to death.\n(Press W to Sting)";
+        return InfoO;
+    };
 
-window.GiantScorpion = GiantScorpion;
-GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
+    GiantScorpion.prototype.getSkinName = function () {
+        var _0x403b22 = '/desert/giantscorpion/' + this.animalSpecies +'/scorpion';
+        return _0x403b22 += 0 == this.specType ? '' : this.specType;
+    };
+    GiantScorpion.prototype.stingerScaleF = 0.7;
+    GiantScorpion.prototype.stingerOffsetY = -0.6;
+    GiantScorpion.prototype.poison = 50;
+    GiantScorpion.prototype.clawAnimation = null;
+    GiantScorpion.prototype.stingAnimation = null;
+    GiantScorpion.prototype.stingerTailNormal = null;
+    GiantScorpion.prototype.stingerTail = null;
+    GiantScorpion.prototype.stingerAttack = null;
+    GiantScorpion.prototype.stingerAttackFull = null;
+    GiantScorpion.prototype.stingerNormal = null;
+    GiantScorpion.prototype.stingerNormalFull = null;
+    GiantScorpion.prototype.isUsingAbility = true;
+    GiantScorpion.prototype.drawSkinCustomization = function () {
+         if ((this.specType2 != 1)&& !this.flag_underWater && null != this.stingerTailNormal && null != this.stingerNormalFull) {
+         
+            var _0x58c1e0 = this.skinScale * this.stingerScaleF,
+                _0x24402d = this.skinRad,
+                _0x2a5db0 = (timestamp - this.spawnTime) / 1000,
+                _0x1946d3 = getAnimFrame(_0x2a5db0, 1.5, 3, 2),
+                _0x2f7996 = getAnimFrame(_0x2a5db0, 1.5, 1, 2);
+            ctx.save();
+            _0x24402d = this.rad - 0.5 * _0x1946d3;
+            ctx.drawImage(this.stingerTailNormal, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
+            _0x2a5db0 = (timestamp - this.spawnTime) / 1000;
+            _0x2a5db0 = getAnimFrame(_0x2a5db0, 5, 1, 1);
+            ctx.globalAlpha = Math.max(0, _0x2a5db0) * Math.max(0, this.poison / 100);
+            ctx.drawImage(this.stingerNormalFull, -_0x24402d * _0x58c1e0, (-_0x24402d + _0x24402d * this.stingerOffsetY) * _0x58c1e0 + _0x1946d3 * -_0x2f7996, 2 * _0x24402d * _0x58c1e0, 2 * _0x24402d * _0x58c1e0);
+            ctx.restore();
+        }
+        this.flag_usingAbility || (this.stingAnimation = this.clawAnimation = null, this.isUsingAbility = true);
+        !this.isUsingAbility  && (this.isUsingAbility = true, this.stingAnimation = null);
+               this.isUsingAbility && this.specType2 == 1 && (null == this.stingAnimation &&(this.stingAnimation = new _0x1abe2b(this, 1, _0x1abe2b.bow, {
+            'v1': 0x5
+        },false), this.stingAnimation.onFrameEntered = function (_0x8bc96b) {
+                 if(this.forObj.flag_usingAbility ){
+            ctx.save();
+            var _0x1a77d1 = this.forObj.skinScale * this.forObj.stingerScaleF ,
+                _0x38dd8a = this.forObj.rad;
+     
+            ctx.drawImage(this.forObj.stingerTailAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * this.forObj.stingerOffsetY) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * (_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1);
+            ctx.drawImage(this.forObj.stingerTail, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+            ctx.drawImage(this.forObj.stingerAttack, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+            var _0x41a28e = getAnimFrame((timestamp - this.spawnTime) / 1000, 5, 1, 1);
+            ctx.globalAlpha = Math.max(0, _0x41a28e) * Math.max(0, this.poison / 100);
+            ctx.drawImage(this.forObj.stingerAttackFull, -_0x38dd8a * _0x1a77d1, (-_0x38dd8a + _0x38dd8a * _0x8bc96b) * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1, 2 * _0x38dd8a * _0x1a77d1);
+          
+            ctx.restore();
+                 }
+        }), this.stingAnimation && this.stingAnimation.run());
+       
+     
+    };
+    GiantScorpion.prototype.tailOffsetY = -0.25;
+    GiantScorpion.prototype.tailScaleF = 1.2;
+    var _0x3043fd = 4,
+        _0x12842c = 0.1;
+    GiantScorpion.prototype.drawUnderSkinImg = function () {
+        var _0x42919b = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/tail_back.png');
+        if (_0x42919b) {
+            var _0x3f3c13 = 0;
+            this.stingAnimation && 0.5 > this.stingAnimation.frame && (_0x3f3c13 = 0.3 * -this.stingAnimation.frame);
+            var _0x5ce8b1 = this.skinScale * this.tailScaleF,
+                _0x3ba07b = this.skinRad;
+            ctx.drawImage(_0x42919b, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * this.tailOffsetY) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * (_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1);
+        }
+        this.flag_usingAbility && !this.flag_underWater && (null == this.clawAnimation && (this.clawAnimation = new _0x1abe2b(this, 0.9, _0x1abe2b.bow, {
+            'v1': _0x3043fd
+        },false), this.clawAnimation.keepLastFrame = true, this.clawAnimation.onFrameEntered = function (_0x1dd836) {
+            var _0x3f3c13 = 0;
+            0.5 > _0x1dd836 && (_0x3f3c13 = -_0x1dd836);
+            _0x1dd836 = 'skins/desert/giantscorpion/' + this.forObj.animalSpecies +'/arms.png';
+           if(this.forObj.flag_eff_aniInClaws) _0x1dd836 = 'skins/desert/giantscorpion/' + this.forObj.animalSpecies +'/arms-grabbed.png';
+            if (_0x1dd836 = getLoadedImg(_0x1dd836)) {
+             
+                var _0x5ce8b1 = this.forObj.skinScale * this.forObj.tailScaleF,
+                    _0x3ba07b = this.forObj.skinRad;
+                !this.hasStopped && 0.75 > this.timePassed ? (_0x12842c = _0x3f3c13, ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x3f3c13) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1)) : ctx.drawImage(_0x1dd836, -_0x3ba07b * _0x5ce8b1, (-_0x3ba07b + _0x3ba07b * _0x12842c) * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1, 2 * _0x3ba07b * _0x5ce8b1);
+            }
+        }), null != this.clawAnimation && this.clawAnimation.run());
+    };
+    GiantScorpion.prototype.readCustomData_onNewlyVisible = function (_0x3bc81a) {
+        GiantScorpion.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x3bc81a);
+        this.readInfo(_0x3bc81a);
+    };
+    GiantScorpion.prototype.readCustomData_onUpdate = function (_0x3417c5) {
+        GiantScorpion.superClass.prototype.readCustomData_onUpdate.call(this, _0x3417c5);
+        this.readInfo(_0x3417c5);
+    };
+    GiantScorpion.prototype.readInfo = function (_0x1edc87) {
+      this.poison = _0x1edc87.readUInt8();
+ 
+    };
+    GiantScorpion.prototype.preLoad = function () {
+        getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/scorpion1.png');
+        this.stingerTailNormal = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/stinger_normal.png');
+        this.stingerTail = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/stinger_tail.png');
+        this.stingerTailAttack = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/attack_tail.png');
+        this.stingerAttack = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/attack_stinger_dull.png');
+        this.stingerAttackFull = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/attack_stinger_full.png');
+        this.stingerNormal = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/normal_stinger_dull.png');
+        this.stingerNormalFull = getLoadedImg('skins/desert/giantscorpion/' + this.animalSpecies +'/normal_stinger_full.png');
+    };
+    function GiantScorpion() {
+        GiantScorpion.superClass.call(this, o_animal);
+    }
+
+    window.GiantScorpion = GiantScorpion;
+    GameObjType.setCustomClassForGameObjType(GiantScorpion, o_animal, a_scorpion);
 ///////
 // file: js_src/gameobj/animal/pterodactyl.js
 ///////
 Pterodactyl.prototype = Object.create(superClass.prototype);
 Pterodactyl.prototype.constructor = Pterodactyl;
 Pterodactyl.superClass = superClass;
-Pterodactyl.prototype.animalInfo = function() {
-  var infoO = {};
-  switch (this.animalSpecies) {
-    case 0:
-      infoO.aniName = "Pterodactyl";
-      break;
-    case 1:
-      infoO.aniName = "Golden Pterodactyl";
-      break;
-    case 2:
-      infoO.aniName = "Emerald Pterodactyl";
-      break;
-    case 12:
-      infoO.aniName = "Blue Pterodactyl";
-      break;
-  }
+Pterodactyl.prototype.animalInfo = function () {
+    var infoO = {};
+   switch (this.animalSpecies) {
+     case 0:
+            infoO.aniName = 'Pterodactyl';
+            break;
+        case 1:
+            infoO.aniName = 'Golden Pterodactyl';
+            break;
+        case 2:
+            infoO.aniName = 'Emerald Pterodactyl';
+       break;
+           case 12:
+            infoO.aniName = 'Blue Pterodactyl';
+       break;
+        }
 
-  infoO.aniCol = "#FF9000";
-  infoO.skinName = "desert/pterodactyl";
-  infoO.upgradeText =
-    "UPGRADED to " + infoO.aniName + "\nFly and dive onto prey to pick it up.";
-  return infoO;
+    infoO.aniCol = '#FF9000';
+    infoO.skinName =  'desert/pterodactyl';
+    infoO.upgradeText = 'UPGRADED to ' + infoO.aniName + '\nFly and dive onto prey to pick it up.';
+    return infoO;
 };
-Pterodactyl.prototype.getHead = function(_0x29679c, _0x4adc58) {
-  return (
-    "skins/desert" +
-    "/" +
-    _0x29679c +
-    "/" +
-    this.animalSpecies +
-    "/" +
-    _0x29679c +
-    "_head.png"
-  );
+Pterodactyl.prototype.getHead = function (_0x29679c, _0x4adc58) {
+    return 'skins/desert'+ '/' + _0x29679c + '/'+ this.animalSpecies + '/' + _0x29679c + '_head.png';
 };
-Pterodactyl.prototype.getSkinName = function() {
-  var _0x528bd8 = "desert/pterodactyl/" + this.animalSpecies + "/pterodactyl";
-  return (_0x528bd8 =
-    4 == this.specType
-      ? _0x528bd8 + "4"
-      : _0x528bd8 + (0 == this.specType ? "" : 1));
+Pterodactyl.prototype.getSkinName = function () {
+          var _0x528bd8 ='desert/pterodactyl/' + this.animalSpecies + '/pterodactyl';
+        return _0x528bd8 = 4 == this.specType ? _0x528bd8 + '4' : _0x528bd8 + (0 == this.specType ? '' : 1);
 };
-Pterodactyl.prototype.getWing = function(_0x4ac10e, _0x26897e) {
-  this.flag_flying || (_0x26897e = _0x26897e + "" + _0x26897e);
-  return (
-    "skins/desert" +
-    "/" +
-    _0x4ac10e +
-    "/" +
-    this.animalSpecies +
-    "/" +
-    _0x4ac10e +
-    "_wing" +
-    _0x26897e +
-    "_nohand.png"
-  );
+Pterodactyl.prototype.getWing = function (_0x4ac10e, _0x26897e) {
+    this.flag_flying || (_0x26897e = _0x26897e + '' + _0x26897e);
+    return 'skins/desert'+ '/' + _0x4ac10e + '/' + this.animalSpecies + '/' + _0x4ac10e + '_wing' + _0x26897e + '_nohand.png';
 };
-Pterodactyl.prototype.getWingBone = function(_0x204a7c, _0x47cdee) {
-  this.flag_flying || (_0x47cdee = _0x47cdee + "" + _0x47cdee);
-  return (
-    "skins/desert" +
-    "/" +
-    _0x204a7c +
-    "/" +
-    this.animalSpecies +
-    "/" +
-    _0x204a7c +
-    "_wing" +
-    _0x47cdee +
-    "_bones.png"
-  );
+Pterodactyl.prototype.getWingBone = function (_0x204a7c, _0x47cdee) {
+    this.flag_flying || (_0x47cdee = _0x47cdee + '' + _0x47cdee);
+    return 'skins/desert'+ '/' + _0x204a7c + '/' + this.animalSpecies + '/' + _0x204a7c + '_wing' + _0x47cdee + '_bones.png';
 };
-Pterodactyl.prototype.getHand = function(_0x10826f, _0x5416bc) {
-  this.flag_flying || (_0x5416bc = _0x5416bc + "" + _0x5416bc);
-  this.isGliding && (_0x5416bc += "3");
-  return (
-    "skins/desert" +
-    "/" +
-    _0x10826f +
-    "/" +
-    this.animalSpecies +
-    "/" +
-    _0x10826f +
-    "_hand" +
-    _0x5416bc +
-    ".png"
-  );
+Pterodactyl.prototype.getHand = function (_0x10826f, _0x5416bc) {
+    this.flag_flying || (_0x5416bc = _0x5416bc + '' + _0x5416bc);
+    this.isGliding && (_0x5416bc += '3');
+    return 'skins/desert' + '/' + _0x10826f + '/'+ this.animalSpecies + '/' + _0x10826f + '_hand' + _0x5416bc + '.png';
 };
 Pterodactyl.prototype.biteStart = 0;
 Pterodactyl.prototype.flaps = 0;
@@ -15237,243 +14830,149 @@ Pterodactyl.prototype.headF = 0.5;
 Pterodactyl.prototype.headFDisp = -0.6;
 Pterodactyl.prototype.headScale = 0.8;
 Pterodactyl.prototype.headX = 0.225;
-Pterodactyl.prototype.drawLegs = function() {
-  var _0x2eed07 = 1.4705882352941,
-    _0x4afd81 = this.flag_eff_aniInClaws ? "legs2" : "legs";
-  if (
-    (_0x4afd81 = getLoadedImg(
-      "skins/desert/pterodactyl/" +
-        this.animalSpecies +
-        "/" +
-        _0x4afd81 +
-        ".png"
-    ))
-  ) {
-    ctx.save();
-    var _0x219321 = this.rad,
-      _0x2eed07 = _0x2eed07 * this.legScale;
-    ctx.drawImage(
-      _0x4afd81,
-      -_0x219321 * _0x2eed07,
-      (-_0x219321 + _0x219321 * this.lx) * _0x2eed07,
-      2 * _0x219321 * _0x2eed07,
-      2 * _0x219321 * _0x2eed07
-    );
-    ctx.restore();
-  }
-};
-Pterodactyl.prototype.drawUnderSkinImg = function() {
-  this.flag_usingAbility &&
-    (this.drawWing(this.frame, 1), this.drawWing(this.frame, 2));
-  2 == this.specType && this.drawLegs();
-};
-Pterodactyl.prototype.drawSkinCustomization = function() {
-  if (this.flag_usingAbility) {
-    this.drawBone(this.frame, 1);
-    this.drawBone(this.frame, 2);
-    this.drawHand(this.frame, 1);
-    this.drawHand(this.frame, 2);
-    var _0x2e5ee9 = 1.4705882352941,
-      _0x1dbcf1 = this.getHead("pterodactyl", true);
-    if ((_0x1dbcf1 = getLoadedImg(_0x1dbcf1))) {
-      ctx.save();
-      var _0x2e5ee9 = _0x2e5ee9 + -(0.1 * this.headF) * this.frame,
-        _0x5b7869 = this.rad;
-      ctx.drawImage(
-        _0x1dbcf1,
-        -_0x5b7869 * _0x2e5ee9,
-        (-_0x5b7869 +
-          _0x5b7869 * (0.3 + (this.frame / 10) * this.headFDisp) +
-          this.headF * this.frame) *
-          _0x2e5ee9,
-        2 * _0x5b7869 * _0x2e5ee9,
-        2 * _0x5b7869 * _0x2e5ee9
-      );
-      ctx.restore();
+Pterodactyl.prototype.drawLegs = function () {
+    var _0x2eed07 = 1.4705882352941,
+        _0x4afd81 = this.flag_eff_aniInClaws ? 'legs2' : 'legs';
+    if (_0x4afd81 = getLoadedImg('skins/desert/pterodactyl/'+ this.animalSpecies + '/'+ _0x4afd81 + '.png')) {
+        ctx.save();
+        var _0x219321 = this.rad,
+            _0x2eed07 = _0x2eed07 * this.legScale;
+        ctx.drawImage(_0x4afd81, -_0x219321 * _0x2eed07, (-_0x219321 + _0x219321 * this.lx) * _0x2eed07, 2 * _0x219321 * _0x2eed07, 2 * _0x219321 * _0x2eed07);
+        ctx.restore();
     }
-  } else if (
-    ((_0x1dbcf1 = this.getHead("pterodactyl", true)),
-    (_0x1dbcf1 = getLoadedImg(_0x1dbcf1)))
-  )
-    (_0x2e5ee9 = 1.4705882352941 * this.headScale),
-      ctx.save(),
-      (_0x5b7869 = this.rad),
-      ctx.drawImage(
-        _0x1dbcf1,
-        -_0x5b7869 * _0x2e5ee9,
-        (-_0x5b7869 + _0x5b7869 * this.headX) * _0x2e5ee9,
-        2 * _0x5b7869 * _0x2e5ee9,
-        2 * _0x5b7869 * _0x2e5ee9
-      ),
-      ctx.restore();
 };
-Pterodactyl.prototype.drawWing = function(_0x4f5a63, _0x5c300b) {
-  var _0x2a359f = 1 == _0x5c300b ? 1 : -1,
-    _0x2bd995 = getLoadedImg(this.getWing("pterodactyl", _0x5c300b));
-  if (_0x2bd995) {
-    var _0x22b0c1 = -(-0.2 + _0x4f5a63) * toRadians(_0x2a359f * this.r),
-      _0x15f848 = 0.8 * this.rad,
-      _0x1f5264 = this.rad,
-      _0x67c3e0 = _0x15f848 * this.ww,
-      _0x15f848 = _0x15f848 * this.wh,
-      _0x13ccc2 = 1 == _0x5c300b ? this.ax : this.ax2,
-      _0x24e8b9 = this.ay + this.yf * _0x4f5a63;
-    ctx.save();
-    _0x22b0c1 *= this.rf;
-    ctx.rotate(
-      toRadians(_0x2a359f * (this.isGliding ? this.erf_gliding : this.erf)) +
-        _0x22b0c1
-    );
-    ctx.drawImage(
-      _0x2bd995,
-      0 +
-        _0x67c3e0 * -_0x13ccc2 +
-        _0x4f5a63 * _0x67c3e0 * _0x2a359f * this.wOffset,
-      _0x1f5264 + _0x15f848 * -_0x24e8b9,
-      _0x67c3e0,
-      _0x15f848
-    );
-    ctx.restore();
-  }
+Pterodactyl.prototype.drawUnderSkinImg = function () {
+    this.flag_usingAbility && (this.drawWing(this.frame, 1), this.drawWing(this.frame, 2));
+    2 == this.specType && this.drawLegs();
 };
-Pterodactyl.prototype.drawBone = function(_0xf1fb52, _0x48a7e2) {
-  var _0x50e10e = getLoadedImg(this.getWingBone("pterodactyl", _0x48a7e2)),
-    _0x152838 = 1 == _0x48a7e2 ? 1 : -1;
-  if (_0x50e10e) {
-    var _0x24b193 = -(-0.2 + _0xf1fb52) * toRadians(_0x152838 * this.r),
-      _0x22a484 = 0.8 * this.rad,
-      _0x3f0bc9 = this.rad,
-      _0x5a7c64 = _0x22a484 * this.ww,
-      _0x22a484 = _0x22a484 * this.wh,
-      _0x815a56 = 1 == _0x48a7e2 ? this.ax : this.ax2,
-      _0x32ba27 = this.ay + this.yf * _0xf1fb52;
-    ctx.save();
-    _0x24b193 *= this.rf;
-    ctx.rotate(
-      toRadians(_0x152838 * (this.isGliding ? this.erf_gliding : this.erf)) +
-        _0x24b193
-    );
-    ctx.drawImage(
-      _0x50e10e,
-      0 +
-        _0x5a7c64 * -_0x815a56 +
-        _0xf1fb52 * _0x5a7c64 * _0x152838 * this.wOffset,
-      _0x3f0bc9 + _0x22a484 * -_0x32ba27,
-      _0x5a7c64,
-      _0x22a484
-    );
-    ctx.restore();
-  }
+Pterodactyl.prototype.drawSkinCustomization = function () {
+
+    if (this.flag_usingAbility) {
+        this.drawBone(this.frame, 1);
+        this.drawBone(this.frame, 2);
+        this.drawHand(this.frame, 1);
+        this.drawHand(this.frame, 2);
+        var _0x2e5ee9 = 1.4705882352941,
+            _0x1dbcf1 = this.getHead('pterodactyl', true);
+        if (_0x1dbcf1 = getLoadedImg(_0x1dbcf1)) {
+            ctx.save();
+            var _0x2e5ee9 = _0x2e5ee9 + -(0.1 * this.headF) * this.frame,
+                _0x5b7869 = this.rad;
+            ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * (0.3 + this.frame / 10 * this.headFDisp) + this.headF * this.frame) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9);
+            ctx.restore();
+        }
+    } else if (_0x1dbcf1 = this.getHead('pterodactyl', true), _0x1dbcf1 = getLoadedImg(_0x1dbcf1)) _0x2e5ee9 = 1.4705882352941 * this.headScale, ctx.save(), _0x5b7869 = this.rad, ctx.drawImage(_0x1dbcf1, -_0x5b7869 * _0x2e5ee9, (-_0x5b7869 + _0x5b7869 * this.headX) * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9, 2 * _0x5b7869 * _0x2e5ee9), ctx.restore();
+};
+Pterodactyl.prototype.drawWing = function (_0x4f5a63, _0x5c300b) {
+  
+    var _0x2a359f = 1 == _0x5c300b ? 1 : -1,
+        _0x2bd995 = getLoadedImg(this.getWing('pterodactyl', _0x5c300b));
+    if (_0x2bd995) {
+        var _0x22b0c1 = -(-0.2 + _0x4f5a63) * toRadians(_0x2a359f * this.r),
+            _0x15f848 = 0.8 * this.rad,
+            _0x1f5264 = this.rad,
+            _0x67c3e0 = _0x15f848 * this.ww,
+            _0x15f848 = _0x15f848 * this.wh,
+            _0x13ccc2 = 1 == _0x5c300b ? this.ax : this.ax2,
+            _0x24e8b9 = this.ay + this.yf * _0x4f5a63;
+        ctx.save();
+        _0x22b0c1 *= this.rf;
+        ctx.rotate(toRadians(_0x2a359f * (this.isGliding ? this.erf_gliding : this.erf)) + _0x22b0c1);
+        ctx.drawImage(_0x2bd995, 0 + _0x67c3e0 * -_0x13ccc2 + _0x4f5a63 * _0x67c3e0 * _0x2a359f * this.wOffset, _0x1f5264 + _0x15f848 * -_0x24e8b9, _0x67c3e0, _0x15f848);
+        ctx.restore();
+    }
+};
+Pterodactyl.prototype.drawBone = function (_0xf1fb52, _0x48a7e2) {
+    var _0x50e10e = getLoadedImg(this.getWingBone('pterodactyl', _0x48a7e2)),
+        _0x152838 = 1 == _0x48a7e2 ? 1 : -1;
+    if (_0x50e10e) {
+        var _0x24b193 = -(-0.2 + _0xf1fb52) * toRadians(_0x152838 * this.r),
+            _0x22a484 = 0.8 * this.rad,
+            _0x3f0bc9 = this.rad,
+            _0x5a7c64 = _0x22a484 * this.ww,
+            _0x22a484 = _0x22a484 * this.wh,
+            _0x815a56 = 1 == _0x48a7e2 ? this.ax : this.ax2,
+            _0x32ba27 = this.ay + this.yf * _0xf1fb52;
+        ctx.save();
+        _0x24b193 *= this.rf;
+        ctx.rotate(toRadians(_0x152838 * (this.isGliding ? this.erf_gliding : this.erf)) + _0x24b193);
+        ctx.drawImage(_0x50e10e, 0 + _0x5a7c64 * -_0x815a56 + _0xf1fb52 * _0x5a7c64 * _0x152838 * this.wOffset, _0x3f0bc9 + _0x22a484 * -_0x32ba27, _0x5a7c64, _0x22a484);
+        ctx.restore();
+    }
 };
 var _0x152b10 = 0;
-Pterodactyl.prototype.drawHand = function(_0x8ffe97, _0x50fe2f) {
-  var _0x551de1 = 1 == _0x50fe2f ? 1 : -1,
-    _0x48325e = getLoadedImg(this.getHand("pterodactyl", _0x50fe2f));
-  if (_0x48325e) {
-    var _0x503254 = -(-0.2 + _0x8ffe97) * toRadians(_0x551de1 * this.r),
-      _0x5026b3 = 0.8 * this.rad,
-      _0x1b2913 = this.rad,
-      _0x149abd = _0x5026b3 * this.ww,
-      _0x5026b3 =
-        _0x5026b3 * this.wh + (this.flag_flying ? 0 : this.wh * _0x152b10),
-      _0x21ac92 =
-        (1 == _0x551de1 ? this.ax : this.ax2) + _0x551de1 * this.xf * _0x8ffe97,
-      _0x5e2ae9 = this.ay + this.yf * _0x8ffe97,
-      _0x503254 = _0x503254 * this.rf,
-      _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
-    ctx.save();
-    this.drawImage(
-      _0x48325e,
-      0 + _0x149abd * -_0x21ac92,
-      _0x1b2913 + _0x5026b3 * -_0x5e2ae9,
-      _0x149abd + _0x149abd * _0x551de1 * this.handWF,
-      _0x5026b3,
-      toRadians(_0x551de1 * _0x28cd2b) + _0x503254
-    );
-    ctx.restore();
-  }
+Pterodactyl.prototype.drawHand = function (_0x8ffe97, _0x50fe2f) {
+    var _0x551de1 = 1 == _0x50fe2f ? 1 : -1,
+        _0x48325e = getLoadedImg(this.getHand('pterodactyl', _0x50fe2f));
+    if (_0x48325e) {
+        var _0x503254 = -(-0.2 + _0x8ffe97) * toRadians(_0x551de1 * this.r),
+            _0x5026b3 = 0.8 * this.rad,
+            _0x1b2913 = this.rad,
+            _0x149abd = _0x5026b3 * this.ww,
+            _0x5026b3 = _0x5026b3 * this.wh + (this.flag_flying ? 0 : this.wh * _0x152b10),
+            _0x21ac92 = (1 == _0x551de1 ? this.ax : this.ax2) + _0x551de1 * this.xf * _0x8ffe97,
+            _0x5e2ae9 = this.ay + this.yf * _0x8ffe97,
+            _0x503254 = _0x503254 * this.rf,
+            _0x28cd2b = this.isGliding ? this.erf_gliding : this.erf;
+        ctx.save();
+        this.drawImage(_0x48325e, 0 + _0x149abd * -_0x21ac92, _0x1b2913 + _0x5026b3 * -_0x5e2ae9, _0x149abd + _0x149abd * _0x551de1 * this.handWF, _0x5026b3, toRadians(_0x551de1 * _0x28cd2b) + _0x503254);
+        ctx.restore();
+    }
 };
 Pterodactyl.prototype.frame = 0;
 Pterodactyl.prototype.lastFlapFrame = 0;
-Pterodactyl.prototype.getFrame = function() {
-  if (
-    this.flag_flying &&
-    timestamp > this.resumeFlapT &&
-    (this.canFlap = true)
-  );
-  var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
-    _0x2b4955 =
-      !options_lowGraphics && this.canFlap
-        ? getAnimFrame(
-            _0x2b4955,
-            this.flapSpeed,
-            this.flapAmount * this.handPerc,
-            2
-          )
-        : this.birdNoAnimationFlyWingAngle;
+Pterodactyl.prototype.getFrame = function () {
 
-  if (
-    this.flag_flying &&
-    0 > _0x2b4955 &&
-    this.countFlap &&
-    timestamp > this.resumeFlapT
-  ) {
-    if (this.isGliding) {
-      this.flaps = 0;
+   if( this.flag_flying && timestamp > this.resumeFlapT && (this.canFlap = true));
+    var _0x2b4955 = (timestamp - this.spawnTime) / 1000,
+        _0x2b4955 = !options_lowGraphics && this.canFlap ? getAnimFrame(_0x2b4955, this.flapSpeed, this.flapAmount * this.handPerc, 2) : this.birdNoAnimationFlyWingAngle;
+
+    if (this.flag_flying && 0 > _0x2b4955 && this.countFlap && timestamp > this.resumeFlapT )  {
+      if(this.isGliding){
+  this.flaps = 0
+}
+      this.countFlap = false, 
+      this.flaps++;
+ 
+     if(this.flaps % this.flapsMod == 0){
+      this.lastFlapFrame = _0x2b4955, 
+      this.canFlap = false,
+      this.resumeFlapT = timestamp + 1500;
+     }
+    }else{
+  if(0 < _0x2b4955 && !this.countFlap)    (this.countFlap = true);
     }
-    (this.countFlap = false), this.flaps++;
-
-    if (this.flaps % this.flapsMod == 0) {
-      (this.lastFlapFrame = _0x2b4955),
-        (this.canFlap = false),
-        (this.resumeFlapT = timestamp + 1500);
-    }
-  } else {
-    if (0 < _0x2b4955 && !this.countFlap) this.countFlap = true;
-  }
-
-  if (!this.canFlap) _0x2b4955 = this.lastFlapFrame;
-  else this.lastFlapFrame = _0x2b4955;
-  return _0x2b4955;
+  
+  
+    if(!this.canFlap)  _0x2b4955 = this.lastFlapFrame;
+  else this.lastFlapFrame = _0x2b4955 ;
+    return _0x2b4955;
 };
-Pterodactyl.prototype.beforeCustomDraw = function() {
-  this.flag_usingAbility &&
-    (this.flag_flying || this.set
-      ? this.flag_flying &&
-        this.set &&
-        ((this.set = true), (this.r = 22.5), (this.erf = 11.5), (this.ww = 4.5))
-      : ((this.set = true),
-        (this.r = 11.25),
-        (this.erf = 5.75),
-        (this.ww = 3.5)),
-    (this.flapAmount = this.isGliding ? 0 : this.famt),
-    (this.frame = this.getFrame()));
+Pterodactyl.prototype.beforeCustomDraw = function () {
+    this.flag_usingAbility && (this.flag_flying || this.set ? this.flag_flying && this.set && (this.set = true, this.r = 22.5, this.erf = 11.5, this.ww = 4.5) : (this.set = true, this.r = 11.25, this.erf = 5.75, this.ww = 3.5), this.flapAmount = this.isGliding ? 0 : this.famt, this.frame = this.getFrame());
 };
-Pterodactyl.prototype.updateZ = function() {
-  if (!this.flag_flying) {
-    this.z = 1500 + this.rad;
-  } else {
-    this.z = 15005 + this.rad;
-  }
+Pterodactyl.prototype.updateZ = function () {
+ if(!this.flag_flying){
+  this.z = 1500 + this.rad;
+ }else{
+   this.z = 15005 + this.rad;
+ }
 };
 Pterodactyl.prototype.isGliding = true;
-Pterodactyl.prototype.readCustomData_onNewlyVisible = function(msg) {
-  Pterodactyl.superClass.prototype.readCustomData_onNewlyVisible.call(
-    this,
-    msg
-  );
-  this.readInfo(msg);
+Pterodactyl.prototype.readCustomData_onNewlyVisible = function (msg) {
+    Pterodactyl.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+    this.readInfo(msg);
 };
-Pterodactyl.prototype.readCustomData_onUpdate = function(msg) {
-  Pterodactyl.superClass.prototype.readCustomData_onUpdate.call(this, msg);
-  this.readInfo(msg);
+Pterodactyl.prototype.readCustomData_onUpdate = function (msg) {
+    Pterodactyl.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+    this.readInfo(msg);
 };
-Pterodactyl.prototype.readInfo = function(msg) {
-  this.isGliding = 1 == msg.readUInt8();
+Pterodactyl.prototype.readInfo = function (msg) {
+   this.isGliding = 1 == msg.readUInt8();
 };
 
 function Pterodactyl() {
-  Pterodactyl.superClass.call(this, o_animal);
+    Pterodactyl.superClass.call(this, o_animal);
 }
 window.Pterodactyl = Pterodactyl;
 GameObjType.setCustomClassForGameObjType(Pterodactyl, o_animal, a_pterodactyl);
@@ -15483,246 +14982,155 @@ GameObjType.setCustomClassForGameObjType(Pterodactyl, o_animal, a_pterodactyl);
 Bigfoot.prototype = Object.create(superClass.prototype);
 Bigfoot.prototype.constructor = Bigfoot;
 Bigfoot.superClass = superClass;
-Bigfoot.prototype.animalInfo = function() {
-  var _0x1e5890 = {
-    aniName: "The BigFoot",
-    skinName: "bigfoot/thebigfoot",
-    aniDesc: ""
-  };
-  _0x1e5890.upgradeText =
-    "UPGRADED to " +
-    _0x1e5890.aniName +
-    `! So it really exists... 
+Bigfoot.prototype.animalInfo = function () {
+    var _0x1e5890 = {
+        'aniName': 'The BigFoot',
+        'skinName': 'bigfoot/thebigfoot',
+        'aniDesc': ''
+    };
+    _0x1e5890.upgradeText = 'UPGRADED to ' + _0x1e5890.aniName + `! So it really exists... 
  Right click/W to throw Spears. 
 Hold to make a fire (every 30s)`;
-  _0x1e5890.aniCol = "#839eb5";
-  return _0x1e5890;
+    _0x1e5890.aniCol = '#839eb5';
+    return _0x1e5890;
 };
-Bigfoot.prototype.getAbilityInfo = function(_0x4f532b) {
-  return {
-    abilName: `Throw Spear\
+Bigfoot.prototype.getAbilityInfo = function (_0x4f532b) {
+    return {
+        'abilName': `Throw Spear\
  (Hold for fire!)`,
-    abilImg: "skins/bigfoot/ability.png"
-  };
+        'abilImg': 'skins/bigfoot/ability.png'
+    };
 };
-Bigfoot.prototype.getSkinName = function() {
-  var _0x21b754;
-  _0x21b754 = "bigfoot/";
-  return (_0x21b754 = this.flag_underWater
-    ? _0x21b754 + "thebigfoot"
-    : _0x21b754 + "bigfoot");
+Bigfoot.prototype.getSkinName = function () {
+    var _0x21b754;
+    _0x21b754 = 'bigfoot/';
+    return _0x21b754 = this.flag_underWater ? _0x21b754 + 'thebigfoot' : _0x21b754 + 'bigfoot';
 };
-Bigfoot.prototype.drawUnderSkinTail = function(_0x55fbcc) {
-  this.isCamouflage ||
-    Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
+Bigfoot.prototype.drawUnderSkinTail = function (_0x55fbcc) {
+    this.isCamouflage || Bigfoot.superClass.prototype.drawUnderSkinTail.call(this, _0x55fbcc);
 };
 
 Bigfoot.prototype.isTransforming = true;
 Bigfoot.prototype.isCamouflage = true;
 Bigfoot.prototype.carrotAlpha = 0;
-Bigfoot.prototype.getIdealOpacity = function() {
-  return this.flag_underWater ||
-    (this.flag_usingAbility && this.isTransforming) ||
-    this.isCamouflage
-    ? 0
-    : 1;
+Bigfoot.prototype.getIdealOpacity = function () {
+    return this.flag_underWater || this.flag_usingAbility && this.isTransforming || this.isCamouflage ? 0 : 1;
 };
 Bigfoot.prototype.biteStart = 0;
 Bigfoot.prototype.flapAmount = 3;
 Bigfoot.prototype.flapDur = 1.5;
 Bigfoot.prototype.roarStartT = -500;
-Bigfoot.prototype.spearThrow = function() {
-  ctx.save();
-  var _0x579217 = getLoadedImg("skins/bigfoot/arm21.png");
-  if (_0x579217) {
-    var _0xb1f6b5 = Math.min(1, (timestamp - this.biteStart) / 200),
-      _0x32a744 =
-        -clamp((timestamp - this.biteStart) / 300, 0, 1) * toRadians(90);
-    ctx.rotate(this.angle + _0x32a744);
-    var _0x32a744 = 1.75 * -this.rad,
-      _0x5a871d = 2 * _0x32a744,
-      _0xb1f6b5 = 2 * _0x32a744 * _0xb1f6b5;
-    ctx.drawImage(
-      _0x579217,
-      (this.rad / 1.7) * _0x5a871d,
-      this.rad + -0.8 * _0xb1f6b5 + _0x32a744,
-      _0x5a871d,
-      _0xb1f6b5
-    );
-  }
-  ctx.restore();
+Bigfoot.prototype.spearThrow = function () {
+    ctx.save();
+    var _0x579217 = getLoadedImg('skins/bigfoot/arm21.png');
+    if (_0x579217) {
+        var _0xb1f6b5 = Math.min(1, (timestamp - this.biteStart) / 200),
+            _0x32a744 = -clamp((timestamp - this.biteStart) / 300, 0, 1) * toRadians(90);
+        ctx.rotate(this.angle + _0x32a744);
+        var _0x32a744 = 1.75 * -this.rad,
+            _0x5a871d = 2 * _0x32a744,
+            _0xb1f6b5 = 2 * _0x32a744 * _0xb1f6b5;
+        ctx.drawImage(_0x579217, this.rad / 1.7 * _0x5a871d, this.rad + -0.8 * _0xb1f6b5 + _0x32a744, _0x5a871d, _0xb1f6b5);
+    }
+    ctx.restore();
 };
-Bigfoot.prototype.drawSkinCustomization = function() {
-  this.flag_underWater ||
-    (this.setSkinScale(),
-    this.flag_usingAbility || (this.biteStart = 0),
-    0x0 != this.id && this.spearInHand
-      ? this.spearHandAnimation(0)
-      : this.leftHandAnimation(0),
-    this.rightHandAnimation(0),
-    this.bigfootHead(0),
-    this.flag_usingAbility ||
-      this.flag_inHidingHole ||
-      this.oogaBoogaAnimation(0));
+Bigfoot.prototype.drawSkinCustomization = function () {
+    this.flag_underWater || (this.setSkinScale(), this.flag_usingAbility || (this.biteStart = 0), 0x0 != this.id && this.spearInHand ? this.spearHandAnimation(0) : this.leftHandAnimation(0), this.rightHandAnimation(0), this.bigfootHead(0), this.flag_usingAbility || this.flag_inHidingHole || this.oogaBoogaAnimation(0));
 };
-Bigfoot.prototype.oogaBoogaNextT = +new Date() + 15000;
+Bigfoot.prototype.oogaBoogaNextT = +new Date() +15000;
 Bigfoot.prototype.oogaBoogaFrame = 0;
 Bigfoot.prototype.oogaBoogaFrameT = 0;
-Bigfoot.prototype.oogaBoogaAnimation = function(_0x416072) {
-  timestamp > this.oogaBoogaNextT &&
-    (timestamp > this.oogaBoogaFrameT &&
-      ((this.oogaBoogaFrameT = timestamp + 300),
-      (this.oogaBoogaFrame += 1),
-      1 == this.oogaBoogaFrame
-        ? this.gotChat("OOGA!")
-        : 3 == this.oogaBoogaFrame && this.gotChat("BOOGA!")),
-    4 < this.oogaBoogaFrame &&
-      ((this.oogaBoogaFrame = 0), (this.oogaBoogaNextT = +new Date() + 15000)));
-  if (0 < this.oogaBoogaFrame) {
-    _0x416072 = 1.4705882352941;
-    var _0x5e66b4 = getLoadedImg(
-      "skins/bigfoot/mouth" + this.oogaBoogaFrame + ".png"
-    );
-    if (_0x5e66b4) {
-      ctx.save();
-      var _0x2321b1 = this.rad;
-      ctx.drawImage(
-        _0x5e66b4,
-        -_0x2321b1 * _0x416072,
-        (-_0x2321b1 + 0 * _0x2321b1) * _0x416072,
-        2 * _0x2321b1 * _0x416072,
-        2 * _0x2321b1 * _0x416072
-      );
-      ctx.restore();
+Bigfoot.prototype.oogaBoogaAnimation = function (_0x416072) {
+    timestamp > this.oogaBoogaNextT && (timestamp > this.oogaBoogaFrameT && (this.oogaBoogaFrameT = timestamp + 300, this.oogaBoogaFrame += 1, 1 == this.oogaBoogaFrame ? this.gotChat('OOGA!') : 3 == this.oogaBoogaFrame && this.gotChat('BOOGA!')), 4 < this.oogaBoogaFrame && (this.oogaBoogaFrame = 0, this.oogaBoogaNextT = +new Date() + 15000));
+    if (0 < this.oogaBoogaFrame) {
+        _0x416072 = 1.4705882352941;
+        var _0x5e66b4 = getLoadedImg('skins/bigfoot/mouth' + this.oogaBoogaFrame + '.png');
+        if (_0x5e66b4) {
+            ctx.save();
+            var _0x2321b1 = this.rad;
+            ctx.drawImage(_0x5e66b4, -_0x2321b1 * _0x416072, (-_0x2321b1 + 0 * _0x2321b1) * _0x416072, 2 * _0x2321b1 * _0x416072, 2 * _0x2321b1 * _0x416072);
+            ctx.restore();
+        }
     }
-  }
 };
 Bigfoot.prototype.spearInHand = true;
 Bigfoot.prototype.canCreateFire = true;
-Bigfoot.prototype.readCustomData_onUpdate = function(_0x508108) {
-  Bigfoot.superClass.prototype.readCustomData_onUpdate.call(this, _0x508108);
-  this.spearInHand = 1 == _0x508108.readUInt8();
-  this.canCreateFire = 1 == _0x508108.readUInt8();
+Bigfoot.prototype.readCustomData_onUpdate = function (_0x508108) {
+    Bigfoot.superClass.prototype.readCustomData_onUpdate.call(this, _0x508108);
+    this.spearInHand = 1 == _0x508108.readUInt8();
+    this.canCreateFire = 1 == _0x508108.readUInt8();
 };
-Bigfoot.prototype.readCustomData_onNewlyVisible = function(_0x3e7886) {
-  Bigfoot.superClass.prototype.readCustomData_onNewlyVisible.call(
-    this,
-    _0x3e7886
-  );
+Bigfoot.prototype.readCustomData_onNewlyVisible = function (_0x3e7886) {
+    Bigfoot.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x3e7886);
 };
 var _0x21286e = 0.84,
-  _0x429324 = 0.47,
-  _0x35932c = 45,
-  _0x4c4312 = -30,
-  _0x8a441a = 1.3,
-  _0x57bed6 = 1.5,
-  _0x4bd1bd = 0.3;
-Bigfoot.prototype.bigfootHead = function(_0x6b80a5) {
-  _0x6b80a5 = 0;
-  var _0x5095f8 = 1.4705882352941,
-    _0x450bb2 = this.flag_usingAbility ? "head2" : "head";
-  this.flag_usingAbility || (_0x6b80a5 = 0);
-  if ((_0x450bb2 = getLoadedImg("skins/bigfoot/" + _0x450bb2 + ".png"))) {
-    ctx.save();
-    var _0x1fbab2 = this.rad;
-    ctx.drawImage(
-      _0x450bb2,
-      -_0x1fbab2 * _0x5095f8,
-      (-_0x1fbab2 + _0x1fbab2 * _0x6b80a5) * _0x5095f8,
-      2 * _0x1fbab2 * _0x5095f8,
-      2 * _0x1fbab2 * _0x5095f8
-    );
-    ctx.restore();
-  }
+    _0x429324 = 0.47,
+    _0x35932c = 45,
+    _0x4c4312 = -30,
+    _0x8a441a = 1.3,
+    _0x57bed6 = 1.5,
+    _0x4bd1bd = 0.3;
+Bigfoot.prototype.bigfootHead = function (_0x6b80a5) {
+    _0x6b80a5 = 0;
+    var _0x5095f8 = 1.4705882352941,
+        _0x450bb2 = this.flag_usingAbility ? 'head2' : 'head';
+    this.flag_usingAbility || (_0x6b80a5 = 0);
+    if (_0x450bb2 = getLoadedImg('skins/bigfoot/' + _0x450bb2 + '.png')) {
+        ctx.save();
+        var _0x1fbab2 = this.rad;
+        ctx.drawImage(_0x450bb2, -_0x1fbab2 * _0x5095f8, (-_0x1fbab2 + _0x1fbab2 * _0x6b80a5) * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8, 2 * _0x1fbab2 * _0x5095f8);
+        ctx.restore();
+    }
 };
-Bigfoot.prototype.spearHandAnimation = function(_0x11c623) {
-  var _0x58599c = (timestamp - this.spawnTime) / 1000,
-    _0x58599c = getAnimFrame(_0x58599c, _0x57bed6, _0x4bd1bd, 2),
-    _0x2ed9c5 = getLoadedImg("skins/bigfoot/arm2.png");
-  if (_0x2ed9c5) {
-    ctx.save();
-    _0x11c623 = -(-0.2 + _0x58599c) * toRadians(_0x35932c);
-    var _0x1dbe08 = this.rad * _0x8a441a;
-    ctx.rotate(toRadians(_0x4c4312) + _0x11c623);
-    _0x11c623 = this.rad;
-    var _0x3c4cf3 = 2 * _0x1dbe08,
-      _0x1dbe08 = 2 * _0x1dbe08,
-      _0x433d7a = _0x429324,
-      _0x45b0e5 = _0x21286e;
-    ctx.drawImage(
-      _0x2ed9c5,
-      0 + _0x3c4cf3 * -_0x433d7a,
-      _0x11c623 + _0x1dbe08 * -_0x45b0e5,
-      _0x3c4cf3,
-      _0x1dbe08
-    );
-    this.canCreateFire &&
-      (_0x2ed9c5 = getLoadedImg("skins/bigfoot/arm2-fire.png")) &&
-      ((_0x58599c = (timestamp - this.spawnTime) / 1000),
-      (_0x58599c = getAnimFrame(_0x58599c, 5, 1, 1)),
-      (ctx.globalAlpha = Math.max(0, _0x58599c)),
-      ctx.drawImage(
-        _0x2ed9c5,
-        0 + _0x3c4cf3 * -_0x433d7a,
-        _0x11c623 + _0x1dbe08 * -_0x45b0e5,
-        _0x3c4cf3,
-        _0x1dbe08
-      ));
-    ctx.restore();
-  }
+Bigfoot.prototype.spearHandAnimation = function (_0x11c623) {
+    var _0x58599c = (timestamp - this.spawnTime) / 1000,
+        _0x58599c = getAnimFrame(_0x58599c, _0x57bed6, _0x4bd1bd, 2),
+        _0x2ed9c5 = getLoadedImg('skins/bigfoot/arm2.png');
+    if (_0x2ed9c5) {
+        ctx.save();
+        _0x11c623 = -(-0.2 + _0x58599c) * toRadians(_0x35932c);
+        var _0x1dbe08 = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(_0x4c4312) + _0x11c623);
+        _0x11c623 = this.rad;
+        var _0x3c4cf3 = 2 * _0x1dbe08,
+            _0x1dbe08 = 2 * _0x1dbe08,
+            _0x433d7a = _0x429324,
+            _0x45b0e5 = _0x21286e;
+        ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08);
+        this.canCreateFire && (_0x2ed9c5 = getLoadedImg('skins/bigfoot/arm2-fire.png')) && (_0x58599c = (timestamp - this.spawnTime) / 1000, _0x58599c = getAnimFrame(_0x58599c, 5, 1, 1), ctx.globalAlpha = Math.max(0, _0x58599c), ctx.drawImage(_0x2ed9c5, 0 + _0x3c4cf3 * -_0x433d7a, _0x11c623 + _0x1dbe08 * -_0x45b0e5, _0x3c4cf3, _0x1dbe08));
+        ctx.restore();
+    }
 };
-Bigfoot.prototype.rightHandAnimation = function(_0x1b64dd) {
-  var _0x4e432d = getAnimFrame(
-    (timestamp - this.spawnTime) / 1000,
-    _0x57bed6,
-    _0x4bd1bd,
-    2
-  );
-  if ((_0x1b64dd = getLoadedImg("skins/bigfoot/arm1.png"))) {
-    ctx.save();
-    var _0x1ddbe6 = -_0x4e432d * toRadians(-10),
-      _0x4e432d = this.rad * _0x8a441a;
-    ctx.rotate(toRadians(-5) + _0x1ddbe6);
-    _0x1ddbe6 = 2 * _0x4e432d;
-    _0x4e432d *= 2;
-    ctx.drawImage(
-      _0x1b64dd,
-      -0.55 * _0x1ddbe6,
-      this.rad + -0.85 * _0x4e432d,
-      _0x1ddbe6,
-      _0x4e432d
-    );
-    ctx.restore();
-  }
+Bigfoot.prototype.rightHandAnimation = function (_0x1b64dd) {
+    var _0x4e432d = getAnimFrame((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x1b64dd = getLoadedImg('skins/bigfoot/arm1.png')) {
+        ctx.save();
+        var _0x1ddbe6 = -_0x4e432d * toRadians(-10),
+            _0x4e432d = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(-5) + _0x1ddbe6);
+        _0x1ddbe6 = 2 * _0x4e432d;
+        _0x4e432d *= 2;
+        ctx.drawImage(_0x1b64dd, -0.55 * _0x1ddbe6, this.rad + -0.85 * _0x4e432d, _0x1ddbe6, _0x4e432d);
+        ctx.restore();
+    }
 };
-Bigfoot.prototype.leftHandAnimation = function(_0x3e895b) {
-  var _0x5e6af1 = getAnimFrame(
-    (timestamp - this.spawnTime) / 1000,
-    _0x57bed6,
-    _0x4bd1bd,
-    2
-  );
-  if ((_0x3e895b = getLoadedImg("skins/bigfoot/arm21.png"))) {
-    ctx.save();
-    var _0x38240d = -_0x5e6af1 * toRadians(-10),
-      _0x5e6af1 = this.rad * _0x8a441a;
-    ctx.rotate(toRadians(-5) + _0x38240d);
-    _0x38240d = 2 * _0x5e6af1;
-    _0x5e6af1 *= 2;
-    ctx.drawImage(
-      _0x3e895b,
-      -0.47 * _0x38240d,
-      this.rad + -0.8 * _0x5e6af1,
-      _0x38240d,
-      _0x5e6af1
-    );
-    ctx.restore();
-  }
+Bigfoot.prototype.leftHandAnimation = function (_0x3e895b) {
+    var _0x5e6af1 = getAnimFrame((timestamp - this.spawnTime) / 1000, _0x57bed6, _0x4bd1bd, 2);
+    if (_0x3e895b = getLoadedImg('skins/bigfoot/arm21.png')) {
+        ctx.save();
+        var _0x38240d = -_0x5e6af1 * toRadians(-10),
+            _0x5e6af1 = this.rad * _0x8a441a;
+        ctx.rotate(toRadians(-5) + _0x38240d);
+        _0x38240d = 2 * _0x5e6af1;
+        _0x5e6af1 *= 2;
+        ctx.drawImage(_0x3e895b, -0.47 * _0x38240d, this.rad + -0.8 * _0x5e6af1, _0x38240d, _0x5e6af1);
+        ctx.restore();
+    }
 };
 
 function Bigfoot() {
-  Bigfoot.superClass.call(this, o_animal);
-  this.oogaBoogaNextT = +new Date() + 15000;
+    Bigfoot.superClass.call(this, o_animal);
+    this.oogaBoogaNextT = +new Date() + 15000;
 }
 window.BigFoot = Bigfoot;
 GameObjType.setCustomClassForGameObjType(Bigfoot, o_animal, a_bigfoot);
@@ -15736,102 +15144,109 @@ FinalDragon.prototype = Object.create(superClass.prototype); //properly inherit 
 FinalDragon.prototype.constructor = FinalDragon;
 FinalDragon.superClass = superClass; //'class' var
 
-FinalDragon.prototype.getSkinName = function() {
+ FinalDragon.prototype.getSkinName = function() {
   var skin =
-    "finaldragon/" +
-    this.animalSpecies +
+    "finaldragon/" + this.animalSpecies + 
     "/body" +
     (this.specType == 0 ? "" : this.specType);
+
+
 
   return skin;
 };
 
+
 FinalDragon.prototype.drawOnTopOfSkinImg = function() {
+
+
+
   var skins = "skins";
+  
 
   var iScale = 500 / 340.0;
   {
-    var theImg = getLoadedImg(
-      "skins/finaldragon/" + this.animalSpecies + "/nostrils.png"
-    );
-    if (theImg) {
-      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-      var frame = getAnimFrame(tSinceSpawn, 5, 1, 1);
-      ctx.save();
-      var speed = Math.max(0, frame);
 
-      ctx.globalAlpha = speed;
-
-      var rad = this.rad - this.outlineW;
-      ctx.drawImage(
-        theImg,
-        -rad * iScale,
-        -rad * iScale,
-        2 * rad * iScale,
-        2 * rad * iScale
-      );
-
-      ctx.restore();
-    }
-
-    ctx.save();
-    var max = 10;
-    var max2 = -3;
+  var theImg = getLoadedImg("skins/finaldragon/" + this.animalSpecies + "/nostrils.png");
+  if (theImg) {
     var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-    var frame = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
-    var theImg = getLoadedImg(
-      skins + "/finaldragon/" + this.animalSpecies + "/right_wing.png"
+     var frame = getAnimFrame(tSinceSpawn, 5, 1, 1);
+    ctx.save();
+    var speed = Math.max(0, frame);
+ 
+    ctx.globalAlpha = speed
+   
+    var rad = this.rad - this.outlineW;
+    ctx.drawImage(
+      theImg,
+      -rad * iScale,
+      -rad * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
     );
-    if (theImg) {
-      ctx.save();
-      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-      //console.log("getAnimFrame:" + frame);
-      var extraRotate = -frame * toRadians(max); //spin animation
-
-      //clip to sliwly show the claw
-      var rad = this.rad - this.outlineW;
-
-      ctx.rotate(toRadians(max2) + extraRotate);
-
-      ctx.drawImage(
-        theImg,
-        -rad * iScale,
-        -rad * iScale,
-        2 * rad * iScale,
-        2 * rad * iScale
-      );
-
-      ctx.restore();
-    }
-
-    var theImg = getLoadedImg(
-      skins + "/finaldragon/" + this.animalSpecies + "/left_wing.png"
-    );
-    if (theImg) {
-      ctx.save();
-      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-      //console.log("getAnimFrame:" + frame);
-      var extraRotate = -frame * toRadians(-max); //spin animation
-
-      //clip to sliwly show the claw
-      var rad = this.rad - this.outlineW;
-      ctx.rotate(toRadians(-max2) + extraRotate);
-
-      ctx.drawImage(
-        theImg,
-        -rad * iScale,
-        -rad * iScale,
-        2 * rad * iScale,
-        2 * rad * iScale
-      );
-
-      ctx.restore();
-    }
-
+ 
     ctx.restore();
   }
+
+      ctx.save();
+var max = 10
+var max2 =-3
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+ var frame =  getAnimFrame(tSinceSpawn,2.1, .4, 1.5);
+      var theImg = getLoadedImg(
+        skins + "/finaldragon/" + this.animalSpecies + "/right_wing.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(frame) * toRadians(max); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad - this.outlineW;
+        
+        ctx.rotate(toRadians(max2) + extraRotate);
+ 
+        ctx.drawImage(
+        theImg,
+      -rad * iScale,
+      -rad * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+        skins + "/finaldragon/" + this.animalSpecies + "/left_wing.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(frame) * toRadians(-max); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad - this.outlineW;
+        ctx.rotate(toRadians(-max2) + extraRotate);
+    
+        ctx.drawImage(
+         theImg,
+      -rad * iScale,
+      -rad * iScale,
+      2 * rad * iScale,
+      2 * rad * iScale
+        );
+
+        ctx.restore();
+      }
+
+      ctx.restore();
+ 
+
+  };
 };
 function FinalDragon() {
   FinalDragon.superClass.call(this, o_animal);
@@ -15839,6 +15254,7 @@ function FinalDragon() {
 window.FinalDragon = FinalDragon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(FinalDragon, o_animal, a_finaldragon);
+
 
 ///////
 // file: js_src/gameobj/animal/Santa.js
@@ -15848,69 +15264,71 @@ var superClass = Animal;
 IceMonster.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 IceMonster.prototype.constructor = IceMonster;
 IceMonster.superClass = superClass; //'class' var
-IceMonster.prototype.readCustomData_onNewlyVisible = function(msg) {
-  IceMonster.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
-  this.readInfo(msg);
-};
-IceMonster.prototype.readCustomData_onUpdate = function(msg) {
-  IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg);
-  this.readInfo(msg);
-};
-IceMonster.prototype.readInfo = function(msg) {
-  var _0xa9f163 = msg.readUInt8();
-  this.crystals = [];
-  for (i = 0; i < _0xa9f163; i++) {
-    var _0x125caf = msg.readInt16() / 100;
-    var _0x18dd56 = msg.readInt16() / 100;
-    var _0x150bb5 = msg.readUInt16() / 100;
-    var _0x2adfbc = msg.readUInt16() / 100;
-
-    this.crystals.push({
-      x: _0x125caf,
-      y: _0x18dd56,
-      nRad: _0x150bb5,
-      oRad: _0x150bb5,
-      rad: _0x150bb5,
-      angle: _0x2adfbc
-    });
-  }
-};
-
+IceMonster.prototype.readCustomData_onNewlyVisible = function (msg) {
+        IceMonster.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+        this.readInfo(msg);
+    };
+    IceMonster.prototype.readCustomData_onUpdate = function (msg) {
+        IceMonster.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+        this.readInfo(msg);
+    };
+    IceMonster.prototype.readInfo = function (msg) {
+      
+                var _0xa9f163 = msg.readUInt8();
+                this.crystals = [];
+                for (i = 0; i < _0xa9f163  ; i++) {
+                 
+                    var _0x125caf = msg.readInt16() / 100;
+                    var _0x18dd56 = msg.readInt16() / 100;
+                    var _0x150bb5 = msg.readUInt16() / 100;
+                    var _0x2adfbc = msg.readUInt16() / 100;
+               
+                    this.crystals.push({
+                        'x': _0x125caf,
+                        'y': _0x18dd56,
+                        'nRad': _0x150bb5,
+                        'oRad': _0x150bb5,
+                        'rad': _0x150bb5,
+                        'angle': _0x2adfbc
+                    });
+                   
+          };
+    };
+ 
 IceMonster.prototype.drawOnTopOfSkinImg = function() {
-  var _0x32e153 = this.rad - this.outlineW;
 
-  for (i = 0; i < this.crystals.length; i++) {
-    var _0x28cda7 = this.crystals[i];
-    if (_0x28cda7.nRad == 0) continue;
-    _0x28cda7.rad += (_0x28cda7.nRad - _0x28cda7.rad) * 0.01;
-    var _0x537db5 = _0x28cda7["x"] * _0x32e153;
-    var _0x3c54ff = _0x28cda7["y"] * _0x32e153;
-    var _0x43b339 = _0x28cda7.angle;
-    var _0x5a7f6a = _0x28cda7.rad;
-    ctx.save();
-    ctx.translate(_0x537db5, _0x3c54ff);
-    ctx.globalAlpha = 1;
-    ctx.rotate(toRadians(_0x43b339));
-    var _0xb06102 = getLoadedImg("skins/monsters/icemonster/crystal.png");
-    if (_0xb06102) {
-      ctx.drawImage(
-        _0xb06102,
-        -_0x5a7f6a,
-        -_0x5a7f6a * 2,
-        _0x5a7f6a * 2,
-        _0x5a7f6a * 2
-      );
+ var _0x32e153 = this.rad - this.outlineW;
+ 
+    for (i = 0; i < this.crystals.length; i++) {
+            
+      
+            var _0x28cda7 = this.crystals[i];
+            if (_0x28cda7.nRad == 0) continue;
+            _0x28cda7.rad += (_0x28cda7.nRad - _0x28cda7.rad) * 0.01;
+            var _0x537db5 = _0x28cda7['x'] * _0x32e153;
+            var _0x3c54ff = _0x28cda7['y'] * _0x32e153;
+            var _0x43b339 = _0x28cda7.angle;
+            var _0x5a7f6a = _0x28cda7.rad;
+            ctx.save();
+            ctx.translate(_0x537db5, _0x3c54ff);
+            ctx.globalAlpha = 1;
+            ctx.rotate(toRadians(_0x43b339));
+            var _0xb06102 = getLoadedImg('skins/monsters/icemonster/crystal.png');
+            if (_0xb06102) {
+                ctx.drawImage(_0xb06102, -_0x5a7f6a, -_0x5a7f6a * 2, _0x5a7f6a * 2, _0x5a7f6a * 2);
+            }
+            ctx.restore();
+        
     }
-    ctx.restore();
-  }
 };
 function IceMonster() {
-  this.crystals = [];
+     this.crystals = [];
   IceMonster.superClass.call(this, o_animal);
 }
 window.IceMonster = IceMonster;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(IceMonster, o_animal, a_iceMonster);
+
 
 ///////
 // file: js_src/gameobj/animal/Santa.js
@@ -15921,12 +15339,15 @@ Santa.prototype = Object.create(superClass.prototype); //properly inherit protot
 Santa.prototype.constructor = Santa;
 Santa.superClass = superClass; //'class' var
 
-Santa.prototype.getSkinName = function() {
-  var skin = "santa/" + "/eagle" + (this.specType == 0 ? "" : this.specType);
+ Santa.prototype.getSkinName = function() {
+  var skin =
+    "santa/" +
+    "/eagle" +
+    (this.specType == 0 ? "" : this.specType);
 
-  if (this.flag_flying && !this.flag_isGrabbed && this.flag_usingAbility) {
-    var skin = "santa/flying_eagle";
-  }
+if (this.flag_flying && !this.flag_isGrabbed&&this.flag_usingAbility) {
+var skin ="santa/flying_eagle"
+};
 
   return skin;
 };
@@ -15935,34 +15356,17 @@ Santa.prototype.drawUnderSkinImg = function() {
   if (!this.flag_usingAbility) return;
 
   var skins = "skins";
+  
 
   var iScale = 500 / 340.0;
-  {
-    var n = (timestamp - this.spawnTime) / 1000.0;
-    var l = getAnimFrame(n, 0.9, 0.3, 2);
+  {  
+      var n = (timestamp - this.spawnTime) / 1000.0;
+     var l = getAnimFrame(n, .9, .3, 2)
     if (this.flag_flying && !this.flag_isGrabbed) {
-      if ((i = getLoadedImg(skins + "/santa/" + "/eagle_wing1.png")))
-        ctx.save(),
-          (r = -(-0.2 + l) * toRadians(90)),
-          (s = 0.8 * this.rad),
-          ctx.rotate(r),
-          (r = this.rad),
-          (h = 1.4 * s),
-          (o = 2 * s),
-          ctx.drawImage(i, 0 + 0.2 * h, r + -1.2 * o, h, o),
-          ctx.restore();
-      if ((i = getLoadedImg(skins + "/santa/" + "/eagle_wing2.png")))
-        ctx.save(),
-          (r = -(-0.2 + l) * toRadians(-90)),
-          (s = 0.8 * this.rad),
-          ctx.rotate(r),
-          (r = this.rad),
-          (h = 1.4 * s),
-          (o = 2 * s),
-          ctx.drawImage(i, 0 + -1.2 * h, r + -1.2 * o, h, o),
-          ctx.restore();
-    }
+    if (i = getLoadedImg( skins + "/santa/" + "/eagle_wing1.png")) ctx.save(), r = -(-.2 + l) * toRadians(90), s = .8 * this.rad, ctx.rotate(r), r = this.rad, h = 1.4 * s, o = 2 * s, ctx.drawImage(i, 0 + .2 * h, r + -1.2 * o, h, o), ctx.restore();
+if (i = getLoadedImg( skins + "/santa/" + "/eagle_wing2.png")) ctx.save(), r = -(-.2 + l) * toRadians(-90), s = .8 * this.rad, ctx.rotate(r), r = this.rad, h = 1.4 * s, o = 2 * s, ctx.drawImage(i, 0 + -1.2 * h, r + -1.2 * o, h, o), ctx.restore();
   }
+};
 };
 function Santa() {
   Santa.superClass.call(this, o_animal);
@@ -15970,6 +15374,7 @@ function Santa() {
 window.Santa = Santa;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Santa, o_animal, a_santa);
+
 
 ///////
 // file: js_src/gameobj/animal/Eagle.js
@@ -15979,7 +15384,7 @@ var superClass = Animal;
 Eagle.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Eagle.prototype.constructor = Eagle;
 Eagle.superClass = superClass; //'class' var
-
+ 
 Eagle.prototype.animalInfo = function() {
   var infoO = {};
 
@@ -16009,9 +15414,10 @@ Eagle.prototype.animalInfo = function() {
 };
 
 Eagle.prototype.drawSkinCustomization = function() {
-  // if (!this.flag_usingAbility) return;
+ // if (!this.flag_usingAbility) return;
 
   var skins = "skins";
+  
 
   var iScale = 500 / 340.0;
   {
@@ -16188,14 +15594,16 @@ window.Eagle = Eagle;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Eagle, o_animal, a_eagle);
 
+
 ///////
 // file: js_src/gameobj/animal/Ostrich.js
 ///////
 
+
 var superClass = Animal;
 Ostrich.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Ostrich.prototype.constructor = Ostrich;
-Ostrich.superClass = superClass; //'class' var
+Ostrich.superClass=superClass; //'class' var
 
 //example of custom Z
 /*Ostrich.prototype.updateZ = function() {
@@ -16205,23 +15613,26 @@ Ostrich.superClass = superClass; //'class' var
 //set custom skin name
 Ostrich.prototype.getSkinName = function() {
   return "ostrich/ostrich";
-};
-
-function Ostrich() {
-  Ostrich.superClass.call(this, o_animal);
 }
-window.Ostrich = Ostrich;
+
+function Ostrich(){
+    Ostrich.superClass.call(this, o_animal);
+
+}
+window.Ostrich=Ostrich;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Ostrich, o_animal, a_ostrich);
+
 
 ///////
 // file: js_src/gameobj/animal/OstrichBaby.js
 ///////
 
+
 var superClass = Animal;
 OstrichBaby.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 OstrichBaby.prototype.constructor = OstrichBaby;
-OstrichBaby.superClass = superClass; //'class' var
+OstrichBaby.superClass=superClass; //'class' var
 
 //example of custom Z
 /*OstrichBaby.prototype.updateZ = function() {
@@ -16231,15 +15642,24 @@ OstrichBaby.superClass = superClass; //'class' var
 //set custom skin name
 OstrichBaby.prototype.getSkinName = function() {
   return "ostrich/ostrich-baby";
-};
-
-function OstrichBaby() {
-  OstrichBaby.superClass.call(this, o_animal);
 }
 
-window.OstrichBaby = OstrichBaby;
+
+
+
+
+
+
+function OstrichBaby(){
+    OstrichBaby.superClass.call(this, o_animal);
+
+}
+
+
+window.OstrichBaby=OstrichBaby;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(OstrichBaby, o_animal, a_ostrichBaby);
+
 
 ///////
 // file: js_src/gameobj/animal/Falcon.js
@@ -16259,9 +15679,10 @@ Falcon.superClass = superClass; //'class' var
 //set custom skin name
 Falcon.prototype.getSkinName = function() {
   return (
-    "falcon/" +
-    this.animalSpecies +
-    "/falcon" +
+    "falcon/"
+    +
+    this.animalSpecies
+    +"/falcon" +
     (this.specType == 0 || this.specType == undefined ? "" : this.specType)
   );
 };
@@ -16269,7 +15690,7 @@ Falcon.prototype.getSkinName = function() {
 Falcon.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
   var skins = "skins";
-
+  
   var iScale = 500 / 340.0;
   if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
     ctx.save();
@@ -16278,9 +15699,7 @@ Falcon.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.7, 0.4, 2)
       : this.birdNoAnimationFlyWingAngle;
-    var theImg = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_wing1.png"
-    );
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -16309,9 +15728,7 @@ Falcon.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_wing2.png"
-    );
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -16349,9 +15766,7 @@ Falcon.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.7, 0.3, 2)
       : 0;
-    var theImg = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_wing1.png"
-    );
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -16380,9 +15795,7 @@ Falcon.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_wing2.png"
-    );
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -16421,9 +15834,7 @@ Falcon.prototype.drawSkinCustomization = function() {
     var frame = !options_lowGraphics
       ? getAnimFrame(tSinceSpawn, 0.5, 0.4, 2)
       : 0;
-    var theImg = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_wing1.png"
-    );
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing1.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -16452,9 +15863,7 @@ Falcon.prototype.drawSkinCustomization = function() {
       ctx.restore();
     }
 
-    var theImg = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_wing2.png"
-    );
+    var theImg = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_wing2.png");
     if (theImg) {
       ctx.save();
       //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
@@ -16487,9 +15896,7 @@ Falcon.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(
-      skins + "/falcon/" + this.animalSpecies + "/falcon_head.png"
-    );
+    var theHead = getLoadedImg(skins + "/falcon/"+this.animalSpecies + "/falcon_head.png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
@@ -16507,7 +15914,7 @@ Falcon.prototype.drawSkinCustomization = function() {
   }
 };
 
-function falcon() {
+function Falcon() {
   Falcon.superClass.call(this, o_animal);
 }
 window.Falcon = Falcon;
@@ -16541,8 +15948,9 @@ Thunderbird.prototype.getSkinName = function() {
 Thunderbird.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
+  
   var skins = "skins";
-
+  
   var iScale = 500 / 340.0;
   if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
     ctx.save();
@@ -16748,12 +16156,7 @@ Thunderbird.prototype.drawSkinCustomization = function() {
   }
 
   if (this.specType != 0 && this.specType != undefined) {
-    var theHead = getLoadedImg(
-      skins +
-        "/thunderbird/thunderbird_head" +
-        (this.specType == 3 || this.specType == 2 ? "1" : "") +
-        ".png"
-    );
+    var theHead = getLoadedImg(skins + "/thunderbird/thunderbird_head"+( (this.specType == 3||this.specType == 2)? "1":"")+ ".png");
     if (theHead) {
       ctx.save();
       var rad = this.rad * (this.specType == 3 ? 1.2 : 1);
@@ -16770,20 +16173,18 @@ Thunderbird.prototype.drawSkinCustomization = function() {
     }
   }
 };
-Thunderbird.prototype.readCustomData_onNewlyVisible = function(msg) {
-  Thunderbird.superClass.prototype.readCustomData_onNewlyVisible.call(
-    this,
-    msg
-  );
-  this.readInfo(msg);
-};
-Thunderbird.prototype.readCustomData_onUpdate = function(msg) {
-  Thunderbird.superClass.prototype.readCustomData_onUpdate.call(this, msg);
-  this.readInfo(msg);
-};
-Thunderbird.prototype.readInfo = function(msg) {
-  this.transparancy = msg.readUInt8();
-};
+ Thunderbird.prototype.readCustomData_onNewlyVisible = function (msg) {
+        Thunderbird.superClass.prototype.readCustomData_onNewlyVisible.call(this, msg);
+        this.readInfo(msg);
+    };
+    Thunderbird.prototype.readCustomData_onUpdate = function (msg) {
+        Thunderbird.superClass.prototype.readCustomData_onUpdate.call(this, msg);
+        this.readInfo(msg);
+    };
+    Thunderbird.prototype.readInfo = function (msg) {
+      this.transparancy = msg.readUInt8();
+ 
+    };
 function Thunderbird() {
   Thunderbird.superClass.call(this, o_animal);
 }
@@ -16814,7 +16215,7 @@ SnowyOwl.prototype.drawSkinCustomization = function() {
   if (!this.flag_usingAbility) return;
 
   var skins = "skins";
-
+  
   var iScale = 500 / 340.0;
   if (this.flag_flying && !this.flag_isGrabbed && this.specType == 1) {
     ctx.save();
@@ -17044,6 +16445,7 @@ window.SnowyOwl = SnowyOwl;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SnowyOwl, o_animal, a_snowyOwl);
 
+
 ///////
 // file: js_src/gameobj/animal/Pelican.js
 ///////
@@ -17070,8 +16472,9 @@ Pelican.prototype.drawSkinCustomization = function() {
   var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
   var rad = this.rad - this.outlineW;
 
+  
   var skins = "skins";
-
+   
   if (this.flag_flying) {
     var wingType = "";
 
@@ -17258,57 +16661,58 @@ window.Pelican = Pelican;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Pelican, o_animal, a_pelican);
 
+
 ///////
 // file: js_src/gameobj/animal/Frog.js
 ///////
 
+
 var superClass = Animal;
 Frog.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Frog.prototype.constructor = Frog;
-Frog.superClass = superClass; //'class' var
+Frog.superClass=superClass; //'class' var
 
 //example of custom Z
 Frog.prototype.updateZ = function() {
-  this.z = 1003 + this.rad;
-};
+	this.z = 1003 + this.rad;
+}
 
 //set custom skin name
 Frog.prototype.getSkinName = function() {
-  var suffix = "";
-  if (this.flag_usingAbility && !this.flag_underWater) suffix = "2";
-  return "frog/frog" + suffix;
-};
+	var suffix = "";
+	if (this.flag_usingAbility && !this.flag_underWater )
+          suffix = "2";
+    return "frog/frog" + suffix;
+}
 
 Frog.prototype.drawUnderSkinImg = function() {
-  if (this.flag_usingAbility && !this.flag_underWater) {
+	if (this.flag_usingAbility && !this.flag_underWater) {
     var rad = this.rad - this.outlineW;
     var iScale = 500 / 340.0;
     var froglegs = getLoadedImg("./skins/frog/frogLegs.png");
     if (froglegs)
-      ctx.drawImage(
-        froglegs,
-        -rad * iScale,
-        (-rad - rad) * iScale,
-        2 * rad * iScale,
-        2 * rad * iScale
-      );
-  }
-};
+      ctx.drawImage(froglegs, -rad * iScale, (-rad - rad) * iScale, 2 * rad * iScale, 2 * rad * iScale);
+	}
+}
 
 Frog.prototype.drawWhenUnderwater = function() {
-  ctx.save();
-  ctx.globalAlpha = 0.2;
-  ctx.scale(1, 1.5);
-  drawCircle(0, 0, this.rad * 0.5, "#598b30");
-  drawCircle(0, this.rad * -0.6, this.rad * 0.3, "#64a034");
-  ctx.restore();
-};
-function Frog() {
-  Frog.superClass.call(this, o_animal);
+
+    ctx.save();
+    ctx.globalAlpha = 0.2;
+    ctx.scale(1, 1.5);
+    drawCircle(0, 0, this.rad * 0.5, "#598b30");
+    drawCircle(0, this.rad * -0.6, this.rad * 0.3, "#64a034");
+    ctx.restore();
+
 }
-window.Frog = Frog;
+function Frog(){
+    Frog.superClass.call(this, o_animal);
+
+}
+window.Frog=Frog;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Frog, o_animal, a_frog);
+
 
 ///////
 // file: js_src/gameobj/animal/Duck.js
@@ -17329,9 +16733,8 @@ thisClass.superClass = superClass; //'class' var
 thisClass.prototype.isAttacking = false;
 thisClass.prototype.getSkinName = function() {
   //return "duck/duck_" + this.specType;
-
-  var skin =
-    "duck/" + this.animalSpecies + "/duck" + (this.isAttacking ? "1" : "");
+  
+  var skin = "duck/" + this.animalSpecies + "/duck" + (this.isAttacking? "1" : "");
   return skin;
 };
 
@@ -17406,17 +16809,12 @@ thisClass.prototype.drawSkinCustomization = function() {
 
     var theHead = getLoadedImg("skins/duck/2/head_duck.png");
     if (theHead) {
-      ctx.save();
-      var rad = this.rad * 1;
-      var ydist = -this.rad * 0.1;
-      ctx.drawImage(
-        theHead,
-        -rad * iScale,
-        -rad + ydist * iScale,
-        2 * rad * iScale,
-        2 * rad * iScale
-      );
-      ctx.restore();
+        ctx.save();
+        var rad = this.rad * 1;
+        var ydist = -this.rad * 0.1;
+        ctx.drawImage(theHead, -rad * iScale, (-rad) + ydist * iScale, 2 * rad * iScale, 2 * rad * iScale);
+        ctx.restore();
+
     }
 
     ctx.restore();
@@ -17430,14 +16828,16 @@ window.Duck = Duck;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Duck, o_animal, a_duck);
 
+
 ///////
 // file: js_src/gameobj/animal/Duckling.js
 ///////
 
+
 var superClass = Animal;
 Duckling.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Duckling.prototype.constructor = Duckling;
-Duckling.superClass = superClass; //'class' var
+Duckling.superClass=superClass; //'class' var
 
 //example of custom Z
 /*Duckling.prototype.updateZ = function() {
@@ -17447,13 +16847,15 @@ Duckling.superClass = superClass; //'class' var
 //set custom skin name
 Duckling.prototype.getSkinName = function() {
   return "duck/duckling";
-};
-function Duckling() {
-  Duckling.superClass.call(this, o_animal);
 }
-window.Duckling = Duckling;
+function Duckling(){
+    Duckling.superClass.call(this, o_animal);
+
+}
+window.Duckling=Duckling;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Duckling, o_animal, a_duckling);
+
 
 ///////
 // file: js_src/gameobj/animal/BlackDragon.js
@@ -17464,10 +16866,14 @@ BlackDragon.prototype = Object.create(superClass.prototype); //properly inherit 
 BlackDragon.prototype.constructor = BlackDragon;
 BlackDragon.superClass = superClass; //'class' var
 
+
+
 //example of custom Z
 BlackDragon.prototype.updateZ = function() {
   this.z = 1003 + this.rad;
 };
+
+
 
 BlackDragon.prototype.getSkinName = function() {
   var skin =
@@ -17476,45 +16882,48 @@ BlackDragon.prototype.getSkinName = function() {
     "/blackdragon" +
     (this.specType == 0 ? "" : this.specType);
 
-  if (this.flag_flying && !this.flag_isGrabbed && this.flag_usingAbility) {
-    var skin = "flying_blackdragon";
-  }
+if ( this.flag_flying && !this.flag_isGrabbed&& this.flag_usingAbility) {
+var skin ="flying_blackdragon"
+
+};
 
   return skin;
 };
 
-BlackDragon.prototype.animalInfo = function() {
-  infoO = {};
 
-  switch (this.animalSpecies) {
-    case 0:
-      infoO.aniName = "Black Dragon";
-      break;
-    case 1:
-      infoO.aniName = "Golden Black Dragon";
-      break;
-    case 2:
-      infoO.aniName = "Azure Bringer";
-  }
+
+BlackDragon.prototype.animalInfo = function () {
+     infoO = {};
+  
+             switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = 'Black Dragon';
+            break;
+         case 1:
+            infoO.aniName = 'Golden Black Dragon';
+            break;
+        case 2:
+            infoO.aniName = 'Azure Bringer';
+        }
   infoO.upgradeText =
-    "UPGRADED to " +
-    infoO.aniName +
-    "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
-  infoO.aniCol = "black";
-  infoO.skinName = this.getSkinName();
-  return infoO;
-};
-
-BlackDragon.prototype.drawSkinCustomization = function() {
+        "UPGRADED to " +
+        infoO.aniName +
+        "!\n Black dragons drink lava instead of water! Black dragons only heal on healing stones/lava!";
+      infoO.aniCol = "black";
+      infoO.skinName = this.getSkinName();
+    return infoO;
+}
+  
+  
+  BlackDragon.prototype.drawSkinCustomization = function() {
   var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
   var lava = this.lava; //waterBarPerc_n;
   var minLowLava = 50;
   //console.log("lava: " + lava)
   if (lava < minLowLava) {
     var lp = lava / minLowLava;
-    var theImg = getLoadedImg(
-      "skins/blackdragon/" + this.animalSpecies + "/wings.png"
-    );
+    var theImg = getLoadedImg("skins/blackdragon/" +  
+                           this.animalSpecies + "/wings.png");
     if (theImg) {
       ctx.save();
       ctx.globalAlpha = 1 - lp;
@@ -17599,8 +17008,8 @@ BlackDragon.prototype.drawSkinCustomization = function() {
 
     ctx.restore();
   }
-};
-BlackDragon.prototype.readCustomData_onNewlyVisible = function(msg) {
+  };
+BlackDragon.prototype.readCustomData_onNewlyVisible = function (msg) {
   BlackDragon.superClass.prototype.readCustomData_onNewlyVisible.call(
     this,
     msg
@@ -17608,7 +17017,7 @@ BlackDragon.prototype.readCustomData_onNewlyVisible = function(msg) {
   this.lava = msg.readUInt8();
 };
 
-BlackDragon.prototype.readCustomData_onUpdate = function(msg) {
+BlackDragon.prototype.readCustomData_onUpdate = function (msg) {
   BlackDragon.superClass.prototype.readCustomData_onUpdate.call(this, msg); //call superclass version of this method
   this.lava = msg.readUInt8();
 };
@@ -17620,11 +17029,18 @@ window.BlackDragon = BlackDragon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(BlackDragon, o_animal, a_blackDragon);
 
+
+
 var Dragon = Dragon;
 var superClass = Animal;
 Dragon.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Dragon.prototype.constructor = Dragon;
 Dragon.superClass = superClass; //'class' var
+
+
+
+
+
 
 Dragon.prototype.getSkinName = function() {
   var skin =
@@ -17632,6 +17048,7 @@ Dragon.prototype.getSkinName = function() {
     this.animalSpecies +
     "/dragon" +
     (this.specType == 0 ? "" : this.specType);
+
 
   return skin;
 };
@@ -17642,6 +17059,7 @@ function Dragon() {
 window.Dragon = Dragon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Dragon, o_animal, a_dragn);
+
 
 var Kraken = Kraken;
 var superClass = Animal;
@@ -17656,6 +17074,7 @@ Kraken.prototype.getSkinName = function() {
     "/kraken" +
     (this.specType == 0 ? "" : this.specType);
 
+
   return skin;
 };
 
@@ -17666,85 +17085,99 @@ window.Kraken = Kraken;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Kraken, o_animal, a_kraken);
 
+
 var superClass = GameObj;
 KrakenSpec.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 KrakenSpec.prototype.constructor = KrakenSpec;
 KrakenSpec.superClass = superClass; //'class' var
 
-KrakenSpec.prototype.updateZ = function() {
-  this.z = -101;
-};
+
+KrakenSpec.prototype.updateZ = function () {
+    this.z = -101;
+}
+
 
 //override draw (things like other effects are drawn seperately)
-KrakenSpec.prototype.customDraw = function(batchDrawOutline) {
-  ctx.save();
-  var oldA = ctx.globalAlpha;
-  ctx.globalAlpha = 0.5 * oldA;
-  var rad = Math.max(0, this.rad - 30);
+KrakenSpec.prototype.customDraw = function (batchDrawOutline) {
+   ctx.save();
+        var oldA = ctx.globalAlpha;
+        ctx.globalAlpha = 0.5 * oldA;
+        var rad = Math.max(0, this.rad - 30);
 
-  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-  var period = 2.2;
-  var xShift = 6.5 * Math.cos(((2.0 * Math.PI) / period) * tSinceSpawn);
-  var yShift = 6.5 * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+        var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+        var period = 2.2;
+        var xShift = 6.5 * Math.cos(((2.0 * Math.PI) / period) * tSinceSpawn);
+        var yShift = 6.5 * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
 
-  ctx.globalAlpha = 0.4 * oldA;
 
-  drawCircle(0, 0, rad, "#2CAAC4");
+        ctx.globalAlpha = 0.4 * oldA;
+     
+        drawCircle(0, 0, rad, "#2CAAC4");
 
-  ctx.globalAlpha = 0.7 * oldA;
-  if (!options_lowGraphics) {
-    drawCircle(
-      0 + xShift / 2 - this.rPer,
-      0 + yShift / 2 - this.rPer,
-      Math.max(0, rad - 6),
-      "#2D93B0"
-    );
+        ctx.globalAlpha = 0.7 * oldA;
+        if (!options_lowGraphics) {
+   
+drawCircle( 0 + xShift / 2 - this.rPer, 0 + yShift / 2 - this.rPer,Math.max(0, rad - 6),
+           "#2D93B0"
+   
+          );
+        
+        drawCircle(
+          0 + xShift / 4.5 + this.rPer,
+          1 + yShift / 1.5,
+          Math.max(0, rad - 14),
+         
+         "#29A0BA",
+        
+        );
 
-    drawCircle(
-      0 + xShift / 4.5 + this.rPer,
-      1 + yShift / 1.5,
-      Math.max(0, rad - 14),
+        drawCircle(
+          0 + xShift / 1.5 - this.rPer * 2,
+          yShift,
+          Math.max(0, rad - 38.5 + yShift / 5),
+          
+           "#2B8CAA"
+         
+        );
+        drawCircle(
+          0 + xShift / 1.5 - this.rPer * 2,
+          yShift,
+          Math.max(0, rad - 54.5 + yShift / 11),
+         "#28829E"
+          
+          
+        );
+}
 
-      "#29A0BA"
-    );
+        ctx.restore();
+}
 
-    drawCircle(
-      0 + xShift / 1.5 - this.rPer * 2,
-      yShift,
-      Math.max(0, rad - 38.5 + yShift / 5),
 
-      "#2B8CAA"
-    );
-    drawCircle(
-      0 + xShift / 1.5 - this.rPer * 2,
-      yShift,
-      Math.max(0, rad - 54.5 + yShift / 11),
-      "#28829E"
-    );
-  }
-
-  ctx.restore();
-};
 
 function KrakenSpec() {
-  KrakenSpec.superClass.call(this, o_spiderWeb);
+    KrakenSpec.superClass.call(this, o_spiderWeb);
 
-  this.webTransparency = 0;
+    this.webTransparency = 0;
 
-  //set vars for this class
-  this.doesDrawEffectScale = true;
-  this.drawEffectScale_Slow = true;
+    //set vars for this class
+    this.doesDrawEffectScale = true;
+    this.drawEffectScale_Slow = true;
+
 }
 window.KrakenSpec = KrakenSpec;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(KrakenSpec, ability_krakenSpec);
 
+
+
+
 var Yeti = Yeti;
 var superClass = Animal;
 Yeti.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Yeti.prototype.constructor = Yeti;
-Yeti.prototype.isTransforming = true;
+Yeti.prototype.isTransforming = true
 Yeti.superClass = superClass; //'class' var
+
 
 Yeti.prototype.getSkinName = function() {
   var skin =
@@ -17753,97 +17186,76 @@ Yeti.prototype.getSkinName = function() {
     "/yeti" +
     (this.specType == 0 ? "" : this.specType);
 
+
   return skin;
 };
 
-Yeti.prototype.animalInfo = function() {
-  var _0x1958a5 = {};
-  switch (this.animalSpecies) {
+Yeti.prototype.animalInfo = function () {
+    var _0x1958a5 = {};
+    switch (this.animalSpecies) {
     case 0:
-      _0x1958a5.aniName = "The Yeti!";
-      break;
+        _0x1958a5.aniName = 'The Yeti!';
+        break;
     case 1:
-      _0x1958a5.aniName = "Golden Yeti!";
-      break;
+        _0x1958a5.aniName = 'Golden Yeti!';
+        break;
     case 2:
-      _0x1958a5.aniName = "Emerald Yeti!";
-      break;
+        _0x1958a5.aniName = 'Emerald Yeti!';
+        break;
     case 3:
-      _0x1958a5.aniName = "Aqua Yeti";
-  }
-  _0x1958a5.skinName = "arctic/yeti/" + this.animalSpecies + "/yeti";
-  _0x1958a5.aniDesc = "";
-  _0x1958a5.upgradeText =
-    "UPGRADED to " +
-    _0x1958a5.aniName +
-    `!\n
+        _0x1958a5.aniName = 'Aqua Yeti';
+    }
+    _0x1958a5.skinName = 'arctic/yeti/' + this.animalSpecies + '/yeti';
+    _0x1958a5.aniDesc = '';
+    _0x1958a5.upgradeText = 'UPGRADED to ' + _0x1958a5.aniName + `!\n
  So it really exists... \n
  Hold W to turn into snow, release W to freeeeeze!`;
-  _0x1958a5.aniCol = "#839eb5";
-  return _0x1958a5;
+    _0x1958a5.aniCol = '#839eb5';
+    return _0x1958a5;
 };
 Yeti.prototype.biteStart = 0;
 Yeti.prototype.flapAmount = 3;
 Yeti.prototype.flapDur = 1.5;
 Yeti.prototype.roarStartT = -500;
-Yeti.prototype.drawSkinCustomization = function() {
-  if (this.flag_usingAbility && this.isTransforming) {
-    if (this.isTransforming) {
-      ctx.save();
-      ctx.globalAlpha = 1;
-      var _0x2760d8 = getLoadedImg("img/snowball.png");
-      if (_0x2760d8) {
-        var _0x52f2a5 = this.rad;
-        ctx.rotate(this.rPer * Math.PI * 2);
-        ctx.drawImage(
-          _0x2760d8,
-          -_0x52f2a5,
-          -_0x52f2a5,
-          2 * _0x52f2a5,
-          2 * _0x52f2a5
-        );
-      } else this.drawOutlinedCircle("", "white");
-      ctx.restore();
-    }
-  } else if (4 != this.animalSpecies)
-    if (this.flag_usingAbility) {
-      if (
-        (0 == this.biteStart && (this.biteStart = timestamp + this.roarStartT),
-        0 != this.specType && void 0 != this.specType)
-      ) {
-        var _0x2760d8 = getLoadedImg(
-            "skins/arctic/yeti/" + this.animalSpecies + "/yeti_head1.png"
-          ),
-          _0x52f2a5 = (timestamp - this.biteStart) / 1000,
-          _0x4c3138 = 1.07 * this.skinScale;
-        if (_0x2760d8) {
-          var _0x585de4;
-          _0x585de4 = this.flapAmount - (1 == this.animalSpecies ? 0.5 : 0);
-          _0x585de4 = options_lowGraphics
-            ? this.flapAmount
-            : getAnimFrame(_0x52f2a5, this.flapDur, _0x585de4, 2);
-          ctx.save();
-          _0x52f2a5 = this.rad;
-          ctx.drawImage(
-            _0x2760d8,
-            -_0x52f2a5 * _0x4c3138,
-            (-_0x52f2a5 + 0.1 * _0x52f2a5) * _0x4c3138 - _0x585de4,
-            2 * _0x52f2a5 * _0x4c3138,
-            2 * _0x52f2a5 * _0x4c3138
-          );
-          ctx.restore();
+Yeti.prototype.drawSkinCustomization = function () {
+    if (this.flag_usingAbility && this.isTransforming) {
+        if (this.isTransforming) {
+            ctx.save();
+            ctx.globalAlpha = 1;
+            var _0x2760d8 = getLoadedImg('img/snowball.png');
+            if (_0x2760d8) {
+                var _0x52f2a5 = this.rad;
+                ctx.rotate(this.rPer * Math.PI * 2);
+                ctx.drawImage(_0x2760d8, -_0x52f2a5, -_0x52f2a5, 2 * _0x52f2a5, 2 * _0x52f2a5);
+            } else this.drawOutlinedCircle('', 'white');
+            ctx.restore();
         }
-      }
-    } else this.biteStart = 0;
+    } else if (4 != this.animalSpecies)
+        if (this.flag_usingAbility) {
+            if (0 == this.biteStart && (this.biteStart = timestamp + this.roarStartT), 0 != this.specType && void 0 != this.specType) {
+                var _0x2760d8 = getLoadedImg('skins/arctic/yeti/' + this.animalSpecies + '/yeti_head1.png'),
+                    _0x52f2a5 = (timestamp - this.biteStart) / 1000,
+                    _0x4c3138 = 1.07 * this.skinScale;
+                if (_0x2760d8) {
+                    var _0x585de4;
+                    _0x585de4 = this.flapAmount - (1 == this.animalSpecies ? 0.5 : 0);
+                    _0x585de4 = options_lowGraphics ? this.flapAmount : getAnimFrame(_0x52f2a5, this.flapDur, _0x585de4, 2);
+                    ctx.save();
+                    _0x52f2a5 = this.rad;
+                    ctx.drawImage(_0x2760d8, -_0x52f2a5 * _0x4c3138, (-_0x52f2a5 + 0.1 * _0x52f2a5) * _0x4c3138 - _0x585de4, 2 * _0x52f2a5 * _0x4c3138, 2 * _0x52f2a5 * _0x4c3138);
+                    ctx.restore();
+                }
+            }
+        } else this.biteStart = 0;
 };
 
-Yeti.prototype.readCustomData_onUpdate = function(_0x441063) {
-  Yeti.superClass.prototype.readCustomData_onUpdate.call(this, _0x441063);
-  this.isTransforming = 1 == _0x441063.readUInt8();
+Yeti.prototype.readCustomData_onUpdate = function (_0x441063) {
+    Yeti.superClass.prototype.readCustomData_onUpdate.call(this, _0x441063);
+    this.isTransforming = 1 == _0x441063.readUInt8();
 };
-Yeti.prototype.readCustomData_onNewlyVisible = function(_0x36c899) {
-  Yeti.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x36c899);
-  this.isTransforming = 1 == _0x36c899.readUInt8();
+Yeti.prototype.readCustomData_onNewlyVisible = function (_0x36c899) {
+    Yeti.superClass.prototype.readCustomData_onNewlyVisible.call(this, _0x36c899);
+    this.isTransforming = 1 == _0x36c899.readUInt8();
 };
 function Yeti() {
   Yeti.superClass.call(this, o_animal);
@@ -17852,14 +17264,21 @@ window.Yeti = Yeti;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Yeti, o_animal, a_yeti);
 
+
+
 var Kingcrab = Kingcrab;
 var superClass = Animal;
 Kingcrab.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Kingcrab.prototype.constructor = Kingcrab;
 Kingcrab.superClass = superClass; //'class' var
 
+
 Kingcrab.prototype.getSkinName = function() {
-  var skin = "kingcrab" + (this.specType == 0 ? "" : this.specType);
+  var skin =
+    "kingcrab" +
+  
+    (this.specType == 0 ? "" : this.specType);
+
 
   return skin;
 };
@@ -18032,6 +17451,7 @@ window.Honeybee = Honeybee;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Honeybee, o_animal, a_honeyBee);
 
+
 ///////
 // file: js_src/gameobj/animal/Phoenix.js
 ///////
@@ -18041,6 +17461,7 @@ var superClass = Animal;
 Phoenix.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Phoenix.prototype.constructor = Phoenix;
 Phoenix.superClass = superClass; //'class' var
+
 
 Phoenix.prototype.updateZ = function() {
   this.z = 1007;
@@ -18056,7 +17477,7 @@ Phoenix.prototype.getSkinName = function() {
 
 //draw image for the animal skin (along with extra images on it, eg wings)
 Phoenix.prototype.drawSkinImg = function() {
-  
+   /*
   if (!options_lowGraphics) {
     var iScale = 500 / 340.0; //scale up ps image to fit (to remove blank space)
     var rad = this.rad - this.outlineW;
@@ -18186,12 +17607,12 @@ Phoenix.prototype.drawSkinImg = function() {
 
     // custom animations or skin overlays
     this.drawSkinCustomization();
-    
+    */
   Phoenix.superClass.prototype.drawSkinImg.call(this);
-  this.basicDrawSkinImg(); //just draw the image
+      this.basicDrawSkinImg(); //just draw the image
 
-  // custom animations or skin overlays
-  this.drawSkinCustomization();
+    // custom animations or skin overlays
+    this.drawSkinCustomization();
 };
 
 Phoenix.prototype.drawWhenUnderwater = function() {
@@ -18250,6 +17671,7 @@ window.Phoenix = Phoenix;
 GameObjType.setCustomClassForGameObjType(Phoenix, o_animal, a_phoenix);
 // monster update
 
+
 ///////
 // file: js_src/gameobj/animal/SeaMonster.js
 ///////
@@ -18261,82 +17683,59 @@ SeaMonster.prototype.constructor = SeaMonster;
 SeaMonster.superClass = superClass; //'class' var
 
 //set custom skin name
-SeaMonster.prototype.getSkinName = function() {
-  return "monsters/seamonster";
-};
+SeaMonster.prototype.getSkinName = function () {
+    return "monsters/seamonster";
+}
 
-SeaMonster.prototype.drawWhenUnderwater = function() {
-  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-  var period = 1.5;
-  var shiftAm = 1.0;
-  var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
 
-  var diveColor = "white";
-  ctx.globalAlpha = 0.2;
-  ctx.fillStyle = diveColor;
-  var bubRad = this.flag_underWater ? this.rad * 0.15 : this.rad * 0.1;
-  ctx.beginPath(); //top left, right
-  ctx.arc(
-    this.rad * -0.35,
-    this.rad * -0.33,
-    Math.max(0, bubRad + moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    this.rad * 0.35,
-    this.rad * -0.32,
-    Math.max(0, bubRad - moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
+SeaMonster.prototype.drawWhenUnderwater = function () {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
+    var period = 1.5;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
 
-  ctx.beginPath(); //bottom 2
-  ctx.arc(
-    this.rad * 0.35,
-    this.rad * 0.36,
-    Math.max(0, bubRad + moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    this.rad * -0.35,
-    this.rad * 0.35,
-    Math.max(0, bubRad - moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
+    var diveColor =  "white";
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = diveColor;
+    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
+    ctx.beginPath(); //top left, right
+    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
 
-  var diveImg = getLoadedImg("img/seamonster-dive.png");
-  if (diveImg) {
-    var iScale = 500 / 340.0;
+    ctx.beginPath(); //bottom 2
+    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
 
-    ctx.save();
-    ctx.globalAlpha = 0.4;
-    var rad = this.rad;
-    ctx.drawImage(
-      diveImg,
-      -rad * iScale,
-      (-rad + rad * 0.4) * iScale,
-      2 * rad * iScale,
-      2 * rad * iScale
-    );
 
-    ctx.restore();
-  }
-};
+    var diveImg = getLoadedImg("img/seamonster-dive.png");
+    if (diveImg) {
+        var iScale = 500 / 340.0;
+
+        ctx.save();
+        ctx.globalAlpha = 0.4;
+        var rad = this.rad;
+        ctx.drawImage(diveImg, -rad * iScale, (-rad + rad * 0.4) * iScale, 2 * rad * iScale, 2 * rad * iScale);
+
+        ctx.restore();
+    }
+   
+}
 function SeaMonster() {
-  SeaMonster.superClass.call(this, o_animal);
+    SeaMonster.superClass.call(this, o_animal);
+
 }
 window.SeaMonster = SeaMonster;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SeaMonster, o_animal, a_seaMonster);
+
+
+
 
 var lochness = lochness;
 var superClass = Animal;
@@ -18345,78 +17744,52 @@ lochness.prototype.constructor = lochness;
 lochness.superClass = superClass; //'class' var
 
 //set custom skin name
-lochness.prototype.getSkinName = function() {
-  return "lochness/lochness";
-};
+lochness.prototype.getSkinName = function () {
+    return "lochness/lochness";
+}
 
-lochness.prototype.drawWhenUnderwater = function() {
-  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-  var period = 1.5;
-  var shiftAm = 1.0;
-  var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
 
-  var diveColor = "#2762FF";
-  ctx.globalAlpha = 0.2;
-  ctx.fillStyle = diveColor;
-  var bubRad = this.flag_underWater ? this.rad * 0.15 : this.rad * 0.1;
-  ctx.beginPath(); //top left, right
-  ctx.arc(
-    this.rad * -0.35,
-    this.rad * -0.33,
-    Math.max(0, bubRad + moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    this.rad * 0.35,
-    this.rad * -0.32,
-    Math.max(0, bubRad - moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
+lochness.prototype.drawWhenUnderwater = function () {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
+    var period = 1.5;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
 
-  ctx.beginPath(); //bottom 2
-  ctx.arc(
-    this.rad * 0.35,
-    this.rad * 0.36,
-    Math.max(0, bubRad + moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    this.rad * -0.35,
-    this.rad * 0.35,
-    Math.max(0, bubRad - moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
+    var diveColor =  "#2762FF";
+    ctx.globalAlpha = 0.2;
+    ctx.fillStyle = diveColor;
+    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
+    ctx.beginPath(); //top left, right
+    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
 
-  var diveImg = getLoadedImg("skins/lochness/lochness-dive.png");
-  if (diveImg) {
-    var iScale = 500 / 340.0;
+    ctx.beginPath(); //bottom 2
+    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
 
-    ctx.save();
-    ctx.globalAlpha = 0.4;
-    var rad = this.rad;
-    ctx.drawImage(
-      diveImg,
-      -rad * iScale,
-      (-rad + rad * 0.4) * iScale,
-      2 * rad * iScale,
-      2 * rad * iScale
-    );
 
-    ctx.restore();
-  }
-};
+    var diveImg = getLoadedImg("skins/lochness/lochness-dive.png");
+    if (diveImg) {
+        var iScale = 500 / 340.0;
+
+        ctx.save();
+        ctx.globalAlpha = 0.4;
+        var rad = this.rad;
+        ctx.drawImage(diveImg, -rad * iScale, (-rad + rad * 0.4) * iScale, 2 * rad * iScale, 2 * rad * iScale);
+
+        ctx.restore();
+    }
+   
+}
 function lochness() {
-  lochness.superClass.call(this, o_animal);
+    lochness.superClass.call(this, o_animal);
+
 }
 window.lochness = lochness;
 //add this file as a class! (make sure to call require!)
@@ -18433,199 +17806,178 @@ LandMonster.prototype.constructor = LandMonster;
 LandMonster.superClass = superClass; //'class' var
 
 //set custom skin name
-LandMonster.prototype.getSkinName = function() {
-  skin = "monsters/landmonster/" + this.animalSpecies + "/landmonster";
+LandMonster.prototype.getSkinName = function () {
 
-  return skin;
-};
+         skin ="monsters/landmonster/" + this.animalSpecies + "/landmonster"
 
-LandMonster.prototype.drawWhenUnderwater = function() {
-  var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-  var period = 1.5;
-  var shiftAm = 1.0;
-  var moveA = shiftAm * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+    
+    return skin
+}
 
-  var diveColor = "#f9d43b";
-  ctx.globalAlpha = 0.3;
-  ctx.fillStyle = diveColor;
-  var bubRad = this.flag_underWater ? this.rad * 0.15 : this.rad * 0.1;
-  ctx.beginPath(); //top left, right
-  ctx.arc(
-    this.rad * -0.35,
-    this.rad * -0.33,
-    Math.max(0, bubRad + moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    this.rad * 0.35,
-    this.rad * -0.32,
-    Math.max(0, bubRad - moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
 
-  ctx.beginPath(); //bottom 2
-  ctx.arc(
-    this.rad * 0.35,
-    this.rad * 0.36,
-    Math.max(0, bubRad + moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-  ctx.beginPath();
-  ctx.arc(
-    this.rad * -0.35,
-    this.rad * 0.35,
-    Math.max(0, bubRad - moveA),
-    0,
-    Math.PI * 2
-  );
-  ctx.fill();
-};
+LandMonster.prototype.drawWhenUnderwater = function () {
+    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0
+    var period = 1.5;
+    var shiftAm = 1.0;
+    var moveA = shiftAm * Math.sin((2.0 * Math.PI) / period * tSinceSpawn);
+
+
+    var diveColor =  "#f9d43b";
+    ctx.globalAlpha = 0.3;
+    ctx.fillStyle = diveColor;
+    var bubRad = (this.flag_underWater) ? this.rad * 0.15 : this.rad * 0.1;
+    ctx.beginPath(); //top left, right
+    ctx.arc(this.rad * -0.35, this.rad * -0.33, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * 0.35, this.rad * -0.32, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath(); //bottom 2
+    ctx.arc(this.rad * 0.35, this.rad * 0.36, Math.max(0, bubRad + moveA), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.rad * -0.35, this.rad * 0.35, Math.max(0, bubRad - moveA), 0, Math.PI * 2);
+    ctx.fill();
+   
+}
 LandMonster.prototype.drawSkinCustomization = function() {
-  if (this.flag_flying && !this.flag_isGrabbed && this.flag_usingAbility) {
-    ctx.save();
-    var iScale = 500 / 340.0;
-    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-    var frame = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
-    var frame2 = getAnimFrame(tSinceSpawn, 2.1, -8, 1.5);
-    var trueG = getAnimFrame(tSinceSpawn, 2.1, 0.4, 1.5);
-    var trueF = getAnimFrame(tSinceSpawn, 2.1, 0.3, 1.5);
-    var trueS = this.rad * 0.6;
-    var theImg = getLoadedImg(
-      "skins/monsters/landmonster/" + this.animalSpecies + "/wing_r1.png"
-    );
-    if (theImg) {
-      ctx.save();
-      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-      //console.log("getAnimFrame:" + frame);
-      var extraRotate = -(-0.3 + frame) * toRadians(80.0); //spin animation
-
-      //clip to sliwly show the claw
-      var rad = this.rad;
-      ctx.rotate(extraRotate);
-      var imX = 0,
-        imY = this.rad;
-      var imW = 1.6 * trueS;
-      imH = 2 * trueS + 5;
-      var imAnchorX = 1.6 * trueS,
-        imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
-
-      ctx.drawImage(
-        theImg,
-        0 + 0.65 * imAnchorX,
-        imY + imH * -(1.75 - (trueG + trueG / 4 - trueF)),
-        imW,
-        imH
+if (this.flag_flying && !this.flag_isGrabbed&& this.flag_usingAbility) {
+       ctx.save();
+   var iScale = 500 / 340.0;
+      var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+      var frame =  getAnimFrame(tSinceSpawn,2.1, .4, 1.5);
+      var frame2 = getAnimFrame(tSinceSpawn, 2.1, -8, 1.5);
+      var trueG = getAnimFrame(tSinceSpawn, 2.1, .4, 1.5);
+          var trueF = getAnimFrame(tSinceSpawn, 2.1, .3, 1.5);
+              var trueS = this.rad * 0.6
+      var theImg = getLoadedImg(
+   "skins/monsters/landmonster/" + this.animalSpecies + "/wing_r1.png"
       );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.3 + frame) * toRadians(80.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad 
+        ctx.rotate(extraRotate);
+        var imX = 0,
+          imY = this.rad;
+          var imW = 1.6 * trueS
+         imH = 2 * trueS + 5 ;
+        var imAnchorX = 1.6 * trueS,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          0 + 0.65 * imAnchorX,
+          imY + imH * -(1.75 - (trueG + trueG / 4 - trueF)),
+          imW,
+          imH
+        );
+
+        ctx.restore();
+      }
+
+      var theImg = getLoadedImg(
+       "skins/monsters/landmonster/" + this.animalSpecies + "/wing_l1.png"
+      );
+      if (theImg) {
+        ctx.save();
+        //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
+
+        //console.log("getAnimFrame:" + frame);
+        var extraRotate = -(-0.3 + frame) * toRadians(-80.0); //spin animation
+
+        //clip to sliwly show the claw
+        var rad = this.rad
+        ctx.rotate(extraRotate);
+        var imX = 0,
+          imY = this.rad;
+       var imW = 1.6 * trueS
+          imH = 2 * trueS + 5 
+        var imAnchorX = 1.6 * trueS,
+          imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
+
+        ctx.drawImage(
+          theImg,
+          0 + -1.65 * imAnchorX,
+          imY + imH * -(1.75 - (trueG + trueG / 4) + trueF),
+        imW,
+          imH
+        );
+
+        ctx.restore();
+      }
 
       ctx.restore();
-    }
 
-    var theImg = getLoadedImg(
-      "skins/monsters/landmonster/" + this.animalSpecies + "/wing_l1.png"
-    );
-    if (theImg) {
-      ctx.save();
-      //var fac0to1 = Math.min(1.0, (timestamp - this.spawnTime) / 300.0);
-
-      //console.log("getAnimFrame:" + frame);
-      var extraRotate = -(-0.3 + frame) * toRadians(-80.0); //spin animation
-
-      //clip to sliwly show the claw
-      var rad = this.rad;
-      ctx.rotate(extraRotate);
-      var imX = 0,
-        imY = this.rad;
-      var imW = 1.6 * trueS;
-      imH = 2 * trueS + 5;
-      var imAnchorX = 1.6 * trueS,
-        imAnchorY = 1.7; //top-left= 0,0, bottom-right=1,1 (canvas coords)
-
-      ctx.drawImage(
-        theImg,
-        0 + -1.65 * imAnchorX,
-        imY + imH * -(1.75 - (trueG + trueG / 4) + trueF),
-        imW,
-        imH
-      );
-
-      ctx.restore();
-    }
-
-    ctx.restore();
   }
-};
+      
+   
+  };
 function LandMonster() {
-  LandMonster.superClass.call(this, o_animal);
+    LandMonster.superClass.call(this, o_animal);
+
 }
 window.LandMonster = LandMonster;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(LandMonster, o_animal, a_landMonster);
 
+
 ///////
 // file: js_src/gameobj/SinkHole.js
 ///////
+
 
 var superClass = GameObj;
 SinkHole.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 SinkHole.prototype.constructor = SinkHole;
 SinkHole.superClass = superClass; //'class' var
 
-SinkHole.prototype.updateZ = function() {
-  this.z = -101;
-};
+
+SinkHole.prototype.updateZ = function () {
+    this.z = -101;
+}
+
 
 //override draw (things like other effects are drawn seperately)
-SinkHole.prototype.customDraw = function(batchDrawOutline) {
-  ctx.save();
-  this.curBiome = this.specType;
-  console.log(this.curBiome);
-  if (this.curBiome == 0 || this.curBiome == 2) {
-    this.drawOutlinedCircle("", "#9F8641");
-    //drawCircle(0, 0, this.rad, "#9F8641");
+SinkHole.prototype.customDraw = function (batchDrawOutline) {
+    ctx.save();
+     this.curBiome = this.specType
+  console.log(this.curBiome )
+    if (this.curBiome == 0||this.curBiome == 2) {
+        this.drawOutlinedCircle("", "#9F8641");
+        //drawCircle(0, 0, this.rad, "#9F8641");
 
-    //drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "black");
-    //ctx.globalAlpha = 0.6;
-    drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
-    ctx.globalAlpha = 0.7;
-    drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.75), "#40371D");
-    ctx.globalAlpha = 0.9;
-    drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.6), "#40371D");
-    ctx.globalAlpha = 0.5;
-  } else if (this.curBiome == 1) {
-    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-    var period = 1.2;
-    var xShift = 2.5 * Math.cos(((2.0 * Math.PI) / period) * tSinceSpawn);
-    var yShift = 2.5 * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+        //drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "black");
+        //ctx.globalAlpha = 0.6;
+        drawCircle(0 + this.rPer, 1, Math.max(0, this.rad * 0.9), "#5C4E28");
+        ctx.globalAlpha = 0.7;
+        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.75), "#40371D");
+        ctx.globalAlpha = 0.9;
+        drawCircle(0 - this.rPer, 1, Math.max(0, this.rad * 0.6), "#40371D");
+        ctx.globalAlpha = 0.5;
+       
+    }
 
-    this.drawOutlinedCircle("", "#2CAAC4");
+    else if(this.curBiome == 1){
+        
+        var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+        var period = 1.2;
+        var xShift = 2.5 * Math.cos((2.0 * Math.PI) / period * (tSinceSpawn));
+        var yShift = 2.5 * Math.sin((2.0 * Math.PI) / period * (tSinceSpawn));
 
-    drawCircle(
-      0 + xShift / 4.5 + this.rPer,
-      1 + yShift / 1.5,
-      Math.max(0, this.rad - 14),
-      "#29A0BA"
-    );
-    drawCircle(
-      0 + xShift / 1.5 - this.rPer * 2,
-      yShift,
-      Math.max(0, this.rad - 18.5 + yShift / 5),
-      "#2B8CAA"
-    );
-    drawCircle(
-      0 + xShift / 1.5 - this.rPer * 2,
-      yShift,
-      Math.max(0, this.rad - 24.5 + yShift / 11),
-      "#28829E"
-    );
-    /*
+
+        this.drawOutlinedCircle("", "#2CAAC4");
+
+        drawCircle(0 + xShift / 4.5 + this.rPer, 1 + yShift / 1.5, Math.max(0, this.rad - 14), "#29A0BA");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 18.5 + yShift / 5), "#2B8CAA");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 24.5 + yShift / 11), "#28829E");
+        /*
         this.drawOutlinedCircle("", "#9F8641");
         //drawCircle(0, 0, this.rad, "#9F8641");
 
@@ -18636,49 +17988,39 @@ SinkHole.prototype.customDraw = function(batchDrawOutline) {
         drawCircle(0 + this.rPer, 1, Math.max(0, this.rad - 14), "#5C4E28");
 
         drawCircle(0 - this.rPer * 2 - 3, 1, Math.max(0, this.rad - 18.5), "#40371D");*/
-  } else if (this.curBiome == 3) {
-    var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
-    var period = 1.2;
-    var xShift = 2.5 * Math.cos(((2.0 * Math.PI) / period) * tSinceSpawn);
-    var yShift = 2.5 * Math.sin(((2.0 * Math.PI) / period) * tSinceSpawn);
+    }else if(this.curBiome == 3){
+ var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
+        var period = 1.2;
+        var xShift = 2.5 * Math.cos((2.0 * Math.PI) / period * (tSinceSpawn));
+        var yShift = 2.5 * Math.sin((2.0 * Math.PI) / period * (tSinceSpawn));
 
-    this.drawOutlinedCircle("", "#FF6704");
 
-    drawCircle(
-      0 + xShift / 4.5 + this.rPer,
-      1 + yShift / 1.5,
-      Math.max(0, this.rad - 14),
-      "#FF4900"
-    );
-    drawCircle(
-      0 + xShift / 1.5 - this.rPer * 2,
-      yShift,
-      Math.max(0, this.rad - 18.5 + yShift / 5),
-      "#E94300"
-    );
-    drawCircle(
-      0 + xShift / 1.5 - this.rPer * 2,
-      yShift,
-      Math.max(0, this.rad - 24.5 + yShift / 11),
-      "#E93500"
-    );
-  }
-  ctx.restore();
-};
+        this.drawOutlinedCircle("", "#FF6704");
+
+        drawCircle(0 + xShift / 4.5 + this.rPer, 1 + yShift / 1.5, Math.max(0, this.rad - 14), "#FF4900");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 18.5 + yShift / 5), "#E94300");
+        drawCircle(0 + xShift / 1.5 - this.rPer * 2, yShift, Math.max(0, this.rad - 24.5 + yShift / 11), "#E93500");
+    }
+    ctx.restore();
+}
+
+
 
 function SinkHole() {
-  SinkHole.superClass.call(this, o_spiderWeb);
+    SinkHole.superClass.call(this, o_spiderWeb);
 
-  this.webTransparency = 0;
+    this.webTransparency = 0;
 
-  //set vars for this class
-  this.doesDrawEffectScale = true;
-  this.drawEffectScale_Slow = true;
+    //set vars for this class
+    this.doesDrawEffectScale = true;
+    this.drawEffectScale_Slow = true;
+
 }
 window.SinkHole = SinkHole;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(SinkHole, o_sinkHole);
 // birds update 2
+
 
 ///////
 // file: js_src/gameobj/animal/Pigeon.js
@@ -18721,19 +18063,19 @@ Pigeon.prototype.getSkinName = function() {
   var skin = "pigeon/" + this.animalSpecies + "/pigeon";
   //if (!options_lowGraphics)
   skin += this.specType == 0 ? "" : this.specType;
-  if (this.flag_flying && !this.flag_isGrabbed) {
+    if (this.flag_flying && !this.flag_isGrabbed) {
     var skin = "pigeon/" + this.animalSpecies + "/pigeon1";
-    //if (!options_lowGraphics)
-    skin += this.specType == 0 ? "" : this.specType;
-  }
+  //if (!options_lowGraphics)
+  skin += this.specType == 0 ? "" : this.specType;
+};
   return skin;
 };
 
 Pigeon.prototype.drawSkinCustomization = function() {
-  //  if (!this.flag_usingAbility) return;
+//  if (!this.flag_usingAbility) return;
 
   var skins = "skins";
-
+   
   //if (!options_lowGraphics)
   {
     var iScale = 500 / 340.0;
@@ -18838,6 +18180,7 @@ window.Pigeon = Pigeon;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Pigeon, o_animal, a_pigeon);
 
+
 ///////
 // file: js_src/gameobj/animal/Toucan.js
 ///////
@@ -18894,27 +18237,34 @@ Toucan.prototype.getSkinName = function() {
     "/toucan" +
     (this.specType == 0 ? "" : this.specType);
 
-  if (this.flag_flying && !this.flag_isGrabbed) {
-    var skin =
-      "toucan/" +
-      this.animalSpecies +
-      "/toucan1" +
-      (this.specType == 0 ? "" : this.specType);
-  }
+if (this.flag_flying && !this.flag_isGrabbed) {
+
+      var skin =
+    "toucan/" +
+    this.animalSpecies +
+    "/toucan1" +
+    (this.specType == 0 ? "" : this.specType);
+}
 
   return skin;
 };
 
 Toucan.prototype.drawSkinCustomization = function() {
-  // if (!this.flag_usingAbility) return;
+ // if (!this.flag_usingAbility) return;
 
   var iScale = 500 / 340.0;
   {
     if (this.flag_flying && !this.flag_isGrabbed) {
       ctx.save();
 
+
+
+
+
       var wings = this.animalSpecies == 5 ? "skins/toucan/5/" : "skins/toucan/";
 
+      
+      
       var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
       var frame = !options_lowGraphics
         ? getAnimFrame(tSinceSpawn, 0.5, 0.3, 2)
@@ -18978,30 +18328,31 @@ Toucan.prototype.drawSkinCustomization = function() {
       }
 
       ctx.restore();
-      if (this.specType != 0 && this.specType != undefined) {
-        var head = "skins/toucan/" + this.animalSpecies + "/" + +"toucan_head";
+    if (this.specType != 0 && this.specType != undefined) {
+      var head = "skins/toucan/" + this.animalSpecies + "/" + + "toucan_head";
 
-        if (this.hasZombieOverlay)
-          head = "skins/zombie/toucan/" + this.animalSpecies + "/";
-        var theHead = getLoadedImg(head);
-        if (theHead) {
-          ctx.save();
-          var rad = this.rad;
-          ctx.drawImage(
-            theHead,
-            -rad * iScale,
-            (-rad + rad * 0.1) * iScale,
-            2 * rad * iScale,
-            2 * rad * iScale
-          );
-          ctx.restore();
-        }
+      if (this.hasZombieOverlay)
+        head = "skins/zombie/toucan/" + this.animalSpecies + "/";
+      var theHead = getLoadedImg(head);
+      if (theHead) {
+        ctx.save();
+        var rad = this.rad;
+        ctx.drawImage(
+          theHead,
+          -rad * iScale,
+          (-rad + rad * 0.1) * iScale,
+          2 * rad * iScale,
+          2 * rad * iScale
+        );
+        ctx.restore();
       }
     }
   }
 };
+    }
 
-//console.log(this.specType)
+    //console.log(this.specType)
+
 
 function Toucan() {
   Toucan.superClass.call(this, o_animal);
@@ -19010,9 +18361,13 @@ window.Toucan = Toucan;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Toucan, o_animal, a_toucan);
 
+
+
+
 ///////
 // file: js_src/gameobj/animal/Tiger.js
 ///////
+
 
 var Tiger = Tiger;
 var superClass = Animal;
@@ -19020,44 +18375,39 @@ Tiger.prototype = Object.create(superClass.prototype); //properly inherit protot
 Tiger.prototype.constructor = Tiger;
 Tiger.superClass = superClass; //'class' var
 
-Tiger.prototype.animalInfo = function() {
-  var infoO = {};
-  switch (this.animalSpecies) {
-    case 0:
-      infoO.aniName = "Tiger";
-      break;
-    case 1:
-      infoO.aniName = "rare White Tiger";
-      break;
-  }
-  infoO.aniName = "Tiger";
-  infoO.aniDesc = "";
-  infoO.upgradeText =
-    "UPGRADED to " +
-    infoO.aniName +
-    "!\n Tigers can launch an ambush attack (HOLD W to grow a bush)!";
-  infoO.aniCol = "#FF9000";
-  infoO.skinName = "tiger/" + this.animalSpecies + "/tiger";
-  return infoO;
-};
+
+Tiger.prototype.animalInfo = function () {
+    var infoO = {};
+    switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = "Tiger";
+            break;
+        case 1:
+            infoO.aniName = "rare White Tiger";
+            break;
+   
+    }
+    infoO.aniName = "Tiger";
+    infoO.aniDesc = "";
+    infoO.upgradeText = "UPGRADED to " + infoO.aniName + "!\n Tigers can launch an ambush attack (HOLD W to grow a bush)!";
+    infoO.aniCol = "#FF9000";
+    infoO.skinName = "tiger/" + this.animalSpecies + "/tiger";
+    return infoO;
+}
 
 //set custom skin name
-Tiger.prototype.getSkinName = function() {
-  ateZ;
-  return (
-    "tiger/" +
-    this.animalSpecies +
-    "/tiger" +
-    (this.specType == 0 ? "" : this.specType)
-  );
-};
+Tiger.prototype.getSkinName = function () {ateZ
+    return "tiger/" + this.animalSpecies + "/tiger" + (this.specType == 0 ? "" : this.specType);
+}
 
 function Tiger() {
-  Tiger.superClass.call(this, o_animal);
+    Tiger.superClass.call(this, o_animal);
+
 }
 window.Tiger = Tiger;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Tiger, o_animal, a_tiger);
+
 
 ///////
 // file: js_src/gameobj/animal/BoaConstrictor.js
@@ -19110,6 +18460,7 @@ GameObjType.setCustomClassForGameObjType(
   a_boaConstrictor
 );
 
+
 ///////
 // file: js_src/gameobj/animal/Cobra.js
 ///////
@@ -19130,19 +18481,20 @@ Cobra.prototype.getSkinName = function() {
 };
 
 Cobra.prototype.drawUnderSkinImg = function() {
-  if (this.flag_usingAbility) return;
+   if(this.flag_usingAbility)
+   return;
   var rad = this.rad - this.outlineW;
   var iScale = 500 / 340.0;
   var tongue = getLoadedImg("skins/boa/tongue.png");
-
+ 
   var tSinceSpawn = (timestamp - this.spawnTime) / 1000.0;
   var frame = options_lowGraphics ? 0 : getAnimFrame(tSinceSpawn, 0.5, 5, 0.5);
   var yOffset = options_lowGraphics ? 0 : 5;
   if (tongue) {
     ctx.drawImage(
-      tongue,
+        tongue,
       -rad * iScale,
-      -(rad + yOffset + frame) * iScale,
+      -((rad+yOffset) + frame ) * iScale,
       2 * rad * iScale,
       2 * rad * iScale
     );
@@ -19154,8 +18506,13 @@ function Cobra() {
 }
 window.Cobra = Cobra;
 //add this file as a class! (make sure to call require!)
-GameObjType.setCustomClassForGameObjType(Cobra, o_animal, a_cobra);
+GameObjType.setCustomClassForGameObjType(
+  Cobra,
+  o_animal,
+  a_cobra
+);
 // custom objects
+
 
 ///////
 // file: js_src/gameobj/Fire.js
@@ -19199,9 +18556,7 @@ Fire.prototype.customDraw = function(batchDrawOutline) {
 
     var imNum = Math.trunc(timestamp / 120) % 5;
 
-    var theImg = getLoadedImg(
-      "img/fire/" + this.specType + "/" + imNum + ".png"
-    );
+    var theImg = getLoadedImg("img/fire/"+this.specType+"/" + imNum + ".png");
     if (theImg) {
       var imX = 0,
         imY = this.rad * 0.4;
@@ -19237,7 +18592,7 @@ Fire.prototype.customDraw = function(batchDrawOutline) {
 
     var imNum = Math.trunc(timestamp / 120) % 5;
 
-    var theImg = getLoadedImg("img/fire/" + this.specType + "/0.png");
+    var theImg = getLoadedImg("img/fire/"+this.specType+"/0.png");
     if (theImg) {
       var imX = 0,
         imY = this.rad * 0.4;
@@ -19275,6 +18630,7 @@ function Fire() {
 window.Fire = Fire;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Fire, o_fire);
+
 
 ///////
 // file: js_src/gameobj/FireBall.js
@@ -19325,9 +18681,7 @@ FireBall.prototype.customDraw = function(batchDrawOutline) {
     var imNum = Math.trunc(timestamp / 120) % 5;
     //console.log("fire: " + imNum);
     //var theImg = getLoadedImg(imNum == 1 ? "img/fire.png" : "img/fire2.png");
-    var theImg = getLoadedImg(
-      "img/fireball/" + this.specType + "/" + imNum + ".png"
-    );
+    var theImg = getLoadedImg("img/fireball/"+this.specType +"/"+ imNum + ".png");
     if (theImg) {
       var imX = 0,
         imY = this.rad * 0.4;
@@ -19354,7 +18708,7 @@ FireBall.prototype.customDraw = function(batchDrawOutline) {
     }
   } else {
     console.log("its low graphic!");
-    var theImg = getLoadedImg("img/fireball/" + this.specType + "/0.png");
+    var theImg = getLoadedImg("img/fireball/"+this.specType+"/0.png");
     if (theImg) {
       var period = 1.0; //periodic func with time
       var p_min = 0.85,
@@ -19388,6 +18742,7 @@ FireBall.prototype.customDraw = function(batchDrawOutline) {
   }
 };
 
+
 function FireBall() {
   FireBall.superClass.call(this, o_fireBall);
 }
@@ -19398,149 +18753,157 @@ GameObjType.setCustomClassForGameObjType(FireBall, o_fireBall);
 
 //battle royal update
 
+
+
 ///////
 // file: js_src/gameobj/AnimalCarcass.js
 ///////
+
 
 var superClass = GameObj;
 AnimalCarcass.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 AnimalCarcass.prototype.constructor = AnimalCarcass;
 AnimalCarcass.superClass = superClass; //'class' var
-AnimalCarcass.prototype.nickName = "mopesandbox1.glitch.me/mope/";
+AnimalCarcass.prototype.nickName = "mope2.io/1v1";
 AnimalCarcass.prototype.fadeAway = false;
 AnimalCarcass.prototype.webTransparency = 100;
 AnimalCarcass.prototype.carcassType = 0;
-// if an object has to be manually drawn by the interface then set this to true
+// if an object has to be manually drawn by the interface then set this to true 
 //AnimalCarcass.prototype.customInterfaceDraw = false;
 // do not animate radius on spawning
-AnimalCarcass.prototype.updateZ = function() {
-  this.z = -153 + this.rad;
+AnimalCarcass.prototype.updateZ = function () {
+    this.z = -153 + this.rad;
+}
+
+AnimalCarcass.prototype.getNameSize = function () {
+    return 6.0; //Math.max(~~(.3 * this.size), 24)
 };
 
-AnimalCarcass.prototype.getNameSize = function() {
-  return 6.0; //Math.max(~~(.3 * this.size), 24)
+AnimalCarcass.prototype.setNick = function (a) {
+    //if (this.nickName = a) {
+    this.nickName = a;
+    if (null == this.nickTXT) {
+
+        this.nickTXT = new CachedText(this.getNameSize(), "#FFFFFF"); //"#043400");
+        this.nickTXT.strokeW = 1.5;
+
+        this.nickTXT.renderScale = 5.0; //render larger to undo 'zoom of 3x'
+        this.nickTXT.setText(this.nickName);
+    } else {
+        this.nickTXT.setFontSize(this.getNameSize());
+        this.nickTXT.setText(this.nickName);
+    }
+    //}
 };
 
-AnimalCarcass.prototype.setNick = function(a) {
-  //if (this.nickName = a) {
-  this.nickName = a;
-  if (null == this.nickTXT) {
-    this.nickTXT = new CachedText(this.getNameSize(), "#FFFFFF"); //"#043400");
-    this.nickTXT.strokeW = 1.5;
 
-    this.nickTXT.renderScale = 5.0; //render larger to undo 'zoom of 3x'
-    this.nickTXT.setText(this.nickName);
-  } else {
-    this.nickTXT.setFontSize(this.getNameSize());
-    this.nickTXT.setText(this.nickName);
-  }
-  //}
-};
 
-AnimalCarcass.prototype.customDraw = function(batchDrawOutline) {
-  ctx.save();
-
-  var nameIdealOp = 0.3;
-  if (this.fadeAway) {
-    var opacity = this.webTransparency / 100;
-    ctx.globalAlpha = opacity;
-    nameIdealOp = Math.min(nameIdealOp, opacity);
-  } else ctx.globalAlpha = 0.8;
-
-  var theImg = getLoadedImg("img/carcass/" + this.carcassType + ".png");
-  if (theImg) {
-    var rad = this.rad;
-    ctx.rotate(this.angle);
-
-    //ctx.shadowOffsetX = 2;
-    //ctx.shadowOffsetY = 2;
-    //ctx.shadowColor = "black";
-    //ctx.shadowBlur = 10;
-    ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
-  }
-
-  ctx.restore();
-  this.drawNickName(nameIdealOp);
-};
-
-AnimalCarcass.prototype.drawNickName = function(idealOp) {
-  if (this.nickName && this.nickTXT && !options_noNames) {
+AnimalCarcass.prototype.customDraw = function (batchDrawOutline) {
     ctx.save();
-    ctx.globalAlpha = idealOp; //name alpha
-    //draw cached name
-    this.nickTXT.x = 0;
-    this.nickTXT.y = this.rad;
-    this.nickTXT.draw();
+
+
+    var nameIdealOp = 0.3;
+    if (this.fadeAway) {
+        var opacity = this.webTransparency / 100;
+        ctx.globalAlpha = opacity;
+        nameIdealOp = Math.min(nameIdealOp, opacity);
+    }
+    else
+        ctx.globalAlpha = 0.8;
+
+    var theImg = getLoadedImg("img/carcass/" + this.carcassType + ".png");
+    if (theImg) {
+        var rad = this.rad;
+        ctx.rotate(this.angle);
+
+        //ctx.shadowOffsetX = 2;
+        //ctx.shadowOffsetY = 2;
+        //ctx.shadowColor = "black";
+        //ctx.shadowBlur = 10;
+        ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+    }
 
     ctx.restore();
-  }
-};
+    this.drawNickName(nameIdealOp);
+}
 
-AnimalCarcass.prototype.readCustomData_onNewlyVisible = function(msg) {
-  var nickName = msg.readString();
-  this.carcassType = msg.readUInt8();
-  this.fadeAway = msg.readUInt8() == 1;
-  if (this.fadeAway) this.webTransparency = msg.readUInt16();
-  this.setNick(nickName ? nickName : "mope2.io/1v1");
-};
+AnimalCarcass.prototype.drawNickName = function (idealOp) {
+    if (this.nickName && this.nickTXT && !options_noNames) {
+        ctx.save();
+        ctx.globalAlpha = idealOp; //name alpha
+        //draw cached name
+        this.nickTXT.x = 0;
+        this.nickTXT.y = this.rad;
+        this.nickTXT.draw();
+
+        ctx.restore();
+    }
+}
+
+AnimalCarcass.prototype.readCustomData_onNewlyVisible = function (msg) {
+    var nickName = msg.readString();
+    this.carcassType = msg.readUInt8();
+    this.fadeAway = msg.readUInt8() == 1;
+    if (this.fadeAway)
+        this.webTransparency = msg.readUInt16();
+    this.setNick((nickName) ? nickName : "mope2.io/1v1");
+}
 //custom data for this class (must be matched by server-side write of this data!)
-AnimalCarcass.prototype.readCustomData_onUpdate = function(msg) {
-  if (this.fadeAway) this.webTransparency = msg.readUInt16();
-};
+AnimalCarcass.prototype.readCustomData_onUpdate = function (msg) {
+    if (this.fadeAway)
+        this.webTransparency = msg.readUInt16();
+}
 
 function AnimalCarcass() {
-  AnimalCarcass.superClass.call(this, o_animalCarcass);
+    AnimalCarcass.superClass.call(this, o_animalCarcass);
 
-  this.shrinkedRad = 0;
-  //this.n_shrinkedRad=0; //smooth animation- set this var
+    this.shrinkedRad = 0;
+    //this.n_shrinkedRad=0; //smooth animation- set this var
 
-  //console.log("class was spawned!");
+    //console.log("class was spawned!");
 }
 window.AnimalCarcass = AnimalCarcass;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(AnimalCarcass, o_animalCarcass);
 
+
 ///////
 // file: js_src/gameobj/Chilli.js
 ///////
 
+
 var superClass = GameObj;
 Chilli.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 Chilli.prototype.constructor = Chilli;
-Chilli.superClass = superClass;
+Chilli.superClass = superClass; 
 Chilli.prototype.chilliType = 0;
-Chilli.prototype.updateZ = function() {
-  this.z = -153;
-};
+Chilli.prototype.updateZ = function () {
+    this.z = -153;
+}
 
-Chilli.prototype.customDraw = function(batchDrawOutline) {
-  ctx.save();
-  var theImg = getLoadedImg(
-    "img/chilli/" +
-      this.chilliType +
-      "/chilli" +
-      (this.isEdibleOutlined() ? "_e" : "") +
-      ".png"
-  );
-  if (theImg) {
-    var rad = this.rad;
-    ctx.rotate(this.angle);
-    ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
-  }
-  ctx.restore();
-};
+Chilli.prototype.customDraw = function (batchDrawOutline) {
+    ctx.save();
+    var theImg = getLoadedImg("img/chilli/" + this.chilliType + "/chilli" + (this.isEdibleOutlined() ? "_e" : "") + ".png");
+    if (theImg) {
+        var rad = this.rad;
+        ctx.rotate(this.angle);
+        ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
+    }
+    ctx.restore();
+}
 
-Chilli.prototype.readCustomData_onNewlyVisible = function(msg) {
-  this.chilliType = msg.readUInt8();
-};
+Chilli.prototype.readCustomData_onNewlyVisible = function (msg) {
+    this.chilliType = msg.readUInt8();
+}
 
 function Chilli() {
-  Chilli.superClass.call(this, o_chilli);
-  this.doesDrawEffectScale = true;
+    Chilli.superClass.call(this, o_chilli);
+    this.doesDrawEffectScale = true;
 }
 window.Chilli = Chilli;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(Chilli, o_chilli);
+
 
 ///////
 // file: js_src/gameobj/animal/BigCat.js
@@ -19556,49 +18919,50 @@ BigCat.superClass = superClass; //'class' var
 //set custom skin name
 
 BigCat.prototype.objSkinSpotsCanvas = null;
-BigCat.prototype.getSkinName = function() {
-  return this.animalInfo().skinName;
-};
+BigCat.prototype.getSkinName = function () {
+    return this.animalInfo().skinName;
+}
 
-BigCat.prototype.animalInfo = function() {
-  var infoO = {};
+BigCat.prototype.animalInfo = function () {
+    var infoO = {};
 
-  var skin = "";
-  switch (this.animalSpecies) {
-    case 0:
-      infoO.aniName = "Cheetah";
-      infoO.upgradeText =
-        "UPGRADED to Cheetah!\n Press W to get a speed boost!";
-      skin = "cheetah";
-      break;
-    case 1:
-      infoO.aniName = "Jaguar";
-      infoO.upgradeText =
-        "UPGRADED to JAGUAR!\n Press W to get a speed boost!\n(Jaguars can climb hills!)";
-      skin = "jaguar";
-      break;
-    case 2:
-      infoO.aniName = "Leopard";
-      infoO.upgradeText =
-        "UPGRADED to LEOPARD!\n Press W to get a speed boost!\n(Leopards can dive longer)";
-      skin = "leopard";
-      break;
-    case 3:
-      infoO.aniName = "Black Panther";
-      infoO.upgradeText =
-        "UPGRADED to BigCat!\n Press W to get a speed boost!\n(Black Panthers are fast on mud)";
-      skin = "blackpanther";
-      break;
-  }
+    var skin = "";
+    switch (this.animalSpecies) {
+        case 0:
+            infoO.aniName = "Cheetah";
+            infoO.upgradeText = "UPGRADED to Cheetah!\n Press W to get a speed boost!";
+            skin = "cheetah";
+            break;
+        case 1:
+            infoO.aniName = "Jaguar";
+            infoO.upgradeText = "UPGRADED to JAGUAR!\n Press W to get a speed boost!\n(Jaguars can climb hills!)";
+            skin = "jaguar";
+            break;
+        case 2:
+            infoO.aniName = "Leopard";
+            infoO.upgradeText = "UPGRADED to LEOPARD!\n Press W to get a speed boost!\n(Leopards can dive longer)";
+            skin = "leopard";
+            break;
+        case 3:
+            infoO.aniName = "Black Panther";
+            infoO.upgradeText = "UPGRADED to BigCat!\n Press W to get a speed boost!\n(Black Panthers are fast on mud)";
+            skin = "blackpanther";
+            break;
+    }
 
-  infoO.aniCol = "#CAC05B";
-  infoO.skinName = "bigcat/" + skin;
-  return infoO;
-};
+
+    infoO.aniCol = "#CAC05B";
+    infoO.skinName = "bigcat/" + skin;
+    return infoO;
+}
+
 
 function BigCat() {
-  BigCat.superClass.call(this, o_animal);
+    BigCat.superClass.call(this, o_animal);
+  
 }
+
+
 
 window.BigCat = BigCat;
 //add this file as a class! (make sure to call require!)
@@ -19606,9 +18970,11 @@ GameObjType.setCustomClassForGameObjType(BigCat, o_animal, a_bigCat);
 
 //interface controls
 
+
 ///////
 // file: js_src/interface/InterfaceButton.js
 ///////
+
 
 //button that appears in animal choice interface
 function InterfaceButton(x, y, w, h, txt, fontSize) {
@@ -19634,7 +19000,7 @@ function InterfaceButton(x, y, w, h, txt, fontSize) {
   this.showLabeleOnHover = false;
   this.textShadow = false;
   this.buttonScaleF = 1.0; //scale primary button
-
+ 
   //this.touchMarginEx=20.0;
   this.strokeWidth = 4 * pr;
 
@@ -19802,38 +19168,56 @@ function InterfaceButton(x, y, w, h, txt, fontSize) {
 }
 window.InterfaceButton = InterfaceButton;
 
+
 ///////
 // file: js_src/interface/GameMode.js
 ///////
 
 GameMode.prototype = {
-  mode: 0,
-  state: 0,
-  myPlayer: null
-};
+    mode: 0,
+    state: 0,
+    myPlayer: null,
+}
 GameMode.prototype.chatAllowed = true;
 GameMode.prototype.isHalloween = false;
 GameMode.prototype.stamp = 0;
 
-GameMode.prototype.interface = function() {};
-GameMode.prototype.drawMap = function() {};
-GameMode.prototype.interfaceReset = function() {};
-GameMode.prototype.main = function(msg) {
-  // read all messages related to this new game mode
-};
+GameMode.prototype.interface = function () {
 
-GameMode.prototype.onInit = function(msg) {};
-GameMode.prototype.drawCustomObjs = function(customInterfaceObjList) {};
+}
+GameMode.prototype.drawMap = function () {
 
-GameMode.prototype.worldUpdate = function(msg) {};
+}
+GameMode.prototype.interfaceReset = function () {
 
-GameMode.prototype.setPlayer = function() {
-  this.myPlayer = gameObjsByID[myPlayerID];
-};
+}
+GameMode.prototype.main = function (msg) {
+    // read all messages related to this new game mode
+}
 
-function GameMode() {}
+GameMode.prototype.onInit = function (msg) {
+
+}
+GameMode.prototype.drawCustomObjs = function (customInterfaceObjList) {
+
+}
+
+GameMode.prototype.worldUpdate = function (msg) {
+
+}
+
+GameMode.prototype.setPlayer = function () {
+
+    this.myPlayer = gameObjsByID[myPlayerID];
+}
+
+
+function GameMode() {
+
+}
 
 window.GameMode = GameMode;
+
 
 ///////
 // file: js_src/interface/GameMode_FreeForAll.js
@@ -19849,7 +19233,7 @@ function FreeForAll(_mode) {
   this.mode = _mode;
   this.stamp = +new Date();
   this.chatAllowed = true;
-
+  
   this.createInterfaceButtons();
 }
 
@@ -19857,9 +19241,8 @@ FreeForAll.prototype.wastedPopups = [];
 FreeForAll.prototype.playerDisplayNum = 0;
 FreeForAll.prototype.setServerPlayerCount = function() {
   if (this.playerDisplayNum == 0)
-    playersOnlTXT.setText(numberWithCommas(nPlayersAlive) + " Playing!");
-  else
-    playersOnlTXT.setText(numberWithCommas(nPlayersViewing) + " Spectating!");
+    playersOnlTXT.setText(numberWithCommas(nPlayersAlive ) + " Playing!");
+  else playersOnlTXT.setText(numberWithCommas(nPlayersViewing) + " Spectating!");
 
   this.playerDisplayNum = this.playerDisplayNum == 0 ? 1 : 0;
 };
@@ -20100,14 +19483,20 @@ FreeForAll.prototype.playerInfo = function(msg) {
   }
 };
 
-FreeForAll.prototype.worldUpdate = function(msg) {};
+FreeForAll.prototype.worldUpdate = function(msg) {
+ 
+};
+ 
 
-FreeForAll.prototype.drawMap = function() {};
+FreeForAll.prototype.drawMap = function() {
+   
+};
 FreeForAll.prototype.pieChartCanvas = null;
 FreeForAll.prototype.teamColors = {
   0: "white",
   1: "#B6CF40"
 };
+ 
 
 FreeForAll.prototype.endScreenDisplayed = false;
 FreeForAll.prototype.buildEndScreenHTML = function(data) {
@@ -20262,6 +19651,7 @@ window.FreeForAll = FreeForAll;
 
 ////////// util function
 
+
 ///////
 // file: js_src/interface/GameMode_TeamMode.js
 ///////
@@ -20296,23 +19686,21 @@ TeamMode.prototype.main = function(msg) {
   var teamMode_msgType = msg.readUInt8();
   // console.log("teamMode_msgType :" + teamMode_msgType);
   switch (teamMode_msgType) {
-    case 54:
-      Msg_1v1Mode_YouWon;
+    case 54: // Msg_1v1Mode_YouWon
       {
         var youWon = msg.readString();
         this.buildYouWon(youWon, 15);
       }
       break;
+    // case 55: // Msg_1v1Mode_topperInfo
+    //   {
+    //     this.top1v1_isHistoric = msg.readUInt8() == 1;
+    //     this.top1v1_wins = msg.readUInt16();
+    //     this.top1v1_name = msg.readString();
+    //     this.buildTopperInfo();
+    //   }
+    //   break;
 
-    case 55:
-      Msg_1v1Mode_topperInfo;
-      {
-        this.top1v1_isHistoric = msg.readUInt8() == 1;
-        this.top1v1_wins = msg.readUInt16();
-        this.top1v1_name = msg.readString();
-        this.buildTopperInfo();
-      }
-      break;
   }
 };
 TeamMode.prototype.canvasYouWon = null;
@@ -20326,7 +19714,7 @@ TeamMode.prototype.top1v1_name = "";
 TeamMode.prototype.topperInfoTxt = null;
 TeamMode.prototype.buildTopperInfo = function() {
   var name = "" + this.top1v1_name;
-  if (name.lenght == 0) name = "mopesandbox1.glitch.me/mope/";
+  if (name.lenght == 0) name = "mope2.io/1v1";
 
   var txt =
     (this.top1v1_isHistoric ? " ALL TIME " : "") +
@@ -20591,7 +19979,7 @@ TeamMode.prototype.interfaceButtons = [];
 TeamMode.prototype.createInterfaceButtons = function() {
   //log("calling : createInterfaceButtons ");
   this.interfaceButtons = [];
-
+  /*
   this.btnPlayAgain = new InterfaceButton(0, 0, 80, 80, "Play Again!", 20);
   this.btnPlayAgain.showLabeleOnHover = true;
   this.btnPlayAgain.textShadow = true;
@@ -20625,58 +20013,59 @@ TeamMode.prototype.createInterfaceButtons = function() {
   };
   this.btnPlayAgain.isVisible = false;
   this.interfaceButtons.push(this.btnPlayAgain); // only add this button if drawn;
+  */
 
-  this.btn1v1 = new InterfaceButton(0, 0, 60, 60, "Invite for 1v1", 30);
-  this.btn1v1.showLabeleOnHover = true;
-  this.btn1v1.textShadow = true;
-  this.btn1v1.drawTextOnHowever = function() {
-    this.drawText(this.w / 2, this.h + this.h / 2);
-  };
+  // this.btn1v1 = new InterfaceButton(0, 0, 60, 60, "Invite for 1v1", 30);
+  // this.btn1v1.showLabeleOnHover = true;
+  // this.btn1v1.textShadow = true;
+  // this.btn1v1.drawTextOnHowever = function() {
+  //   this.drawText(this.w / 2, this.h + this.h / 2);
+  // };
 
-  this.btn1v1.onClick = function() {
-    if (!this.clicked && !isGhost) {
-      this.clicked = true;
-      this.isHighLighted = false;
-      var mes = new MsgWriter(2);
-      mes.writeUInt8(52); // Msg_1v1Mode_invitePlayer;
-      mes.writeUInt8(0); //1=down, 0=up
-      wsSendMsg(mes);
-    }
-  };
-  this.btn1v1.onMouseMove = function() {};
-  this.btn1v1.update = function() {
-    //   this.x = canvasW / 2 - this.w / 2;
-    this.y = 5 + this.h / 2; //(canvasH / 2) - 250;
-  };
+  // this.btn1v1.onClick = function() {
+  //   if (!this.clicked && !isGhost) {
+  //     this.clicked = true;
+  //     this.isHighLighted = false;
+  //     var mes = new MsgWriter(2);
+  //     mes.writeUInt8(52); // Msg_1v1Mode_invitePlayer;
+  //     mes.writeUInt8(0); //1=down, 0=up
+  //     wsSendMsg(mes);
+  //   }
+  // };
+  // this.btn1v1.onMouseMove = function() {};
+  // this.btn1v1.update = function() {
+  //   this.x = canvasW / 2 - this.w / 2;
+  //   this.y = 5 + this.h / 2; //(canvasH / 2) - 250;
+  // };
 
-  this.btn1v1.onInterfaceReset = function() {
-    this.isVisible = true;
-  };
+  // this.btn1v1.onInterfaceReset = function() {
+  //   this.isVisible = true;
+  // };
 
-  this.btn1v1.onAfterDraw = function() {
-    var theImg = getLoadedImg("img/icons/1v1.png");
-    if (theImg) {
-      ctx.save();
+  // this.btn1v1.onAfterDraw = function() {
+  //   var theImg = getLoadedImg("img/icons/1v1.png");
+  //   if (theImg) {
+  //     ctx.save();
 
-      var iw = this.w * 0.8;
-      var pad = (this.w - iw) / 2;
-      ctx.drawImage(theImg, this.x + pad, this.y + pad, iw, iw);
-      ctx.restore();
-    }
-  };
-  this.btn1v1.isVisible = show1v1Button;
-  this.interfaceButtons.push(this.btn1v1);
+  //     var iw = this.w * 0.8;
+  //     var pad = (this.w - iw) / 2;
+  //     ctx.drawImage(theImg, this.x + pad, this.y + pad, iw, iw);
+  //     ctx.restore();
+  //   }
+  // };
+  // this.btn1v1.isVisible = show1v1Button;
+  // this.interfaceButtons.push(this.btn1v1);
 };
 
 TeamMode.prototype.drawInterfaceButtons = function() {
-  this.btnPlayAgain.isVisible = isGhost;
-
+  // this.btnPlayAgain.isVisible = isGhost;
+/*
   this.removeExpiredRequestButtons();
   this.btn1v1.isVisible = !isGhost && show1v1Button;
   if (this.btn1v1.isVisible) {
     this.btn1v1.clicked = false;
   }
-  //
+  */
   if (this.interfaceButtons) {
     for (var i = 0; i < this.interfaceButtons.length; i++) {
       var aBut = this.interfaceButtons[i];
@@ -20734,6 +20123,7 @@ TeamMode.prototype.readPlayerStats = function(msg) {
 TeamMode.prototype.playerInfo = function(msg) {
   if (isGhost && !serverCon_spectatingInAGame) {
     var stats = this.readPlayerStats(msg);
+    ;
     //    this.buildEndScreen(null, stats);
     this.buildEndScreenHTML(stats);
   } else if (!isGhost) {
@@ -20886,6 +20276,7 @@ TeamMode.prototype.buildEndScreenHTML = function(data) {
   if (!serverCon_aliveInAGame) {
     setSiteMenuVisible(true);
     //document.getElementById("startMenuWrapper").style.display = "block";
+
   }
 };
 
@@ -21363,24 +20754,29 @@ TeamMode.prototype.drawTeamPlayers = function() {
 
 window.TeamMode = TeamMode;
 
+
 ///////
 // file: js_src/gameobj/TeamStone.js
 ///////
 
+
 var superClass = GameObj;
 TeamStone.prototype = Object.create(superClass.prototype); //properly inherit prototype of superclass
 TeamStone.prototype.constructor = TeamStone;
-TeamStone.superClass = superClass; //'class' var
+TeamStone.superClass=superClass; //'class' var
+
 
 TeamStone.prototype.updateZ = function() {
-  this.z = 1002;
-};
+    this.z = 1002;
+}
+
 
 //override draw (things like other effects are drawn seperately)
-TeamStone.prototype.customDraw = function(batchDrawOutline) {
+TeamStone.prototype.customDraw = function(batchDrawOutline){
   ctx.save();
 
   ctx.globalAlpha = 1;
+
 
   var theImg = getLoadedImg("img/teamStone/stone" + this.teamID + ".png");
   if (theImg) {
@@ -21389,27 +20785,28 @@ TeamStone.prototype.customDraw = function(batchDrawOutline) {
     ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
   }
   ctx.restore();
-};
+}
 //custom data for this class (must be matched by server-side write of this data!)
 TeamStone.prototype.readCustomData_onUpdate = function(msg) {
   this.teamID = msg.readUInt8();
-};
+}
 
 //custom data for this class (must be matched by server-side write of this data!)
 TeamStone.prototype.readCustomData_onNewlyVisible = function(msg) {
   this.teamID = msg.readUInt8();
-};
+}
 
-function TeamStone() {
+function TeamStone(){
   TeamStone.superClass.call(this, o_teamStone);
 
-  this.teamID = 0;
+  this.teamID =0;
 
   //set vars for this class
-  this.doesDrawEffectScale = true;
-  this.drawEffectScale_Slow = true;
+  this.doesDrawEffectScale=true;
+  this.drawEffectScale_Slow=true;
+
 }
-window.TeamStone = TeamStone;
+window.TeamStone=TeamStone;
 //add this file as a class! (make sure to call require!)
 GameObjType.setCustomClassForGameObjType(TeamStone, o_teamStone);
 
@@ -21421,26 +20818,20 @@ var superClass = GameObj;
 FireWood.prototype = Object.create(superClass.prototype);
 FireWood.prototype.constructor = FireWood;
 FireWood.superClass = superClass;
-FireWood.prototype.updateZ = function() {
-  this.z = this.rad;
+FireWood.prototype.updateZ = function () {
+    this.z = this.rad;
 };
-FireWood.prototype.customDraw = function(_0xdc5c58) {
-  ctx.save();
-  _0xdc5c58 = 2.2 * this.rad;
-  var _0x455c61 = getLoadedImg("skins/bigfoot/firewood.png");
-  _0x455c61 &&
-    ctx.drawImage(
-      _0x455c61,
-      -_0xdc5c58 / 2,
-      -_0xdc5c58 / 2,
-      _0xdc5c58,
-      _0xdc5c58
-    );
-  ctx.restore();
+FireWood.prototype.customDraw = function (_0xdc5c58) {
+    ctx.save();
+    _0xdc5c58 = 2.2 * this.rad;
+    var _0x455c61 = getLoadedImg('skins/bigfoot/firewood.png');
+    _0x455c61 && ctx.drawImage(_0x455c61, -_0xdc5c58 / 2, -_0xdc5c58 / 2, _0xdc5c58, _0xdc5c58);
+    ctx.restore();
 };
 
+
 function FireWood() {
-  FireWood.superClass.call(this, o_firewood);
+    FireWood.superClass.call(this, o_firewood);
 }
 window.FireWood = FireWood;
 GameObjType.setCustomClassForGameObjType(FireWood, o_firewood);
@@ -21597,9 +20988,9 @@ AbilityObj1v1Arena.prototype.customDraw = function(batchDrawOutline) {
   if (
     myPlayerID != 0 &&
     (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
-    this.arenaState == 1
+    this.arenaState == 0
   ) {
-    if (!this.hasAdLoaded) {
+    /*if (!this.hasAdLoaded) {
       this.hasAdLoaded = true;
       document.getElementById("startMenuWrapper").style.display = "block";
       document.getElementById("updates").style.display = "none";
@@ -21612,21 +21003,22 @@ AbilityObj1v1Arena.prototype.customDraw = function(batchDrawOutline) {
         document.getElementById("startMenu").style.display = "block";
         document.getElementById("rightSide").style.display = "block";
       }, 23000);
-    }
-  } else {
-    if (
-      myPlayerID != 0 &&
-      (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
-      this.arenaState == 1
-    ) {
-      if (this.hasAdLoaded) {
-        this.hasAdLoaded = false;
-        document.getElementById("startMenuWrapper").style.display = "none";
-      }
-    }
+    }*/
   }
+  // else {
+  //   if (
+  //     myPlayerID != 0 &&
+  //     (this.p1ID == myPlayerID || this.p2ID == myPlayerID) &&
+  //     this.arenaState == 1
+  //   ) {
+  //     if (this.hasAdLoaded) {
+  //       this.hasAdLoaded = false;
+  //       document.getElementById("startMenuWrapper").style.display = "none";
+  //     }
+  //   }
+  // }
 };
-AbilityObj1v1Arena.prototype.hasAdLoaded = true;
+AbilityObj1v1Arena.prototype.hasAdLoaded = false;
 
 //override this to read in custom spawn data
 AbilityObj1v1Arena.prototype.readCustomData_onNewlyVisible = function(msg) {
@@ -21813,6 +21205,7 @@ GameObjType.setCustomClassForGameObjType(
   ability_1v1Arena
 );
 
+
 ///////
 // file: js_src/gameobj/ability/AbilityObjGoalScored.js
 ///////
@@ -21951,8 +21344,8 @@ function aniChoiceButtonClicked(aBut) {
 
   //tell server about chosen animal
   newMsg = new MsgWriter(3);
-  newMsg.writeUInt8(24); //msgType MsgGameSelectAnimal
-
+  newMsg.writeUInt8(24);//msgType MsgGameSelectAnimal
+  
   newMsg.writeUInt8(aniChoice_choiceButtons.indexOf(aBut)); //msgType generatekey
   wsSendMsg(newMsg);
 
@@ -22006,19 +21399,19 @@ function MsgReader(msgArrBuf) {
   };
   this.readString = function() {
     var len = this.readUInt16();
-    //console.log("string length: " + len + "off: " + this.offset);
+	//console.log("string length: " + len + "off: " + this.offset);
     var text = "",
       aByte;
 
     for (var ind = 0; ind < len; ind++) {
-      try {
-        aByte = this.readUInt8();
-        if (ind != len - 1)
-          //1 less to rid of null terminator
-          text += String.fromCharCode(aByte);
-      } catch (e) {
-        console.log("tryed: " + this.offset);
-      }
+		try{
+      aByte = this.readUInt8();
+      if (ind != len - 1)
+        //1 less to rid of null terminator
+        text += String.fromCharCode(aByte);
+		}catch(e){
+			console.log("tryed: " + this.offset)
+		}
     }
     return decode_utf8(text);
   };
@@ -22071,7 +21464,7 @@ function MsgReaderBitsGroup(msg) {
   this.getBool = function() {
     var currentByte = this.bytesArray[this.rByteIndex];
     //console.log("Reading bit "+this.rBitIndex+", byte "+this.rByteIndex);
-    //	console.log("readBool = bit_get(" + currentByte + ", " + this.rBitIndex + ") > 0;");
+//	console.log("readBool = bit_get(" + currentByte + ", " + this.rBitIndex + ") > 0;");
     var readBool = bit_get(currentByte, this.rBitIndex) > 0;
 
     this.rBitIndex += 1;
@@ -22080,7 +21473,7 @@ function MsgReaderBitsGroup(msg) {
       this.rBitIndex = 1; //not 0, as 0 is used for length flag
       this.rByteIndex += 1;
     }
-    //console.log(this)
+	//console.log(this)
     return readBool;
   };
   //reads 2 bits, returns a number 0-3
@@ -22194,9 +21587,16 @@ function handleWsMessage(msgArrBuf) {
         gameReset();
 
         onConnectedAndJoinedGameServer();
-      }
+    	
 
-      //NORMAL INFO IS DOWN.
+
+
+      }
+      
+      
+      
+      
+  //NORMAL INFO IS DOWN.
       break;
     case 6:
       {
@@ -22223,18 +21623,18 @@ function handleWsMessage(msgArrBuf) {
           };
       }
       break;
-    case 12:
+      case 12:
       {
         console.log("Recieved code detection");
-        var codes = msg.readString();
-
+        var codes =  msg.readString();
+     
         var msgLen = 9 + encode_utf8(codes).length + 5;
         var mes = new MsgWriter(msgLen);
         mes.writeUInt8(12); //MSGTYPE join GAME
         mes.writeString(codes);
-        wsSendMsg(mes);
+        wsSendMsg(mes)
       }
-      break;
+      break
     case 2:
       {
         // game join response
@@ -22302,21 +21702,21 @@ function handleWsMessage(msgArrBuf) {
             serverRespDisplay.style.opacity = 1.0;
             serverRespDisplay.textContent = "Game already in progress!";
             // log(xpLab.textContent);
-          } else if (joinResponse == 3) {
-            setSiteMenuVisible(false);
-            //joined party!
-            serverRespDisplay.style.display = "none";
-            serverRespDisplay.style.opacity = 1.0;
-            serverRespDisplay.textContent = "Already ingame";
-            // log(xpLab.textContent);
-          } else if (joinResponse == 4) {
-            setSiteMenuVisible(false);
-            //joined party!
-            serverRespDisplay.style.display = "none";
-            serverRespDisplay.style.opacity = 1.0;
-            serverRespDisplay.textContent = "Game is starting & cleaning";
-            // log(xpLab.textContent);
-          }
+            } else if (joinResponse == 3) {
+          setSiteMenuVisible(false);
+          //joined party!
+          serverRespDisplay.style.display = "none";
+          serverRespDisplay.style.opacity = 1.0;
+          serverRespDisplay.textContent = "Already ingame";
+          // log(xpLab.textContent);
+        } else if (joinResponse == 4) {
+          setSiteMenuVisible(false);
+          //joined party!
+          serverRespDisplay.style.display = "none";
+          serverRespDisplay.style.opacity = 1.0;
+          serverRespDisplay.textContent = "Game is starting & cleaning";
+          // log(xpLab.textContent);
+        } 
           /*
           document.getElementById("onconnectDiv").style.visibility = "visible";
           var serverRn = curServer;
@@ -22353,7 +21753,7 @@ function handleWsMessage(msgArrBuf) {
           aniChoice_joinGameAfter = joinGameAfterChoice;
           aniChoice_startT = +new Date();
           aniChoice_timeOutT = aniChoice_startT + 1000 * timeoutS;
-          _0x2af9ee = aniChoice_startT + 1000 * timeoutS;
+_0x2af9ee = aniChoice_startT + 1000 * timeoutS;
           //read ani types info
 
           for (var i = 0; i < numAnis; i++) {
@@ -22370,8 +21770,8 @@ function handleWsMessage(msgArrBuf) {
               anAniT,
               biomeNum,
               species
-              // animalcol
-            );
+// animalcol           
+);
             aButton.teamID = teamID;
             aniChoice_choiceButtons.push(aButton);
           }
@@ -22399,33 +21799,35 @@ function handleWsMessage(msgArrBuf) {
       updateLeaderBoard(lbData, 0, ownRank);
 
       break;
-    case 7:
-      var aServIp = num2dotIP(msg.readUInt32());
-      console.log();
-      var aServNumPl = msg.readUInt16();
-      var gameMode = msg.readUInt8();
-      var BR_waitingForPlayers = msg.readUInt8();
-      for (var j = 0; j < gameServersList.length; j++) {
-        if (gameServersList[j].ip == aServIp || "localhost") {
-          var theServ = gameServersList[j];
-          if (aServNumPl == 60000) {
-            // 60000 players recieved = offline server
-            theServ.playersCount = -1;
-          } else theServ.playersCount = aServNumPl;
+      case 7:
+        var aServIp = num2dotIP(msg.readUInt32());
+        console.log()
+        var aServNumPl = msg.readUInt16();
+        var gameMode = msg.readUInt8();
+        var BR_waitingForPlayers = msg.readUInt8();
+            for (var j = 0; j < gameServersList.length; j++) {
+        if (gameServersList[j].ip == aServIp||"localhost") {
+        var theServ = gameServersList[j];
+        if (aServNumPl == 60000){
+          // 60000 players recieved = offline server
+          theServ.playersCount = -1;
 
-          theServ.gameMode = gameMode;
-          //console.log("--matched server " + theServ.ip + " gameMode " + gameMode + " "+theServ.playersCount+ "players ");
-          theServ.BR_waitingForPlayers = BR_waitingForPlayers;
+        }else
+        theServ.playersCount = aServNumPl;
 
-          matchF = true;
-          //console.log("Match found for server");
-          //console.log(aServNumPl + " in server " + gameServersList[j].name);
-          break;
-        }
+        theServ.gameMode = gameMode;
+        //console.log("--matched server " + theServ.ip + " gameMode " + gameMode + " "+theServ.playersCount+ "players ");
+        theServ.BR_waitingForPlayers = BR_waitingForPlayers;
+
+        matchF = true;
+        //console.log("Match found for server");
+        //console.log(aServNumPl + " in server " + gameServersList[j].name);
+        break;
       }
-      updateRegionsList();
-      updateServersList(); //update options shown
-      updateGmModeButtons();
+            }
+            updateRegionsList();
+  updateServersList(); //update options shown
+  updateGmModeButtons();
       break;
     case 10:
       {
@@ -22440,10 +21842,7 @@ function handleWsMessage(msgArrBuf) {
             playersOnlTXT.setText(
               numberWithCommas(nPlayersViewing) + " Spectating!"
             );
-          else
-            playersOnlTXT.setText(
-              numberWithCommas(nPlayersAlive) + " Playing!"
-            );
+          else playersOnlTXT.setText(numberWithCommas(nPlayersAlive) + " Playing!");
           showPlaersOnServer = !showPlaersOnServer;
         }
         // pshowPlaersOnServerlayersOnlTXT.setText(numberWithCommas(nPlayers) + " players");
@@ -22454,7 +21853,7 @@ function handleWsMessage(msgArrBuf) {
       break;
 
     case 18: //your animal upgraded
-      {
+       {
         var aniT = msg.readUInt8();
         var aniTSpecies = msg.readUInt8();
         var upgradeType = msg.readUInt8();
@@ -22471,8 +21870,8 @@ function handleWsMessage(msgArrBuf) {
         if (upgradeType != 2) {
           screenText = wasDowngrade
             ? "You downgraded to " +
-              aniInfoO.aniName +
-              "! \nDont lose too much xp!"
+            aniInfoO.aniName +
+            "! \nDont lose too much xp!"
             : aniInfoO.upgradeText;
           screenTextCol = "white";
           screenTextEndT = +new Date() + 9000;
@@ -22518,6 +21917,7 @@ function handleWsMessage(msgArrBuf) {
           var aType = msg.readUInt8();
           //console.log("animal type now edible: "+aType);
           edibAniTypes[aType - 1] = 1; //mark as true (dangerous)
+         
         }
         tailBiteAniTypes = Array.apply(null, new Array(100)).map(
           Number.prototype.valueOf,
@@ -22538,50 +21938,44 @@ function handleWsMessage(msgArrBuf) {
         }
 
         //generate instructions
-        //list of GameObjs that are newly edible
-
+         //list of GameObjs that are newly edible
+              
+           
         /// if not battle royal then show
-        screenIns_objsEdible = [];
-        for (t = 0; t < edibleObjTypes.length; t++) {
-          0 < edibleObjTypes[t] &&
-            0 == old_edibleObjTypes[t] &&
-            ((anO = GameObjType.createGameObjOfOType(t + 1, 0)),
-            (anO.x = anO.ox = anO.nx = 0),
-            (anO.y = anO.oy = anO.ny = 0),
-            (anO.rad = anO.oRad = anO.nRad = 25));
-          //  screenIns_objsEdible.push(anO)
-        }
-        for (t = 0; t < edibAniTypes.length; t++) {
-          0 < edibAniTypes[t] &&
-            0 == old_edibAniTypes[t] &&
-            ((anO = GameObjType.createGameObjOfOType(o_animal, t + 1)),
-            (anO.x = anO.ox = anO.nx = 0),
-            (anO.y = anO.oy = anO.ny = 0),
-            (anO.rad = anO.oRad = anO.nRad = 25));
-          //screenIns_objsEdible.push(anO)
-        }
-
+                  screenIns_objsEdible = [];
+                for (t = 0; t < edibleObjTypes.length; t++){
+ 0   < edibleObjTypes[t] && 0 == old_edibleObjTypes[t] && (
+    
+ 
+     anO = GameObjType.createGameObjOfOType( t + 1, 0),
+  anO.x = anO.ox = anO.nx = 0,
+  anO.y = anO.oy = anO.ny = 0,
+  anO.rad=anO.oRad=anO.nRad= 25
+//  screenIns_objsEdible.push(anO)
+ )
+ };  
+ for (t = 0; t < edibAniTypes.length; t++){
+ 0   < edibAniTypes[t] && 0 == old_edibAniTypes[t] && (
+    
+ 
+     anO = GameObjType.createGameObjOfOType(o_animal, t + 1),
+  anO.x = anO.ox = anO.nx = 0,
+  anO.y = anO.oy = anO.ny = 0,
+  anO.rad=anO.oRad=anO.nRad= 25
+  //screenIns_objsEdible.push(anO)
+ )
+ };
+            
         screenIns_drawNewPlayerIns = aniT == a_mouse || aniT == a_shrimp; //draw basic instutions (eat green outlined, avoid red)
 
         screenIns_EndT = +new Date() + 9000;
         screenIns_A = 0.0;
-        if (0 < screenIns_objsEdible.length) {
-          for (
-            $s = 1.2,
-              e = 35 * Math.max(0, screenIns_objsEdible.length - 1),
-              Qs = e + 20,
-              t = 0;
-            t < screenIns_objsEdible.length;
-            t++
-          )
-            (r = screenIns_objsEdible[t]),
-              (r.x = r.ox = r.nx =
-                0 -
-                e / 2 +
-                (t / Math.max(1, screenIns_objsEdible.length - 1)) * e),
-              (r.y = r.oy = r.ny = 0),
-              (r.nRad = 15);
-        }
+ if (0 < screenIns_objsEdible.length) {
+ for ($s = 1.2, e = 35 * Math.max(0, screenIns_objsEdible.length - 1),
+  Qs = e + 20, t = 0; t < screenIns_objsEdible.length; t++) r = screenIns_objsEdible[t], 
+  r.x = r.ox = r.nx = 0 - e / 2 + t / Math.max(1, screenIns_objsEdible.length - 1) * e,
+   r.y = r.oy = r.ny = 0, r.nRad = 15;
+ }
         if (_gameMode != null) _gameMode.setPlayer();
       }
       break;
@@ -22592,11 +21986,13 @@ function handleWsMessage(msgArrBuf) {
         if (_gameMode != null) _gameMode.main(msg);
       }
       break;
-
+      
+ 
     case 14:
       {
+     
         //MsgYouDied  (you died)
-
+ 
         log("@@@@@@@@@@@@@ Player died");
         var deathR = msg.readUInt8();
         var respawnXp = msg.readUInt32();
@@ -22649,14 +22045,14 @@ function handleWsMessage(msgArrBuf) {
           respawnXp = 0;
           screenTextFontSize = 50;
           screenTextCol = "#4AE05E";
-          screenTextEndT = +new Date() + 3500;
+            screenTextEndT = +new Date() + 3500;
         } else {
           //default
           screenText = "You died! Watch your health!";
           screenTextCol = "#F1C34C";
           screenTextEndT = +new Date() + 3500;
         }
-
+        
         //console.log("died msg");
 
         //clear choice interface
@@ -22701,6 +22097,7 @@ function handleWsMessage(msgArrBuf) {
                   xpLab.style.display = "block";
                   xpLab.style.opacity = 1.0;
                   //document.getElementById("spawnXpLabel").style.marginTop = "10px";
+          
                 }
               }, 1000);
             }
@@ -22711,8 +22108,10 @@ function handleWsMessage(msgArrBuf) {
 
             //disable warning
             if (!isMobileApp) window.onbeforeunload = null;
+             
           }
         }, 2000);
+      
       }
       break;
     case 4:
@@ -22750,59 +22149,74 @@ function handleWsMessage(msgArrBuf) {
             {
               //custom msg
               screenText = msg.readString();
-              screenTextCol = "white"; //default color for event
-              screenTextFontSize = 25;
+                screenTextCol = "white"; //default color for event
+            screenTextFontSize = 25;
             }
-
+            
             break;
-
+         
+        
           case 2:
             {
               //your player got bitten
               screenText = "Ouch! Your tail got bitten!";
-              screenTextCol = "white"; //default color for event
-              screenTextFontSize = 25;
+               screenTextCol = "white"; //default color for event
+            screenTextFontSize = 25;
             }
             break;
+          
         }
       }
       break;
     case 35:
-      var which = msg.readUInt8();
+      var which =  msg.readUInt8();
       var time = msg.readUInt32();
-      console.log(which, time);
-      if (which == 1) {
-        button_w.abil_rechargeTotalT = time;
-        button_w.abil_rechargeEndT = Date.now() + time;
-      } else {
-        button_w_mini.abil_rechargeTotalT = time;
-        button_w_mini.abil_rechargeEndT = Date.now() + time;
-        console.log(time);
+        console.log(which,time)
+      if(which == 1){
+      button_w.abil_rechargeTotalT =  time;
+        button_w.abil_rechargeEndT =  Date.now()+  time;
+       
+      }else{
+        
+      button_w_mini.abil_rechargeTotalT =  time;
+      button_w_mini.abil_rechargeEndT =  Date.now()  + time;
+        console.log(time)
       }
-
+      
+      
+      
       break;
     case 36:
-      {
-        abil_dive_isMain = msg.readUInt8();
-        abil_dive_recharging = msg.readUInt8();
-        abil_recharging = msg.readUInt8();
+      {  
+        abil_dive_isMain =  msg.readUInt8();
+        abil_dive_recharging=  msg.readUInt8() ;
+        abil_recharging=  msg.readUInt8();
 
-        //dive is main ability!
-        button_w_mini.abil_usable = msg.readUInt8();
-        button_w_mini.abil_recharging = abil_dive_recharging;
-        button_w_mini.abil_possible = msg.readUInt8();
-        button_w_mini.abil_active = msg.readUInt8();
-        button_w_mini.abil_Type = msg.readUInt8();
+     
+      //dive is main ability!
+      button_w_mini.abil_usable =  msg.readUInt8();
+      button_w_mini.abil_recharging = abil_dive_recharging;
+      button_w_mini.abil_possible =  msg.readUInt8();
+      button_w_mini.abil_active =  msg.readUInt8();
+      button_w_mini.abil_Type =  msg.readUInt8();
 
-        button_w.abil_usable = msg.readUInt8();
-        button_w.abil_recharging = abil_recharging;
-        button_w.abil_possible = msg.readUInt8();
-        button_w.abil_active = msg.readUInt8();
-        button_w.abil_Type = msg.readUInt8();
-        //set correct recharging vars for both buttons
+      
+      
+      button_w.abil_usable =  msg.readUInt8();
+      button_w.abil_recharging = abil_recharging;
+      button_w.abil_possible =  msg.readUInt8();
+      button_w.abil_active =  msg.readUInt8();
+      button_w.abil_Type =  msg.readUInt8();
+      //set correct recharging vars for both buttons
+    
+       
+  
+      
+
+   
       }
-      break;
-
+  break;
+  
     case 50: {
       log("disconnected from AFK!");
       dcedFromAfk = true;
@@ -22813,38 +22227,38 @@ function handleWsMessage(msgArrBuf) {
         if (_gameMode != null) _gameMode.main(msg);
       }
       break;
-    case 51: // team mode messages
+ case 51: // team mode messages
       {
         if (_gameMode != null) _gameMode.main(msg);
       }
       break;
-    case 52:
+  case 52:
       {
-        let req = {};
-        req.id = msg.readUInt32();
-        req.requestee = msg.readString();
-        req.aniType = msg.readUInt8();
-        req.wins = msg.readUInt32();
-        req.rank = msg.readUInt16();
-        req.dur = msg.readUInt16();
-
-        console.log(req.requestee);
-        player1v1Requests.push({
-          id: req.id,
-          requestee: req.requestee,
-          aniType: req.aniType,
-          wins: req.wins,
-          teamID: 0,
-          rank: req.rank,
-          dur: req.dur
-        });
-        buildInviteScreen();
+        let req = {}
+        req.id = msg.readUInt32()
+        req.requestee =  msg.readString();
+         req.aniType  =  msg.readUInt8();
+        req.wins =  msg.readUInt32();
+        req.rank  =  msg.readUInt16();
+         req.dur  =  msg.readUInt16();
+     
+        console.log(req.requestee)
+            player1v1Requests.push({
+      id: req.id,
+      requestee: req.requestee,
+      aniType: req.aniType,
+      wins: req.wins,
+      teamID: 0,
+      rank: req.rank,
+      dur: req.dur
+    });
+ buildInviteScreen() 
       }
       break;
-
+      
     case 57:
       {
-        player1v1Requests = [];
+        player1v1Requests = []
       }
       break;
     case 55: // Msg_1v1Mode_topperInfo
@@ -22854,9 +22268,11 @@ function handleWsMessage(msgArrBuf) {
         top1v1_wins = msg.readUInt32();
         top1v1_name = msg.readString();
 
+
+
         if (top1v1_isHistoric) top1v1_since = msg.readString();
 
-        buildTopperInfo();
+          buildTopperInfo();
       }
       break;
     case 58: // Msg_customScreenTextFont
@@ -22885,6 +22301,8 @@ function handleWsMessage(msgArrBuf) {
       }
       break;
 
+   
+     
     case 60: // Msg_goalScoredByOther
       {
         var scoredGoal = msg.readString();
@@ -22894,7 +22312,7 @@ function handleWsMessage(msgArrBuf) {
         screenTextFontSize = 40;
       }
       break;
-
+   
     case 56: // spectate mode
       {
         //a change in 'spectate mode'- due to pressing the SPECTATE button
@@ -23016,7 +22434,7 @@ function worldUpdate(msg) {
 
   //removed Objects
   cnt = msg.readUInt16();
-  // console.log("2: " + cnt)
+ // console.log("2: " + cnt)
   //console.log(cnt + " dead objects");
   for (var L = 0; L < cnt; L++) {
     //  var deadidPlusFlag = msg.readUInt32();
@@ -23032,7 +22450,7 @@ function worldUpdate(msg) {
 
   // read safe area info here
   if (_gameMode != null) _gameMode.worldUpdate(msg);
-} //end world update
+}//end world update
 
 //read player info (eg. like camera, interface #s)
 function worldUpd_readPlayerInfoMessage(msg) {
@@ -23042,7 +22460,7 @@ function worldUpd_readPlayerInfoMessage(msg) {
   camy_n = msg.readUInt16() / 4.0;
   camzoom_n = msg.readUInt16() / 1000.0;
   isDevMode = msg.readUInt8(); //water/air/lava bar %
-  //  if (gameMode == "none BOYEEEEE") teamID = msg.readUInt8();
+//  if (gameMode == "none BOYEEEEE") teamID = msg.readUInt8();
 
   if (instantSetCamNextUpd) {
     instantSetCamNextUpd = false;
@@ -23051,7 +22469,7 @@ function worldUpd_readPlayerInfoMessage(msg) {
     camzoom = camzoom_n;
   }
 
-  /*
+/*
   var flags = msg.readUInt8();
 
   var specator = bit_get(flags, 0);
@@ -23178,17 +22596,19 @@ function worldUpd_readPlayerInfoMessage(msg) {
           }
         }
 */
-  waterBarPerc_n = msg.readUInt8(); //water/air/lava bar %
-  animalBarType = msg.readUInt8(); // new bar type
+      waterBarPerc_n = msg.readUInt8(); //water/air/lava bar %
+      animalBarType = msg.readUInt8(); // new bar type
 
-  var newXP = msg.readUInt32();
+      var newXP = msg.readUInt32();
+    
+   
+      xp = newXP;
+         interface_onXPAmountUpdate(newXP, xp); //for XP popup
+   
+      xpPer_n = msg.readUInt8();
 
-  xp = newXP;
-  interface_onXPAmountUpdate(newXP, xp); //for XP popup
 
-  xpPer_n = msg.readUInt8();
-
-  var abil_Type = msg.readUInt8();
+var abil_Type = msg.readUInt8();
   //}
 }
 
@@ -23473,7 +22893,7 @@ function drawGame(currentTime) {
   //draw game bounds rectagles
   ctx.save();
   if (serverFirstConnected) {
-    var wid = 10;
+  var wid = 10;
     wid = 600;
     ctx.globalAlpha = 1.0;
     ctx.fillStyle = col_outline_land;
@@ -23488,7 +22908,7 @@ function drawGame(currentTime) {
   } else {
     //camx-canvasW/camzoom, camy-canvasH/camzoom, camx+canvasW/camzoom, camy+canvasH/camzoom;
     //console.log(camx+", "+camy);
-    fillGrid(
+  fillGrid(
       gameXForScreenX(0),
       gameYForScreenY(0),
       gameXForScreenX(canvasW),
@@ -23639,6 +23059,7 @@ if (window.requestAnimationFrame) {
 var lastJoinTryT = 0;
 
 function joinGame(isSpectator) {
+	
   //console.log("===>> @@@@@@ Join game called!");
   if (!wsIsOpen())
     // || serverCon_aliveInAGame) //cant respawn if not dead!
@@ -23661,7 +23082,7 @@ function joinGame(isSpectator) {
     playerName = nick;
   }
   // ?
-
+ 
   var msgLen = 9 + encode_utf8(playerName).length + 5;
   var mes = new MsgWriter(msgLen);
   mes.writeUInt8(2); //MSGTYPE join GAME
@@ -23670,6 +23091,7 @@ function joinGame(isSpectator) {
   mes.writeUInt16(canvasH);
   mes.writeUInt8(isSpectator ? 1 : 0);
   wsSendMsg(mes);
+
 
   if (nick && nick.length > 0) playerName = "mope2.io/1v1";
   //save name locally
@@ -23704,8 +23126,11 @@ function onVideoAdPlaying() {
 }
 
 function playPressed() {
-  console.log("play pressed");
+	console.log("play pressed")
+   
+  
 
+  
   var theDom = document.getElementById("optionsDiv");
   theDom.style.display = "none";
 
@@ -23716,11 +23141,11 @@ function playPressed() {
   var sound_click = getLazyLoadAudio("audio/click.mp3");
   if (sound_click) {
     try {
-      //  sound_click.play();
+    //  sound_click.play();
     } catch (err) {}
   }
-
-  console.log(serverConnected);
+  
+  console.log(serverConnected)
 
   if (videoAdIsPlaying || !serverConnected)
     //block early press enter to restart (when ad playing, but technically not ingame)
@@ -23739,7 +23164,10 @@ function playPressed() {
 
 document.getElementById("startButton").onclick = playPressed;
 
+
 document.getElementById("btnSpectate").onclick = function() {
+ 
+  
   if (!isSpectateMode) {
     //send message to toggle on/off spectate mode
     var mes = new MsgWriter(1);
@@ -23813,6 +23241,7 @@ document.onkeydown = function(ev) {
             showScreenTextWithDur(
               "Movement Lock (ESC KEY): " + (ESC_down ? "ON" : "OFF"),
               2500
+                
             );
             screenTextCol = "white"; //default color for event
             screenTextFontSize = 25;
@@ -23998,7 +23427,7 @@ function onResize() {
   //move chat area to middle of screen
   var chatInp = document.getElementById("chatinput");
   chatInp.style.marginTop = windowH / 2 - 50 + "px";
-  //reposition buttons (in ORDER!)
+ //reposition buttons (in ORDER!)
   var buttonF = isTouchEnabled && windowH < 500 ? 1.4 : 1.0; //bigger buttons on small mobile screens
   button_run.w = button_run.h = 200 * interfS * buttonF;
   button_w.w = button_w.h = 200 * interfS * buttonF;
@@ -24019,7 +23448,7 @@ function onResize() {
   if (!isTouchEnabled) {
     button_w.y = button_run.y; //lower W when touch is disabled (as run button isnt available without touch)
   } else
-    button_w.y =
+   button_w.y =
       button_run.y -
       (10 * pixelRat * buttonF + button_w.w / 2 + button_run.w / 2); //above button 'runbutton'
   button_w_mini.x = button_run.x;
@@ -24057,7 +23486,7 @@ function onResize() {
   }
   button_w.visible = true;
   button_w_mini.visible = true; //always drawn
-
+   
   button_sKey.visible = button_sKey.touchEnabled = isTouchEnabled;
   button_SBdowngrade.visible = button_SBdowngrade.touchEnabled =
     isTouchEnabled && KTestingModeON;
@@ -24142,7 +23571,7 @@ function controlsPressEvent(cNum, isNowPressed) {
         if (serverCon_aliveInAGame) {
           var mes = new MsgWriter(1);
           mes.writeUInt8(28);
-
+          
           wsSendMsg(mes);
         }
       }
@@ -24151,28 +23580,28 @@ function controlsPressEvent(cNum, isNowPressed) {
 
     case cNum_keyD:
       {
-        if (cNum_keyDused != isNowPressed)
-          if (serverCon_aliveInAGame) {
-            var mes = new MsgWriter(2);
-            mes.writeUInt8(30);
-            mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
-            wsSendMsg(mes);
-
-            cNum_keyDused = isNowPressed;
-          }
+           if (cNum_keyDused != isNowPressed)
+        if (serverCon_aliveInAGame) {
+          var mes = new MsgWriter(2);
+          mes.writeUInt8(30);
+          mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
+          wsSendMsg(mes);
+          
+          cNum_keyDused = isNowPressed
+        }
       }
       break;
     case cNum_keyE:
       {
-        if (cNum_keyEused != isNowPressed)
-          if (serverCon_aliveInAGame) {
-            var mes = new MsgWriter(2);
-            mes.writeUInt8(29);
-            mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
-            wsSendMsg(mes);
-
-            cNum_keyEused = isNowPressed;
-          }
+          if (cNum_keyEused != isNowPressed)
+        if (serverCon_aliveInAGame) {
+          var mes = new MsgWriter(2);
+          mes.writeUInt8(29);
+          mes.writeUInt8(isNowPressed ? 1 : 0); //1=down, 0=up
+          wsSendMsg(mes);
+          
+          cNum_keyEused = isNowPressed
+        }
       }
       break;
   }
@@ -24541,6 +23970,8 @@ function sendMouseCoords() {
       return; //dont send coords if in hiding hole
       //gameMouseX=camx;
       //gameMouseY=camy;
+   
+    
     }
   }
 
@@ -24551,17 +23982,23 @@ function sendMouseCoords() {
     ) {
       lastMouseX = gameMouseX; //last sent pos
       lastMouseY = gameMouseY;
-
+      
+      
+      
       mes = new MsgWriter(7);
       mes.writeUInt8(5); //MSGTYPE
       mes.writeInt16(gameMouseX); // - (myPlayer ? myPlayer.x : camx)); //client size (w, h)
       mes.writeInt16(gameMouseY); // - (myPlayer ? myPlayer.y : camy));
       //mes.writeUInt8(mwDelta == 1 ? 1 : 0); // - (myPlayer ? myPlayer.y : camy));
       mes.writeInt16(mwd); // - (myPlayer ? myPlayer.y : camy));
-
+      
       //console.log("sending mouse");
       wsSendMsg(mes);
       //console.log("sent mouse");
+ 
+      
+      
+      
     }
   }
 }
@@ -24632,17 +24069,19 @@ function gameReset() {
   aniChoice_A = 0.0;
   aniChoice_choiceButtons = []; //buttons to be rendered
   aniChoice_joinGameAfter = false;
-  (_0x16dc71 = 0), (_0x2af9ee = 0);
+ _0x16dc71 = 0,
+    _0x2af9ee = 0;
   //reset xp popups
   plusXpPopups = [];
   plusCOINSPopups = [];
   lastPopupXPAm = 0;
-  lastPopupCoinsAm = 0;
+  lastPopupCoinsAm = 0
   lastPopupT = 0;
   lastPopupC = 0;
 
-  isInArena = true;
-  isAbility1v1Active = true;
+
+  isInArena = false;
+  isAbility1v1Active = false;
   player1v1ArenaWins = 0;
   player1v1Requests = [];
   //if (btn1v1 != null) btn1v1.isVisible = false;
@@ -24651,7 +24090,7 @@ function gameReset() {
   isInBonusRound = false;
   bonusRoundDur = 0;
   eggID = 0;
-  isDevMode = false;
+  isDevMode = true;
   endScreenCanvas = null;
 
   // call interface reset for any game mode if defined
@@ -24723,7 +24162,10 @@ function setGameMode() {
   if (_gameMode != null) _gameMode.interfaceReset();
 
   _gameMode = null;
-  if (gameMode == gameMode_FFA || gameMode == gameMode_troll) {
+  if (
+    gameMode == gameMode_FFA ||
+    gameMode == gameMode_troll
+  ) {
     _gameMode = new FreeForAll(gameMode);
     _gameMode.state = gameState;
   } else if (gameMode == gameMode_teamMode) {
@@ -24840,7 +24282,7 @@ function drawArrow(src, dest, color) {
       y: dest.y
     }
   );
-
+  
   //angle += Math.PI
   angle += toRadians(45);
 
@@ -24855,6 +24297,8 @@ function resetMenu() {
   document.getElementById("rightSide").style.display = "block";*/
   setSiteMenuVisible(true);
 }
+
+
 
 /*
      FILE ARCHIVED ON 19:37:27 Oct 10, 2020 AND RETRIEVED FROM THE
@@ -24877,5 +24321,3 @@ playback timings (ms):
   esindex: 0.018
   RedisCDXSource: .121
 */
-//hello//
-console.log("Hello!!!!!!");
