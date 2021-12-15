@@ -319,7 +319,9 @@ a_scorpion = 78,
 a_lochness = 83,
 a_griffin = 84,
 a_santa = 85,
-a_finaldragon = 86;
+a_finaldragon = 86,
+a_test = 87;
+
 var infoForAnimalType = function (aniT) {
     var infoO = {};
     switch (aniT) {
