@@ -4466,6 +4466,7 @@ var displayWinsGoals = 0;
 var inviteScreenCanvas = null;
 var inviteScreenPos = 0;
 function buildInviteScreen() {
+  if (btn1v1.isVisible) btn1v1.clicked = true,false;
   /* player1v1Requests = [];
   for (i = 0; i < 1; i++) {
     var id = i;
@@ -4982,7 +4983,7 @@ if (KTestingModeON) {
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
 addServerDef("Local Test 1", "10bb-190-215-158-88.ap.ngrok.io", reg,"80"); 
-//addServerDef("Local Test 2", "4c92-190-215-158-88.ngrok.io", reg,"80"); 
+addServerDef("Local Test 2", "127.0.0.1", reg,"80"); 
 
 //reg = "FFA";
  //  addServerDef("FFA", "146.148.81.224", reg);
@@ -6708,7 +6709,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
 
     case o_volcano:
       {
-        /*var theImg = getLoadedImg("img/volcano_im.png");
+        var theImg = getLoadedImg("img/volcano_im.png");
                 if (theImg) {
                     var rad = this.rad*(300.0/236.0);
                     ctx.save()
@@ -6716,7 +6717,7 @@ GameObj.prototype.customDraw = function(batchDrawOutline) {
                     ctx.drawImage(theImg, -rad, -rad, 2 * rad, 2 * rad);
 
                     ctx.restore();
-                }*/
+                }
 
         //drawCircle(0, 0, Math.max(0, this.rad*1.0), "#09992f");
 
