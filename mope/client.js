@@ -4466,7 +4466,7 @@ var displayWinsGoals = 0;
 var inviteScreenCanvas = null;
 var inviteScreenPos = 0;
 function buildInviteScreen() {
-  if (btn1v1.isVisible) btn1v1.clicked = true,false;
+
   /* player1v1Requests = [];
   for (i = 0; i < 1; i++) {
     var id = i;
