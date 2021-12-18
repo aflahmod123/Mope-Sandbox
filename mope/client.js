@@ -12389,7 +12389,7 @@ You got firestream that burns your victim alive! Watch your tail and slap them h
         infoO.aniName +
         " The Dinosaur!\n This ancient dinosaur has powerful jaws that can drag prey around!!";
       infoO.aniCol = "#862A2A";
-      infoO.skinName = "trex";
+      infoO.skinName = "skins/t-rex/1/t-rex";
       break;
 
     case a_giraffe:
