@@ -1,4 +1,4 @@
-
+location.href = "http://mopesandbox1.herokuapp.com/mope/"
 var gamever = 99;
 var KTestingModeON = true;
 var KTestingBetaMode = true && !KTestingModeON;
