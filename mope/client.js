@@ -4982,7 +4982,7 @@ if (KTestingModeON) {
     reg = "Local Test";
   
   if(ACTIVATEOURGAMEMODE){addServerDef("FFA", "ahmetcan-channel-1.paiza-user-free.cloud/", reg,"80")}else{
-addServerDef("Local Test 1", "bbbc-190-215-158-88.ap.ngrok.io", reg,"80"); 
+addServerDef("Local Test 1", "https://mope-io123.herokuapp.com", reg,"80"); 
 //addServerDef("Local Test 2", "127.0.0.1", reg,"80"); 
 
 //reg = "FFA";
